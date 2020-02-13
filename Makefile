@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/10 14:06:45 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/13 14:12:23 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,8 @@ corewar: $(COREWAR_FILES) libft/libft.a
 	@gcc $(CFLAGS) $(OBJ_COREWAR) libft/libft.a -o corewar
 	@echo "$(PRINT_DONE) Compiling corewar completed"
 
-libft/libft.a:
+libft/libft.a: FORCE
 	@make -C libft/
-	@echo "$(PRINT_PLUS) Compiling libft"
 
 clean:
 	@rm -f $(OBJ_FILES)
@@ -63,3 +62,5 @@ norm:
 	@echo "===================NORMINETTE==================="
 	@$(NORM) || echo "no norminette errors"
 	@echo "================================================"
+
+FORCE:
