@@ -1,0 +1,12 @@
+language: c
+os: osx
+
+branches:
+  only:
+    master
+
+install:
+  - brew install snaipe/soft/criterion
+
+script:
+  - ./test/coretest --verbose
