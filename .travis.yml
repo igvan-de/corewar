@@ -10,3 +10,8 @@ install:
 
 script:
   - ./test/coretest --verbose
+
+notification:
+  slack:
+    on_succes: always
+    on_failure: always
