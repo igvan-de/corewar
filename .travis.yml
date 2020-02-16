@@ -1,0 +1,17 @@
+language: c
+os: osx
+
+branches:
+  only:
+    master
+
+install:
+  - brew install snaipe/soft/criterion
+
+script:
+  - ./test/coretest --verbose
+
+notification:
+  slack: 42born2code:gLyRhTdCmqHPxkEs68ezz7Xo
+    on_succes: always
+    on_failure: always
