@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/16 09:11:59 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/16 09:43:14 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/16 10:46:22 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,11 +26,9 @@ COREWAR = ../corewar
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_RED = $(shell printf "\e[31;5;10m")
-COLOR_YELLOW = $(shell printf "\e[33;5;10m")
 COLOR_DEFAULT = $(shell printf "\e[39m")
 PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 PRINT_CLEAN = $(shell printf '$(COLOR_RED)[ - ]$(COLOR_DEFAULT)')
-PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
 
