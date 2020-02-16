@@ -5,20 +5,24 @@
 #                                                      +:+                     #
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/16 09:42:35 by igvan-de      ########   odam.nl          #
+#    Created: 2020/02/16 09:11:59 by igvan-de       #+#    #+#                 #
+#    Updated: 2020/02/16 09:43:14 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 include sources
+include ../sources/coresrcs
 
-OBJ_ASM = $(SRCS:%.c=%.o)
-OBJ_COREWAR = $(CORESRCS:%.c=%.o)
-INCLUDES = -I ./includes
+OBJ_FILES = $(TESTSRCS=%.c=%.o)
+OBJ_FILES += $(SRCS=%.c=%.o)
+INCLUDES = -I .././includes
 
-NAME = asm corewar
-CFLAGS =  -Wall -Werror -Wextra
-NORM = norminette $(SRCS) | grep -e "Error" -e "Warning" -B 1
+NAME = coretest
+CFLAGS = -Wall -Werror
+CRITERION := -L $(HOME)/.brew/lib -lcriterion
+LIB = .././libft/libft.a
+AMS = ../asm
+COREWAR = ../corewar
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_RED = $(shell printf "\e[31;5;10m")
@@ -30,38 +34,29 @@ PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
 
-%.o: %.c includes/lemin.h
+%.o: %.c
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES)
 	@echo "$(PRINT_PLUS) $@"
 
-asm: $(ASM_FILES) libft/libft.a
-	@gcc $(CFLAGS) $(OBJ_AMS) libft/libft.a -o $@
-	@echo "$(PRINT_DONE) Compiling asm completed"
+$(NAME): $(ASM) $(COREWAR) $(OBJ_FILES)
+	@gcc -coverage $(CRITERION) $(OBJ_FILES) $(CFLAGS) $(LIB) -o $@
 
-corewar: $(COREWAR_FILES) libft/libft.a
-	@gcc $(CFLAGS) $(OBJ_COREWAR) libft/libft.a -o $@
-	@echo "$(PRINT_DONE) Compiling corewar completed"
+$(ASM): FORCE
+	@Meke -C ../
 
-libft/libft.a: FORCE
-	@make -C libft/
+$(COREWAR): FORCE
+	@Meke -C ../
 
 clean:
 	@rm -f $(OBJ_FILES)
-	@make -C ./Libft clean
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
-fclean: clean
+flcean: clean
 	@rm -f $(NAME)
-	@make -C ./libft fclean
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:
 	@make fclean
 	@make all
-
-norm:
-	@echo "===================NORMINETTE==================="
-	@$(NORM) || echo "no norminette errors"
-	@echo "================================================"
 
 FORCE:
