@@ -15,8 +15,3 @@ install:
 
 script:
   - ./test/coretest --verbose
-
-notification:
-  slack: 42born2code:gLyRhTdCmqHPxkEs68ezz7Xo
-    on_success: always
-    on_failure: always
