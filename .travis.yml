@@ -17,6 +17,6 @@ script:
   - ./test/coretest --verbose
 
 notifications:
-  slack: 42born2code:gLyRhTdCmqHPxkEs68ezz7Xo
+  slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
     on_success: always
     on_failure: always
