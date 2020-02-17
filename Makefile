@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/16 09:42:35 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/17 12:46:53 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,9 @@ corewar: $(COREWAR_FILES) libft/libft.a
 
 libft/libft.a: FORCE
 	@make -C libft/
+
+unit_test:
+	@make -C unit_test/
 
 clean:
 	@rm -f $(OBJ_FILES)
