@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   asm.h                                              :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/17 17:08:50 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
+/*   Updated: 2020/02/17 17:05:44 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#ifndef ASM_H
+# define ASM_h
 
-int	main(int argc, char *argv)
-{
-	int	i;
+# include "get_next_line.h"
+# include "libft.h"
+# include "op.h"
+# include <stdbool.h>
 
-	i = 1;
-	if (argc == 0)
-		input_error();
-	while (argv[i] != NULL)
-	{
-		i++;
-	}
-	return (0);
-}
+/*
+**===============================ERROR FUNCTIONS================================
+*/
+void	input_error(void);
+
+#endif

@@ -6,11 +6,12 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/17 12:46:53 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/17 17:11:59 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include sources
+include asm/sources
+include asm/error_functions/sources
 
 OBJ_ASM = $(SRCS:%.c=%.o)
 OBJ_COREWAR = $(CORESRCS:%.c=%.o)

@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   error_functions.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/17 17:08:50 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
+/*   Updated: 2020/02/17 17:09:17 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	main(int argc, char *argv)
+void	input_error(void)
 {
-	int	i;
-
-	i = 1;
-	if (argc == 0)
-		input_error();
-	while (argv[i] != NULL)
-	{
-		i++;
-	}
-	return (0);
+	ft_putendl("No champion is give, please provide champion");
+	exit(-1);
 }

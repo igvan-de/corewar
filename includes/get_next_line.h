@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   get_next_line.h                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/17 17:08:50 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/02/13 18:35:14 by igvan-de       #+#    #+#                */
+/*   Updated: 2020/02/07 17:12:34 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main(int argc, char *argv)
-{
-	int	i;
+# define BUFF_SIZE 20
 
-	i = 1;
-	if (argc == 0)
-		input_error();
-	while (argv[i] != NULL)
-	{
-		i++;
-	}
-	return (0);
-}
+# include "libft.h"
+
+int			get_next_line(const int fd, char **line);
+
+#endif
