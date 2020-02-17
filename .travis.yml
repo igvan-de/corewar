@@ -1,6 +1,11 @@
 language: c
 os: osx
 
+env:
+  global:
+      - HOMEBREW_NO_AUTO_UPDATE=1
+      - HOMEBREW_NO_INSTALL_CLEANUP=1
+
 branches:
   only:
     master
@@ -13,5 +18,5 @@ script:
 
 notification:
   slack: 42born2code:gLyRhTdCmqHPxkEs68ezz7Xo
-    on_succes: always
+    on_success: always
     on_failure: always
