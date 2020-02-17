@@ -18,5 +18,3 @@ script:
 
 notifications:
   slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
-    on_success: always
-    on_failure: always
