@@ -1,2 +1,3 @@
-SRCS =	vm_srcs/main.c \
-		vm_srcs/load_optab.c
+SRCS =	vm_srcs/main.c			\
+		vm_srcs/load_optab.c	\
+		vm_srcs/print_op_name.c	

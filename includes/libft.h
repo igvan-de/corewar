@@ -6,7 +6,7 @@
 /*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/01/17 10:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/01/22 16:06:56 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/02/18 14:28:08 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+char				*ft_itoa_base(int value, int base);
 char				*itoa_long(long long nb, long long base);
 char				*itoa_un_long(unsigned long long nb,
 					unsigned long long base);
@@ -97,7 +98,7 @@ int					ft_isnum(char *str);
 int					ft_lstcount(t_list **alst);
 int					ft_count_if(char **tab, int (*f)(char*));
 int					ft_arraylen(char **tab);
-
+long	int			ft_labs(long int nb);
 long long			ft_atoilong(const char *str);
 
 t_list				*ft_lstnew(void const *content, size_t content_size);

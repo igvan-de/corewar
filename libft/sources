@@ -10,6 +10,7 @@ ft_islower.c \
 ft_isupper.c \
 ft_isnum.c \
 ft_itoa.c \
+ft_itoa_base.c \
 ft_memalloc.c \
 ft_memccpy.c \
 ft_memchr.c \
@@ -54,6 +55,7 @@ ft_strsub.c \
 ft_strtrim.c \
 ft_tolower.c \
 ft_toupper.c \
+ft_labs.c \
 ft_lstnew.c \
 ft_lstdelone.c \
 ft_lstadd.c \
