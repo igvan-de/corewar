@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   vm.h                                               :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 08:46:02 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 08:46:39 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/18 08:47:01 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/18 08:48:12 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "vm.h"
+#ifndef VM_H
+# define VM_H
 
-int main(void)
-{
-	ft_putstr("Welcome to Corewar!\n");
-	return (0);
-}
+#include "libft.h"
+
+#endif
