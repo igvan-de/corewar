@@ -19,7 +19,7 @@
 
 #define IND_SIZE				2
 #define REG_SIZE				4
-#define DIR_SIZE				REG_SIZE
+#define DIR_SIZE				REG_SIZE					// 4
 
 
 # define REG_CODE				1
@@ -29,9 +29,9 @@
 
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4
-#define MEM_SIZE				(4*1024)
-#define IDX_MOD					(MEM_SIZE / 8)
-#define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+#define MEM_SIZE				(4*1024)					//	4096
+#define IDX_MOD					(MEM_SIZE / 8)				//	512				
+#define CHAMP_MAX_SIZE			(MEM_SIZE / 6)				//	682.666
 
 #define COMMENT_CHAR			'#'
 #define LABEL_CHAR				':'
