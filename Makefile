@@ -6,13 +6,13 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/17 12:46:53 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/18 11:51:06 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 include sources
 
-OBJ_ASM = $(SRCS:%.c=%.o)
+OBJ_ASM = $(ASMSRCS:%.c=%.o)
 OBJ_COREWAR = $(CORESRCS:%.c=%.o)
 INCLUDES = -I ./includes
 
@@ -34,11 +34,11 @@ all: $(NAME)
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES)
 	@echo "$(PRINT_PLUS) $@"
 
-asm: $(ASM_FILES) libft/libft.a
+asm: $(OBJ_ASM) libft/libft.a
 	@gcc $(CFLAGS) $(OBJ_AMS) libft/libft.a -o $@
 	@echo "$(PRINT_DONE) Compiling asm completed"
 
-corewar: $(COREWAR_FILES) libft/libft.a
+corewar: $(OBJ_COREWAR) libft/libft.a
 	@gcc $(CFLAGS) $(OBJ_COREWAR) libft/libft.a -o $@
 	@echo "$(PRINT_DONE) Compiling corewar completed"
 
