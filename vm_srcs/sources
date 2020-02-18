@@ -1,0 +1,2 @@
+SRCS =	vm_srcs/main.c \
+		vm_srcs/load_optab.c
