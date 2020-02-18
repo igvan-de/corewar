@@ -6,18 +6,17 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/17 17:11:59 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/18 11:46:25 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-include asm/sources
-include asm/error_functions/sources
+include asm_srcs/sources
+include asm_srcs/error_functions/sources
 
 OBJ_ASM = $(SRCS:%.c=%.o)
-OBJ_COREWAR = $(CORESRCS:%.c=%.o)
 INCLUDES = -I ./includes
 
-NAME = asm corewar
+NAME = asm
 CFLAGS =  -Wall -Werror -Wextra
 NORM = norminette $(SRCS) | grep -e "Error" -e "Warning" -B 1
 
@@ -31,17 +30,13 @@ PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
 
-%.o: %.c includes/lemin.h
+%.o: %.c includes/asm.h
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES)
 	@echo "$(PRINT_PLUS) $@"
 
-asm: $(ASM_FILES) libft/libft.a
-	@gcc $(CFLAGS) $(OBJ_AMS) libft/libft.a -o $@
+asm: $(OBJ_ASM) libft/libft.a
+	@gcc $(CFLAGS) $(OBJ_ASM) libft/libft.a -o $@
 	@echo "$(PRINT_DONE) Compiling asm completed"
-
-corewar: $(COREWAR_FILES) libft/libft.a
-	@gcc $(CFLAGS) $(OBJ_COREWAR) libft/libft.a -o $@
-	@echo "$(PRINT_DONE) Compiling corewar completed"
 
 libft/libft.a: FORCE
 	@make -C libft/

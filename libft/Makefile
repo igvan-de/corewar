@@ -6,9 +6,11 @@
 #    By: igvan-de <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/01/17 12:10:38 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/02/13 14:13:59 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/18 11:23:39 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
+
+include sources
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_DEFAULT = $(shell printf "\e[39m")
