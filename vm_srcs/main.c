@@ -24,36 +24,42 @@ unsigned int little_big(unsigned int little)
 
 static	void	dump_header(header_t header)
 {
-	printf("	header has magic: %#0x\n", header.magic);
-	if (header.magic == COREWAR_EXEC_MAGIC)
+	printf("	header has magic: %#0x\n", little_big(header.magic));
+	if (little_big(header.magic) == COREWAR_EXEC_MAGIC)
 		printf("	---> magic is valid!\n");
 	else
 		printf("	---> error: magic is invalid!\n");
 	printf("	header has name:	%s\n", header.prog_name);
-	printf("	header has prog size: %#0x\n", header.prog_size);
+	printf("	header has prog size: %u\n", little_big(header.prog_size));
 	printf("	header has comment: %s\n", header.comment);
 }
 
-//	open argument and read the first 2192 bytes into a header struct
+//	open argument and parse the champion
 
-static	void	parse_header(char *arg)
+static	void	parse_champion(char *arg, t_env *env)
 {
 	int			fd;
 	ssize_t		bytes;
 	header_t	header;
+	char		*prog_code;
 
 	fd = open(arg, O_RDONLY);
 	printf("	opened file %s at fd: %i in parse_header\n", arg, fd);
 	bytes = read(fd, &header, sizeof(header_t));
-	header.magic = little_big(header.magic);
-	header.prog_size = little_big(header.prog_size);
 	printf("		bytes read into header: %li\n", bytes);
 	dump_header(header);
+
+	prog_code = ft_strnew(little_big(header.prog_size));
+	bytes = read(fd, prog_code, little_big(header.prog_size));
+	if (bytes != little_big(header.prog_size))
+		printf("	error: actual prog_size does not match header prog_size variable\n");
+	printf("	total bytes read into prog_code: %li\n", bytes);
+	dump_prog_code(prog_code, little_big(header.prog_size), env);	
 }
 
 //	parse all arguments
 
-static	void	parse_args(int arg_nb, char **argv)
+static	void	parse_args(int arg_nb, char **argv, t_env *env)
 {
 	int i;
 
@@ -62,7 +68,7 @@ static	void	parse_args(int arg_nb, char **argv)
 	i = 1;
 	while (i < arg_nb)
 	{
-		parse_header(argv[i]);
+		parse_champion(argv[i], env);
 		ft_putchar('\n');
 		i++;
 	}
@@ -72,8 +78,10 @@ static	void	parse_args(int arg_nb, char **argv)
 
 int main(int argc, char **argv)
 {
+	t_env env;
 	ft_putstr("\n\n<------------------------- Welcome to Corewar! ---------------------->\n\n\n");
 
-	parse_args(argc, argv);
+	load_optab(&env);
+	parse_args(argc, argv, &env);
 	return (0);
 }

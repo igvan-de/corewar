@@ -16,8 +16,9 @@
 //		name, nb_params, params_type, id, cycles, discription, acb, label_size
 
 
-static	t_op	get_op[16] =
+static	t_op	get_op[17] =
 {
+	{{0}, 0, {0}, 0, 0, {0}, 0, 0},													//	id: 1 cycles: 10
 	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},										//	id: 1 cycles: 10
 	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},							//	id: 2 cycles: 5
 	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0},							//	id: 3 cycles: 5
@@ -52,7 +53,7 @@ void	load_optab(t_env *env)
 	int	i;
 
 	i = 0;
-	while (i < 16)
+	while (i < 17)
 	{
 		env->op_tab[i] = get_op[i];
 		i++;

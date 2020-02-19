@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_op_name.c                                    :+:    :+:            */
+/*   get_tdir_size.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 13:24:02 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 13:24:05 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/19 17:50:49 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/19 17:50:50 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	prints the name of operation currently stored in
-**	the op_table, based on the given op_code.
+**	T_DIR can have a different size in bytes depending
+**	on the operation that uses it. By calling get_tdir_size with the
+**	op_code, this function returns the correct T_DIR size in bytes.
+**	return value is either 2 or 4 if correct, 0 if error.
 */
 
-void	print_op_name(int op_code, t_env *env)
+int	get_tdir_size(int op_code)
 {
-	t_op local_op;
+	int tdir_size;
+	int tdir_tab[17] = { 0, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, 4};
 
 	if (op_code <= 0 || op_code > 16)
-		ft_putendl("	could not find operation name --> is op_code correct?");
-	local_op = env->op_tab[op_code];
-	ft_putendl(local_op.name);
+		return (0);
+	tdir_size = tdir_tab[op_code];
+	return (tdir_size);
 }

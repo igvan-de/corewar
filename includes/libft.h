@@ -73,7 +73,6 @@ char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
-char				*ft_itoa_base(int value, int base);
 char				*itoa_long(long long nb, long long base);
 char				*itoa_un_long(unsigned long long nb,
 					unsigned long long base);

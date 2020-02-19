@@ -37,9 +37,18 @@ typedef struct	s_env
 void	load_optab(t_env *env);
 
 /*
-**	utility & debugging
+**	utility
 */
 
-void	print_op_name(t_env *env, int op_id);
+int		get_tdir_size(int opcode);
+int		get_bit(unsigned char octet, int index);
+void	print_bits(unsigned char octet);
+
+/*
+**	printing
+*/
+
+void	print_op_name(int op_code, t_env *env);
+void	dump_prog_code(char *prog_code, unsigned int prog_size, t_env *env);
 
 #endif

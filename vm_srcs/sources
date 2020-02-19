@@ -1,3 +1,6 @@
-SRCS =	vm_srcs/main.c			\
-		vm_srcs/load_optab.c	\
-		vm_srcs/print_op_name.c	
+SRCS =	vm_srcs/main.c				\
+		vm_srcs/load_optab.c		\
+		vm_srcs/print_op_name.c		\
+		vm_srcs/dump_prog_code.c	\
+		vm_srcs/get_tdir_size.c		\
+		vm_srcs/get_bit.c

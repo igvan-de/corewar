@@ -10,7 +10,6 @@ ft_islower.c \
 ft_isupper.c \
 ft_isnum.c \
 ft_itoa.c \
-ft_itoa_base.c \
 ft_memalloc.c \
 ft_memccpy.c \
 ft_memchr.c \

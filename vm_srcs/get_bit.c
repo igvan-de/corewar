@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_op_name.c                                    :+:    :+:            */
+/*   get_bit.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 13:24:02 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 13:24:05 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/19 18:00:27 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/19 18:00:27 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	prints the name of operation currently stored in
-**	the op_table, based on the given op_code.
+**	get_bit returns the bit (0 or 1) at the index within octet.
+**	If the index is not within byte-range, the function returns -1.
 */
 
-void	print_op_name(int op_code, t_env *env)
+int get_bit(unsigned char octet, int index)
 {
-	t_op local_op;
+	int shift_right;
 
-	if (op_code <= 0 || op_code > 16)
-		ft_putendl("	could not find operation name --> is op_code correct?");
-	local_op = env->op_tab[op_code];
-	ft_putendl(local_op.name);
+	if (index < 0 || index > 8)
+		return (-1);
+	shift_right = 7;
+	octet = octet << index;
+	octet = octet >> shift_right;
+	if ((1 & octet) == 1)
+		return (1);
+	return (0);
 }
