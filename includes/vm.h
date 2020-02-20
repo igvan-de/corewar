@@ -22,12 +22,26 @@
 #include <stdio.h>
 
 /*
-**	global environment struct containg main reference data and ptrs (initialized once)
+**	struct for each player
+*/
+
+typedef struct	s_player
+{
+	int			player_nb;
+	header_t 	*header;
+	char		*exec_code;
+}				t_player;
+
+/*
+**	global environment struct containing main reference data and ptrs (initialized once)
 */
 
 typedef struct	s_env
 {
-	t_op op_tab[17];
+	int			players;
+	t_op		op_tab[17];
+	t_player	player;								// current dev version only support one player
+	char		map[MEM_SIZE];
 }				t_env;
 
 /* 
@@ -58,6 +72,8 @@ int				get_tdir_size(int opcode);
 */
 
 void	print_op_name(int op_code, t_env *env);
-void	dump_prog_code(char *prog_code, unsigned int prog_size, t_env *env);
+void	dump_header(header_t header);												// print header
+void	dump_exec_code(char *exec_code, unsigned int prog_size, t_env *env);		// print exec code
+void	dump_champ_code(char *champ, t_env *env);									// print header and exec code
 
 #endif

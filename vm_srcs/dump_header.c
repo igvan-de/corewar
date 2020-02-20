@@ -1,47 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   dump_header.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 08:46:02 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 08:46:39 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 14:57:12 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/20 14:57:12 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	parse all arguments
+**	print header to stdout
 */
 
-static	void	parse_args(int arg_nb, char **argv, t_env *env)
+void	dump_header(header_t header)
 {
-	int i;
-
-	i = 1;
-	while (i < arg_nb)
-	{
-		dump_champ_code(argv[i], env);
-		i++;
-	}
-}
-
-/*
-**	main entry for corewar
-*/
-
-int				main(int argc, char **argv)
-{
-	t_env env;
-
-	if (argc != 2)
-		exit_usage();
-
-	ft_putstr("\n\n<------------- Welcome to Corewar! ------------>\n\n");
-
-	load_optab(&env);
-	parse_args(argc, argv, &env);
-	return (0);
+	printf("\n	magic value: %#0x\n", rev_endian(header.magic));
+	if (rev_endian(header.magic) == COREWAR_EXEC_MAGIC)
+		ft_putendl("		---> magic is valid!\n");
+	else
+		ft_putendl("		---> error: magic is invalid!");
+	printf("	name:				%s\n", header.prog_name);
+	printf("	prog size:			%u\n", rev_endian(header.prog_size));
+	printf("	comment:			%s\n", header.comment);
 }

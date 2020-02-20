@@ -129,11 +129,11 @@ static	void	parse_instr(char *exec, unsigned *index, t_env *env)
 **	prints its instructions to stdout.
 */
 
-void			dump_prog_code(char *exec, unsigned int prog_size, t_env *env)
+void			dump_exec_code(char *exec, unsigned int prog_size, t_env *env)
 {
 	unsigned int i;
 
-	ft_putstr("\n\n<------ CHAMPION CODE DUMP ------->\n\n\n");
+	ft_putstr("\n\n<------ EXECUTION CODE DUMP ------->\n\n\n");
 	i = 0;
 	while (i < prog_size)
 		parse_instr(exec, &i, env);
