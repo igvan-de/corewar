@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_bit.c                                          :+:    :+:            */
+/*   rev_endian.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:00:27 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:00:27 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 14:08:43 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/20 14:08:43 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	get_bit returns the bit (0 or 1) at the index within octet.
-**	If the index is not within byte-range, the function returns -1.
+**	reverse the endianness of a 4-byte number
 */
 
-int	get_bit(unsigned char octet, int index)
+unsigned	int	rev_endian(unsigned int oct)
 {
-	int shift_right;
-
-	if (index < 0 || index > 8)
-		return (-1);
-	shift_right = 7;
-	octet = octet << index;
-	octet = octet >> shift_right;
-	if ((1 & octet) == 1)
-		return (1);
-	return (0);
+	return (((oct & 0xff) << 24) + ((oct & 0xff00) << 8) +
+		((oct & 0xff0000) >> 8) + ((oct >> 24) & 0xff));
 }

@@ -1,32 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_bit.c                                          :+:    :+:            */
+/*   exit_usage.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:00:27 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:00:27 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 14:12:24 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/20 14:12:25 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/*
-**	get_bit returns the bit (0 or 1) at the index within octet.
-**	If the index is not within byte-range, the function returns -1.
-*/
-
-int	get_bit(unsigned char octet, int index)
+void	exit_usage()
 {
-	int shift_right;
-
-	if (index < 0 || index > 8)
-		return (-1);
-	shift_right = 7;
-	octet = octet << index;
-	octet = octet >> shift_right;
-	if ((1 & octet) == 1)
-		return (1);
-	return (0);
+	ft_putendl("corewar: vm development usage:");
+	ft_putendl("	./corewar <testfile>.cor");
+	exit (0);
 }

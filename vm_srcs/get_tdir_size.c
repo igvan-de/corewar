@@ -21,8 +21,9 @@
 
 int	get_tdir_size(int op_code)
 {
-	int tdir_size;
-	int tdir_tab[17] = { 0, 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 4, 2, 2, 4};
+	int			tdir_size;
+	static	int	tdir_tab[17] = { 0, 4, 4, 4, 4, 4, 4, 4,
+	4, 2, 2, 2, 2, 4, 2, 2, 4};
 
 	if (op_code <= 0 || op_code > 16)
 		return (0);

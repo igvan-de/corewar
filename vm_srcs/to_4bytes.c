@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_bit.c                                          :+:    :+:            */
+/*   to_4bytes.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:00:27 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:00:27 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 12:33:02 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/20 12:33:02 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	get_bit returns the bit (0 or 1) at the index within octet.
-**	If the index is not within byte-range, the function returns -1.
+**	to_4bytes takes two shorts (2 bytes) and returns them
+**	in their 4 byte representation. (int)
 */
 
-int	get_bit(unsigned char octet, int index)
+int		to_4bytes(unsigned short one, unsigned short two)
 {
-	int shift_right;
+	int ret;
 
-	if (index < 0 || index > 8)
-		return (-1);
-	shift_right = 7;
-	octet = octet << index;
-	octet = octet >> shift_right;
-	if ((1 & octet) == 1)
-		return (1);
-	return (0);
+	ret = 0;
+	ret = ret | ((int)one) << 16;
+	ret = ret | (int)two;
+	return (ret);
 }

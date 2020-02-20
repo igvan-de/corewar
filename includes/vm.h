@@ -37,12 +37,21 @@ typedef struct	s_env
 void	load_optab(t_env *env);
 
 /*
+**	bitwise manipulation
+*/
+
+int				get_bit(unsigned char octet, int index);
+void			print_bits(unsigned char octet);
+int				to_4bytes(unsigned short one, unsigned short two);
+short			to_2bytes(unsigned char one, unsigned char two);
+unsigned	int	rev_endian(unsigned int oct);
+
+/*
 **	utility
 */
 
-int		get_tdir_size(int opcode);
-int		get_bit(unsigned char octet, int index);
-void	print_bits(unsigned char octet);
+void			exit_usage();
+int				get_tdir_size(int opcode);
 
 /*
 **	printing

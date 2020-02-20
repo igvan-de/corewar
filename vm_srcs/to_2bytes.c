@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_bit.c                                          :+:    :+:            */
+/*   to_2bytes.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:00:27 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:00:27 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 12:31:14 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/20 12:31:15 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	get_bit returns the bit (0 or 1) at the index within octet.
-**	If the index is not within byte-range, the function returns -1.
+**	to_2bytes takes two bytes and returns them in their
+**	two byte representation.
 */
 
-int	get_bit(unsigned char octet, int index)
+short	to_2bytes(unsigned char one, unsigned char two)
 {
-	int shift_right;
+	short ret;
 
-	if (index < 0 || index > 8)
-		return (-1);
-	shift_right = 7;
-	octet = octet << index;
-	octet = octet >> shift_right;
-	if ((1 & octet) == 1)
-		return (1);
-	return (0);
+	ret = 0;
+	ret = ret | ((short)one) << 8;
+	ret = ret | (short)two;
+	return (ret);
 }
