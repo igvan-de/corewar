@@ -12,6 +12,25 @@
 
 #include "vm.h"
 
+static	void	init_map(t_env *env)
+{
+	env->map = (char *)malloc(sizeof(MEM_SIZE));
+	ft_bzero(env->map, MEM_SIZE);
+	if(!env->map)
+		error_mem();
+}
+
+static	void	init_env(t_env **env)
+{
+	(*env) = (t_env *)malloc(sizeof(t_env));
+	if (!*env)
+		error_mem();
+	(*env)->players = 0;
+	(*env)->player = NULL;
+	(*env)->map = NULL;
+	load_optab(*env);
+}
+
 /*
 **	parse all arguments
 */
@@ -19,11 +38,14 @@
 static	void	parse_args(int arg_nb, char **argv, t_env *env)
 {
 	int i;
+	char *player;
 
 	i = 1;
 	while (i < arg_nb)
 	{
-		dump_champ_code(argv[i], env);
+		player = argv[i];
+//		dump_champ_code(player, env);
+		add_player(player, env);
 		i++;
 	}
 }
@@ -34,14 +56,16 @@ static	void	parse_args(int arg_nb, char **argv, t_env *env)
 
 int				main(int argc, char **argv)
 {
-	t_env env;
+	t_env *env;
 
-	if (argc != 2)
+	if (argc != 2)															// only support one argument right now
 		exit_usage();
 
 	ft_putstr("\n\n<------------- Welcome to Corewar! ------------>\n\n");
 
-	load_optab(&env);
-	parse_args(argc, argv, &env);
+	init_env(&env);
+	parse_args(argc, argv, env);
+	init_map(env);
+	dump_mem(env);
 	return (0);
 }
