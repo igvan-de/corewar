@@ -54,6 +54,9 @@ static	void	parse_args(int arg_nb, char **argv, t_env *env)
 	int i;
 	char *player;
 
+	if (arg_nb > 7)
+		error_input(5);
+
 	i = 1;
 	while (i < arg_nb)
 	{
@@ -78,9 +81,7 @@ int				main(int argc, char **argv)
 
 	init_env(&env);
 	parse_args(argc, argv, env);
-
 	dump_players(env->players, env);
-
 	init_map(&env);
 	load_players(env);
 	dump_mem(env);

@@ -28,6 +28,8 @@ void	error_input(int err_code)
 		ft_putendl("	input_error: found wrong magic value in .cor file.");
 	else if (err_code == 4)
 		ft_putendl("	input_error: bytes read into execution code buffer did not match target bytes.");
+	else if (err_code == 5)
+		ft_putendl("	input_error: too many arguments provided");
 	exit (0);
 }
 

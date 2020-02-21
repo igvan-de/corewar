@@ -14,17 +14,17 @@
 
 static	void	get_color(t_player *player)
 {
-	if (player->nbr == 0)
+	if (player->nbr == 1)
 		player->color = ft_strdup(ANSI_COLOR_RED);
-	else if (player->nbr == 1)
-		player->color = ft_strdup(ANSI_COLOR_GREEN);
 	else if (player->nbr == 2)
-		player->color = ft_strdup(ANSI_COLOR_MAGENTA);
+		player->color = ft_strdup(ANSI_COLOR_GREEN);
 	else if (player->nbr == 3)
-		player->color = ft_strdup(ANSI_COLOR_CYAN);
+		player->color = ft_strdup(ANSI_COLOR_MAGENTA);
 	else if (player->nbr == 4)
-		player->color = ft_strdup(ANSI_COLOR_YELLOW);
+		player->color = ft_strdup(ANSI_COLOR_CYAN);
 	else if (player->nbr == 5)
+		player->color = ft_strdup(ANSI_COLOR_YELLOW);
+	else if (player->nbr == 6)
 		player->color = ft_strdup(ANSI_COLOR_BLUE);
 	else
 		error_init(1);
