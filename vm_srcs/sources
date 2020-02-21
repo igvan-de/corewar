@@ -14,3 +14,4 @@ SRCS =	vm_srcs/main.c				\
 		vm_srcs/error.c				\
 		vm_srcs/add_player.c		\
 		vm_srcs/dump_mem.c			\
+		vm_srcs/load_players.c		\

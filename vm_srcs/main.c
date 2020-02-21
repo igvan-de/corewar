@@ -12,11 +12,10 @@
 
 #include "vm.h"
 
-static	void	init_map(t_env *env)
+static	void	init_map(t_env **env)
 {
-	env->map = (char *)malloc(sizeof(MEM_SIZE));
-	ft_bzero(env->map, MEM_SIZE);
-	if(!env->map)
+	(*env)->map = ft_strnew(MEM_SIZE);
+	if(!(*env)->map)
 		error_mem();
 }
 
@@ -44,7 +43,7 @@ static	void	parse_args(int arg_nb, char **argv, t_env *env)
 	while (i < arg_nb)
 	{
 		player = argv[i];
-//		dump_champ_code(player, env);
+		dump_champ_code(player, env);
 		add_player(player, env);
 		i++;
 	}
@@ -65,7 +64,8 @@ int				main(int argc, char **argv)
 
 	init_env(&env);
 	parse_args(argc, argv, env);
-	init_map(env);
+	init_map(&env);
+	load_players(env);
 	dump_mem(env);
 	return (0);
 }

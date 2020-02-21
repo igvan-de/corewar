@@ -58,5 +58,7 @@ void	add_player(char *player, t_env *env)
 	if (bytes != exec_code_size)
 		error_input(4);
 	env->player = new_player;
+	new_player->player_nb = env->players;
+	env->players++;
 	close(fd);
 }

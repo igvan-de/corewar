@@ -65,6 +65,12 @@ void			load_optab(t_env *env);
 void			add_player(char *player, t_env *env);
 
 /*
+**	creating initial game state
+*/
+
+void	load_players(t_env *env);
+
+/*
 **	bitwise manipulation
 */
 
