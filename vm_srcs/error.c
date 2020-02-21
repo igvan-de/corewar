@@ -30,3 +30,10 @@ void	error_input(int err_code)
 		ft_putendl("	input_error: bytes read into execution code buffer did not match target bytes.");
 	exit (0);
 }
+
+void	error_init(int err_code)
+{
+	if (err_code == 1)
+		ft_putendl("	init_error: invalid player number encountered.");
+	exit (0);
+}

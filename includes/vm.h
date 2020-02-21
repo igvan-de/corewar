@@ -35,9 +35,10 @@
 
 typedef struct	s_player
 {
-	int			player_nb;
 	header_t 	*header;
+	char		*color;
 	char		*exec_code;
+	int			nbr;
 }				t_player;
 
 /*
@@ -46,10 +47,11 @@ typedef struct	s_player
 
 typedef struct	s_env
 {
-	int			players;
+	int			total_players;
 	t_op		op_tab[17];
-	t_player	*player;								// current dev version only support one player
+	t_list		*players;
 	char		*map;
+	char		*player_pos;
 }				t_env;
 
 /* 
@@ -94,7 +96,7 @@ int				get_tdir_size(int opcode);
 void			print_op_name(int op_code, t_env *env);
 void			dump_header(header_t header);												// print header
 void			dump_exec_code(char *exec_code, unsigned int prog_size, t_env *env);		// print exec code
-void			dump_champ_code(char *champ, t_env *env);									// print header and exec code
+void			dump_champ_code(t_player *player, t_env *env);								// print header and exec code
 void			dump_mem(t_env *env);														// print memory map
 
 /* 
@@ -103,5 +105,6 @@ void			dump_mem(t_env *env);														// print memory map
 
 void			error_input(int err_code);
 void			error_mem();
+void			error_init(int err_code);
 
 #endif

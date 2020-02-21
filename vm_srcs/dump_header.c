@@ -18,6 +18,7 @@
 
 void	dump_header(header_t header)
 {
+	ft_putstr("\n\n<------ PLAYER HEADER DUMP ------->\n\n\n");
 	printf("\n	magic value: %#0x\n", rev_endian(header.magic));
 	if (rev_endian(header.magic) == COREWAR_EXEC_MAGIC)
 		ft_putendl("		---> magic is valid!\n");
