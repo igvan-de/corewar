@@ -39,6 +39,12 @@ void			init_env(t_env **env)
 		error_mem();
 	(*env)->total_players = 0;
 	(*env)->players = NULL;
+	(*env)->total_cursors = 0;
+	(*env)->cursor_stack = NULL;
 	init_maps(env);
 	load_optab(*env);
+	(*env)->cycles = 0;
+	(*env)->live_counter = 0;
+	(*env)->cycles_to_die = CYCLE_TO_DIE;
+
 }

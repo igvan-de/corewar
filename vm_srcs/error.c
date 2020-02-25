@@ -52,5 +52,7 @@ void	error_init(int err_code)
 {
 	if (err_code == 1)
 		ft_putendl("	init_error: invalid player number encountered.");
+	else if (err_code == 2)
+		ft_putendl("	init_error: could not find cursor position.");
 	exit(0);
 }

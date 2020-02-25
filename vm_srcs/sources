@@ -19,3 +19,5 @@ SRCS =	vm_srcs/main.c				\
 		vm_srcs/init_env.c			\
 		vm_srcs/dump_players.c		\
 		vm_srcs/free_env.c			\
+		vm_srcs/init_cursors.c		\
+		vm_srcs/dump_cursor_stack.c	\

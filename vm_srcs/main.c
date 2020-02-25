@@ -45,9 +45,11 @@ int				main(int argc, char **argv)
 	ft_putstr("\n\n<------------- Welcome to Corewar! ------------>\n\n");
 	init_env(&env);
 	parse_args(argc, argv, env);
-	dump_players(env->players, env);
 	load_players(env);
+	init_cursors(env);
+	dump_players(env->players, env);
 	dump_mem(env);
+	dump_cursor_stack(env->cursor_stack);
 	free_env(&env);
 	return (0);
 }

@@ -87,7 +87,7 @@ static	void		load_player(t_env *env, int player_nb)
 
 void				load_players(t_env *env)
 {
-	int i;
+	unsigned	i;
 
 	i = 0;
 	while (i < env->total_players)
