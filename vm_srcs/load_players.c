@@ -12,7 +12,13 @@
 
 #include "vm.h"
 
-static	int	get_load_index(int player_nb, t_env *env)
+/*
+**	get_load_index takes a player number and calculates the
+**	starting position of that player within the memory area at
+**	env->map.
+*/
+
+static	int			get_load_index(int player_nb, t_env *env)
 {
 	int mem_per_player;
 	int	load_index;
@@ -21,6 +27,12 @@ static	int	get_load_index(int player_nb, t_env *env)
 	load_index = mem_per_player * (player_nb - 1);
 	return (load_index);
 }
+
+/*
+**	get_player takes a ptr to the main environment struct
+**	and a player number. It returns a ptr to the player with
+**	that number within the env->players list.
+*/
 
 static	t_player	*get_player(int player_nbr, t_env *env)
 {
@@ -39,12 +51,20 @@ static	t_player	*get_player(int player_nbr, t_env *env)
 	return (NULL);
 }
 
-static	void	load_player(t_env *env, int player_nb)
+/*
+**	load_player takes a ptr to the main environment struct and
+**	a player number, and loads the player with that number into
+**	the allocated memory area at env->map. The player number is also
+**	set in env->player_pos at the loaded memory area to keep track of player
+**	positions.
+*/
+
+static	void		load_player(t_env *env, int player_nb)
 {
-	int				load_index;
 	unsigned		i;
-	t_player		*curr_player;
 	unsigned int	size;
+	int				load_index;
+	t_player		*curr_player;
 
 	curr_player = get_player(player_nb, env);
 	load_index = get_load_index(player_nb, env);
@@ -59,7 +79,13 @@ static	void	load_player(t_env *env, int player_nb)
 	}
 }
 
-void	load_players(t_env *env)
+/*
+**	load_players takes a ptr to the main environment struct and
+**	loads the players stored in the list env->players into the
+**	allocated memory area at env->map.
+*/
+
+void				load_players(t_env *env)
 {
 	int i;
 

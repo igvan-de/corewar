@@ -29,7 +29,7 @@ static	t_player	*get_player(int player_nbr, t_env *env)
 	return (NULL);
 }
 
-static	char	*get_color(t_env *env, int player_nbr)
+static	char		*get_color(t_env *env, int player_nbr)
 {
 	t_player *curr;
 
@@ -37,18 +37,19 @@ static	char	*get_color(t_env *env, int player_nbr)
 	return (curr->color);
 }
 
-void	dump_mem(t_env *env)
+void				dump_mem(t_env *env)
 {
 	int i;
 
 	ft_putstr("\n\n<------ MEMORY DUMP ------->\n\n\n");
-
 	i = 1;
 	while (i < MEM_SIZE)
 	{
 		if (env->player_pos[i - 1] != 0)
 		{
-			printf("%s%02x " ANSI_COLOR_RESET, get_color(env, env->player_pos[i - 1]), 0xFF & env->map[i - 1]);
+			printf("%s%02x " ANSI_COLOR_RESET,
+				get_color(env, env->player_pos[i - 1]),
+				0xFF & env->map[i - 1]);
 			fflush(stdout);
 		}
 		else

@@ -12,9 +12,13 @@
 
 #include "vm.h"
 
-void	exit_usage()
+/*
+**	exit_usage prints program usage to stdout and exits the program.
+*/
+
+void	exit_usage(void)
 {
 	ft_putendl("corewar: vm development usage:");
 	ft_putendl("	./corewar <testfile>.cor");
-	exit (0);
+	exit(0);
 }

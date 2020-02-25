@@ -15,3 +15,7 @@ SRCS =	vm_srcs/main.c				\
 		vm_srcs/add_player.c		\
 		vm_srcs/dump_mem.c			\
 		vm_srcs/load_players.c		\
+		vm_srcs/set_color.c			\
+		vm_srcs/init_env.c			\
+		vm_srcs/dump_players.c		\
+		vm_srcs/free_env.c			\

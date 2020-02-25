@@ -14,7 +14,7 @@
 
 /*
 **	to_2bytes takes two bytes and returns them in their
-**	two byte representation.
+**	two byte representation in a short.
 */
 
 short	to_2bytes(unsigned char one, unsigned char two)

@@ -58,19 +58,27 @@ typedef struct	s_env
 **	initialization
 */
 
+void			init_env(t_env **env);
 void			load_optab(t_env *env);
 
 /*
-**	parsing arguments
+**	parsing arguments and storing players
 */
 
 void			add_player(char *player, t_env *env);
+void			set_color(t_player *player);
 
 /*
 **	creating initial game state
 */
 
-void	load_players(t_env *env);
+void			load_players(t_env *env);
+
+/*
+**	memory management
+*/
+
+void	free_env(t_env **env);
 
 /*
 **	bitwise manipulation
@@ -98,6 +106,7 @@ void			dump_header(header_t header);												// print header
 void			dump_exec_code(char *exec_code, unsigned int prog_size, t_env *env);		// print exec code
 void			dump_champ_code(t_player *player, t_env *env);								// print header and exec code
 void			dump_mem(t_env *env);														// print memory map
+void			dump_players(t_list *players, t_env *env);									// print all players with dump_exec_code
 
 /* 
 **	error handlers
