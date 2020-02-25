@@ -20,6 +20,7 @@ static	void	dump_cursor(t_cursor *cursor)
 	printf("		cursor has prev ptr: %p\n", cursor->prev);
 	printf("		cursor has next ptr: %p\n", cursor->next);
 	printf("		jump: %u\n", cursor->jump);
+	printf("		carry: %u\n", cursor->carry);
 	printf("		last_live: %u\n", cursor->last_live);
 	printf("		op_code: %hhu\n", cursor->op_code);
 	printf("		postion: %p\n", cursor->position);
