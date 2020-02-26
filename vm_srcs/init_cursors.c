@@ -23,7 +23,7 @@ static	int				*init_registries(void)
 	int	i;
 	int	*new_regs;
 
-	new_regs = (int *)malloc(sizeof(int) *(REG_NUMBER));
+	new_regs = (int *)malloc(sizeof(int) * (REG_NUMBER));
 	if (!new_regs)
 		error_mem();
 	i = 0;
@@ -77,7 +77,7 @@ static	t_cursor		*new_cursor(t_env *env)
 	new->jump = 0;
 	new->last_live = 0;
 	new->position = get_position(new->id, env);
-	new->op_code = *(new->position);
+	new->op_code = 0;
 	new->wait_cycles = 0;
 	return (new);
 }
@@ -101,8 +101,9 @@ static	void			push_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 
 /*
 **	init_cursors sets up the initial cursor_stack variable of env, at
-**	the beginning of the program. For each active player, a new cursor is created
-**	with a position pointing to the first byte of the execution code.
+**	the beginning of the program.
+**	For each active player, a new cursor is created with a position
+**	pointing to the first byte of the execution code.
 */
 
 void					init_cursors(t_env *env)

@@ -36,6 +36,7 @@ void			dump_cursor_stack(t_cursor *cursor_stack)
 {
 	t_cursor *iter;
 
+	ft_putstr("\n\n<------ CURSOR STACK DUMP ------->\n\n\n");
 	iter = cursor_stack;
 	while (iter)
 	{

@@ -67,9 +67,11 @@ typedef struct			s_env
 {
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 6.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
+	unsigned			player_last_alive;		//	the id of the player who last executed a live operation
 	unsigned			cycles;					//	number of cycles executed
 	unsigned			live_counter;			//	keeps track of how many live operations where execution during last CYCLE_TO_DIE cycles
 	unsigned			cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
+	unsigned			checks_counter;			//	amount of checks performed
 	t_op				op_tab[17];				//	operation reference table
 	t_list				*players;				//	list of players.
 	char				*map;					//	ptr to main memory map.
@@ -132,6 +134,7 @@ void					dump_champ_code(t_player *player, t_env *env);								// print header a
 void					dump_mem(t_env *env);														// print main memory map
 void					dump_players(t_list *players, t_env *env);									// print all players with dump_exec_code
 void					dump_cursor_stack(t_cursor *cursor_stack);									// print all cursors in the cursor stack
+void					dump_env_state(t_env *env);													// print the current state of env variables
 
 /* 
 **	error handlers

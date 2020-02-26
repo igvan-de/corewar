@@ -95,4 +95,5 @@ void				load_players(t_env *env)
 		load_player(env, i + 1);
 		i++;
 	}
+	env->player_last_alive = env->total_players;
 }

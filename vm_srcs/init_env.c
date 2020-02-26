@@ -43,8 +43,9 @@ void			init_env(t_env **env)
 	(*env)->cursor_stack = NULL;
 	init_maps(env);
 	load_optab(*env);
+	(*env)->player_last_alive = 0;
 	(*env)->cycles = 0;
 	(*env)->live_counter = 0;
 	(*env)->cycles_to_die = CYCLE_TO_DIE;
-
+	(*env)->checks_counter = 0;
 }
