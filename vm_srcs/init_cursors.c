@@ -40,15 +40,15 @@ static	int				*init_registries(void)
 **	map to find the first byte of the players execution code.
 */
 
-static	unsigned	int	*get_position(unsigned id, t_env *env)
+static	unsigned	char	*get_position(unsigned id, t_env *env)
 {
 	unsigned i;
 
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if ((unsigned int)env->player_pos[i] == id)
-			return ((unsigned int *)&env->map[i]);
+		if ((unsigned char)env->player_pos[i] == id)
+			return ((unsigned char *)&env->map[i]);
 		i++;
 	}
 	error_init(2);

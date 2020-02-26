@@ -54,7 +54,7 @@ typedef	struct			s_cursor
 	unsigned	char	op_code;				//	operation_code stored at the current position of the cursor
 	unsigned			last_live;				//	number of cycle in which current cursor performed operation live last time
 	unsigned			wait_cycles;			//	amount of cycles to wait before operation execution
-	unsigned			*position;				//	address in memory
+	unsigned	char	*position;				//	address in memory
 	unsigned			jump;					//	amount of bytes cursor must jump to get to the next operation
 	int					*registries;			//	registries of current cursor // REG_NUMBER of registries with REG_SIZE bytes per registry
 }						t_cursor;
@@ -67,7 +67,7 @@ typedef struct			s_env
 {
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 6.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
-	unsigned			player_last_alive;		//	the id of the player who last executed a live operation
+	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
 	unsigned			cycles;					//	number of cycles executed
 	unsigned			live_counter;			//	keeps track of how many live operations where execution during last CYCLE_TO_DIE cycles
 	unsigned			cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
@@ -99,6 +99,22 @@ void					set_color(t_player *player);
 
 void					load_players(t_env *env);
 void					init_cursors(t_env *env);
+
+/*
+**	program execution
+*/
+
+void					exec_corewar(t_env *env);
+void					move_cursor(t_cursor *cursor);
+
+/*
+**	operation functions
+*/
+
+void					op_sti(t_cursor *cursor);
+void					op_live(t_cursor	*cursor, t_env *env);
+void					op_ld(t_cursor *cursor);
+void					op_zjmp(t_cursor	*cursor);
 
 /*
 **	memory management

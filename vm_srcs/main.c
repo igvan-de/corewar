@@ -48,6 +48,8 @@ int				main(int argc, char **argv)
 	load_players(env);
 	init_cursors(env);
 
+//	exec_corewar(env);											// under construction
+
 	//////////////// printing ///////////////////////
 	dump_players(env->players, env);
 	dump_mem(env);
@@ -55,7 +57,7 @@ int				main(int argc, char **argv)
 	dump_env_state(env);
 	////////////////////////////////////////////////
 
-//	exec_corewar(env);										under construction
+
 	free_env(&env);
 	return (0);
 }

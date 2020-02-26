@@ -22,4 +22,9 @@ SRCS =	vm_srcs/main.c				\
 		vm_srcs/init_cursors.c		\
 		vm_srcs/dump_cursor_stack.c	\
 		vm_srcs/dump_env_state.c	\
-
+		vm_srcs/exec_corewar.c		\
+		vm_srcs/op_sti.c			\
+		vm_srcs/op_live.c			\
+		vm_srcs/op_ld.c				\
+		vm_srcs/op_zjmp.c			\
+		vm_srcs/move_cursor.c		\

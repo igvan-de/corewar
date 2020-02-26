@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   print_bits.c                                       :+:    :+:            */
+/*   op_zjmp.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:03:45 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:03:46 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/26 17:29:50 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/26 17:29:50 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/*
-**	print_bits prints octet in binary to stdout.
-*/
-
-void	print_bits(unsigned char octet)
+void	op_zjmp(t_cursor	*cursor)
 {
-	int	i;
+	short arg;
+	int	jump_distance;
 
-	i = 128;
-	while (octet >= 0 && i)
+	if (cursor->carry == 0)
+		move_cursor(cursor);
+	else
 	{
-		(octet / i) ? write(1, "1", 1) : write(1, "0", 1);
-		(octet / i) ? octet -= i : 0;
-		i /= 2;
+		arg = to_2bytes(*(cursor->position + 1), *(cursor->position + 2));
+		jump_distance = arg % IDX_MOD;
+		cursor->position += jump_distance;
+		cursor->carry = 0;
+		cursor->op_code = 0;
+		printf("	zjmp --> jumping to address %p which contains op_code: %hhi\n", cursor->position, *(cursor->position));
 	}
-	ft_putchar('\n');
 }
