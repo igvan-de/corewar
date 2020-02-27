@@ -12,6 +12,13 @@
 
 #include "vm.h"
 
+/*
+**	get_player receives a player number and returns
+**	a ptr to the player with that number in the env->players
+**	list. If the player is not found, the function produces
+**	error.
+*/
+
 static	t_player	*get_player(int player_nbr, t_env *env)
 {
 	t_list		*iter;
@@ -29,6 +36,12 @@ static	t_player	*get_player(int player_nbr, t_env *env)
 	return (NULL);
 }
 
+/*
+**	get_color returns the character string stored
+**	in the player struct, so that dump_mem can show the
+**	memory map with player colors.
+*/
+
 static	char		*get_color(t_env *env, int player_nbr)
 {
 	t_player *curr;
@@ -36,6 +49,11 @@ static	char		*get_color(t_env *env, int player_nbr)
 	curr = get_player(player_nbr, env);
 	return (curr->color);
 }
+
+/*
+**	dump_mem prints the current state of the memory map
+**	to stdout.
+*/
 
 void				dump_mem(t_env *env)
 {

@@ -18,7 +18,7 @@
 **	of REG_SIZE. (16 registries of 4 bytes);
 */
 
-static	int				*init_registries(void)
+static	int					*init_registries(void)
 {
 	int	i;
 	int	*new_regs;
@@ -60,7 +60,7 @@ static	unsigned	char	*get_position(unsigned id, t_env *env)
 **	cursor for each active player.
 */
 
-static	t_cursor		*new_cursor(t_env *env)
+static	t_cursor			*new_cursor(t_env *env)
 {
 	t_cursor	*new;
 
@@ -87,7 +87,7 @@ static	t_cursor		*new_cursor(t_env *env)
 **	of the existing cursor stack.
 */
 
-static	void			push_cursor(t_cursor *cursor, t_cursor **cursor_stack)
+static	void				push_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 {
 	if (*cursor_stack == NULL)
 		*cursor_stack = cursor;
@@ -106,7 +106,7 @@ static	void			push_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 **	pointing to the first byte of the execution code.
 */
 
-void					init_cursors(t_env *env)
+void						init_cursors(t_env *env)
 {
 	unsigned	i;
 	t_cursor	*new;

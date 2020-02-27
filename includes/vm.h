@@ -29,6 +29,8 @@
 #define ANSI_COLOR_CYAN    "\x1b[36m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
 
+#define BYTE unsigned char
+
 /*
 **	struct for each player
 */
@@ -106,14 +108,16 @@ void					init_cursors(t_env *env);
 
 void					exec_corewar(t_env *env);
 void					move_cursor(t_cursor *cursor);
+void					set_carry(t_cursor *cursor, int mode);
+int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 
 /*
 **	operation functions
 */
 
-void					op_sti(t_cursor *cursor);
+void					op_sti(t_cursor *cursor, t_env *env);
 void					op_live(t_cursor	*cursor, t_env *env);
-void					op_ld(t_cursor *cursor);
+void					op_ld(t_cursor *cursor, t_env *env);
 void					op_zjmp(t_cursor	*cursor);
 
 /*
@@ -138,6 +142,10 @@ unsigned	int			rev_endian(unsigned int oct);
 
 void					exit_usage();
 int						get_tdir_size(int opcode);
+unsigned char			get_arg_size(int op_code, int one, int two);
+int						has_encode(unsigned char op_code);
+int						count_registers(unsigned char encode);
+unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
 
 /*
 **	printing

@@ -12,6 +12,11 @@
 
 #include "vm.h"
 
+/*
+**	dump_cursor prints the values stored in the cursor
+**	passed as argument to stdout.
+*/
+
 static	void	dump_cursor(t_cursor *cursor)
 {
 	int *reg;
@@ -31,6 +36,11 @@ static	void	dump_cursor(t_cursor *cursor)
 		reg[6], reg[7], reg[8], reg[9], reg[10], reg[11],
 		reg[12], reg[13], reg[14], reg[15]);
 }
+
+/*
+**	dump_cursor_stack receives a ptr to the cursor_stack
+**	and prints the variables of each cursor to stdout.
+*/
 
 void			dump_cursor_stack(t_cursor *cursor_stack)
 {

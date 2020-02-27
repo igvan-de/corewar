@@ -12,13 +12,25 @@
 
 #include "vm.h"
 
-void	op_live(t_cursor	*cursor, t_env *env)
-{
-	short one;
-	short two;
-	int arg_1;
+/*
+**	op_live executes operation live at the current position of the cursor,
+**	if the negated player_number stored in the first registry is equal to
+**	the argument T_DIR of the live operation. Otherwise, the live operation
+**	is not executed.
+**
+**	live is reported in the following ways:
+**
+**	- cursor->last_live is set to the current program cycle.
+**	- env->player_last_alive is set to the actual player number.
+**	- the env->live_counter for the current CYCLE_TO_DIE iteration is incremented.
+*/
 
-//	printf("	executing instruction op_live with cursor: %i\n", cursor->id);
+void	op_live(t_cursor *cursor, t_env *env)
+{
+	short	one;
+	short	two;
+	int		arg_1;
+
 	one = to_2bytes(*(cursor->position + 4), *(cursor->position + 3));
 	two = to_2bytes(*(cursor->position + 2), *(cursor->position + 1));
 	arg_1 = to_4bytes(one, two);
@@ -30,5 +42,4 @@ void	op_live(t_cursor	*cursor, t_env *env)
 		printf("	live --> cursor %i reported player %hhi as alive!\n", cursor->id, env->player_last_alive);
 	}
 	move_cursor(cursor);
-	return ;
 }

@@ -48,13 +48,13 @@ int				main(int argc, char **argv)
 	load_players(env);
 	init_cursors(env);
 
-//	exec_corewar(env);											// under construction
+	exec_corewar(env);									// under construction
 
 	//////////////// printing ///////////////////////
-	dump_players(env->players, env);
-	dump_mem(env);
-	dump_cursor_stack(env->cursor_stack);
-	dump_env_state(env);
+//	dump_players(env->players, env);
+//	dump_mem(env);
+//	dump_cursor_stack(env->cursor_stack);
+//	dump_env_state(env);
 	////////////////////////////////////////////////
 
 

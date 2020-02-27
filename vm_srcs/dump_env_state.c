@@ -12,6 +12,10 @@
 
 #include "vm.h"
 
+/*
+**	dump_env_state prints the variables of env to stdout.
+*/
+
 void	dump_env_state(t_env *env)
 {
 	ft_putstr("\n\n<------ ENV STATE DUMP ------->\n\n\n");
