@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/20 13:47:52 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/27 12:10:07 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ void	input_error(void)
 	exit(-1);
 }
 
-void	input_not_asm(void)
+void	input_not_asm(char *str)
 {
-	ft_putendl("This file is not am assembly file");
+	ft_putendl(str);
+	ft_putendl(" is not am assembly file");
+}
+
+void	input_bad_fd(void)
+{
+	ft_putendl("fd return -1 unable to open");
 	exit(-1);
 }
 
@@ -30,8 +36,8 @@ void	input_bad_asm(void)
 	exit(-1);
 }
 
-void	failed_malloc_process(void)
+void	failed_malloc(void)
 {
-	ft_putendl("Malloc failed in process asm function");
+	ft_putendl("Malloc failed");
 	exit(-1);
 }
