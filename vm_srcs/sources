@@ -34,3 +34,5 @@ SRCS =	vm_srcs/main.c				\
 		vm_srcs/get_total_arg_size.c\
 		vm_srcs/set_carry.c			\
 		vm_srcs/valid_encode.c		\
+		vm_srcs/init_ncurses.c		\
+		vm_srcs/print_map.c			\

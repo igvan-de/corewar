@@ -13,6 +13,14 @@
 #include "vm.h"
 
 /*
+**	todo-list:
+**
+**	add index tracking to cursors.
+**	call endscr wen error occurs and -visual flag is enabled.
+**
+*/
+
+/*
 **	parse all arguments
 */
 
@@ -21,13 +29,22 @@ static	void	parse_args(int arg_nb, char **argv, t_env *env)
 	int		i;
 	char	*player;
 
-	if (arg_nb > 7)
+	if (arg_nb > 8)
 		error_input(5);
 	i = 1;
 	while (i < arg_nb)
 	{
-		player = argv[i];
-		add_player(player, env);
+		if (ft_strcmp(argv[i], "-visual") == 0)
+			env->flag_byte = env->flag_byte | 1;
+		else if (i == 1 && ft_strcmp(argv[i], "-help") == 0)
+			exit_usage();
+		else
+		{
+			player = argv[i];
+			add_player(player, env);
+		}
+		if (env->total_players > MAX_PLAYERS)
+			error_input(6);
 		i++;
 	}
 }
@@ -42,22 +59,16 @@ int				main(int argc, char **argv)
 
 	if (argc < 2)
 		exit_usage();
-	ft_putstr("\n\n<------------- Welcome to Corewar! ------------>\n\n");
 	init_env(&env);
 	parse_args(argc, argv, env);
 	load_players(env);
 	init_cursors(env);
-
-	exec_corewar(env);									// under construction
-
-	//////////////// printing ///////////////////////
-//	dump_players(env->players, env);
-//	dump_mem(env);
-//	dump_cursor_stack(env->cursor_stack);
-//	dump_env_state(env);
-	////////////////////////////////////////////////
-
-
+	exec_corewar(env);
+	if ((env->flag_byte & 1) == 1)
+	{
+		getch();
+		endwin();
+	}
 	free_env(&env);
 	return (0);
 }

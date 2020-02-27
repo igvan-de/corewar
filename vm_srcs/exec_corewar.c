@@ -18,7 +18,7 @@
 
 static	void	op_invalid(t_cursor *cursor, t_env *env)
 {
-	printf("	instruction code is invalid at cursor: %i\n", cursor->id);
+	printf("	operation code %i is not recognized at cursor: %i\n", *(cursor->position), cursor->id);
 	if (!env)
 		exit(0);
 	exit(0);
@@ -110,19 +110,20 @@ static	void	exec_cursor_stack(t_env *env)
 **	exec_corewar executes the main program with
 **	the information stored in the global environment struct.
 **
-**	UNDER CONSTRUCTION --> only runs up to 1536 cycles with ops: zjmp / live/ sti / lid.
+**	UNDER CONSTRUCTION --> only runs up to 1536 cycles with ops: zjmp / live/ sti / ld.
 */
 
 void			exec_corewar(t_env *env)
 {
-	ft_putstr("\n\n<------------- CORE WAR COMMENCING... ------------>\n\n");
+	if ((env->flag_byte & 1) == 1)
+		init_ncurses(env);
 	if (env->cycles_to_die <= 0)
 		return ;
 	while (env->cycles < env->cycles_to_die)
 	{
-		printf("executing cycle: %i\n", env->cycles);
 		exec_cursor_stack(env);
 		(env->cycles)++;
+		if ((env->flag_byte & 1) == 1)
+			print_map(env);
 	}
-	exit(0);
 }

@@ -20,5 +20,9 @@ void	exit_usage(void)
 {
 	ft_putendl("corewar: vm development usage:");
 	ft_putendl("	./corewar <testfile>.cor");
+	ft_putendl("	supported champions: 4");
+	ft_putendl("	supported ops: live, zjmp, sti, ld");
+	ft_putendl("	max cycles: 1536");
+	ft_putendl("	use '-visual' flag to visualize");
 	exit(0);
 }

@@ -37,6 +37,7 @@ void			init_env(t_env **env)
 	(*env) = (t_env *)malloc(sizeof(t_env));
 	if (!*env)
 		error_mem();
+	(*env)->flag_byte = 0;
 	(*env)->total_players = 0;
 	(*env)->players = NULL;
 	(*env)->total_cursors = 0;

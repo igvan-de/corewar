@@ -34,7 +34,7 @@ all: $(NAME)
 	@echo "$(PRINT_PLUS) $@"
 
 corewar: $(OBJ_COREWAR) libft/libft.a
-	@gcc $(CFLAGS) $(OBJ_COREWAR) libft/libft.a -o $@
+	@gcc $(CFLAGS) $(OBJ_COREWAR) -lncurses libft/libft.a -o $@
 	@echo "$(PRINT_DONE) Compiling corewar completed"
 
 libft/libft.a: FORCE

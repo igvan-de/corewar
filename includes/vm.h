@@ -21,6 +21,8 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+#include	<ncurses.h>
+
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_YELLOW  "\x1b[33m"
@@ -67,6 +69,7 @@ typedef	struct			s_cursor
 
 typedef struct			s_env
 {
+	unsigned	char	flag_byte;				//	keeps track of corewar program flags (-visual / -n_dump_cycles)	
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 6.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
 	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
@@ -167,5 +170,12 @@ void					dump_env_state(t_env *env);													// print the current state of e
 void					error_input(int err_code);
 void					error_mem();
 void					error_init(int err_code);
+
+/*
+**	visualizer
+*/
+
+void						init_ncurses(t_env *env);
+void						print_map(t_env *env);
 
 #endif

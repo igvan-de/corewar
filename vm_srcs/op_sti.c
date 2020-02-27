@@ -69,7 +69,7 @@ static	void	exec_sti(t_cursor *cursor)
 	target_val = cursor->registries[reg_num - 1];
 	rel_target_pos = (arg_2_val + arg_3_val) % IDX_MOD;
 	*(cursor->position + rel_target_pos) = target_val;
-	printf("	sti --> cursor %i wrote value: %hhi to address %p\n", cursor->id, target_val, cursor->position + rel_target_pos);
+//	printf("	sti --> cursor %i wrote value: %hhi to address %p\n", cursor->id, target_val, cursor->position + rel_target_pos);
 }
 
 /*

@@ -19,6 +19,8 @@
 void	dump_env_state(t_env *env)
 {
 	ft_putstr("\n\n<------ ENV STATE DUMP ------->\n\n\n");
+	ft_putstr("		flag_byte:		");
+	print_bits(env->flag_byte);
 	printf("		total players: %u\n", env->total_players);
 	printf("		total cursors: %u\n", env->total_cursors);
 	printf("		player last alive: %u\n", env->player_last_alive);
