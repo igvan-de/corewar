@@ -33,4 +33,4 @@ SRCS =	vm_srcs/main.c				\
 		vm_srcs/count_registers.c	\
 		vm_srcs/get_total_arg_size.c\
 		vm_srcs/set_carry.c			\
-		vm_srcs/validate_encode.c	\
+		vm_srcs/valid_encode.c		\
