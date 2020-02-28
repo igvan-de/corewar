@@ -58,6 +58,7 @@ typedef	struct			s_cursor
 	unsigned			carry;					//	flag which can be changed by certain operations (true (1)or false (0))
 	unsigned	char	op_code;				//	operation_code stored at the current position of the cursor
 	unsigned			last_live;				//	number of cycle in which current cursor performed operation live last time
+	int					live_counter;			//	how many live counters did this cursor execute during the last CTD iteration.
 	unsigned			wait_cycles;			//	amount of cycles to wait before operation execution
 	unsigned			position;				//	index of current position in memory
 	unsigned			jump;					//	amount of bytes cursor must jump to get to the next operation
@@ -74,7 +75,9 @@ typedef struct			s_env
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 4.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
 	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
-	int					cycles;					//	number of cycles executed
+	int					cycles;					//	cycle counter of each CYCLE_TO_DIE
+	unsigned			total_cycles;			//	total cycle counter
+	unsigned			cycle_last_check;		//	cycle number of last check performed
 	unsigned			live_counter;			//	keeps track of how many live operations where execution during last CYCLE_TO_DIE cycles
 	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
 	unsigned			checks_counter;			//	amount of checks performed
@@ -101,6 +104,7 @@ void					init_cursors(t_env *env);
 */
 
 void					exec_corewar(t_env *env);
+void					check_corewar(t_env *env);
 void					move_cursor(t_cursor *cursor, t_env *env);
 void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);

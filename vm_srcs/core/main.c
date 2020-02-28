@@ -57,10 +57,7 @@ int				main(int argc, char **argv)
 	init_cursors(env);
 	exec_corewar(env);
 	if ((env->flag_byte & 1) == 1)
-	{
-		getch();
 		endwin();
-	}
 	free_env(&env);
 	return (0);
 }

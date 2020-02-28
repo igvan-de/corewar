@@ -25,6 +25,8 @@ void	dump_env_state(t_env *env)
 	printf("		total cursors: %u\n", env->total_cursors);
 	printf("		player last alive: %u\n", env->player_last_alive);
 	printf("		cycles: %u\n", env->cycles);
+	printf("		total_cycles: %u\n", env->total_cycles);
+	printf("		cycle nbr of last check: %u\n", env->cycle_last_check);
 	printf("		live counter: %u\n", env->live_counter);
 	printf("		cycles to die: %u\n", env->cycles_to_die);
 	printf("		checks counter: %u\n", env->checks_counter);

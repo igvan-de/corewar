@@ -7,6 +7,7 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/core/free_env.c					\
 		vm_srcs/core/init_cursors.c				\
 		vm_srcs/core/exec_corewar.c				\
+		vm_srcs/core/check_corewar.c			\
 		vm_srcs/core/move_cursor.c				\
 		vm_srcs/core/set_carry.c				\
 		vm_srcs/core/valid_encode.c				\

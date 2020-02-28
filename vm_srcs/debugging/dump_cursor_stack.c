@@ -27,6 +27,7 @@ static	void	dump_cursor(t_cursor *cursor)
 	printf("		jump: %u\n", cursor->jump);
 	printf("		carry: %u\n", cursor->carry);
 	printf("		last_live: %u\n", cursor->last_live);
+	printf("		live_counter: %u\n", cursor->live_counter);
 	printf("		op_code: %hhu\n", cursor->op_code);
 	printf("		position index: %u\n", cursor->position);
 	printf("		wait_cycles: %u\n", cursor->wait_cycles);

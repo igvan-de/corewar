@@ -77,6 +77,7 @@ static	t_cursor			*new_cursor(t_env *env)
 	new->carry = 0;
 	new->jump = 0;
 	new->last_live = 0;
+	new->live_counter = 0;
 	new->position = get_position(new->id, env);
 	new->op_code = 0;
 	new->wait_cycles = 0;

@@ -122,11 +122,14 @@ void			exec_corewar(t_env *env)
 	while (env->cycles < env->cycles_to_die)
 	{
 		exec_cursor_stack(env);
-		(env->cycles)++;
 		if ((env->flag_byte & 1) == 1)
 			print_map(env);
+		if (env->cycles_to_die < 1)
+			check_corewar(env);
+		(env->cycles)++;
+		(env->total_cycles)++;
 	}
-	env->cycles_to_die -= CYCLE_DELTA;
-	env->cycles = 0;
+	if (env->cycles_to_die > 0)
+		check_corewar(env);
 	exec_corewar(env);
 }
