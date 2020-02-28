@@ -22,6 +22,7 @@
 #include <stdio.h>
 
 #include <ncurses.h>
+#include <time.h>
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -73,9 +74,9 @@ typedef struct			s_env
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 4.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
 	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
-	unsigned			cycles;					//	number of cycles executed
+	int					cycles;					//	number of cycles executed
 	unsigned			live_counter;			//	keeps track of how many live operations where execution during last CYCLE_TO_DIE cycles
-	unsigned			cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
+	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
 	unsigned			checks_counter;			//	amount of checks performed
 	t_op				op_tab[17];				//	operation reference table
 	t_list				*players;				//	list of players.

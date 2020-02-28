@@ -126,4 +126,7 @@ void			exec_corewar(t_env *env)
 		if ((env->flag_byte & 1) == 1)
 			print_map(env);
 	}
+	env->cycles_to_die -= CYCLE_DELTA;
+	env->cycles = 0;
+	exec_corewar(env);
 }

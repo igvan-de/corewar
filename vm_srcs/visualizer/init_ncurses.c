@@ -24,5 +24,6 @@ void	init_ncurses(t_env *env)
 	init_pair(6, COLOR_BLACK, COLOR_RED);
 	init_pair(7, COLOR_BLACK, COLOR_GREEN);
 	init_pair(8, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(9, COLOR_BLACK, COLOR_WHITE);
 	print_map(env);
 }
