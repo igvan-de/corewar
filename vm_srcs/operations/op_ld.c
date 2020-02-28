@@ -40,7 +40,6 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 		rel_target_pos = t_ind_value % IDX_MOD;
 		t_dir_value = *(int *)&env->map[modi(cursor->position + rel_target_pos)];
 	}
-//	printf("	ld --> reading value %i into registry %i of cursor %i\n", t_dir_value, reg_num, cursor->id);
 	cursor->registries[reg_num - 1] = t_dir_value;
 	set_carry(cursor, t_dir_value);
 }

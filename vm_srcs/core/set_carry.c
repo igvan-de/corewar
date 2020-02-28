@@ -25,5 +25,4 @@ void	set_carry(t_cursor *cursor, int mode)
 		cursor->carry = 1;
 	else
 		cursor->carry = 0;
-//	printf("	ld --> carry for cursor %i is set to %i\n", cursor->id, cursor->carry);
 }

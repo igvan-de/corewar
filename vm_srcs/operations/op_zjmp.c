@@ -34,6 +34,5 @@ void	op_zjmp(t_cursor *cursor, t_env *env)
 		cursor->position = modi(cursor->position + rel_target_pos);
 		cursor->carry = 0;
 		cursor->op_code = 0;
-//		printf("	zjmp --> jumping to address %u which contains op_code: %hhi\n", cursor->position, env->[modi(cursor->position)]);
 	}
 }

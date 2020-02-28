@@ -110,7 +110,7 @@ static	void	exec_cursor_stack(t_env *env)
 **	exec_corewar executes the main program with
 **	the information stored in the global environment struct.
 **
-**	UNDER CONSTRUCTION --> only runs up to 1536 cycles with ops: zjmp / live/ sti / ld.
+**	UNDER CONSTRUCTION --> only runs with ops: zjmp / live/ sti / ld.
 */
 
 void			exec_corewar(t_env *env)

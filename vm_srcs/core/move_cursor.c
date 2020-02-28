@@ -40,5 +40,4 @@ void	move_cursor(t_cursor *cursor, t_env *env)
 	else
 		cursor->position = modi(cursor->position + (get_tdir_size(cursor->op_code) + 1));
 	cursor->op_code = 0;
-//	printf("	cursor %i is jumping to next address %p which contains op_code: %hhi\n", cursor->id, cursor->position, *(cursor->position));
 }
