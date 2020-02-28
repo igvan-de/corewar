@@ -13,14 +13,6 @@
 #include "vm.h"
 
 /*
-**	todo-list:
-**
-**	add index tracking to cursors.
-**	call endscr wen error occurs and -visual flag is enabled.
-**
-*/
-
-/*
 **	parse all arguments
 */
 

@@ -38,9 +38,10 @@ static	int					*init_registries(void)
 /*
 **	get_position receives the cursor_id and loops through the player_pos
 **	map to find the first byte of the players execution code.
+**	It returns the index of that address within the memory map.
 */
 
-static	unsigned	char	*get_position(unsigned id, t_env *env)
+static	unsigned	int		get_position(unsigned id, t_env *env)
 {
 	unsigned i;
 
@@ -48,7 +49,7 @@ static	unsigned	char	*get_position(unsigned id, t_env *env)
 	while (i < MEM_SIZE)
 	{
 		if ((unsigned char)env->player_pos[i] == id)
-			return ((unsigned char *)&env->map[i]);
+			return (i);
 		i++;
 	}
 	error_init(2);

@@ -18,7 +18,7 @@
 
 static	void	op_invalid(t_cursor *cursor, t_env *env)
 {
-	printf("	operation code %i is not recognized at cursor: %i\n", *(cursor->position), cursor->id);
+	printf("	operation code %i is not recognized at cursor: %i\n", env->map[modi(cursor->position)], cursor->id);
 	if (!env)
 		exit(0);
 	exit(0);
@@ -37,7 +37,7 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 	else if (cursor->op_code == 2)
 		op_ld(cursor, env);
 	else if (cursor->op_code == 9)
-		op_zjmp(cursor);
+		op_zjmp(cursor, env);
 	else if (cursor->op_code == 11)
 		op_sti(cursor, env);
 	else
@@ -53,7 +53,7 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 
 static	void	set_opcode(t_cursor *cursor, t_env *env)
 {
-	cursor->op_code = *(cursor->position);
+	cursor->op_code = env->map[modi(cursor->position)];
 	cursor->wait_cycles = env->op_tab[cursor->op_code].cycles;
 }
 
@@ -74,12 +74,12 @@ static	void	exec_cursor(t_cursor *cursor, t_env *env)
 {
 	if (env->cycles == 0 || cursor->wait_cycles == 0)
 	{
-		if (1 <= *(cursor->position) && *(cursor->position) <= 16)
+		if (1 <= env->map[modi(cursor->position)] && env->map[modi(cursor->position)] <= 16)
 			set_opcode(cursor, env);
 		else
 		{
 			printf("	op_code is invalid!\n");
-			cursor->op_code = *(cursor->position);
+			cursor->op_code = env->map[modi(cursor->position)];
 			cursor->wait_cycles = 0;
 		}
 	}

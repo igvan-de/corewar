@@ -20,20 +20,20 @@
 **	the next operation.
 */
 
-void	op_zjmp(t_cursor *cursor)
+void	op_zjmp(t_cursor *cursor, t_env *env)
 {
 	short	arg;
 	int		rel_target_pos;
 
 	if (cursor->carry == 0)
-		move_cursor(cursor);
+		move_cursor(cursor, env);
 	else
 	{
-		arg = to_2bytes(*(cursor->position + 1), *(cursor->position + 2));
+		arg = to_2bytes(env->map[modi(cursor->position + 1)], env->map[modi(cursor->position + 2)]);
 		rel_target_pos = arg % IDX_MOD;
-		cursor->position += rel_target_pos;
+		cursor->position = modi(cursor->position + rel_target_pos);
 		cursor->carry = 0;
 		cursor->op_code = 0;
-//		printf("	zjmp --> jumping to address %p which contains op_code: %hhi\n", cursor->position, *(cursor->position));
+//		printf("	zjmp --> jumping to address %u which contains op_code: %hhi\n", cursor->position, env->[modi(cursor->position)]);
 	}
 }

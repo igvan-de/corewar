@@ -31,8 +31,8 @@ void	op_live(t_cursor *cursor, t_env *env)
 	short	two;
 	int		arg_1;
 
-	one = to_2bytes(*(cursor->position + 4), *(cursor->position + 3));
-	two = to_2bytes(*(cursor->position + 2), *(cursor->position + 1));
+	one = to_2bytes(env->map[modi(cursor->position + 4)], env->map[modi(cursor->position + 3)]);
+	two = to_2bytes(env->map[modi(cursor->position + 2)], env->map[modi(cursor->position + 1)]);
 	arg_1 = to_4bytes(one, two);
 	if ((unsigned char)arg_1 == (unsigned char)cursor->registries[0])
 	{
@@ -41,5 +41,5 @@ void	op_live(t_cursor *cursor, t_env *env)
 		env->live_counter++;
 //		printf("	live --> cursor %i reported player %hhi as alive!\n", cursor->id, env->player_last_alive);
 	}
-	move_cursor(cursor);
+	move_cursor(cursor, env);
 }

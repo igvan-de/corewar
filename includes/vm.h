@@ -21,7 +21,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#include	<ncurses.h>
+#include <ncurses.h>
 
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
@@ -58,7 +58,7 @@ typedef	struct			s_cursor
 	unsigned	char	op_code;				//	operation_code stored at the current position of the cursor
 	unsigned			last_live;				//	number of cycle in which current cursor performed operation live last time
 	unsigned			wait_cycles;			//	amount of cycles to wait before operation execution
-	unsigned	char	*position;				//	address in memory
+	unsigned			position;				//	index of current position in memory
 	unsigned			jump;					//	amount of bytes cursor must jump to get to the next operation
 	int					*registries;			//	registries of current cursor // REG_NUMBER of registries with REG_SIZE bytes per registry
 }						t_cursor;
@@ -70,7 +70,7 @@ typedef	struct			s_cursor
 typedef struct			s_env
 {
 	unsigned	char	flag_byte;				//	keeps track of corewar program flags (-visual / -n_dump_cycles)	
-	unsigned			total_players;			//	total amount of players loaded. Between 0 and 6.
+	unsigned			total_players;			//	total amount of players loaded. Between 0 and 4.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
 	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
 	unsigned			cycles;					//	number of cycles executed
@@ -90,18 +90,8 @@ typedef struct			s_env
 
 void					init_env(t_env **env);
 void					load_optab(t_env *env);
-
-/*
-**	parsing arguments and storing players
-*/
-
 void					add_player(char *player, t_env *env);
 void					set_color(t_player *player);
-
-/*
-**	creating initial game state
-*/
-
 void					load_players(t_env *env);
 void					init_cursors(t_env *env);
 
@@ -110,9 +100,10 @@ void					init_cursors(t_env *env);
 */
 
 void					exec_corewar(t_env *env);
-void					move_cursor(t_cursor *cursor);
+void					move_cursor(t_cursor *cursor, t_env *env);
 void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
+void					free_env(t_env **env);
 
 /*
 **	operation functions
@@ -121,55 +112,46 @@ int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 void					op_sti(t_cursor *cursor, t_env *env);
 void					op_live(t_cursor	*cursor, t_env *env);
 void					op_ld(t_cursor *cursor, t_env *env);
-void					op_zjmp(t_cursor	*cursor);
-
-/*
-**	memory management
-*/
-
-void					free_env(t_env **env);
-
-/*
-**	bitwise manipulation
-*/
-
-int						get_bit(unsigned char octet, int index);
-void					print_bits(unsigned char octet);
-int						to_4bytes(unsigned short one, unsigned short two);
-short					to_2bytes(unsigned char one, unsigned char two);
-unsigned	int			rev_endian(unsigned int oct);
+void					op_zjmp(t_cursor	*cursor, t_env *env);
 
 /*
 **	utility
 */
 
-void					exit_usage();
+int						get_bit(unsigned char octet, int index);
+int						to_4bytes(unsigned short one, unsigned short two);
+short					to_2bytes(unsigned char one, unsigned char two);
+unsigned	int			rev_endian(unsigned int oct);
 int						get_tdir_size(int opcode);
 unsigned char			get_arg_size(int op_code, int one, int two);
 int						has_encode(unsigned char op_code);
 int						count_registers(unsigned char encode);
 unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
+unsigned int			modi(unsigned int index);
 
 /*
 **	printing
 */
 
+void					print_bits(unsigned char octet);
 void					print_op_name(int op_code, t_env *env);
-void					dump_header(header_t header);												// print header
-void					dump_exec_code(char *exec_code, unsigned int prog_size, t_env *env);		// print exec code
-void					dump_champ_code(t_player *player, t_env *env);								// print header and exec code
-void					dump_mem(t_env *env);														// print main memory map
-void					dump_players(t_list *players, t_env *env);									// print all players with dump_exec_code
-void					dump_cursor_stack(t_cursor *cursor_stack);									// print all cursors in the cursor stack
-void					dump_env_state(t_env *env);													// print the current state of env variables
+void					dump_header(header_t header);
+void					dump_exec_code(char *exec_code, unsigned int prog_size, t_env *env);
+void					dump_champ_code(t_player *player, t_env *env);
+void					dump_mem(t_env *env);
+void					dump_players(t_list *players, t_env *env);
+void					dump_cursor_stack(t_cursor *cursor_stack);
+void					dump_env_state(t_env *env);
 
 /* 
 **	error handlers
 */
 
+void					exit_usage();
 void					error_input(int err_code);
 void					error_mem();
 void					error_init(int err_code);
+void					error_exec(int err_code);
 
 /*
 **	visualizer

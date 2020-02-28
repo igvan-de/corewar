@@ -22,7 +22,7 @@
 **	if the new position exceeds the memory map.
 */
 
-void	move_cursor(t_cursor *cursor)
+void	move_cursor(t_cursor *cursor, t_env *env)
 {
 	unsigned char	encode;
 	unsigned char	total_arg_size;
@@ -33,12 +33,12 @@ void	move_cursor(t_cursor *cursor)
 		encode_flag = 1;
 	if (encode_flag == 1)
 	{
-		encode = *(cursor->position + 1);
+		encode = env->map[modi(cursor->position + 1)];
 		total_arg_size = get_total_arg_size(cursor->op_code, encode);
-		cursor->position += total_arg_size + 2;
+		cursor->position = modi(cursor->position + total_arg_size + 2);
 	}
 	else
-		cursor->position += (get_tdir_size(cursor->op_code) + 1);
+		cursor->position = modi(cursor->position + (get_tdir_size(cursor->op_code) + 1));
 	cursor->op_code = 0;
 //	printf("	cursor %i is jumping to next address %p which contains op_code: %hhi\n", cursor->id, cursor->position, *(cursor->position));
 }
