@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 05:35:40 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/29 11:31:18 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,19 +65,76 @@ void	process_asm(char *file_name)
 	int		fd;
 	char	*cor_name;
 	int 	len;
-	
 	cor_name = ft_strjoin(trim_name(file_name), ".cor");
 	if (cor_name == NULL)
 		failed_malloc_process();
 	fd = open(cor_name, O_WRONLY | O_CREAT | O_TRUNC, 644);
 }
 */
-
-
-/* 
+/*
 **	compiling for each file
 **	need to rework on it since the program will stop if 1 file is not correct
 */
+
+void	print_array(int *array)
+{
+	int i;
+
+	i = 0;
+	while (i < 16)
+	{
+		printf("%d\n", array[i]);
+		i++;
+	}
+}
+
+int		make_hash(char *operation)
+{
+	int total;
+	int i;
+
+	i = 0;
+	total = 0;
+	while (*operation != '\0')
+	{
+		total += till_power(*operation, i);
+		operation++;
+		i++;
+	}
+	return (total);
+}
+
+int		*make_hash_table(void)
+{
+	int			*table;
+	int			i;
+	static char operation[16][6] = {"live", "ld", "st", "add", "sub", "and",
+	"or", "xor", "zjmp", "ldi", "sti", "fork", "lld", "lldi", "lfork", "aff"
+	};
+
+	i = 0;
+	table = (int *)malloc(sizeof(int) * 16);
+	if (!table)
+		return (NULL);
+	ft_bzero(table, 16 * (sizeof(int)));
+	while (i < 16)
+	{
+		table[i] = make_hash(operation[i]);
+		i++;
+	}
+	return (table);
+}
+
+int		init_func_list(t_func_list *list)
+{
+	list->name = NULL;
+	list->comment = NULL;
+	list->info = NULL;
+	list->hash_table = make_hash_table();
+	if (list->hash_table == NULL)
+		return (13);
+	return (0);
+}
 
 int		main(int argc, char **argv)
 {
@@ -85,22 +142,23 @@ int		main(int argc, char **argv)
 	int			ret;
 	t_func_list list;
 
-	ret = 0;
-	list.name = NULL;
-	list.comment = NULL;
-	list.info = NULL;
+	ret = init_func_list(&list);
+	if (ret != 0)
+		error_messege(&list, ret, 2);
 	i = 1;
 	if (argc == 0)
 		input_error();
 	while (argv[i])
 	{
 		ret = check_file(argv[i], &list);
-		if (ret != 0);
+		if (ret != 0)
 			error_messege(&list, ret, 0);
 //		ret = process_asm(argv[i]);
 //		if (ret != 0);
 //			error_messege(list, ret, 1);
+		free_all_but_hash(&list);
 		i++;
 	}
+	free(list.hash_table);
 	return (0);
 }

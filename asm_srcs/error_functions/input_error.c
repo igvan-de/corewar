@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 05:06:22 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/29 10:46:22 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	failed_malloc(void)
 
 void	testing_only(int error_code)
 {
-	static char errors [9][128]={
+	static char errors [14][128]={
 	"not a s file in check_correct_file",
 	"fd in transfer_into_struct failed",
 	"error encounted in gnl in read_file",
@@ -55,60 +55,31 @@ void	testing_only(int error_code)
 	"failed in str_plit in process_line_into_list",
 	"failed in validty check",
 	"list->name in process_line_into_list has not been done first",
-	"none of the statement in process_line_into_list is true"
+	"none of the statement in process_line_into_list is true",
+	"malloc start node failed in add_instruction_node",
+	"malloc contineu node failed in add_instruction_node",
+	"error in get_op_code",
+	"error in make_hash_table",
+	"error in get_op_code"
 	};
 
 
 	ft_putendl(errors[error_code]);
 }
 
-void	free_direction(t_func_list *list)
-{
-	t_direction *iter;
-	t_direction *next;
-
-	iter = list->info;
-	next = NULL;
-
-	while (iter)
-	{
-		next = iter->next;
-		if (iter->label != NULL)
-			free(iter->label);
-		if (iter->target_label != NULL)
-			free(iter->target_label);
-		iter = next;
-	}
-}
-
-
-void	free_func(t_func_list *list)
-{
-	if (list->name != NULL)
-	{
-		free(list->name);
-		list->name = NULL;
-	}
-	if (list->comment != NULL)
-	{
-		free(list->name);
-		list->comment = NULL;
-	}
-	if (list->info != NULL)
-		free_direction(list);
-}
-
 void	error_messege(t_func_list *list, int error_code, int kind)
 {
-	free_func(list);
+	static char loc[3][25] = {
+	"its in check file",
+	"its in process_asm",
+	"its in init_func_list"};
+
+	free_func_error(list);
 	ft_putendl("Error code :");
 	ft_putnbr(error_code);
+	ft_putendl("\n");
 //	FOR TEST USAGE ONLY DO REMOVE AFTER
 	testing_only(error_code);
-	if (kind == 0)
-		ft_putendl("its in check_file");
-	else
-		ft_putendl("its in process_asm");
+	ft_putendl(loc[kind]);
 	ft_putendl("\n");
-	exit(-1);
 }

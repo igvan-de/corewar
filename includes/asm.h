@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 04:25:30 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/29 10:44:30 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 # include "libft.h"
 # include "op.h"
 # include <stdbool.h>
+# include <stdio.h>
 # define TRUE 0
 # define FALSE -1
 
-typedef struct				s_func_list
+typedef struct				s_count
 {
-	char					*name;
-	char					*comment;
-	t_direction				*info;
-}							t_func_list;
+	int						byte_count;
+	int						i;
+}							t_count;
 
 typedef struct				s_direction
 {
@@ -39,23 +39,42 @@ typedef struct				s_direction
 	char	*target_label;
 	int		byte_index;
 	int		byte_size;
-	struct s_instruction * next
+	struct s_direction * next;
 }							t_direction;
+
+typedef struct				s_func_list
+{
+	char					*name;
+	char					*comment;
+	int						*hash_table;
+	t_direction				*info;
+}							t_func_list;
 
 //	live
 //	op_code		/	arg_1 / 	zjmp   	%label1			label1: live
 // 	0			1 2 3 4 		5 		6 7 		8 				9 10 11 12
 
+int		insert_instruction(t_func_list *list, char **line_split, int label);
+int		process_line_into_list(t_func_list *list, char *line);
+int		check_file(char *file_name, t_func_list *list);
+
 /*
 **===============================UTILITY FUNCTIONS================================
 */
 
-int		ft_strnnchr(const char *s, int c);
+int till_power(char letter, int power);
 
 /*
-**===============================ERROR FUNCTIONS================================
+**===============================ERROR FUNCTIONS==================================
 */
 void	input_error(void);
 
 void	error_messege(t_func_list *list, int error_code, int kind);
+
+/*
+**===============================FREE FUNCTIONS===================================
+*/
+
+void	free_all_but_hash(t_func_list *list);
+void	free_func_error(t_func_list *list);
 #endif

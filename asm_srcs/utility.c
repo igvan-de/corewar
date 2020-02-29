@@ -5,25 +5,24 @@
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/29 04:24:04 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/02/29 04:24:39 by mlokhors      ########   odam.nl         */
+/*   Created: 2020/02/29 09:59:56 by mlokhors       #+#    #+#                */
+/*   Updated: 2020/02/29 10:27:57 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
-
-int		ft_strnnchr(const char *s, int c)
+int till_power(char letter, int power)
 {
-	size_t i;
+	int number;
+	int total;
+	int	i;
 
+	number = (int)(letter - '`');
 	i = 0;
-	while (s[i])
+	total = number;
+	while (power != 0)
 	{
-		if (s[i] == c)
-			return (i);
-		i++;
+		total *= number;
+		power--;
 	}
-	if (s[i] == c)
-		return (i);
-	return (-1);
+	return (total);
 }

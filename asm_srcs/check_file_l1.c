@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/02/29 05:35:40 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/29 10:38:59 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ int		read_file(int fd, t_func_list *list)
 	int process_ret;
 	char *line;
 
-	process_ret = 0;
 	line = NULL;
 	ret = 1;
 	while (ret > 0)
 	{
+		process_ret = 0;
 		ret = get_next_line(fd, &line);
 		if (ret == -1)
 			return (3);
@@ -53,9 +53,7 @@ int		transfer_into_struct(char *file_name, t_func_list *list)
 	int			fd;
 	int			ret;
 	char		*line;
-	char		last_label;
 
-	last_label = NULL;
 	line = NULL;
 	ret = 0;
 	fd = open(file_name, O_RDONLY);
@@ -86,6 +84,9 @@ int		check_file(char *file_name, t_func_list *list)
 	int ret;
 
 	ret = 0;
+	list->name = NULL;
+	list->comment = NULL;
+	list->info = NULL;
 	if (check_correct_file(file_name) == -1)
 		return (1);
 	ret = transfer_into_struct(file_name, list);
