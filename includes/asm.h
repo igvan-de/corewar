@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/27 12:28:23 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/29 04:25:30 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "libft.h"
 # include "op.h"
 # include <stdbool.h>
+# define TRUE 0
+# define FALSE -1
 
 typedef struct				s_func_list
 {
@@ -40,9 +42,20 @@ typedef struct				s_direction
 	struct s_instruction * next
 }							t_direction;
 
+//	live
+//	op_code		/	arg_1 / 	zjmp   	%label1			label1: live
+// 	0			1 2 3 4 		5 		6 7 		8 				9 10 11 12
+
+/*
+**===============================UTILITY FUNCTIONS================================
+*/
+
+int		ft_strnnchr(const char *s, int c);
+
 /*
 **===============================ERROR FUNCTIONS================================
 */
 void	input_error(void);
 
+void	error_messege(t_func_list *list, int error_code, int kind);
 #endif
