@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/02 14:29:14 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/02 16:16:34 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 
 typedef enum				s_input_variables
 {
-	NAME 0,
-	COMMENT 0,
-	STRING 1,
+	NAME = 0,
+	COMMENT = 0,
+	STRING = 1,
+	LABEL = 1,
 }							t_input_variables;
 
 typedef struct				s_count
@@ -66,22 +67,20 @@ int		process_line_into_list(t_func_list *list, char *line);
 int		check_file(char *file_name, t_func_list *list);
 
 /*
-**===============================UTILITY FUNCTIONS================================
+**===============================UTILITY FUNCTIONS==============================
 */
-
 int till_power(char letter, int power);
 
 /*
-**===============================ERROR FUNCTIONS==================================
+**===============================ERROR FUNCTIONS================================
 */
 void	input_error(void);
-
 void	error_messege(t_func_list *list, int error_code, int kind);
 
 /*
-**===============================FREE FUNCTIONS===================================
+**===============================FREE FUNCTIONS=================================
 */
-
 void	free_all_but_hash(t_func_list *list);
 void	free_func_error(t_func_list *list);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/02 12:57:16 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/02 16:04:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,14 @@
 
 int		read_file(int fd, t_func_list *list)
 {
-	int ret;
+	// int ret;
 	int process_ret;
 	char *line;
 
 	line = NULL;
-	ret = 1;
-	while (ret > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
 		process_ret = 0;
-		ret = get_next_line(fd, &line);
-		if (ret == -1)
-			return (3);
 		if (line != NULL && line[0] != '\0')
 		{
 			process_ret = process_line_into_list(list, line);
