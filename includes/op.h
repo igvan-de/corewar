@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2013/10/04 11:33:27 by zaz            #+#    #+#                */
-/*   Updated: 2020/02/17 17:25:49 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/02 10:58:23 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 #define LABEL_CHAR					':'
 #define DIRECT_CHAR					'%'
 #define SEPARATOR_CHAR			','
+#define ALT_COMMENT_CHAR		';'
 
 #define LABEL_CHARS					"abcdefghijklmnopqrstuvwxyz_0123456789"
 

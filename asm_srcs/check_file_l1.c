@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/02/29 10:38:59 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/02 12:57:16 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,7 @@ int		transfer_into_struct(char *file_name, t_func_list *list)
 {
 	int			fd;
 	int			ret;
-	char		*line;
 
-	line = NULL;
 	ret = 0;
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)

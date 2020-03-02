@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 10:44:30 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/02 14:29:14 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@
 # define TRUE 0
 # define FALSE -1
 
+typedef enum				s_input_variables
+{
+	NAME 0,
+	COMMENT 0,
+	STRING 1,
+}							t_input_variables;
+
 typedef struct				s_count
 {
 	int						byte_count;
@@ -30,8 +37,8 @@ typedef struct				s_count
 typedef struct				s_direction
 {
 	unsigned char op_code;
-	unsigned char encode;		// 1 byte // 
-	int		arg_1;				// 1 byte // T_REG // 1 <-> 16 // unsigned 
+	unsigned char encode;		// 1 byte //
+	int		arg_1;				// 1 byte // T_REG // 1 <-> 16 // unsigned
 	int		arg_2;				//	2 bytes // T_IND of T_DIR // // signed
 	int		arg_3;				//	4 bytes  // T_DIR //	 signed
 	int		has_label;

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:22:10 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/02/29 11:37:03 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/02 14:29:55 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,11 @@ int		insert_name_comment(t_func_list *list, char *line, int sort)
 
 int		process_line(t_func_list *list, char *line, char **line_split)
 {
-//	vality check here please	
-//	if (validity_check_line == -1)
-//		return (7);
-	if (ft_strcmp(line_split[0], ".name"))
+	if (validity_check_line(line_split) != 0)
+		return (wrong_file(line, i);
+	if (ft_strcmp(line_split[NAME], NAME_CMD_STRING))
 		return (insert_name_comment(list, line, 0));
-	else if (ft_strcmp(line_split[0], ".comment"))
+	else if (ft_strcmp(line_split[COMMENT], COMMENT_CMD_STRING))
 		return (insert_name_comment(list, line, 1));
 	else
 	{
