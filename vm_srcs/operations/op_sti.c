@@ -59,8 +59,9 @@ static	void	exec_sti(t_cursor *cursor, t_env *env)
 	unsigned char	reg_num;
 	unsigned short	arg_2_val;
 	unsigned short	arg_3_val;
-	unsigned char	target_val;
+	int				target_val;
 	unsigned int	rel_target_pos;
+
 
 	encode = env->map[modi(cursor->position + 1)];
 	reg_num = env->map[modi(cursor->position + 2)];
@@ -68,7 +69,7 @@ static	void	exec_sti(t_cursor *cursor, t_env *env)
 	arg_3_val = to_2bytes(env->map[modi(cursor->position + 5)], env->map[modi(cursor->position + 6)]);
 	target_val = cursor->registries[reg_num - 1];
 	rel_target_pos = (arg_2_val + arg_3_val) % IDX_MOD;
-	env->map[modi(cursor->position + rel_target_pos)] = target_val;
+	*(int *)&env->map[modi(cursor->position + rel_target_pos)] = target_val;
 }
 
 /*

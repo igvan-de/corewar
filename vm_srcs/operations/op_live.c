@@ -27,17 +27,13 @@
 
 void	op_live(t_cursor *cursor, t_env *env)
 {
-	short	one;
-	short	two;
-	int		arg_1;
+	int		*ptr;
 
-	one = to_2bytes(env->map[modi(cursor->position + 4)], env->map[modi(cursor->position + 3)]);
-	two = to_2bytes(env->map[modi(cursor->position + 2)], env->map[modi(cursor->position + 1)]);
-	arg_1 = to_4bytes(one, two);
-	if ((unsigned char)arg_1 == (unsigned char)cursor->registries[0])
+	ptr = (int *)&env->map[modi(cursor->position + 1)];
+	if (*ptr == cursor->registries[0])
 	{
 		cursor->last_live = env->total_cycles;
-		env->player_last_alive = (unsigned char)(arg_1) * -1;
+		env->player_last_alive = *ptr * -1;
 		env->live_counter++;
 		cursor->live_counter++;
 		env->player_pos[modi(cursor->position)] += 4;
