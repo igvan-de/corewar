@@ -51,4 +51,5 @@ void			init_env(t_env **env)
 	(*env)->live_counter = 0;
 	(*env)->cycles_to_die = CYCLE_TO_DIE;
 	(*env)->checks_counter = 0;
+	(*env)->dump_cycle = 0;
 }

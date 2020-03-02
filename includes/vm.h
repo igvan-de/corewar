@@ -81,6 +81,7 @@ typedef struct			s_env
 	unsigned			live_counter;			//	keeps track of how many live operations where execution during last CYCLE_TO_DIE cycles
 	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
 	unsigned			checks_counter;			//	amount of checks performed
+	unsigned			dump_cycle;				// if -dump flag enabled --> stores the cycle_nbr
 	t_op				op_tab[17];				//	operation reference table
 	t_list				*players;				//	list of players.
 	char				*map;					//	ptr to main memory map.

@@ -42,6 +42,12 @@ void	error_input(int err_code)
 		ft_putendl("	input_error 5: too many arguments provided");
 	else if (err_code == 6)
 		ft_putendl("	input_error 6: too many champions.\n");
+	else if (err_code == 7)
+		ft_putendl("	input_error 7: -dump flag requires <nbr_of_cycles>");
+	else if (err_code == 8)
+		ft_putendl("	input_error 8: -dump <nbr_cycle> is not a valid cycle.");
+	else if (err_code == 9)
+		ft_putendl("	input_error 9: no champions provided");
 	exit(0);
 }
 
