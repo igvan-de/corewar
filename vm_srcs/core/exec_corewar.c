@@ -13,18 +13,6 @@
 #include "vm.h"
 
 /*
-**	op_invalid is the exit routine for finding invalid operations.
-*/
-
-static	void	op_invalid(t_cursor *cursor, t_env *env)
-{
-	printf("	operation code %i is not recognized at cursor: %i\n", env->map[modi(cursor->position)], cursor->id);
-	if (!env)
-		exit(0);
-	exit(0);
-}
-
-/*
 **	exec_op executes the operation stored in the cursor
 **	passed as parameter. if the op_code is not recognized
 **	it calls op_invalid.
@@ -41,7 +29,7 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 	else if (cursor->op_code == 11)
 		op_sti(cursor, env);
 	else
-		op_invalid(cursor, env);
+		cursor->position = modi(cursor->position + 1);;
 }
 
 /*
@@ -78,7 +66,6 @@ static	void	exec_cursor(t_cursor *cursor, t_env *env)
 			set_opcode(cursor, env);
 		else
 		{
-			printf("	op_code is invalid!\n");
 			cursor->op_code = env->map[modi(cursor->position)];
 			cursor->wait_cycles = 0;
 		}

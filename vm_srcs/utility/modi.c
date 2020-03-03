@@ -19,11 +19,13 @@
 **	index is higher than MEM_SIZE * 2.
 */
 
-unsigned int	modi(unsigned int index)
+unsigned int	modi(int index)
 {
 	if (index >= MEM_SIZE * 2)
 		error_exec(1);
 	else if (index >= MEM_SIZE)
 		return (index - MEM_SIZE);
+	else if (index < 0)
+		return (index + MEM_SIZE);
 	return (index);
 }

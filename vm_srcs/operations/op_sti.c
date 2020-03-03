@@ -53,23 +53,26 @@ static	int		validate_regs(t_cursor *cursor, t_env *env)
 **	the sti operation with the values found.
 */
 
-static	void	exec_sti(t_cursor *cursor, t_env *env)
+static	void	exec_sti(t_cursor *c, t_env *env)
 {
 	unsigned char	encode;
 	unsigned char	reg_num;
-	unsigned short	arg_2_val;
-	unsigned short	arg_3_val;
+	short			arg_2;
+	short			arg_3;
 	int				target_val;
-	unsigned int	rel_target_pos;
+	int				rel_pos;
 
-
-	encode = env->map[modi(cursor->position + 1)];
-	reg_num = env->map[modi(cursor->position + 2)];
-	arg_2_val = to_2bytes(env->map[modi(cursor->position + 3)], env->map[modi(cursor->position + 4)]);
-	arg_3_val = to_2bytes(env->map[modi(cursor->position + 5)], env->map[modi(cursor->position + 6)]);
-	target_val = cursor->registries[reg_num - 1];
-	rel_target_pos = (arg_2_val + arg_3_val) % IDX_MOD;
-	*(int *)&env->map[modi(cursor->position + rel_target_pos)] = target_val;
+	encode = env->map[modi(c->position + 1)];
+	reg_num = env->map[modi(c->position + 2)];
+	arg_2 = to_2bytes(env->map[modi(c->position + 3)], env->map[modi(c->position + 4)]);
+	arg_3 = to_2bytes(env->map[modi(c->position + 5)], env->map[modi(c->position + 6)]);
+	target_val = c->registries[reg_num - 1];
+	rel_pos = (arg_2 + arg_3) % IDX_MOD;
+	write_bytes(target_val, env, c, rel_pos);
+	env->player_pos[modi(c->position + rel_pos)] = c->registries[reg_num - 1] * -1;
+	env->player_pos[modi(c->position + rel_pos + 1)] = c->registries[reg_num - 1] * -1;
+	env->player_pos[modi(c->position + rel_pos + 2)] = c->registries[reg_num - 1] * -1;
+	env->player_pos[modi(c->position + rel_pos + 3)] = c->registries[reg_num - 1] * -1;
 }
 
 /*

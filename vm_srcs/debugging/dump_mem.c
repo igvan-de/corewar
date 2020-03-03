@@ -38,4 +38,5 @@ void				dump_mem(t_env *env)
 			ft_putchar('\n');
 		i++;
 	}
+	exit (0);
 }

@@ -133,7 +133,8 @@ unsigned char			get_arg_size(int op_code, int one, int two);
 int						has_encode(unsigned char op_code);
 int						count_registers(unsigned char encode);
 unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
-unsigned int			modi(unsigned int index);
+unsigned int			modi(int index);
+void					write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos);
 
 /*
 **	printing
@@ -163,7 +164,7 @@ void					error_exec(int err_code);
 **	visualizer
 */
 
-void						init_ncurses(t_env *env);
-void						print_map(t_env *env);
+void					init_ncurses(t_env *env);
+void					print_map(t_env *env);
 
 #endif
