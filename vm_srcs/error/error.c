@@ -76,5 +76,7 @@ void	error_exec(int err_code)
 		ft_putendl("	exec_error 1: cursor index exceeds circular memory space\n");
 	else if (err_code == 2)
 		ft_putendl("	exec_error 2: invalid index encountered while destructing int-value\n");
+	else if (err_code == 3)
+		ft_putendl("	exec_error 3: incorrect argument size found\n");
 	exit(0);
 }
