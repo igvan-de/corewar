@@ -40,7 +40,7 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 		rel_target_pos = t_ind_value % IDX_MOD;
 		t_dir_value = *(int *)&env->map[modi(cursor->position + rel_target_pos)];
 	}
-	cursor->registries[reg_num - 1] = t_dir_value;
+	cursor->registries[reg_num - 1] = t_dir_value; 
 	set_carry(cursor, t_dir_value);
 }
 
@@ -68,6 +68,8 @@ void			op_ld(t_cursor *cursor, t_env *env)
 	unsigned char arg_size_1;
 	unsigned char reg_num;
 
+	if ((env->flag_byte & (1 << 2)) == (1 << 2))
+		dump_op(cursor, env);
 	encode = env->map[modi(cursor->position + 1)];
 	if (valid_encode(cursor->op_code, encode, env) == 0)
 		return (move_cursor(cursor, env));

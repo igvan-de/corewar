@@ -89,6 +89,8 @@ void			op_sti(t_cursor *cursor, t_env *env)
 	encode = env->map[modi(cursor->position + 1)];
 	if (valid_encode(cursor->op_code, env->map[modi(cursor->position + 1)], env) == 0)
 		return (move_cursor(cursor, env));
+	if ((env->flag_byte & (1 << 2)) == (1 << 2))
+		dump_op(cursor, env);
 	exec_sti(cursor, env);
 	move_cursor_encode(cursor, encode);
 }

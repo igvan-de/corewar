@@ -14,15 +14,36 @@
 
 /*
 **	valid_flag checks the flag byte and makes sure there are
-**	contradicting flags active.
+**	no contradicting flags active.
 **
 **	if the -dump flag is active, the visualizer gets disabled.
+**	if the -v flag is active, the visualizer gets disabled.
 */
 
 static	void	valid_flags(t_env *env)
 {
+	if ((env->flag_byte & 1) == 0)
+		return ;
 	if ((env->flag_byte & (1 << 1)) == (1 << 1))
-		env->flag_byte = (1 << 1);	
+		env->flag_byte 	^= 1;
+	else if ((env->flag_byte & (1 << 2)) == (1 << 2))
+		env->flag_byte 	^= 1;
+}
+
+/*
+**	get_verbosity retrieves the verbosity level for the -v flag
+*/
+
+static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
+{
+	long long int verbosity;
+
+	if (curr_arg == arg_nb - 1)
+		error_input(10);
+	verbosity = ft_atoilong(argv[curr_arg + 1]);
+	if (verbosity != 16)
+		error_input(11);
+	env->verbosity = (unsigned)verbosity;
 }
 
 /*
@@ -48,6 +69,7 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 **
 **	-visual --> enables visualizer
 **	-dump <nbr_of_cycles> --> dumb memory after <nbr_of_cycles> cycles. --> disables visualizer
+**	-v <verbosity level> --> print all performed operations --> disables visualizer
 */
 
 static	void	parse_args(int arg_nb, char **argv, t_env *env)
@@ -66,6 +88,12 @@ static	void	parse_args(int arg_nb, char **argv, t_env *env)
 		{
 			env->flag_byte = env->flag_byte | (1 << 1);
 			get_dump_cycle(i, arg_nb, argv, env);
+			i++;
+		}
+		else if (ft_strcmp(argv[i], "-v") == 0)
+		{
+			env->flag_byte = env->flag_byte | (1 << 2);
+			get_verbosity(i, arg_nb, argv, env);
 			i++;
 		}
 		else if (i == 1 && ft_strcmp(argv[i], "-help") == 0)
@@ -98,6 +126,7 @@ int				main(int argc, char **argv)
 	parse_args(argc, argv, env);
 	load_players(env);
 	init_cursors(env);
+	intro_players(env);
 	exec_corewar(env);
 	if ((env->flag_byte & 1) == 1)
 		endwin();

@@ -11,6 +11,7 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/core/move_cursor.c				\
 		vm_srcs/core/set_carry.c				\
 		vm_srcs/core/valid_encode.c				\
+		vm_srcs/core/intro_players.c			\
 		vm_srcs/visualizer/init_ncurses.c		\
 		vm_srcs/visualizer/print_map.c			\
 		vm_srcs/operations/op_sti.c				\
@@ -39,3 +40,4 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/debugging/dump_header.c			\
 		vm_srcs/debugging/dump_mem.c			\
 		vm_srcs/debugging/dump_players.c		\
+		vm_srcs/debugging/dump_op.c				\

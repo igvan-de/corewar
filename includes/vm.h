@@ -82,6 +82,7 @@ typedef struct			s_env
 	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
 	unsigned			checks_counter;			//	amount of checks performed
 	unsigned			dump_cycle;				// if -dump flag enabled --> stores the cycle_nbr
+	unsigned			verbosity;				//	if -v flag enabled --> stores the verbosity level
 	t_op				op_tab[17];				//	operation reference table
 	t_list				*players;				//	list of players.
 	char				*map;					//	ptr to main memory map.
@@ -111,6 +112,7 @@ void					move_cursor_encode(t_cursor *cursor, unsigned char encode);
 void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 void					free_env(t_env **env);
+void					intro_players(t_env *env);
 
 /*
 **	operation functions
@@ -150,6 +152,7 @@ void					dump_mem(t_env *env);
 void					dump_players(t_list *players, t_env *env);
 void					dump_cursor_stack(t_cursor *cursor_stack);
 void					dump_env_state(t_env *env);
+void					dump_op(t_cursor *cursor, t_env *env);
 
 /* 
 **	error handlers

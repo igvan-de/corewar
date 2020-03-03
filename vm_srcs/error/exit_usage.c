@@ -19,10 +19,12 @@
 void	exit_usage(void)
 {
 	ft_putendl("corewar: vm development usage:");
-	ft_putendl("	./corewar <testfile>.cor");
-	ft_putendl("	supported champions: 4");
-	ft_putendl("	supported ops: live, zjmp, sti, ld");
-	ft_putendl("	use '-dump' <nbr_cycle> to view memory");
-	ft_putendl("	use '-visual' flag to visualize");
+	ft_putendl("\n	./corewar <testfile>.cor");
+	ft_putendl("		supported champions: 4");
+	ft_putendl("		supported ops: live, zjmp, sti, ld");
+	ft_putendl("\n	use '-dump' <nbr_cycle> to view memory");
+	ft_putendl("	use '-v' <level> to specify verbosity level");
+	ft_putendl("		supported verbosity levels: 16");
+	ft_putendl("	use '-visual' flag to visualize\n");
 	exit(0);
 }

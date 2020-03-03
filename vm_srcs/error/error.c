@@ -48,6 +48,10 @@ void	error_input(int err_code)
 		ft_putendl("	input_error 8: -dump <nbr_cycle> is not a valid cycle.");
 	else if (err_code == 9)
 		ft_putendl("	input_error 9: no champions provided");
+	else if (err_code == 10)
+		ft_putendl("	input_error 10: -v flag requires verbosity level.");
+	else if (err_code == 11)
+		ft_putendl("	input_error 11: specified verbosity level not supported.");
 	exit(0);
 }
 

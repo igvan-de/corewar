@@ -19,11 +19,24 @@
 
 void				dump_mem(t_env *env)
 {
-	int i;
+	int 			i;
+	int 			addr_trig;
+	unsigned int	bytes;
 
 	i = 0;
+	addr_trig = 1;
+	bytes = 0;
 	while (i < MEM_SIZE)
 	{
+		if (addr_trig == 1)
+		{
+			if (bytes == 0)
+				printf("0x0000 : ");
+			else
+				printf("%#06x : ", bytes);
+			bytes += 64;
+			addr_trig = 0;
+		}
 		if (env->player_pos[i] != 0)
 		{
 			printf("%02x ", 0xFF & env->map[i]);
@@ -35,7 +48,10 @@ void				dump_mem(t_env *env)
 			fflush(stdout);
 		}
 		if ((i + 1) % (128 / 2) == 0)
+		{
+			addr_trig = 1;
 			ft_putchar('\n');
+		}
 		i++;
 	}
 	exit (0);
