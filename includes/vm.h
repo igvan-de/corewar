@@ -153,6 +153,7 @@ void					dump_players(t_list *players, t_env *env);
 void					dump_cursor_stack(t_cursor *cursor_stack);
 void					dump_env_state(t_env *env);
 void					dump_op(t_cursor *cursor, t_env *env);
+void					dump_op_size(t_cursor *cursor, t_env *env, unsigned char size);
 
 /* 
 **	error handlers

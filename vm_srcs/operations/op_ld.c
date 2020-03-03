@@ -68,8 +68,6 @@ void			op_ld(t_cursor *cursor, t_env *env)
 	unsigned char arg_size_1;
 	unsigned char reg_num;
 
-	if ((env->flag_byte & (1 << 2)) == (1 << 2))
-		dump_op(cursor, env);
 	encode = env->map[modi(cursor->position + 1)];
 	if (valid_encode(cursor->op_code, encode, env) == 0)
 		return (move_cursor(cursor, env));

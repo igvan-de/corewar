@@ -38,7 +38,5 @@ void	op_live(t_cursor *cursor, t_env *env)
 		cursor->live_counter++;
 		env->player_pos[modi(cursor->position)] += 4;
 	}
-	if ((env->flag_byte & (1 << 2)) == (1 << 2))
-		dump_op(cursor, env);
 	move_cursor(cursor, env);
 }
