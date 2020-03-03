@@ -107,6 +107,7 @@ void					init_cursors(t_env *env);
 void					exec_corewar(t_env *env);
 void					check_corewar(t_env *env);
 void					move_cursor(t_cursor *cursor, t_env *env);
+void					move_cursor_encode(t_cursor *cursor, unsigned char encode);
 void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 void					free_env(t_env **env);

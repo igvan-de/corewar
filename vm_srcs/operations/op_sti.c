@@ -90,7 +90,9 @@ static	void	exec_sti(t_cursor *c, t_env *env)
 void			op_sti(t_cursor *cursor, t_env *env)
 {
 	int regs;
+	unsigned char encode;
 
+	encode = env->map[modi(cursor->position + 1)];
 	if (valid_encode(cursor->op_code, env->map[modi(cursor->position + 1)], env) == 0)
 		return (move_cursor(cursor, env));
 	regs = count_registers(env->map[modi(cursor->position + 1)]);
@@ -100,5 +102,5 @@ void			op_sti(t_cursor *cursor, t_env *env)
 			return (move_cursor(cursor, env));
 	}
 	exec_sti(cursor, env);
-	move_cursor(cursor, env);
+	move_cursor_encode(cursor, encode);
 }

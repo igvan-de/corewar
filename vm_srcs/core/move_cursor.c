@@ -41,3 +41,12 @@ void	move_cursor(t_cursor *cursor, t_env *env)
 		cursor->position = modi(cursor->position + (get_tdir_size(cursor->op_code) + 1));
 	cursor->op_code = 0;
 }
+
+void	move_cursor_encode(t_cursor *cursor, unsigned char encode)
+{
+	unsigned char	total_arg_size;
+
+	total_arg_size = get_total_arg_size(cursor->op_code, encode);
+	cursor->position = modi(cursor->position + total_arg_size + 2);
+	cursor->op_code = 0;
+}
