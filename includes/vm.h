@@ -108,7 +108,7 @@ void					init_cursors(t_env *env);
 void					exec_corewar(t_env *env);
 void					check_corewar(t_env *env);
 void					move_cursor(t_cursor *cursor, t_env *env);
-void					move_cursor_encode(t_cursor *cursor, unsigned char encode);
+void					move_cursor_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code);
 void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 void					free_env(t_env **env);
@@ -122,6 +122,7 @@ void					op_sti(t_cursor *cursor, t_env *env);
 void					op_live(t_cursor	*cursor, t_env *env);
 void					op_ld(t_cursor *cursor, t_env *env);
 void					op_zjmp(t_cursor	*cursor, t_env *env);
+void					invalid_op(t_cursor *cursor, t_env *env);
 
 /*
 **	utility
@@ -153,7 +154,8 @@ void					dump_players(t_list *players, t_env *env);
 void					dump_cursor_stack(t_cursor *cursor_stack);
 void					dump_env_state(t_env *env);
 void					dump_op(t_cursor *cursor, t_env *env);
-void					dump_op_size(t_cursor *cursor, t_env *env, unsigned char size);
+void					dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code);
+void					dump_op_invalid(t_cursor *cursor, t_env *env, unsigned char bytes);
 
 /* 
 **	error handlers

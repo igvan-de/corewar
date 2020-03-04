@@ -64,17 +64,19 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 
 void			op_ld(t_cursor *cursor, t_env *env)
 {
-	unsigned char encode;
-	unsigned char arg_size_1;
-	unsigned char reg_num;
+	unsigned char	op_code;
+	unsigned char	encode;
+	unsigned char	arg_size_1;
+	unsigned char	reg_num;
 
+	op_code = cursor->op_code;
 	encode = env->map[modi(cursor->position + 1)];
 	if (valid_encode(cursor->op_code, encode, env) == 0)
-		return (move_cursor(cursor, env));
+		return (invalid_op(cursor, env));
 	arg_size_1 = get_arg_size(cursor->op_code, get_bit(encode, 0), get_bit(encode, 1));
 	reg_num = env->map[modi(cursor->position + arg_size_1 + 2)];
 	if (reg_num < 1 || 16 < reg_num)
-		return (move_cursor(cursor, env));
+		return (invalid_op(cursor, env));
 	exec_ld(cursor, arg_size_1, reg_num, env);
-	move_cursor(cursor, env);
+	move_cursor_encode(cursor, env, encode, op_code);
 }
