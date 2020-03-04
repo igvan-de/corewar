@@ -110,11 +110,11 @@ void			op_ld(t_cursor *cursor, t_env *env)
 	op_code = cursor->op_code;
 	encode = env->map[modi(cursor->position + 1)];
 	if (valid_encode(cursor->op_code, encode, env) == 0)
-		return (invalid_op(cursor, env));
+		return (invalid_op(cursor, env, 1));
 	arg_size_1 = get_arg_size(cursor->op_code, get_bit(encode, 0), get_bit(encode, 1));
 	reg_num = env->map[modi(cursor->position + arg_size_1 + 2)];
 	if (reg_num < 1 || 16 < reg_num)
-		return (invalid_op(cursor, env));
+		return (invalid_op(cursor, env, 2));
 	exec_ld(cursor, arg_size_1, reg_num, env);
 	move_cursor_encode(cursor, env, encode, op_code);
 }

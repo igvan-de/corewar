@@ -36,7 +36,7 @@ static	unsigned char	get_max_bytes(unsigned char op_code)
 **	if the op_code were valid.
 */
 
-void	invalid_op(t_cursor *cursor, t_env *env)
+void	invalid_op(t_cursor *cursor, t_env *env, int type)
 {
 	unsigned char max_bytes;
 	unsigned char	bytes;
@@ -50,10 +50,21 @@ void	invalid_op(t_cursor *cursor, t_env *env)
 		index++;
 		bytes++;
 	}
-	if (bytes < 2)
+	if (type == 1)
+	{
 		bytes = 2;
+		index = modi(cursor->position + 2);
+	}
+	else if (type == 2)
+	{
+		bytes = 7;
+		index = modi(cursor->position + 7);
+	}
 	if ((env->flag_byte & (1 << 2)) == (1 << 2))
 		dump_op_invalid(cursor, env, bytes);
 	cursor->position = modi(index);
 	cursor->op_code = 0;
 }
+
+//	if the encoding byte is invalid and op_code is ld --> jump two bytes
+//	if the reg number is invalid and op_code is ld --> jump 6 bytes

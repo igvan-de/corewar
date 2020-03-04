@@ -48,6 +48,7 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 
 /*
 **	get_dump_cycle retrieves the nbr_cycle argument for the -dump flag.
+**	if the dump_cycle is higher than CYCLE_TO_DIE --> -dump flag is disabled.
 */
 
 static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
@@ -60,6 +61,11 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 	if (nbr_cycle < 1 || 2147483648 < nbr_cycle)
 		error_input(8);
 	env->dump_cycle = (unsigned)nbr_cycle;
+	if (env->dump_cycle > CYCLE_TO_DIE)
+	{
+		env->dump_cycle = 0;
+		env->flag_byte 	^= (1 << 1);
+	}
 }
 
 /*
@@ -130,6 +136,7 @@ int				main(int argc, char **argv)
 	exec_corewar(env);
 	if ((env->flag_byte & 1) == 1)
 		endwin();
+	announce_winner(env);
 	free_env(&env);
 	return (0);
 }

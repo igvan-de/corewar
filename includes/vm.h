@@ -113,6 +113,7 @@ void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 void					free_env(t_env **env);
 void					intro_players(t_env *env);
+void					announce_winner(t_env *env);
 
 /*
 **	operation functions
@@ -122,7 +123,7 @@ void					op_sti(t_cursor *cursor, t_env *env);
 void					op_live(t_cursor	*cursor, t_env *env);
 void					op_ld(t_cursor *cursor, t_env *env);
 void					op_zjmp(t_cursor	*cursor, t_env *env);
-void					invalid_op(t_cursor *cursor, t_env *env);
+void					invalid_op(t_cursor *cursor, t_env *env, int type);
 
 /*
 **	utility
