@@ -113,7 +113,7 @@ void			exec_corewar(t_env *env)
 		exec_cursor_stack(env);
 		if ((env->flag_byte & 1) == 1)
 			print_map(env);
-		if ((env->flag_byte & (1 << 1)) == (1 << 1) & env->dump_cycle == env->total_cycles)
+		if ((env->flag_byte & (1 << 1)) == (1 << 1) & env->dump_cycle < env->total_cycles)
 			dump_mem(env);
 		if (env->cycles_to_die < 1)
 			check_corewar(env);

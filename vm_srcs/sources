@@ -1,4 +1,5 @@
 SRCS =	vm_srcs/core/main.c						\
+		vm_srcs/core/parse_args.c				\
 		vm_srcs/core/load_optab.c				\
 		vm_srcs/core/add_player.c				\
 		vm_srcs/core/load_players.c				\

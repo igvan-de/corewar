@@ -32,7 +32,7 @@ void	op_zjmp(t_cursor *cursor, t_env *env)
 		arg = to_2bytes(env->map[modi(cursor->position + 1)], env->map[modi(cursor->position + 2)]);
 		rel_target_pos = arg % IDX_MOD;
 		cursor->position = modi(cursor->position + rel_target_pos);
-		cursor->carry = 0;
+//		cursor->carry = 0;
 		cursor->op_code = 0;
 	}
 }

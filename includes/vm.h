@@ -95,6 +95,7 @@ typedef struct			s_env
 */
 
 void					init_env(t_env **env);
+void					parse_args(int arg_nb, char **argv, t_env *env);
 void					load_optab(t_env *env);
 void					add_player(char *player, t_env *env);
 void					set_color(t_player *player);
