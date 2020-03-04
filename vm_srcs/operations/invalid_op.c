@@ -12,6 +12,22 @@
 
 #include "vm.h"
 
+static	int	contains_opcode(t_env *env, int curr_index, int bytes)
+{
+	unsigned char value;
+	int i;
+
+	i = 0;
+	while (i < bytes)
+	{
+		value = env->map[modi(curr_index + i)];
+		if (0 < value && value < 17)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 /*
 **	get_max_bytes receives an op_code and returns the maximum
 **	total size of this operation in bytes.
@@ -45,7 +61,7 @@ void	invalid_op(t_cursor *cursor, t_env *env, int type)
 	max_bytes = get_max_bytes(cursor->op_code);
 	bytes = 1;
 	index = modi(cursor->position + 1);
-	while ((env->map[modi(index)] < 1 || 16 < env->map[modi(index)]) && bytes <= max_bytes)
+	while ((env->map[modi(index)] < 1 || 16 < env->map[modi(index)]) && bytes < max_bytes)
 	{
 		index++;
 		bytes++;
@@ -55,7 +71,7 @@ void	invalid_op(t_cursor *cursor, t_env *env, int type)
 		bytes = 2;
 		index = modi(cursor->position + 2);
 	}
-	else if (type == 2)
+	else if (type == 2 && contains_opcode(env, cursor->position, 7) == 0)
 	{
 		bytes = 7;
 		index = modi(cursor->position + 7);
