@@ -83,8 +83,6 @@ static	void	parse_args(int arg_nb, char **argv, t_env *env)
 	int		i;
 	char	*player;
 
-	if (arg_nb > 8)
-		error_input(5);
 	i = 1;
 	while (i < arg_nb)
 	{
