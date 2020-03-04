@@ -6,16 +6,16 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 10:44:30 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/04 12:29:51 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# include "get_next_line.h"
 # include "libft.h"
 # include "op.h"
+# include "ft_printf.h"
 # include <stdbool.h>
 # include <stdio.h>
 # define TRUE 0
@@ -47,6 +47,8 @@ typedef struct				s_func_list
 	char					*name;
 	char					*comment;
 	int						*hash_table;
+	int						line_i;
+	int						error_characer;
 	t_direction				*info;
 }							t_func_list;
 

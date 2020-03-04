@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/02/29 10:38:59 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/04 11:18:41 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,40 @@
 ** read line for line in the file and process the line
 */
 
+int		pre_process_line(t_func_list *list, char *line, int ret)
+{
+	int process_ret;
+
+	process_ret = 0;
+	if (ret == -1)
+		return (3);
+	if (line != NULL && line[0] != '\0')
+	{
+		process_ret = process_line_into_list(list, line);
+		if (process_ret != 0)
+			return (process_ret);
+	}
+	free(line);
+	line = NULL;
+	return (0);
+}
+
 int		read_file(int fd, t_func_list *list)
 {
 	int ret;
-	int process_ret;
+	int pre_ret;
 	char *line;
 
 	line = NULL;
 	ret = 1;
 	while (ret > 0)
 	{
-		process_ret = 0;
+		list->line_i++;
+		pre_ret = 0;
 		ret = get_next_line(fd, &line);
-		if (ret == -1)
-			return (3);
-		if (line != NULL && line[0] != '\0')
-		{
-			process_ret = process_line_into_list(list, line);
-			if (process_ret != 0)
-				return (process_ret);
-		}
-		free(line);
-		line = NULL;
+		pre_ret = pre_process_line(list, line, ret);
+		if (pre_ret != 0)
+			return (pre_ret);
 	}
 	close(fd);
 	return (0);

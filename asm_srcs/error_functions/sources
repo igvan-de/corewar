@@ -1,1 +1,1 @@
-SRCS += asm_srcs/error_functions/input_error.c
+SRCS += asm_srcs/error_functions/error_messege.c
