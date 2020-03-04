@@ -13,6 +13,44 @@
 #include "vm.h"
 
 /*
+**	read and return a T_IND value from memory
+*/
+
+static	short	get_tind(t_env *env, int position)
+{
+	short ret;
+	unsigned char byte;
+
+	ret = 0;
+	byte = env->map[modi(position)];
+	ret |= (byte << 8);
+	byte = env->map[modi(position + 1)];
+	ret |= byte;
+	return (ret);
+}
+
+/*
+**	read and return a T_DIR value from memory
+*/
+
+static	int	get_tdir(t_env *env, int position)
+{
+	int ret;
+	unsigned char byte;
+
+	ret = 0;
+	byte = env->map[modi(position)];
+	ret |= (byte << 24);
+	byte = env->map[modi(position + 1)];
+	ret |= (byte << 16);
+	byte = env->map[modi(position + 2)];
+	ret |= (byte << 8);
+	byte = env->map[modi(position + 3)];
+	ret |= byte;
+	return (ret);
+}
+
+/*
 **	exec_ld executes the ld operation at the current position of the cursor.
 **	behavior differs based on the first argument --> look below for details.
 */
@@ -22,23 +60,23 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 	int		t_dir_value;
 	short	t_ind_value;
 	int		type_flag;
-	int		rel_target_pos;
+	int		rel_pos;
 
 	type_flag = 0;
 	if (arg_1_size == 4)
 	{
 		type_flag = 1;
-		t_dir_value = *(int *)&env->map[modi(cursor->position + 2)];
+		t_dir_value = get_tdir(env, cursor->position + 2);
 	}
 	else if (arg_1_size == 2)
 	{
 		type_flag = 0;
-		t_ind_value = *(short *)&env->map[modi(cursor->position + 2)];
+		t_ind_value = get_tind(env, cursor->position + 2);
 	}
 	if (type_flag == 0)
 	{
-		rel_target_pos = t_ind_value % IDX_MOD;
-		t_dir_value = *(int *)&env->map[modi(cursor->position + rel_target_pos)];
+		rel_pos = t_ind_value % IDX_MOD;
+		t_dir_value = get_tdir(env, cursor->position + rel_pos);
 	}
 	cursor->registries[reg_num - 1] = t_dir_value; 
 	set_carry(cursor, t_dir_value);

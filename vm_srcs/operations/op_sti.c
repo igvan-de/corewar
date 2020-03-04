@@ -66,10 +66,10 @@ static	void	exec_sti(t_cursor *c, t_env *env, unsigned char encode, unsigned cha
 	target_val = c->registries[reg_num - 1];
 	rel_pos = (arg_2 + arg_3) % IDX_MOD;
 	write_bytes(target_val, env, c, rel_pos);
-	env->player_pos[modi(c->position + rel_pos)] = c->registries[reg_num - 1] * -1;
-	env->player_pos[modi(c->position + rel_pos + 1)] = c->registries[reg_num - 1] * -1;
-	env->player_pos[modi(c->position + rel_pos + 2)] = c->registries[reg_num - 1] * -1;
-	env->player_pos[modi(c->position + rel_pos + 3)] = c->registries[reg_num - 1] * -1;
+	env->player_pos[modi(c->position + rel_pos)] = c->registries[0] * -1;
+	env->player_pos[modi(c->position + rel_pos + 1)] = c->registries[0] * -1;
+	env->player_pos[modi(c->position + rel_pos + 2)] = c->registries[0] * -1;
+	env->player_pos[modi(c->position + rel_pos + 3)] = c->registries[0] * -1;
 }
 
 /*
