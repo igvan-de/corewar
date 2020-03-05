@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   op_and.c                                           :+:    :+:            */
+/*   op_or.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 14:09:17 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 14:09:18 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 16:23:12 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/03/05 16:23:12 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static	int	get_arg_2(t_cursor *cursor, t_env *env, unsigned char encode, int siz
 	return (0);
 }
 
-static	void	exec_and(t_cursor *cursor, t_env *env, unsigned char encode)
+static	void	exec_or(t_cursor *cursor, t_env *env, unsigned char encode)
 {
 	int			arg_1;
 	int			arg_2;
@@ -113,8 +113,8 @@ static	void	exec_and(t_cursor *cursor, t_env *env, unsigned char encode)
 	arg_2 = get_arg_2(cursor, env, encode, arg_1_size);
 	arg_2_size = get_arg_size(cursor->op_code, get_bit(encode, 2), get_bit(encode, 3));
 	target_reg = env->map[modi(cursor->position + arg_1_size + arg_2_size + 2)];
-	cursor->registries[target_reg - 1] = arg_1 & arg_2;
-	set_carry(cursor, arg_1 & arg_2);
+	cursor->registries[target_reg - 1] = arg_1 | arg_2;
+	set_carry(cursor, arg_1 | arg_2);
 }
 
 static	int	valid_regs(t_cursor *cursor, t_env *env, unsigned char encode)
@@ -148,7 +148,7 @@ static	int	valid_regs(t_cursor *cursor, t_env *env, unsigned char encode)
 	return (1);
 }
 
-void	op_and(t_cursor *cursor, t_env *env)
+void	op_or(t_cursor *cursor, t_env *env)
 {
 	unsigned char op_code;
 	unsigned char encode;
@@ -159,6 +159,6 @@ void	op_and(t_cursor *cursor, t_env *env)
 		return (invalid_op(cursor, env, 1));
 	if (valid_regs(cursor, env, encode) == 0)
 		return (invalid_op(cursor, env, 2));
-	exec_and(cursor, env, encode);
+	exec_or(cursor, env, encode);
 	move_cursor_encode(cursor, env, encode, op_code);
 }
