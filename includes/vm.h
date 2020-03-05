@@ -128,6 +128,7 @@ void					op_add(t_cursor *cursor, t_env *env);
 void					op_sub(t_cursor *cursor, t_env *env);
 void					op_and(t_cursor *cursor, t_env *env);
 void					op_or(t_cursor *cursor, t_env *env);
+void					op_xor(t_cursor *cursor, t_env *env);
 void					invalid_op(t_cursor *cursor, t_env *env, int type);
 
 /*
