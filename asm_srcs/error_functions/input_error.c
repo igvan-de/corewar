@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 10:46:22 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/05 13:03:39 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,14 @@ void	testing_only(int error_code)
 	ft_putendl(errors[error_code]);
 }
 
-void	error_messege(t_func_list *list, int error_code, int kind)
+void	error_message(t_func_list *list, int error_code, int kind)
 {
 	static char loc[3][25] = {
 	"its in check file",
 	"its in process_asm",
-	"its in init_func_list"};
+	"its in init_func_list",
+	"its not a .s file",
+	"something went wrong when opening the file, fd error"};
 
 	free_func_error(list);
 	ft_putendl("Error code :");

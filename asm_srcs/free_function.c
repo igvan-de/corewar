@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/02/29 10:06:27 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/05 12:48:14 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ void	free_direction(t_func_list *list)
 
 	iter = list->info;
 	next = NULL;
-
-	while (iter)
+	while (iter != NULL)
 	{
 		next = iter->next;
 		if (iter->label != NULL)
@@ -34,15 +33,9 @@ void	free_direction(t_func_list *list)
 void	free_func_error(t_func_list *list)
 {
 	if (list->name != NULL)
-	{
-		free(list->name);
-		list->name = NULL;
-	}
+		ft_memdel(list->name); //ft_memdel freed current data and sets it to NULL
 	if (list->comment != NULL)
-	{
-		free(list->name);
-		list->comment = NULL;
-	}
+		ft_memdel(list->comment);
 	if (list->info != NULL)
 		free_direction(list);
 	if (list->hash_table != NULL)
@@ -52,15 +45,9 @@ void	free_func_error(t_func_list *list)
 void	free_all_but_hash(t_func_list *list)
 {
 	if (list->name != NULL)
-	{
-		free(list->name);
-		list->name = NULL;
-	}
+		ft_memdel(list->name);
 	if (list->comment != NULL)
-	{
-		free(list->name);
-		list->comment = NULL;
-	}
+		ft_memdel(list->comment);
 	if (list->info != NULL)
 	{
 		free_direction(list);

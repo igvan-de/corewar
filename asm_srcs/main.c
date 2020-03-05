@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/29 11:31:18 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/05 13:03:43 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	process_asm(char *file_name)
 **	need to rework on it since the program will stop if 1 file is not correct
 */
 
-void	print_array(int *array)
+static void	print_array(int *array)
 {
 	int i;
 
@@ -88,7 +88,7 @@ void	print_array(int *array)
 	}
 }
 
-int		make_hash(char *operation)
+static int	make_hash(char *operation)
 {
 	int total;
 	int i;
@@ -104,7 +104,7 @@ int		make_hash(char *operation)
 	return (total);
 }
 
-int		*make_hash_table(void)
+static int	*make_hash_table(void)
 {
 	int			*table;
 	int			i;
@@ -113,7 +113,7 @@ int		*make_hash_table(void)
 	};
 
 	i = 0;
-	table = (int *)malloc(sizeof(int) * 16);
+	table = (int *)ft_memmalloc(sizeof(int) * 16);
 	if (!table)
 		return (NULL);
 	ft_bzero(table, 16 * (sizeof(int)));
@@ -125,37 +125,26 @@ int		*make_hash_table(void)
 	return (table);
 }
 
-int		init_func_list(t_func_list *list)
+static void	init_func_list(t_func_list *list)
 {
-	list->name = NULL;
-	list->comment = NULL;
-	list->info = NULL;
 	list->hash_table = make_hash_table();
 	if (list->hash_table == NULL)
-		return (13);
-	return (0);
+		error_message(&list, 13, 2);
 }
 
-int		main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	int			i;
 	int			ret;
 	t_func_list list;
 
-	ret = init_func_list(&list);
-	if (ret != 0)
-		error_messege(&list, ret, 2);
+	init_func_list(&list);
 	i = 1;
 	if (argc == 0)
 		input_error();
 	while (argv[i])
 	{
-		ret = check_file(argv[i], &list);
-		if (ret != 0)
-			error_messege(&list, ret, 0);
-//		ret = process_asm(argv[i]);
-//		if (ret != 0);
-//			error_messege(list, ret, 1);
+		check_file(argv[i], &list);
 		free_all_but_hash(&list);
 		i++;
 	}
