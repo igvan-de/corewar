@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_file_l3_insert_instruc.c                     :+:    :+:            */
+/*   check_file_l3_insert_instruction.c                 :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:51:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/02 13:03:46 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 12:20:00 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,6 @@ int		fill_in_node(t_func_list *list, t_direction *new, char **line_split, t_coun
 	return (0);
 }
 
-void	empty_new_direction(t_direction **iter)
-{
-	(*iter)->op_code = 0;
-	(*iter)->encode = 0;
-	(*iter)->arg_1 = 0;
-	(*iter)->arg_2 = 0;
-	(*iter)->arg_3 = 0;
-	(*iter)->has_label = 0;
-	(*iter)->label = NULL;
-	(*iter)->target_label = NULL;
-	(*iter)->byte_index = 0;
-	(*iter)->byte_size = 0;
-	(*iter)->next = NULL;
-}
-
 int		add_instruction_node(t_func_list *list, t_direction *pointer, t_count *counter)
 {
 	t_direction *iter;
@@ -78,7 +63,7 @@ int		add_instruction_node(t_func_list *list, t_direction *pointer, t_count *coun
 	iter = list->info;
 	if (iter == NULL)
 	{
-		iter = (t_direction *)malloc(sizeof(t_direction));
+		iter = (t_direction *)ft_memmalloc(sizeof(t_direction));
 		if (!iter)
 			return (10);
 	}
@@ -89,11 +74,10 @@ int		add_instruction_node(t_func_list *list, t_direction *pointer, t_count *coun
 			counter->byte_count = iter->byte_index;
 			iter = iter->next;
 		}
-		iter = (t_direction *)malloc(sizeof(t_direction));
+		iter = (t_direction *)ft_memmalloc(sizeof(t_direction));
 		if (!iter)
 			return (11);
 	}
-	empty_new_direction(&iter);
 	pointer = iter;
 	return (0);
 }

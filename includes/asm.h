@@ -6,16 +6,16 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/02 16:16:34 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 12:30:00 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-# include "get_next_line.h"
 # include "libft.h"
 # include "op.h"
+# include "ft_printf.h"
 # include <stdbool.h>
 # include <stdio.h>
 # define TRUE 0
@@ -39,14 +39,14 @@ typedef struct				s_direction
 {
 	unsigned char op_code;
 	unsigned char encode;		// 1 byte //
-	int		arg_1;				// 1 byte // T_REG // 1 <-> 16 // unsigned
-	int		arg_2;				//	2 bytes // T_IND of T_DIR // // signed
-	int		arg_3;				//	4 bytes  // T_DIR //	 signed
-	int		has_label;
-	char 	*label;
-	char	*target_label;
-	int		byte_index;
-	int		byte_size;
+	int			arg_1;				// 1 byte // T_REG // 1 <-> 16 // unsigned
+	int			arg_2;				//	2 bytes // T_IND of T_DIR // // signed
+	int			arg_3;				//	4 bytes  // T_DIR //	 signed
+	int			has_label;
+	char 		*label;
+	char		*target_label;
+	int			byte_index;
+	int			byte_size;
 	struct s_direction * next;
 }							t_direction;
 
@@ -55,6 +55,8 @@ typedef struct				s_func_list
 	char					*name;
 	char					*comment;
 	int						*hash_table;
+	int						line_i;
+	int						error_characer;
 	t_direction				*info;
 }							t_func_list;
 

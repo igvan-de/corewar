@@ -6,11 +6,11 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/13 18:09:56 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/01/19 14:59:05 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/04 14:33:09 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "./includes/get_next_line.h"
 
 static int			rearrange(t_list **node, char **line)
 {

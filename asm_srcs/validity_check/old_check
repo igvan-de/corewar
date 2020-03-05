@@ -1,17 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   validity_check.c                                   :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2020/02/28 18:41:25 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/02 16:44:58 by igvan-de      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
-#include "asm.h"
-
 /*
 ** check_label check if label only has chars same as LABEL_CHARS
 ** and it ends with a LABEL_CHAR as it needs to have
