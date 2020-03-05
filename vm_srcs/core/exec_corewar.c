@@ -24,14 +24,16 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 		op_live(cursor, env);
 	else if (cursor->op_code == 2)
 		op_ld(cursor, env);
-	else if (cursor->op_code == 9)
-		op_zjmp(cursor, env);
-	else if (cursor->op_code == 11)
-		op_sti(cursor, env);
 	else if (cursor->op_code == 4)
 		op_add(cursor, env);
 	else if (cursor->op_code == 5)
 		op_sub(cursor, env);
+	else if (cursor->op_code == 6)
+		op_and(cursor, env);
+	else if (cursor->op_code == 9)
+		op_zjmp(cursor, env);
+	else if (cursor->op_code == 11)
+		op_sti(cursor, env);
 	else if (cursor->op_code < 1 || 16 < cursor->op_code)
 	{
 		cursor->position = modi(cursor->position + 1);
