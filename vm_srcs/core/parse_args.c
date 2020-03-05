@@ -25,11 +25,11 @@ static	void	valid_flags(t_env *env)
 	if ((env->flag_byte & 1) == 0)
 		return ;
 	if ((env->flag_byte & (1 << 1)) == (1 << 1))
-		env->flag_byte 	^= 1;
+		env->flag_byte ^= 1;
 	else if ((env->flag_byte & (1 << 2)) == (1 << 2))
-		env->flag_byte 	^= 1;
+		env->flag_byte ^= 1;
 	else if ((env->flag_byte & (1 << 3)) == (1 << 3))
-		env->flag_byte 	^= 1;
+		env->flag_byte ^= 1;
 }
 
 /*
@@ -81,7 +81,7 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 **	-v <verbosity level> --> print all performed operations --> disables visualizer
 */
 
-void	parse_args(int arg_nb, char **argv, t_env *env)
+void			parse_args(int arg_nb, char **argv, t_env *env)
 {
 	int		i;
 	char	*player;

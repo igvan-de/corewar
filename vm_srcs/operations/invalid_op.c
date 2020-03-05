@@ -12,7 +12,6 @@
 
 #include "vm.h"
 
-
 /*
 **	get_max_bytes receives an op_code and returns the maximum
 **	total size of this operation in bytes.
@@ -41,11 +40,11 @@ static	unsigned char	get_max_bytes(unsigned char op_code, int type)
 **	if the op_code were valid.
 */
 
-void	invalid_op(t_cursor *cursor, t_env *env, int type)
+void					invalid_op(t_cursor *cursor, t_env *env, int type)
 {
-	unsigned char max_bytes;
+	unsigned char	max_bytes;
 	unsigned char	bytes;
-	unsigned index;
+	unsigned		index;
 
 	max_bytes = get_max_bytes(cursor->op_code, type);
 	bytes = 1;

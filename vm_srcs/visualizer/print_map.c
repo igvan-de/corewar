@@ -26,7 +26,7 @@ static	int	cursor_pos(t_cursor *cursor_stack, unsigned index)
 	return (0);
 }
 
-void	print_map(t_env *env)
+void		print_map(t_env *env)
 {
 	int i;
 
@@ -38,13 +38,13 @@ void	print_map(t_env *env)
 		{
 			if (cursor_pos(env->cursor_stack, i) == 0)
 				attron(COLOR_PAIR(env->player_pos[i]));
-			else 
+			else
 				attron(COLOR_PAIR(9));
 			printw("%02x ", 0xFF & env->map[i]);
 			if (cursor_pos(env->cursor_stack, i) == 0)
 				attroff(COLOR_PAIR(env->player_pos[i]));
 			else
-				attron(COLOR_PAIR(9)); 
+				attron(COLOR_PAIR(9));
 			if (env->player_pos[i] > 4)
 				env->player_pos[i] -= 4;
 		}

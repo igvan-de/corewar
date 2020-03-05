@@ -17,31 +17,31 @@
 **	checks if the value contained is a valid register number.
 */
 
-int	valid_regs(t_cursor *cursor, t_env *env, unsigned char encode)
+int	valid_regs(t_cursor *c, t_env *env, unsigned char encode)
 {
-	int arg_size_1;
-	int arg_size_2;
-	int arg_size_3;
-	unsigned reg;
+	int			size_1;
+	int			size_2;
+	int			size_3;
+	unsigned	reg;
 
-	arg_size_1 = get_arg_size(cursor->op_code, get_bit(encode, 0), get_bit(encode, 1));
-	arg_size_2 = get_arg_size(cursor->op_code, get_bit(encode, 2), get_bit(encode, 3));
-	arg_size_3 = get_arg_size(cursor->op_code, get_bit(encode, 4), get_bit(encode, 5));
-	if (arg_size_1 == 1)
+	size_1 = get_arg_size(c->op_code, get_bit(encode, 0), get_bit(encode, 1));
+	size_2 = get_arg_size(c->op_code, get_bit(encode, 2), get_bit(encode, 3));
+	size_3 = get_arg_size(c->op_code, get_bit(encode, 4), get_bit(encode, 5));
+	if (size_1 == 1)
 	{
-		reg = env->map[modi(cursor->position + 2)];
+		reg = env->map[modi(c->position + 2)];
 		if (reg < 1 || 16 < reg)
 			return (0);
 	}
-	if (arg_size_2 == 1)
+	if (size_2 == 1)
 	{
-		reg = env->map[modi(cursor->position + arg_size_1 + 2)];
+		reg = env->map[modi(c->position + size_1 + 2)];
 		if (reg < 1 || 16 < reg)
 			return (0);
 	}
-	if (arg_size_3 == 1)
+	if (size_3 == 1)
 	{
-		reg = env->map[modi(cursor->position + arg_size_1 + arg_size_2 + 2)];
+		reg = env->map[modi(c->position + size_1 + size_2 + 2)];
 		if (reg < 1 || 16 < reg)
 			return (0);
 	}

@@ -14,8 +14,8 @@
 
 static	char	*player_name(t_env *env, int id)
 {
-	t_list *iter;
-	t_player *curr;
+	t_list		*iter;
+	t_player	*curr;
 
 	iter = env->players;
 	while (iter)
@@ -28,7 +28,7 @@ static	char	*player_name(t_env *env, int id)
 	return ("NULL");
 }
 
-void	announce_winner(t_env *env)
+void			announce_winner(t_env *env)
 {
 	ft_putstr("Contestant ");
 	ft_putnbr(env->player_last_alive);

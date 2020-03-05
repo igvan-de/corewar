@@ -19,8 +19,8 @@
 
 void				dump_mem(t_env *env)
 {
-	int 			i;
-	int 			addr_trig;
+	int				i;
+	int				addr_trig;
 	unsigned int	bytes;
 
 	i = 0;
@@ -54,5 +54,5 @@ void				dump_mem(t_env *env)
 		}
 		i++;
 	}
-	exit (0);
+	exit(0);
 }

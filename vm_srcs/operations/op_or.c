@@ -12,10 +12,10 @@
 
 #include "vm.h"
 
-static	int	get_arg_1(t_cursor *cursor, t_env *env, unsigned char encode)
+static	int		get_arg_1(t_cursor *cursor, t_env *env, unsigned char encode)
 {
 	int				size;
-	unsigned char 	reg;
+	unsigned char	reg;
 	int				rel_pos;
 	short			t_ind;
 
@@ -37,10 +37,10 @@ static	int	get_arg_1(t_cursor *cursor, t_env *env, unsigned char encode)
 	return (0);
 }
 
-static	int	get_arg_2(t_cursor *cursor, t_env *env, unsigned char encode, int size)
+static	int		get_arg_2(t_cursor *cursor, t_env *env, unsigned char encode, int size)
 {
 	int				arg_size;
-	unsigned char 	reg;
+	unsigned char	reg;
 	int				rel_pos;
 	short			t_ind;
 
@@ -79,7 +79,12 @@ static	void	exec_or(t_cursor *cursor, t_env *env, unsigned char encode)
 	set_carry(cursor, arg_1 | arg_2);
 }
 
-void	op_or(t_cursor *cursor, t_env *env)
+/*
+**	op_or executes the operation op_or at the
+**	current position of the cursor.
+*/
+
+void			op_or(t_cursor *cursor, t_env *env)
 {
 	unsigned char op_code;
 	unsigned char encode;

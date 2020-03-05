@@ -12,6 +12,10 @@
 
 #include "vm.h"
 
+/*
+**	is_dead checks if a cursor is dead.
+*/
+
 static	int		is_dead(t_cursor *cursor, t_env *env)
 {
 	if (cursor->live_counter == 0)
@@ -22,6 +26,11 @@ static	int		is_dead(t_cursor *cursor, t_env *env)
 		return (1);
 	return (0);
 }
+
+/*
+**	delete_cursor frees a dead cursor and reconnects the
+**	neighboring cursors in the cursor_stack.
+*/
 
 static	void	delete_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 {
@@ -34,6 +43,11 @@ static	void	delete_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 	free(cursor->registries);
 	free(cursor);
 }
+
+/*
+**	parse_cursor_stack iterates through the cursor_stack
+**	and if a cursor is dead, it is deleted.
+*/
 
 static	void	parse_cursor_stack(t_env *env)
 {
@@ -56,6 +70,11 @@ static	void	parse_cursor_stack(t_env *env)
 	}
 }
 
+/*
+**	reset_cursor_lives iterates through the cursor_stack and
+**	sets the live_counter for each cursor to 0.
+*/
+
 static	void	reset_cursor_lives(t_cursor *cursor_stack)
 {
 	t_cursor *iter;
@@ -68,7 +87,20 @@ static	void	reset_cursor_lives(t_cursor *cursor_stack)
 	}
 }
 
-void	check_corewar(t_env *env)
+/*
+**	check_corewar runs a checkup each CYCLE_TO_DIE cycles.
+**
+**	if during the last CTD cycles, more than NBR_LIVE live operations
+**	were performed, CTD gets decreased by CYCLE_DELTA.
+**
+**	else if more than MAX_CHECKS checks were performed,
+**	CTD gets decreased by CYCLE_DELTA.
+**
+**	dead cursors are removed from the cursor stack.
+**	live counter for each cursor is reset.
+*/
+
+void			check_corewar(t_env *env)
 {
 	env->checks_counter++;
 	env->cycle_last_check = env->total_cycles;

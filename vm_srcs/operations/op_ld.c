@@ -40,7 +40,7 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 		rel_pos = t_ind_value % IDX_MOD;
 		t_dir_value = get_tdir(env, cursor->position + rel_pos);
 	}
-	cursor->registries[reg_num - 1] = t_dir_value; 
+	cursor->registries[reg_num - 1] = t_dir_value;
 	set_carry(cursor, t_dir_value);
 }
 

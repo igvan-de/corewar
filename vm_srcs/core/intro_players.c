@@ -25,7 +25,7 @@ static	void	intro_player(t_player *player)
 	ft_putendl("\") !");
 }
 
-void	intro_players(t_env *env)
+void			intro_players(t_env *env)
 {
 	t_list *iter;
 

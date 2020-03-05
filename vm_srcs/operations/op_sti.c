@@ -22,7 +22,7 @@ static	short	get_arg_2(unsigned char encode, t_cursor *c, t_env *env)
 
 	arg_size = get_arg_size(c->op_code, get_bit(encode, 2), get_bit(encode, 3));
 	if (arg_size == 1)
-		return((short)env->map[modi(c->position + 3)]);
+		return ((short)env->map[modi(c->position + 3)]);
 	else if (arg_size == 2)
 		return ((short)to_2bytes(env->map[modi(c->position + 3)], env->map[modi(c->position + 4)]));
 	error_exec(3);
@@ -41,7 +41,7 @@ static	short	get_arg_3(unsigned char encode, t_cursor *c, t_env *env)
 	arg_size_2 = get_arg_size(c->op_code, get_bit(encode, 2), get_bit(encode, 3));
 	arg_size_3 = get_arg_size(c->op_code, get_bit(encode, 4), get_bit(encode, 5));
 	if (arg_size_3 == 1)
-		return((short)env->map[modi(c->position + arg_size_2 + 3)]);
+		return ((short)env->map[modi(c->position + arg_size_2 + 3)]);
 	else if (arg_size_3 == 2)
 		return ((short)to_2bytes(env->map[modi(c->position + arg_size_2 + 3)], env->map[modi(c->position + arg_size_2 + 4)]));
 	error_exec(3);
@@ -56,10 +56,10 @@ static	short	get_arg_3(unsigned char encode, t_cursor *c, t_env *env)
 
 static	void	exec_sti(t_cursor *c, t_env *env, unsigned char encode, unsigned char reg_num)
 {
-	short			arg_2;
-	short			arg_3;
-	int				target_val;
-	int				rel_pos;
+	short		arg_2;
+	short		arg_3;
+	int			target_val;
+	int			rel_pos;
 
 	arg_2 = get_arg_2(encode, c, env);
 	arg_3 = get_arg_3(encode, c, env);

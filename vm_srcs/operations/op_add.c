@@ -14,9 +14,9 @@
 
 static	void	exec_add(t_cursor *cursor, t_env *env)
 {
-	int val1;
-	int val2;
-	unsigned char reg_num;
+	int				val1;
+	int				val2;
+	unsigned char	reg_num;
 
 	reg_num = env->map[modi(cursor->position + 2)];
 	val1 = cursor->registries[reg_num - 1];
@@ -27,7 +27,14 @@ static	void	exec_add(t_cursor *cursor, t_env *env)
 	set_carry(cursor, val1 + val2);
 }
 
-void		op_add(t_cursor *cursor, t_env *env)
+/*
+**	op_add executes the operation add at the current
+**	position of the cursor. It receives 3 T_REGS,
+**	and stores the sum of the values in reg 1 and 2
+**	in reg 3.
+*/
+
+void			op_add(t_cursor *cursor, t_env *env)
 {
 	unsigned char op_code;
 	unsigned char encode;

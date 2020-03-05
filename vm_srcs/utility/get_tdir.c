@@ -18,8 +18,8 @@
 
 int	get_tdir(t_env *env, int position)
 {
-	int ret;
-	unsigned char byte;
+	int				ret;
+	unsigned char	byte;
 
 	ret = 0;
 	byte = env->map[modi(position)];

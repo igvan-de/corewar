@@ -35,13 +35,13 @@ char	get_byte(int value, int index)
 **	write_bytes receives a value and writes that value onto the
 **	memory map at the position calculated by:
 **
-**	modi(cursor->position + rel_pos); 
+**	modi(cursor->position + rel_pos);
 */
 
 void	write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos)
 {
-	int place;
-	char byte;
+	int		place;
+	char	byte;
 
 	place = c->position + rel_pos;
 	byte = get_byte(target_val, 0);

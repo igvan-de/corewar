@@ -67,7 +67,7 @@ static	void	dump_bytes(t_cursor *cursor, t_env *env, unsigned char bytes)
 **	if the -v 16 flag is enabled.
 */
 
-void	dump_op(t_cursor *cursor, t_env *env)
+void			dump_op(t_cursor *cursor, t_env *env)
 {
 	unsigned char bytes;
 
@@ -85,7 +85,7 @@ void	dump_op(t_cursor *cursor, t_env *env)
 **	the last operation.
 */
 
-void	dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code)
+void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code)
 {
 	unsigned char bytes;
 
@@ -101,7 +101,7 @@ void	dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned
 **	called when an operation was found to be invalid.
 */
 
-void	dump_op_invalid(t_cursor *cursor, t_env *env, unsigned char bytes)
+void			dump_op_invalid(t_cursor *cursor, t_env *env, unsigned char bytes)
 {
 	dump_movement(cursor, bytes);
 	dump_bytes(cursor, env, bytes);

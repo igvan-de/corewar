@@ -89,15 +89,15 @@ static	t_cursor			*new_cursor(t_env *env)
 **	of the existing cursor stack.
 */
 
-static	void				push_cursor(t_cursor *cursor, t_cursor **cursor_stack)
+static	void				push_cursor(t_cursor *c, t_cursor **stack)
 {
-	if (*cursor_stack == NULL)
-		*cursor_stack = cursor;
+	if (*stack == NULL)
+		*stack = c;
 	else
 	{
-		cursor->next = *cursor_stack;
-		(*cursor_stack)->prev = cursor;
-		*cursor_stack = cursor;
+		c->next = *stack;
+		(*stack)->prev = c;
+		*stack = c;
 	}
 }
 
