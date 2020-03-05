@@ -148,6 +148,7 @@ unsigned int			modi(int index);
 void					write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos);
 int						get_tdir(t_env *env, int position);
 short					get_tind(t_env *env, int position);
+int						valid_regs(t_cursor *cursor, t_env *env, unsigned char encode);
 
 /*
 **	printing

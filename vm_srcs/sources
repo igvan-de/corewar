@@ -12,6 +12,7 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/core/move_cursor.c				\
 		vm_srcs/core/set_carry.c				\
 		vm_srcs/core/valid_encode.c				\
+		vm_srcs/core/valid_regs.c				\
 		vm_srcs/core/intro_players.c			\
 		vm_srcs/core/announce_winner.c			\
 		vm_srcs/visualizer/init_ncurses.c		\
