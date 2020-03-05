@@ -28,10 +28,14 @@ static	void	valid_flags(t_env *env)
 		env->flag_byte 	^= 1;
 	else if ((env->flag_byte & (1 << 2)) == (1 << 2))
 		env->flag_byte 	^= 1;
+	else if ((env->flag_byte & (1 << 3)) == (1 << 3))
+		env->flag_byte 	^= 1;
 }
 
 /*
 **	get_verbosity retrieves the verbosity level for the -v flag
+**	if verbosity is 2 or 18 (16 + 2) --> enable cycle verbosity
+**	if verbosity is 16 or 18 (16 + 2) --> enable operation verbosity
 */
 
 static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
@@ -41,8 +45,12 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 	if (curr_arg == arg_nb - 1)
 		error_input(10);
 	verbosity = ft_atoilong(argv[curr_arg + 1]);
-	if (verbosity != 16)
+	if (verbosity != 16 && verbosity != 18 && verbosity != 2)
 		error_input(11);
+	if (verbosity == 18 || verbosity == 2)
+		env->flag_byte |= (1 << 3);
+	if (verbosity == 2)
+		env->flag_byte ^= (1 << 2);
 	env->verbosity = (unsigned)verbosity;
 }
 
@@ -61,11 +69,6 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 	if (nbr_cycle < 1 || 2147483648 < nbr_cycle)
 		error_input(8);
 	env->dump_cycle = (unsigned)nbr_cycle;
-//	if (env->dump_cycle > CYCLE_TO_DIE)
-//	{
-//		env->dump_cycle = 0;
-//		env->flag_byte 	^= (1 << 1);
-//	}
 }
 
 /*

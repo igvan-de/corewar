@@ -22,6 +22,7 @@ static	void	dump_movement(t_cursor *cursor, unsigned char bytes)
 	ft_putstr("ADV ");
 	ft_putnbr(bytes);
 	ft_putstr(" (");
+	fflush(stdout);
 	if (cursor->position != 0)
 	{
 		printf("%#06x -> %#06x) ", modi(cursor->position), modi(cursor->position + bytes));

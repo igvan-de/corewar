@@ -23,16 +23,15 @@
 void	op_zjmp(t_cursor *cursor, t_env *env)
 {
 	short	arg;
-	int		rel_target_pos;
+	int		rel_pos;
 
 	if (cursor->carry == 0)
 		move_cursor(cursor, env);
 	else
 	{
 		arg = to_2bytes(env->map[modi(cursor->position + 1)], env->map[modi(cursor->position + 2)]);
-		rel_target_pos = arg % IDX_MOD;
-		cursor->position = modi(cursor->position + rel_target_pos);
-//		cursor->carry = 0;
+		rel_pos = arg % IDX_MOD;
+		cursor->position = modi(cursor->position + rel_pos);
 		cursor->op_code = 0;
 	}
 }

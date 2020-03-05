@@ -14,6 +14,8 @@
 
 static	int		is_dead(t_cursor *cursor, t_env *env)
 {
+	if (cursor->live_counter == 0)
+		return (1);
 	if (cursor->live_counter > env->cycles_to_die)
 		return (1);
 	else if (cursor->last_live < env->total_cycles - env->cycles_to_die)

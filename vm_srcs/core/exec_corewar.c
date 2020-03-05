@@ -29,7 +29,10 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 	else if (cursor->op_code == 11)
 		op_sti(cursor, env);
 	else if (cursor->op_code < 1 || 16 < cursor->op_code)
+	{
 		cursor->position = modi(cursor->position + 1);
+		cursor->op_code = 0;
+	}
 	else
 		invalid_op(cursor, env, 1);
 }
@@ -62,7 +65,7 @@ static	void	set_opcode(t_cursor *cursor, t_env *env)
 
 static	void	exec_cursor(t_cursor *cursor, t_env *env)
 {
-	if (env->cycles == 0 || cursor->wait_cycles == 0)
+	if (env->total_cycles == 0 || cursor->wait_cycles == 0)
 	{
 		if (1 <= env->map[modi(cursor->position)] && env->map[modi(cursor->position)] <= 16)
 			set_opcode(cursor, env);
@@ -96,10 +99,30 @@ static	void	exec_cursor_stack(t_env *env)
 }
 
 /*
+**	check_flags parses the flag byte and executes
+**	verbosity dumps or the visualizer depending on
+**	which flags are turned on.
+*/
+
+static	void	check_flags(t_env *env)
+{
+	if ((env->flag_byte & 1) == 1)
+		print_map(env);
+	if ((env->flag_byte & (1 << 1)) == (1 << 1) && env->dump_cycle == env->total_cycles)
+		dump_mem(env);
+	if ((env->flag_byte & (1 << 3)) == (1 << 3))
+	{
+		ft_putstr("It is now cycle ");
+		ft_putnbr(env->total_cycles + 1);
+		ft_putchar('\n');
+	}
+}
+
+/*
 **	exec_corewar executes the main program with
 **	the information stored in the global environment struct.
 **
-**	UNDER CONSTRUCTION --> only runs with ops: zjmp / live/ sti / ld.
+**	only runs with ops: zjmp / live/ sti / ld.
 */
 
 void			exec_corewar(t_env *env)
@@ -108,13 +131,12 @@ void			exec_corewar(t_env *env)
 		init_ncurses(env);
 	if (env->cycles_to_die <= 0)
 		return ;
+	if (env->total_cursors == 0)
+		return ;
 	while (env->cycles < env->cycles_to_die)
 	{
+		check_flags(env);
 		exec_cursor_stack(env);
-		if ((env->flag_byte & 1) == 1)
-			print_map(env);
-		if ((env->flag_byte & (1 << 1)) == (1 << 1) & env->dump_cycle < env->total_cycles)
-			dump_mem(env);
 		if (env->cycles_to_die < 1)
 			check_corewar(env);
 		(env->cycles)++;
