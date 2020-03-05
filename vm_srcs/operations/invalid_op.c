@@ -20,13 +20,13 @@
 
 static	unsigned char	get_max_bytes(unsigned char op_code, int type)
 {
-	if (op_code == 1 || op_code == 4)
+	if (op_code == 1 || op_code == 4 || op_code == 5)
 		return (5);
 	else if (op_code == 2 && type == 2)
 		return (7);
 	else if (op_code == 2 && type == 1)
 		return (5);
-	else if ( op_code == 11)
+	else if (op_code == 11)
 		return (7);
 	else if (op_code == 9)
 		return (3);

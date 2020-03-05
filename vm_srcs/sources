@@ -21,6 +21,7 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/operations/op_ld.c				\
 		vm_srcs/operations/op_zjmp.c			\
 		vm_srcs/operations/op_add.c				\
+		vm_srcs/operations/op_sub.c				\
 		vm_srcs/operations/invalid_op.c			\
 		vm_srcs/utility/to_4bytes.c				\
 		vm_srcs/utility/to_2bytes.c				\

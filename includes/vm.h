@@ -125,6 +125,7 @@ void					op_live(t_cursor	*cursor, t_env *env);
 void					op_ld(t_cursor *cursor, t_env *env);
 void					op_zjmp(t_cursor	*cursor, t_env *env);
 void					op_add(t_cursor *cursor, t_env *env);
+void					op_sub(t_cursor *cursor, t_env *env);
 void					invalid_op(t_cursor *cursor, t_env *env, int type);
 
 /*
