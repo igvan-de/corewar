@@ -31,8 +31,8 @@ do
 	TEST_NAME=$(echo $t | cut -c 7-50)
 	TEST_NAME=${TEST_NAME%.cor}
 	DUMP=${TEST_NAME##*_}
-	./../corewar -v 18 -dump $DUMP $t > output/test_my
-	./support/real_core -v 18 -d $DUMP $t > output/test_real
+	./../corewar -v 16 -dump $DUMP $t > output/test_my
+	./support/real_core -v 16 -d $DUMP $t > output/test_real
 	echo "storing test outcome in $TEST_NAME.result"
 	./support/tester/cw_tester output/test_my output/test_real > result/$TEST_NAME.result
 	mv output/test_real output/$TEST_NAME.real

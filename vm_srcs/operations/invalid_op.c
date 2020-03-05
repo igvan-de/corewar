@@ -12,32 +12,21 @@
 
 #include "vm.h"
 
-static	int	contains_opcode(t_env *env, int curr_index, int bytes)
-{
-	unsigned char value;
-	int i;
-
-	i = 0;
-	while (i < bytes)
-	{
-		value = env->map[modi(curr_index + i)];
-		if (0 < value && value < 17)
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 /*
 **	get_max_bytes receives an op_code and returns the maximum
 **	total size of this operation in bytes.
 */
 
-static	unsigned char	get_max_bytes(unsigned char op_code)
+static	unsigned char	get_max_bytes(unsigned char op_code, int type)
 {
-	if (op_code == 1)
+	if (op_code == 1 || op_code == 4)
 		return (5);
-	else if (op_code == 2 || op_code == 11)
+	else if (op_code == 2 && type == 2)
+		return (7);
+	else if (op_code == 2 && type == 1)
+		return (5);
+	else if ( op_code == 11)
 		return (7);
 	else if (op_code == 9)
 		return (3);
@@ -58,7 +47,7 @@ void	invalid_op(t_cursor *cursor, t_env *env, int type)
 	unsigned char	bytes;
 	unsigned index;
 
-	max_bytes = get_max_bytes(cursor->op_code);
+	max_bytes = get_max_bytes(cursor->op_code, type);
 	bytes = 1;
 	index = modi(cursor->position + 1);
 	while ((env->map[modi(index)] < 1 || 16 < env->map[modi(index)]) && bytes < max_bytes)
@@ -66,21 +55,18 @@ void	invalid_op(t_cursor *cursor, t_env *env, int type)
 		index++;
 		bytes++;
 	}
-	if (type == 1)
-	{
-		bytes = 2;
-		index = modi(cursor->position + 2);
-	}
-	else if (type == 2 && contains_opcode(env, cursor->position, 7) == 0)
+	if (type == 2 && cursor->op_code == 11)
 	{
 		bytes = 7;
 		index = modi(cursor->position + 7);
+	}
+	else if (type == 1)
+	{
+		bytes = 2;
+		index = modi(cursor->position + 2);
 	}
 	if ((env->flag_byte & (1 << 2)) == (1 << 2))
 		dump_op_invalid(cursor, env, bytes);
 	cursor->position = modi(index);
 	cursor->op_code = 0;
 }
-
-//	if the encoding byte is invalid and op_code is ld --> jump two bytes
-//	if the reg number is invalid and op_code is ld --> jump 6 bytes
