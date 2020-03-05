@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 15:17:59 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 17:06:08 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ int			main(int argc, char **argv)
 	init_func_list(&list);
 	i = 1;
 	if (argc == 0)
-		input_error();
+		exit(-1);
+		// input_error();
 	while (argv[i])
 	{
 		check_file(argv[i], &list);

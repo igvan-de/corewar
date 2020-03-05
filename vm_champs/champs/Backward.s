@@ -1,5 +1,5 @@
 .name    "sebc"
-.comment "sebc"
+.comment "sebcccc"
 .extend
 
 	st	r1, :l1+1

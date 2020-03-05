@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 15:32:16 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 17:04:31 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ int							process_line_into_list(t_func_list *list, char *line);
 */
 void						check_file(char *file_name, t_func_list *list);
 void						validity_check(char *line, t_func_list *list);
-void						check_name(char *line);
-void						check_comment(char *line);
+void						check_name(char *line, t_func_list *list);
+void						check_comment(char *line, t_func_list *list);
 
 /*
 **===============================UTILITY FUNCTIONS==============================

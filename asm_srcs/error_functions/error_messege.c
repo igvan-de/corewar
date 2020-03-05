@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 15:07:27 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 17:18:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	testing_only(int error_code)
 	"not a s file in check_correct_file",
 	"fd in transfer_into_struct failed",
 	"error encounted in gnl in read_file",
-	"error in insert_name_comment 1",
-	"error in insert_name_comment 2",
+	"error in tranfer_into_struct",
 	"failed in str_split in process_line_into_list",
 	"failed in validity check",
 	"list->name in process_line_into_list has not been done first",

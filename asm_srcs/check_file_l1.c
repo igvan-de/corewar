@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/05 15:11:11 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 17:25:10 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,19 @@ static void		transfer_into_struct(char *file_name, t_func_list *list)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		error_message(list, 5, 0);
+		error_message(list, 5, 5);
 	read_file(fd, list);
 }
 
 /*
 **	check if it ends on .s extention for assembly file
 */
-
 static bool		check_correct_file(char *file_name)
 {
 	int len;
 
 	len = ft_strlen(file_name);
-	if (file_name[len - 1] == '.' && file_name[len] == 's')
+	if (file_name[len - 2] == '.' && file_name[len - 1] == 's')
 		return (true);
 	return (false);
 }

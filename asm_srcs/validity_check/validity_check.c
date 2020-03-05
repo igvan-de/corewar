@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 18:41:25 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 14:29:36 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 18:17:01 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,25 @@
 /*
 ** check_split_line, checks the the value of split_line, if its a name, comment or label
 */
-
-static void	check_split_line(char **split_line)
+#include <stdio.h>//remove!!
+static void	check_split_line(char **split_line, t_func_list *list)
 {
 	if (ft_strequ(split_line[NAME], NAME_CMD_STRING) == true)
 	{
-		check_name(split_line[STRING]);
+		printf("name = %s\n", split_line[STRING]);
+		check_name(split_line[STRING], list);
 		return ;
 	}
 	if (ft_strequ(split_line[COMMENT], COMMENT_CMD_STRING) == true)
 	{
-		check_comment(split_line[STRING]);
+		printf("name = %s\n", split_line[STRING]);
+		check_comment(split_line[STRING], list);
 		return ;
 	}
+	printf("name = %s\n", split_line[0]);
+	// printf("name = %s\n", split_line[0]);
+	// printf("name = %s\n", split_line[0]);
+	// exit(-1);
 	/*check label!*/
 }
 
@@ -43,6 +49,12 @@ void		validity_check(char *line, t_func_list *list)
 
 	if (line == NULL)
 		error_message(list, 6, 0);
+	/*need to make a new string split that splits on:
+	** - spaces
+	** - "" marks
+	** - tabs
+	** - commas
+	*/
 	split_line = ft_strsplit(line, ' ');
-	check_split_line(split_line);
+	check_split_line(split_line, list);
 }
