@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:51:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/05 12:20:00 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 15:08:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		add_instruction_node(t_func_list *list, t_direction *pointer, t_count *coun
 	iter = list->info;
 	if (iter == NULL)
 	{
-		iter = (t_direction *)ft_memmalloc(sizeof(t_direction));
+		iter = (t_direction *)ft_memalloc(sizeof(t_direction));
 		if (!iter)
 			return (10);
 	}
@@ -74,7 +74,7 @@ int		add_instruction_node(t_func_list *list, t_direction *pointer, t_count *coun
 			counter->byte_count = iter->byte_index;
 			iter = iter->next;
 		}
-		iter = (t_direction *)ft_memmalloc(sizeof(t_direction));
+		iter = (t_direction *)ft_memalloc(sizeof(t_direction));
 		if (!iter)
 			return (11);
 	}

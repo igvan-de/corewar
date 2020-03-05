@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/05 13:04:55 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 15:11:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ static bool		check_correct_file(char *file_name)
 void		check_file(char *file_name, t_func_list *list)
 {
 	if (check_correct_file(file_name) == false)
-		error_message(&list, 4, 0);
+		error_message(list, 4, 0);
 	transfer_into_struct(file_name, list);
 }

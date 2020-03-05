@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 13:06:50 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 15:32:16 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define ASM_H
 
 # include "libft.h"
+# include "get_next_line.h"
 # include "op.h"
-# include "ft_printf.h"
 # include <stdbool.h>
 # include <stdio.h>
 # define TRUE 0
@@ -25,8 +25,8 @@ typedef enum				s_input_variables
 {
 	NAME = 0,
 	COMMENT = 0,
+	LABEL = 0,
 	STRING = 1,
-	LABEL = 1,
 }							t_input_variables;
 
 typedef struct				s_count
@@ -40,11 +40,11 @@ typedef struct				s_direction
 	unsigned char 			op_code;
 	unsigned char 			encode;				// 1 byte //
 	char					*arg_1;				// 1 byte // T_REG // 1 <-> 16 // unsigned
-	short					size_argv1;
+	int						size_argv1;
 	char					*arg_2;				//	2 bytes // T_IND of T_DIR // // signed
-	short					size_argv2;
+	int						size_argv2;
 	char					*arg_3;				//	4 bytes  // T_DIR //	 signed
-	short					size_argv3;
+	int						size_argv3;
 	int						has_label;
 	char 					*label;
 	char					*target_label;
@@ -69,7 +69,14 @@ typedef struct				s_func_list
 
 int							insert_instruction(t_func_list *list, char **line_split, int label);
 int							process_line_into_list(t_func_list *list, char *line);
+
+/*
+**===============================CHECK FUNCTIONS================================
+*/
 void						check_file(char *file_name, t_func_list *list);
+void						validity_check(char *line, t_func_list *list);
+void						check_name(char *line);
+void						check_comment(char *line);
 
 /*
 **===============================UTILITY FUNCTIONS==============================
@@ -80,7 +87,7 @@ int 						till_power(char letter, int power);
 **===============================ERROR FUNCTIONS================================
 */
 void						input_error(void);
-void						error_messege(t_func_list *list, int error_code, int kind);
+void						error_message(t_func_list *list, int error_code, int kind);
 
 /*
 **===============================FREE FUNCTIONS=================================

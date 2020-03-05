@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 13:03:43 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 15:17:59 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	process_asm(char *file_name)
 **	need to rework on it since the program will stop if 1 file is not correct
 */
 
-static void	print_array(int *array)
+void	print_array(int *array)
 {
-	int i;
+	int			i;
 
 	i = 0;
 	while (i < 16)
@@ -90,8 +90,8 @@ static void	print_array(int *array)
 
 static int	make_hash(char *operation)
 {
-	int total;
-	int i;
+	int			total;
+	int			i;
 
 	i = 0;
 	total = 0;
@@ -108,12 +108,12 @@ static int	*make_hash_table(void)
 {
 	int			*table;
 	int			i;
-	static char operation[16][6] = {"live", "ld", "st", "add", "sub", "and",
+	static char	operation[16][6] = {"live", "ld", "st", "add", "sub", "and",
 	"or", "xor", "zjmp", "ldi", "sti", "fork", "lld", "lldi", "lfork", "aff"
 	};
 
 	i = 0;
-	table = (int *)ft_memmalloc(sizeof(int) * 16);
+	table = (int *)ft_memalloc(sizeof(int) * 16);
 	if (!table)
 		return (NULL);
 	ft_bzero(table, 16 * (sizeof(int)));
@@ -129,14 +129,13 @@ static void	init_func_list(t_func_list *list)
 {
 	list->hash_table = make_hash_table();
 	if (list->hash_table == NULL)
-		error_message(&list, 13, 2);
+		error_message(list, 13, 2);
 }
 
 int			main(int argc, char **argv)
 {
 	int			i;
-	int			ret;
-	t_func_list list;
+	t_func_list	list;
 
 	init_func_list(&list);
 	i = 1;

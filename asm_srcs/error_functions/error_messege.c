@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 12:16:44 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 15:07:27 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ void	testing_only(int error_code)
 	"error encounted in gnl in read_file",
 	"error in insert_name_comment 1",
 	"error in insert_name_comment 2",
-	"failed in str_plit in process_line_into_list",
-	"failed in validty check",
+	"failed in str_split in process_line_into_list",
+	"failed in validity check",
 	"list->name in process_line_into_list has not been done first",
 	"none of the statement in process_line_into_list is true",
 	"malloc start node failed in add_instruction_node",
-	"malloc contineu node failed in add_instruction_node",
+	"malloc continue node failed in add_instruction_node",
 	"error in get_op_code",
 	"error in make_hash_table",
 	"error in get_op_code",
@@ -66,12 +66,18 @@ void	testing_only(int error_code)
 	ft_putendl(errors[error_code]);
 }
 
-void	error_messege(t_func_list *list, int error_code, int kind)
+void	error_message(t_func_list *list, int error_code, int kind)
 {
-	static char loc[3][25] = {
+	static char loc[9][61] = {
 	"its in check file",
 	"its in process_asm",
-	"its in init_func_list"};
+	"its in init_func_list",
+	"its not a .s file",
+	"something went wrong when opening the file, fd error",
+	"something line given is NULL, can't check empty line",
+	"size of name is bigger then allowed",
+	"size of comment is bigger then allowed",
+	"name or comment string are not formatted in quotation marks"};
 
 	ft_putendl("Error code :");
 	ft_putnbr(error_code);

@@ -1,6 +1,4 @@
 SRCS =	asm_srcs/main.c \
 		asm_srcs/check_file_l1.c \
-		asm_srcs/check_file_l2_process_line.c \
-		asm_srcs/check_file_l3_insert_instruc.c \
 		asm_srcs/free_function.c \
-		asm_srcs/utility.c \
+		asm_srcs/utility.c

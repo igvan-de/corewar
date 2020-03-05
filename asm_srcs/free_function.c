@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/05 12:48:14 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 15:11:45 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	free_direction(t_func_list *list)
 void	free_func_error(t_func_list *list)
 {
 	if (list->name != NULL)
-		ft_memdel(list->name); //ft_memdel freed current data and sets it to NULL
+		ft_memdel((void**)list->name); //ft_memdel freed current data and sets it to NULL
 	if (list->comment != NULL)
-		ft_memdel(list->comment);
+		ft_memdel((void**)list->comment);
 	if (list->info != NULL)
 		free_direction(list);
 	if (list->hash_table != NULL)
@@ -45,9 +45,9 @@ void	free_func_error(t_func_list *list)
 void	free_all_but_hash(t_func_list *list)
 {
 	if (list->name != NULL)
-		ft_memdel(list->name);
+		ft_memdel((void**)list->name);
 	if (list->comment != NULL)
-		ft_memdel(list->comment);
+		ft_memdel((void**)list->comment);
 	if (list->info != NULL)
 	{
 		free_direction(list);

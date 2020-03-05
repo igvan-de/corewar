@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/05 12:22:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 12:34:06 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 13:58:26 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ Test()
 
 Test()
 {
-	/*validatin checker */
+	/*validation checker */
 	/*
 	2. need to receive line as parameter
 	3. line can't be NULL
