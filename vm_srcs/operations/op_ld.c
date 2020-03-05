@@ -13,44 +13,6 @@
 #include "vm.h"
 
 /*
-**	read and return a T_IND value from memory
-*/
-
-static	short	get_tind(t_env *env, int position)
-{
-	short ret;
-	unsigned char byte;
-
-	ret = 0;
-	byte = env->map[modi(position)];
-	ret |= (byte << 8);
-	byte = env->map[modi(position + 1)];
-	ret |= byte;
-	return (ret);
-}
-
-/*
-**	read and return a T_DIR value from memory
-*/
-
-static	int	get_tdir(t_env *env, int position)
-{
-	int ret;
-	unsigned char byte;
-
-	ret = 0;
-	byte = env->map[modi(position)];
-	ret |= (byte << 24);
-	byte = env->map[modi(position + 1)];
-	ret |= (byte << 16);
-	byte = env->map[modi(position + 2)];
-	ret |= (byte << 8);
-	byte = env->map[modi(position + 3)];
-	ret |= byte;
-	return (ret);
-}
-
-/*
 **	exec_ld executes the ld operation at the current position of the cursor.
 **	behavior differs based on the first argument --> look below for details.
 */
