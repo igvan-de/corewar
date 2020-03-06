@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:22:10 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 14:14:20 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/06 15:15:00 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		op_tab_info(int op_code, int section, int part)
 	if (section == 0)
 		return (get_op[op_code].nb_params);
 	else if (section == 1)
-		return (get_op[op_code].params_type[part]);	
+		return (get_op[op_code].params_type[part]);
 }
 
 int		insert_encode(t_direction *new, int i, int operation)
@@ -68,6 +68,23 @@ int		check_label_char(char c)
 	}
 	return (-1);
 }
+
+/* dit is een bool functie, maakt het stuk makkelijker om code te lezen.
+** true = 1, false = 0. Je moet even kijken wat je zelf fijner vind, maar ik ben voorstander van bool
+*/
+// bool		check_label_char(char c)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (i < 35)
+// 	{
+// 		if (c == LABEL_CHARS[i])
+// 			return (true);
+// 		i++;
+// 	}
+// 	return (false);
+// }
 
 int		fill_t_ind(t_func_list *list, t_direction *new, char *line, int arg)
 {
@@ -121,7 +138,7 @@ void	insert_operation(t_func_list *list, t_direction *new, char *line)
 	{
 		while (ft_isspace(line[list->line_char]) == 1)
 			list->line_char++;
-		dir = op_tab_info(new->op_code, 1, i + 1);
+		dir = op_tab_info(new->op_code, 1, i + 1); //wat doen we verder met dir?
 		cmp_line_op(list, new, line, i + 1);
 		i++;
 	}
@@ -167,7 +184,7 @@ void	insert_info_into_node(t_func_list *list, char *line,
 	if (line[j - 1] == LABEL_CHAR)
 		get_label_name(list, new, line, j);
 	while (ft_isspace(line[j]) == 1)
-		j++;	
+		j++;
 	if (j > 5)
 		return (error_messege(list, 102, 0));
 	number = calc_cmp_operation(list, line, j);

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:09:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 14:04:15 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/06 15:14:14 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@ void	add_instruction_node(t_func_list *list,
 	iter = list->info;
 	if (iter == NULL)
 	{
+		/* ft_memalloc zet alle waardes in struct al naar 0/NULL. scheelt weer een lijn
+		** want dan is init_new_direction niet meer nodig
+		*/
+		// iter = (t_direction *)ft_memalloc(sizeof(t_direction));
 		iter = (t_direction *)malloc(sizeof(t_direction));
 		if (!iter)
 			error_messege(list, 7, 2);
@@ -51,6 +55,8 @@ void	add_instruction_node(t_func_list *list,
 			counter->byte_count = iter->byte_index;
 			iter = iter->next;
 		}
+		/* ft_memalloc zet alle waardes in struct al naar 0/NULL. scheelt weer een lijn*/
+		// iter = (t_direction *)ft_memalloc(sizeof(t_direction));
 		iter = (t_direction *)malloc(sizeof(t_direction));
 		if (!iter)
 			error_messege(list, 8, 2);
