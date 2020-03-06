@@ -6,7 +6,7 @@
 /*   By: zaz <marvin@42.fr>                           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2013/10/04 11:33:27 by zaz            #+#    #+#                */
-/*   Updated: 2020/02/17 17:25:49 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/06 07:47:02 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,20 @@ typedef struct							header_s
 {
   unsigned int							magic;
   unsigned int							prog_size;
-  char											prog_name[PROG_NAME_LENGTH + 1];
-  char											comment[COMMENT_LENGTH + 1];
+  char									prog_name[PROG_NAME_LENGTH + 1];
+  char									comment[COMMENT_LENGTH + 1];
 }														header_t;
+
+typedef struct		s_op
+{
+	char	name[PROG_NAME_LENGTH];
+	int		nb_params;
+	char	params_type[3];
+	int		id;
+	int		cycles;
+	char	description[50];
+	int		acb;
+	int		label_size;
+}					t_op;
 
 #endif
