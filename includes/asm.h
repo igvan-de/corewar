@@ -6,11 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-<<<<<<< HEAD
-/*   Updated: 2020/03/05 17:04:31 by igvan-de      ########   odam.nl         */
-=======
-/*   Updated: 2020/03/06 14:16:22 by mlokhors      ########   odam.nl         */
->>>>>>> asm
+/*   Updated: 2020/03/06 17:39:10 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,26 +37,10 @@ typedef struct				s_count
 
 typedef struct				s_direction
 {
-<<<<<<< HEAD
-	unsigned char 			op_code;
-	unsigned char 			encode;				// 1 byte //
-	char					*arg_1;				// 1 byte // T_REG // 1 <-> 16 // unsigned
-	int						size_argv1;
-	char					*arg_2;				//	2 bytes // T_IND of T_DIR // // signed
-	int						size_argv2;
-	char					*arg_3;				//	4 bytes  // T_DIR //	 signed
-	int						size_argv3;
-	int						has_label;
-	char 					*label;
-	char					*target_label;
-	int						byte_index;
-	int						byte_size;
-	struct s_direction		*next;
-=======
 	unsigned char	op_code;
-	char			encode;		// 1 byte // 
+	char			encode;		// 1 byte //
 	char 			*arg_1;
-	int				arg_1_number;			// 1 byte // T_REG // 1 <-> 16 // unsigned 
+	int				arg_1_number;			// 1 byte // T_REG // 1 <-> 16 // unsigned
 	char			*arg_2;
 	int				arg_2_number;			//	2 bytes // T_IND of T_DIR // // signed
 	char			*arg_3;
@@ -69,7 +49,6 @@ typedef struct				s_direction
 	int				byte_index;
 	int				byte_size;
 	struct s_direction *next;
->>>>>>> asm
 }							t_direction;
 
 typedef struct				s_func_list
@@ -86,16 +65,11 @@ typedef struct				s_func_list
 //	op_code		/	arg_1 / 	zjmp   	%label1			label1: live
 // 	0			1 2 3 4 		5 		6 7 		8 				9 10 11 12
 
-<<<<<<< HEAD
-int							insert_instruction(t_func_list *list, char **line_split, int label);
-int							process_line_into_list(t_func_list *list, char *line);
-=======
 void	add_instruction_node(t_func_list *list,
 		t_direction *pointer, t_count *counter);
 void	get_name_or_comment(t_func_list *list, char *line);
 void	process_line_into_list(t_func_list *list, char *line);
 void	check_file(char *file_name, t_func_list *list);
->>>>>>> asm
 
 /*
 **===============================CHECK FUNCTIONS================================
@@ -122,8 +96,5 @@ void						error_message(t_func_list *list, int error_code, int kind);
 void						free_all_but_hash(t_func_list *list);
 void						free_func_error(t_func_list *list);
 
-<<<<<<< HEAD
-=======
 void	free_func(t_func_list *list);
->>>>>>> asm
 #endif

@@ -1,0 +1,2 @@
+SCRS += asm_srcs/asm_to_byte/convert_name_comment.c \
+asm_srcs/asm_to_byte/magic_header.c
