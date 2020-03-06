@@ -120,6 +120,7 @@ void					announce_winner(t_env *env);
 **	operation functions
 */
 
+void					op_st(t_cursor *cursor, t_env *env);
 void					op_sti(t_cursor *cursor, t_env *env);
 void					op_live(t_cursor	*cursor, t_env *env);
 void					op_ld(t_cursor *cursor, t_env *env);

@@ -25,6 +25,8 @@ static	unsigned char	get_max_bytes(unsigned char op_code, int type)
 		return (7);
 	else if (op_code == 2 && type == 1)
 		return (5);
+	else if (op_code == 3 && type == 2)
+		return (4);
 	else if (op_code == 11)
 		return (7);
 	else if (op_code == 9)
@@ -58,6 +60,11 @@ void					invalid_op(t_cursor *cursor, t_env *env, int type)
 	{
 		bytes = 7;
 		index = modi(cursor->position + 7);
+	}
+	else if (type == 1 && cursor->op_code == 6)
+	{
+		bytes = 8;
+		index = modi(cursor->position + 8);
 	}
 	else if (type == 1)
 	{
