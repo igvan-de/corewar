@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/28 18:41:25 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/05 18:17:01 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/05 18:24:57 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void		validity_check(char *line, t_func_list *list)
 	** - "" marks
 	** - tabs
 	** - commas
+	** - comments
 	*/
-	split_line = ft_strsplit(line, ' ');
+	split_line = ft_strsplit(line, '"');
 	check_split_line(split_line, list);
 }
