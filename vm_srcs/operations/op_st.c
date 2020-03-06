@@ -32,6 +32,10 @@ static	void	exec_st(t_cursor *cursor, t_env *env, unsigned char encode)
 	{
 		rel_pos = get_tind(env, cursor->position + 3) % IDX_MOD;
 		write_bytes(val, env, cursor, rel_pos);
+		env->player_pos[modi(cursor->position + rel_pos)] = cursor->registries[0] * -1;
+		env->player_pos[modi(cursor->position + rel_pos + 1)] = cursor->registries[0] * -1;
+		env->player_pos[modi(cursor->position + rel_pos + 2)] = cursor->registries[0] * -1;
+		env->player_pos[modi(cursor->position + rel_pos + 3)] = cursor->registries[0] * -1;
 	}
 	else 
 		error_exec(3);

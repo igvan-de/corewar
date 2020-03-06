@@ -106,12 +106,20 @@ void			check_corewar(t_env *env)
 	env->cycle_last_check = env->total_cycles;
 	parse_cursor_stack(env);
 	if (env->live_counter >= NBR_LIVE)
+	{
 		env->cycles_to_die -= CYCLE_DELTA;
+		ft_putstr("Cycle to die is now ");
+		ft_putnbr(env->cycles_to_die);
+		ft_putchar('\n');
+	}
 	else if (env->live_counter < NBR_LIVE)
 	{
 		if (env->checks_counter >= MAX_CHECKS)
 		{
 			env->cycles_to_die -= CYCLE_DELTA;
+			ft_putstr("Cycle to die is now ");
+			ft_putnbr(env->cycles_to_die);
+			ft_putchar('\n');
 			env->checks_counter = 0;
 		}
 	}
