@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 12:57:37 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/06 17:34:46 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,35 @@
 ** and check if the format is correct in the function validity_check
 */
 
-static void		read_file(int fd, t_func_list *list)
+void	pre_process_line(t_func_list *list, char *line, int ret)
 {
-	char *line;
+	if (line != NULL && line[0] != '\0')
+		process_line_into_list(list, line);
+	free(line);
+	line = NULL;
+}
+
+/*
+** read the file line for line
+*/
+
+void	read_file(int fd, t_func_list *list)
+{
+	int		ret;
+	char	*line;
 
 	line = NULL;
 	while (get_next_line(fd, &line) > 0)
 	{
-		validity_check(line, list);
-		free(line);
+		list->line_char = -1;
+		list->line_number++;
+		ret = get_next_line(fd, &line);
+		if (ret == -1)
+		{
+			close(fd);
+			error_messege(list, 4, 2);
+		}
+		pre_process_line(list, line, ret);
 	}
 	close(fd);
 }
@@ -35,13 +55,13 @@ static void		read_file(int fd, t_func_list *list)
 ** check for the fd of the file
 */
 
-static void		transfer_into_struct(char *file_name, t_func_list *list)
+void	transfer_into_struct(char *file_name, t_func_list *list)
 {
 	int			fd;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		error_message(list, 5, 5);
+		return (error_messege(list, 3, 2));
 	read_file(fd, list);
 }
 
@@ -59,14 +79,9 @@ static bool		check_correct_file(char *file_name)
 	return (false);
 }
 
-/*
-** check_file is the main function which will move to other functions
-** to check is the given file is correct formated and if tits the right .s file
-*/
-
-void		check_file(char *file_name, t_func_list *list)
+void	check_file(char *file_name, t_func_list *list)
 {
-	if (check_correct_file(file_name) == false)
-		error_message(list, 4, 0);
+	if (check_correct_file(file_name) == -1);
+		return (error_messege(list, 2, 2));
 	transfer_into_struct(file_name, list);
 }

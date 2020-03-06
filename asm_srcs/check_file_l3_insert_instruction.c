@@ -6,7 +6,11 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:51:42 by mlokhors       #+#    #+#                */
+<<<<<<< HEAD
 /*   Updated: 2020/03/05 15:08:36 by igvan-de      ########   odam.nl         */
+=======
+/*   Updated: 2020/03/06 11:08:48 by mlokhors      ########   odam.nl         */
+>>>>>>> asm
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,31 +60,6 @@ int		fill_in_node(t_func_list *list, t_direction *new, char **line_split, t_coun
 	return (0);
 }
 
-int		add_instruction_node(t_func_list *list, t_direction *pointer, t_count *counter)
-{
-	t_direction *iter;
-
-	iter = list->info;
-	if (iter == NULL)
-	{
-		iter = (t_direction *)ft_memalloc(sizeof(t_direction));
-		if (!iter)
-			return (10);
-	}
-	else
-	{
-		while (iter)
-		{
-			counter->byte_count = iter->byte_index;
-			iter = iter->next;
-		}
-		iter = (t_direction *)ft_memalloc(sizeof(t_direction));
-		if (!iter)
-			return (11);
-	}
-	pointer = iter;
-	return (0);
-}
 
 int		insert_instruction(t_func_list *list, char **line_split, int label)
 {
