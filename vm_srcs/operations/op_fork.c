@@ -83,6 +83,6 @@ void	op_fork(t_cursor *cursor, t_env *env)
 	(env->total_cursors)++;
 	new_cursor = dup_cursor(cursor, env);
 	push_cursor(new_cursor, &env->cursor_stack);
-	new_cursor->position = addr;
+	new_cursor->position = modi(cursor->position + addr);
 	move_cursor(cursor, env);
 }
