@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 15:10:06 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/07 17:57:03 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	found_str(t_func_list *list, char *line, char **target, int len)
 	while (line[list->line_char] && line[list->line_char] != "\"")
 		list->line_char++;
 	if (list->line_char == ft_strlen(line))
-		return (error_messege(list, 102, 5));
+		error_message(list, 102, 5);
 	if (line[list->line_char] == "\"")
 	{
 		if (list->line_char - start < len)
@@ -33,12 +33,12 @@ void	found_str(t_func_list *list, char *line, char **target, int len)
 			*target = ft_strsub(line, start,
 			list->line_char - start);
 			if (*target == NULL)
-				return (error_messege(list, 5, 2));
+				error_message(list, 5, 2);
 		}
 		else
-			return (error_messege(list, 6, 4));
+			error_message(list, 6, 4);
 	}
-	return (8);
+	// return (8);
 	/*we kunnen dit ook zo opschrijven, die return (0) heeft geen meerwaarde onderaan de functie*/
 	// else
 	// 	return (8);
@@ -61,7 +61,7 @@ void	search_for_str(t_func_list *list, char *line, char **target, int len)
 	{
 		if (line[list->line_char + 1] != '\0')
 			list->line_char++;
-		return (error_messege(list, 102, 5));
+		error_messege(list, 102, 5);
 	}
 	list->line_char++;
 	found_str(list, line, target, len);
@@ -77,16 +77,16 @@ void	get_name_or_comment(t_func_list *list, char *line)
 	if (ft_strncmp(line + list->line_char, "name", 4) == 0)
 	{
 		list->line_char += 5;
-		return (search_str(list, line, &(list->name), PROG_NAME_LENGTH));
+		search_str(list, line, &(list->name), PROG_NAME_LENGTH);
 	}
 	else if (ft_strncmp(line + list->line_char, "comment", 7) == 0)
 	{
 		list->line_char += 8;
-		return (insert_str(list, line, &(list->comment), COMMENT_LENGTH));
+		insert_str(list, line, &(list->comment), COMMENT_LENGTH);
 	}
 	else
 	{
 		list->line_char++;
-		return (error_messege(list, 102, 5));
+		error_messege(list, 102, 5);
 	}
 }

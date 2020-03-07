@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/07 16:52:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/07 17:44:46 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	error_message(t_func_list *list, int error_code, int kind)
 {
 	static char loc[5][25] = {
 	"its in init_func_list, ",
-	"its in main, "
+	"its in main, ",
 	"its in check file, ",
 	"its in process_asm, ",
 	""

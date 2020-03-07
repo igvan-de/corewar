@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   magic_header.c                                     :+:    :+:            */
+/*   create_cor_file.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/07 16:38:46 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/07 18:03:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 ** and then continueing to convert name, comment executable code into .cor file
 */
 
-void	magic_header(t_func_list *list)
-{
+// void	magic_header(t_func_list *list)
+// {
 
-}
+// }
 
 /*
 ** create_cor_file is the main for creating a .cor file
@@ -34,9 +34,11 @@ void	create_cor_file(char *argv, t_func_list *list)
 {
 	int		fd;
 	char	*fd_name;
+	t_func_list *test;
 
+	test = list;
 	fd_name = ft_strjoin(argv, ".cor");
 	printf("name = %s\n", fd_name);
+	/*need function that checks only the name of champin and change it into .cor file*/
 	fd = open(fd_name, O_CREAT | O_WRONLY, 0640);
-
 }

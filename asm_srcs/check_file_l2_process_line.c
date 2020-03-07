@@ -3,9 +3,14 @@
 /*                                                        ::::::::            */
 /*   check_file_l2_process_line.c                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
+/*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/29 05:22:10 by mlokhors       #+#    #+#                */
+/*   Created: 2020/03/07 17:54:15 by igvan-de       #+#    #+#                */
+/*   Updated: 2020/03/07 17:55:51 by igvan-de      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "asm.h"
 
 /*
 **	because it can contain as many spaces we split it up in a double array
@@ -143,12 +148,12 @@ void	get_label_name(t_func_list *list, t_direction *new, char *line, int j)
 	{
 		ret = check_label_char(line[list->line_char]);
 		if (ret == -1)
-			return (error_messege(list, 100, 0));
+			error_message(list, 100, 0);
 		list->line_char++;
 	}
 	new->label = ft_strsub(line, start, j - start);
 	if (new->label == NULL)
-		return (error_messege(list, 8, 2));
+		error_message(list, 8, 2);
 	list->line_char = j;
 }
 
@@ -171,10 +176,10 @@ void	insert_info_into_node(t_func_list *list, char *line,
 	while (ft_isspace(line[j]) == 1)
 		j++;
 	if (j > 5)
-		return (error_messege(list, 102, 0));
+		error_message(list, 102, 0);
 	number = calc_cmp_operation(list, line, j);
 	if (number == -1)
-		return (error_messege(list, 101, 0));
+		error_message(list, 101, 0);
 	new->op_code = number;
 	list->line_char = j;
 	insert_operation(list, new, line);
