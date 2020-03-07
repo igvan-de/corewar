@@ -1,2 +1,0 @@
-SRCS += asm_srcs/validity_check/name_comment_check.c \
-asm_srcs/validity_check/validity_check.c

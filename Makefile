@@ -6,18 +6,18 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/05 15:22:32 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/07 16:54:12 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 include asm_srcs/sources
-include asm_srcs/error_functions/sources
-include asm_srcs/validity_check/sources
+include asm_srcs/error_functions/sourcesmake
+include asm_srcs/asm_to_byte/sources
 
 OBJ_ASM = $(SRCS:%.c=%.o)
 LIBFT_H = -I ./libft/includes
 ASM_H = -I ./includes
-# PRTF_H = -I ./ft_printf
+PRTF_H = -I ./ft_printf
 NAME = asm
 CFLAGS =  -Wall -Werror -Wextra
 NORM = norminette $(SRCS) | grep -e "Error" -e "Warning" -B 1
@@ -43,8 +43,8 @@ asm: $(OBJ_ASM) libft/libft.a
 libft/libft.a: FORCE
 	@make -C libft/
 
-# ft_printf/libftprintf.a: FORCE
-# 	@make -C ft_printf/
+ft_printf/libftprintf.a: FORCE
+	@make -C ft_printf/
 
 unit_test:
 	@make -C unit_test/
@@ -52,13 +52,13 @@ unit_test:
 clean:
 	@rm -f $(OBJ_FILES)
 	@make -C ./Libft clean
-	# @make -C ./ft_printf clean
+	@make -C ./ft_printf clean
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C ./libft fclean
-	# @make -C ./fclean
+	@make -C ./fclean
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/06 17:34:42 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:52:20 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*error_function(int error_code)
 	"error in get_op_code",
 	"error in main.c no arguments"
 	};
+	return(errors[error_code]);
 }
 
 void	error_message(t_func_list *list, int error_code, int kind)
@@ -42,7 +43,6 @@ void	error_message(t_func_list *list, int error_code, int kind)
 	"its in process_asm, ",
 	""
 	};
-
 	if (error_code < 100)
 		ft_printf("Error code %d, %s in function: %s\n", error_code, loc[kind], error_function(error_code));
 	else if (error_code == 100)

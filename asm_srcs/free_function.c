@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 17:32:51 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:46:34 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,13 @@ void	free_func(t_func_list *list)
 
 void	free_all_but_hash(t_func_list *list)
 {
+	if (list->name != NULL)
 		ft_memdel((void**)list->name);
 	if (list->comment != NULL)
 		ft_memdel((void**)list->comment);
 	if (list->info != NULL)
 	{
+		free_direction(list);
+		list->info = NULL;
+	}
+}

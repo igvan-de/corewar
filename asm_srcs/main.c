@@ -6,11 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-<<<<<<< HEAD
-/*   Updated: 2020/03/05 17:06:08 by igvan-de      ########   odam.nl         */
-=======
-/*   Updated: 2020/03/06 13:35:08 by mlokhors      ########   odam.nl         */
->>>>>>> asm
+/*   Updated: 2020/03/07 16:49:27 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +16,7 @@
 ** the function that actually make the hash
 */
 
-<<<<<<< HEAD
-void	print_array(int *array)
-{
-	int			i;
-
-	i = 0;
-	while (i < 16)
-	{
-		printf("%d\n", array[i]);
-		i++;
-	}
-}
-
-static int	make_hash(char *operation)
-=======
 int		make_hash(char *operation)
->>>>>>> asm
 {
 	int			total;
 	int			i;
@@ -52,15 +32,11 @@ int		make_hash(char *operation)
 	return (total);
 }
 
-<<<<<<< HEAD
-static int	*make_hash_table(void)
-=======
 /*
 ** make the hash table
 */
 
 int		*make_hash_table(void)
->>>>>>> asm
 {
 	int			*table;
 	int			i;
@@ -81,13 +57,6 @@ int		*make_hash_table(void)
 	return (table);
 }
 
-<<<<<<< HEAD
-static void	init_func_list(t_func_list *list)
-{
-	list->hash_table = make_hash_table();
-	if (list->hash_table == NULL)
-		error_message(list, 13, 2);
-=======
 /*
 **		init the main store data structure
 */
@@ -101,8 +70,7 @@ void		init_func_list(t_func_list *list)
 	list->line_number = 0;
 	list->hash_table = make_hash_table();
 	if (list->hash_table == NULL)
-		error_messege(list, 0, 0);
->>>>>>> asm
+		error_message(list, 0, 0);
 }
 
 int			main(int argc, char **argv)
@@ -112,23 +80,11 @@ int			main(int argc, char **argv)
 
 	init_func_list(&list);
 	i = 1;
-<<<<<<< HEAD
-	if (argc == 0)
-		exit(-1);
-		// input_error();
-	while (argv[i])
-	{
-		check_file(argv[i], &list);
-		free_all_but_hash(&list);
-		i++;
-	}
-	free(list.hash_table);
-=======
 	if (argc == 1)
-		error_messege(&list, 1, 1);
-	check_file(argv[argc], &list);
-	process_asm(argv[i]);
+		error_message(&list, 1, 1);
+	// check_file(argv[argc], &list);
+	// process_asm(argv[i]);
+	create_cor_file(argv[i], &list);
 	free_all_but_hash(&list);
->>>>>>> asm
 	return (0);
 }

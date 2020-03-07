@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/06 17:39:10 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/07 16:38:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,11 @@ void						error_message(t_func_list *list, int error_code, int kind);
 */
 void						free_all_but_hash(t_func_list *list);
 void						free_func_error(t_func_list *list);
+void						free_func(t_func_list *list);
 
-void	free_func(t_func_list *list);
+/*
+**===============================CREATING .COR FUNCTIONS========================
+*/
+void						create_cor_file(char *argv, t_func_list *list);
+
 #endif
