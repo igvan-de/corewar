@@ -6,11 +6,11 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/02/13 18:09:56 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/04 14:33:09 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/02/07 17:59:12 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/get_next_line.h"
+#include "get_next_line.h"
 
 static int			rearrange(t_list **node, char **line)
 {
@@ -73,9 +73,9 @@ static void			create_node(char *buff, t_list *node,
 
 int					get_next_line(const int fd, char **line)
 {
+	static t_list	*lst;
 	ssize_t			ret;
 	char			*buff;
-	static t_list	*lst;
 	t_list			*node;
 
 	ret = 1;

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strncmp.c                                       :+:    :+:            */
+/*   ft_numlen_ull.c                                    :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
+/*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/18 12:41:54 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/15 13:52:33 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/08/28 15:44:44 by mlokhors       #+#    #+#                */
+/*   Updated: 2019/09/25 23:16:34 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+int		ft_numlen_ull(unsigned long long nb, int base)
 {
-	size_t i;
+	int i;
 
 	i = 0;
-	while (n && s1[i] == s2[i] && s1[i] && s2[i])
+	if (nb == 0)
 	{
-		i++;
-		n--;
+		i = 1;
+		return (i);
 	}
-	if (n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	while (nb != 0)
+	{
+		nb /= base;
+		i++;
+	}
+	return (i);
 }

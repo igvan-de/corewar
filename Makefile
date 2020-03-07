@@ -6,12 +6,12 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/07 16:54:12 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/07 17:21:17 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 include asm_srcs/sources
-include asm_srcs/error_functions/sourcesmake
+include asm_srcs/error_functions/sources
 include asm_srcs/asm_to_byte/sources
 
 OBJ_ASM = $(SRCS:%.c=%.o)
@@ -36,8 +36,8 @@ all: $(NAME)
 	@gcc $< -c -o $@ $(CFLAGS) $(ASM_H) $(LIBFT_H) $(PRTF_H)
 	@echo "$(PRINT_PLUS) $@"
 
-asm: $(OBJ_ASM) libft/libft.a
-	@gcc $(CFLAGS) $(OBJ_ASM) libft/libft.a -o $@
+asm: $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
+	@gcc $(CFLAGS) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
 	@echo "$(PRINT_DONE) Compiling asm completed"
 
 libft/libft.a: FORCE
@@ -58,7 +58,7 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@make -C ./libft fclean
-	@make -C ./fclean
+	@make -C ./ft_printf fclean
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:

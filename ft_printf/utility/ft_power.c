@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_strncmp.c                                       :+:    :+:            */
+/*   ft_power.c                                         :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
+/*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/18 12:41:54 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/15 13:52:33 by igvan-de      ########   odam.nl         */
+/*   Created: 2019/08/19 13:48:25 by mlokhors       #+#    #+#                */
+/*   Updated: 2019/09/25 23:16:23 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_strncmp(const char *s1, const char *s2, size_t n)
+unsigned long long		ft_power(int x, int power)
 {
-	size_t i;
+	unsigned long long	number;
+	int					i;
 
+	number = 1;
 	i = 0;
-	while (n && s1[i] == s2[i] && s1[i] && s2[i])
+	while (i < power)
 	{
+		number *= x;
 		i++;
-		n--;
 	}
-	if (n)
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-	return (0);
+	return (number);
 }
