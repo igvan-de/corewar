@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/07 17:49:46 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/08 16:09:23 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,14 @@ int			main(int argc, char **argv)
 	t_func_list	list;
 
 	init_func_list(&list);
-	i = 1;
+	i = 0;
 	if (argc == 1)
 		error_message(&list, 1, 1);
+	while (argv[i] != NULL)
+		i++;
 	// check_file(argv[argc], &list);
-	// process_asm(argv[i]);
-	create_cor_file(argv[i], &list);
+	// process_asm(argv[i - 1]);
+	create_cor_file(argv[i - 1], &list);
 	free_all_but_hash(&list);
 	return (0);
 }

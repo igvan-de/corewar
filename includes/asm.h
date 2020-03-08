@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/07 17:38:09 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/08 15:24:13 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef enum				s_input_variables
 	COMMENT = 0,
 	LABEL = 0,
 	STRING = 1,
+	ARGUMENTS = 1,
 }							t_input_variables;
 
 typedef struct				s_count
