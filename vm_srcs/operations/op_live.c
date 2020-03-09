@@ -31,10 +31,7 @@ void	op_live(t_cursor *cursor, t_env *env)
 
 	ptr = (int *)&env->map[modi(cursor->position + 1)];
 	if ((int)rev_endian(*ptr) == cursor->registries[0])
-	{
 		env->player_last_alive = (int)rev_endian(*ptr) * -1;
-		env->player_pos[modi(cursor->position)] += 4;
-	}
 	cursor->last_live = env->total_cycles;
 	env->live_counter++;
 	cursor->live_counter++;
