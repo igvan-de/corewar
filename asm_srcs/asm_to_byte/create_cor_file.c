@@ -6,22 +6,12 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/09 14:50:45 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 20:25:57 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 #include <fcntl.h>
-
-/*
-** magic_header we always start with placing the magic_header in .cor file
-** and then continueing to convert name, comment executable code into .cor file
-*/
-
-// void	magic_header(t_func_list *list)
-// {
-
-// }
 
 /*
 ** @brief Get the name object
@@ -36,20 +26,20 @@
 
 static char *get_name(char *argv)
 {
-	char	*fd_name;
 	char	**name;
-	int		i;
+	char	*fd_name;
+	int		index;
 
-	i = 0;
+	index = 0;
 	name = ft_strsplit(argv, '/');
-	while (name[i] != NULL)
-		i++;
-	fd_name = ft_strdup(name[i - 1]);
+	while (name[index] != NULL)
+		index++;
+	fd_name = ft_strdup(name[index - 1]);
 	free_split(name);
 	name = ft_strsplit(fd_name, '.');
 	free(fd_name);
 	fd_name = ft_strjoin(name[NAME], ".cor");
-	ft_printf("name = %s\n", fd_name); //is to test if filename is correct, need to remove later!
+	/*need to test more, unit_test!*/
 	return (fd_name);
 }
 
@@ -65,13 +55,21 @@ static char *get_name(char *argv)
 
 void	create_cor_file(char *argv, t_func_list *list)
 {
-	int		fd;
 	char	*fd_name;
-	t_func_list *test;
+	int		fd;
 
-	test = list;
+	list->name = "testn";
 	fd_name = get_name(argv);
 	fd = open(fd_name, O_CREAT | O_WRONLY, 0640);
-	/*functions for precossing data into file*/
+	write_cor_file(fd, list);
+	/*functions for precossing data into file
+	** magic header
+	** champion name
+	**	- need function to get asccii value
+	** NULL
+	** champion execute code size
+	** NULL
+	** champion execute code
+	*/
 	free(fd_name);
 }

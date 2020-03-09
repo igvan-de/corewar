@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/09 13:42:52 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 19:38:03 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,18 @@ typedef struct				s_count
 
 typedef struct				s_direction
 {
-	unsigned char	op_code;
-	char			encode;		// 1 byte //
-	char 			*arg_1;
-	int				arg_1_number;			// 1 byte // T_REG // 1 <-> 16 // unsigned
-	char			*arg_2;
-	int				arg_2_number;			//	2 bytes // T_IND of T_DIR // // signed
-	char			*arg_3;
-	int				arg_3_number;			//	4 bytes  // T_DIR //	 signed
-	char 			*label;
-	int				byte_index;
-	int				byte_size;
-	struct s_direction *next;
+	unsigned char			op_code;
+	char					encode;		// 1 byte //
+	char 					*arg_1;
+	int						arg_1_number;			// 1 byte // T_REG // 1 <-> 16 // unsigned
+	char					*arg_2;
+	int						arg_2_number;			//	2 bytes // T_IND of T_DIR // // signed
+	char					*arg_3;
+	int						arg_3_number;			//	4 bytes  // T_DIR //	 signed
+	char 					*label;
+	int						byte_index;
+	int						byte_size;
+	struct s_direction		*next;
 }							t_direction;
 
 typedef struct				s_func_list
@@ -85,6 +85,7 @@ void						check_comment(char *line, t_func_list *list);
 **===============================UTILITY FUNCTIONS==============================
 */
 int 						till_power(char letter, int power);
+unsigned int				rev_endian(unsigned int oct);
 
 /*
 **===============================ERROR FUNCTIONS================================
@@ -104,5 +105,6 @@ void						free_split(char **fd_name);
 **===============================CREATING .COR FUNCTIONS========================
 */
 void						create_cor_file(char *argv, t_func_list *list);
+void						write_cor_file(int fd, t_func_list *list);
 
 #endif

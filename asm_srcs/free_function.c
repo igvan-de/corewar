@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/09 14:50:38 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 15:20:20 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ void	free_all_but_hash(t_func_list *list)
 
 void	free_split(char **fd_name)
 {
-	int	i;
+	int	index;
 
-	i = 0;
-	while (fd_name[i] != NULL)
+	index = 0;
+	while (fd_name[index] != NULL)
 	{
-		free(fd_name[i]);
-		i++;
+		free(fd_name[index]);
+		index++;
 	}
 	free(fd_name);
 	fd_name = NULL;

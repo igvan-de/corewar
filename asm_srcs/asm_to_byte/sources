@@ -1,2 +1,2 @@
-SRCS += asm_srcs/asm_to_byte/convert_name_comment.c \
+SRCS += asm_srcs/asm_to_byte/write_cor_file.c \
 asm_srcs/asm_to_byte/create_cor_file.c
