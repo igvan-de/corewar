@@ -51,6 +51,6 @@ void		print_map(t_env *env)
 		i++;
 	}
 	printw("\n");
-	printw("	cycles: %u		cycle_to_die: %u\n", env->cycles, env->cycles_to_die);
+	printw("	cycles: %u		cycle_to_die: %u	total cycles: %u	processes: %u lives_performed: %u\n", env->cycles, env->cycles_to_die, env->total_cycles, env->total_cursors, env->live_counter);
 	refresh();
 }

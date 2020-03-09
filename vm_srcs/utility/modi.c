@@ -21,11 +21,7 @@
 
 unsigned int	modi(int index)
 {
-	if (index >= MEM_SIZE * 2)
-		error_exec(1);
-	else if (index >= MEM_SIZE)
-		return (index - MEM_SIZE);
-	else if (index < 0)
-		return (index + MEM_SIZE);
-	return (index);
+	if (index % MEM_SIZE < 0)
+		return ((index % MEM_SIZE) + MEM_SIZE);
+	return (index % MEM_SIZE);
 }

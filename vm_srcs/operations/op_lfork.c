@@ -52,7 +52,7 @@ static	t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 	new->op_code = 0;
 	new->id = env->total_cursors;
 	new->jump = src->jump;
-	new->last_live = 0;
+	new->last_live = src->last_live;
 	new->live_counter = src->live_counter;
 	new->next = NULL;
 	new->prev = NULL;
@@ -74,12 +74,12 @@ static	void				push_cursor(t_cursor *c, t_cursor **stack)
 	}
 }
 
-void	op_fork(t_cursor *cursor, t_env *env)
+void	op_lfork(t_cursor *cursor, t_env *env)
 {
 	short addr;
 	t_cursor *new_cursor;
 
-	addr = to_2bytes(env->map[modi(cursor->position + 1)], env->map[modi(cursor->position + 2)]) % IDX_MOD;
+	addr = to_2bytes(env->map[modi(cursor->position + 1)], env->map[modi(cursor->position + 2)]);
 	(env->total_cursors)++;
 	new_cursor = dup_cursor(cursor, env);
 	push_cursor(new_cursor, &env->cursor_stack);

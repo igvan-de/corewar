@@ -27,13 +27,13 @@
 
 void	op_live(t_cursor *cursor, t_env *env)
 {
-	int		*ptr;
+	int		value;
 
-	ptr = (int *)&env->map[modi(cursor->position + 1)];
-	if ((int)rev_endian(*ptr) == cursor->registries[0])
-		env->player_last_alive = (int)rev_endian(*ptr) * -1;
-	cursor->last_live = env->total_cycles;
+	value = get_tdir(env, modi(cursor->position + 1));
+	if (value == cursor->registries[0])
+		env->player_last_alive = value * -1;
 	env->live_counter++;
+	cursor->last_live = env->total_cycles;
 	cursor->live_counter++;
 	move_cursor(cursor, env);
 }

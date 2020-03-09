@@ -18,11 +18,9 @@
 
 static	int		is_dead(t_cursor *cursor, t_env *env)
 {
-	if (cursor->live_counter == 0)
+	if (cursor->live_counter >= env->cycles_to_die)
 		return (1);
-	if (cursor->live_counter > env->cycles_to_die)
-		return (1);
-	else if (cursor->last_live < env->total_cycles - env->cycles_to_die)
+	else if (cursor->last_live <= (env->total_cycles - env->cycles_to_die))
 		return (1);
 	return (0);
 }
@@ -71,23 +69,6 @@ static	void	parse_cursor_stack(t_env *env)
 }
 
 /*
-**	reset_cursor_lives iterates through the cursor_stack and
-**	sets the live_counter for each cursor to 0.
-*/
-
-static	void	reset_cursor_lives(t_cursor *cursor_stack)
-{
-	t_cursor *iter;
-
-	iter = cursor_stack;
-	while (iter)
-	{
-		iter->live_counter = 0;
-		iter = iter->next;
-	}
-}
-
-/*
 **	check_corewar runs a checkup each CYCLE_TO_DIE cycles.
 **
 **	if during the last CTD cycles, more than NBR_LIVE live operations
@@ -104,7 +85,6 @@ void			check_corewar(t_env *env)
 {
 	env->checks_counter++;
 	env->cycle_last_check = env->total_cycles;
-	parse_cursor_stack(env);
 	if (env->live_counter >= NBR_LIVE)
 	{
 		env->cycles_to_die -= CYCLE_DELTA;
@@ -129,7 +109,7 @@ void			check_corewar(t_env *env)
 			env->checks_counter = 0;
 		}
 	}
+	parse_cursor_stack(env);
 	env->live_counter = 0;
 	env->cycles = 0;
-	reset_cursor_lives(env->cursor_stack);
 }

@@ -42,6 +42,8 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 		op_sti(cursor, env);
 	else if (cursor->op_code == 12)
 		op_fork(cursor, env);
+	else if (cursor->op_code == 15)
+		op_lfork(cursor, env);
 	else if (cursor->op_code < 1 || 16 < cursor->op_code)
 	{
 		cursor->position = modi(cursor->position + 1);
