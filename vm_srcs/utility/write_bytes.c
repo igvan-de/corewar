@@ -12,6 +12,19 @@
 
 #include "vm.h"
 
+static	void set_player_pos(t_cursor *cursor, t_env *env, int place)
+{
+	int player;
+
+	player = cursor->registries[0];
+	if (player < -5 || 0 < player)
+		return ;
+	env->player_pos[modi(place)] = player * -1;
+	env->player_pos[modi(place + 1)] = player * -1;
+	env->player_pos[modi(place + 2)] = player * -1;
+	env->player_pos[modi(place + 3)] = player * -1;
+}
+
 /*
 **	get_byte receives a 4-byte value and returns the
 **	byte indicated by the index provided as second argument.
@@ -52,4 +65,5 @@ void	write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos)
 	env->map[modi(place + 2)] = byte;
 	byte = get_byte(target_val, 3);
 	env->map[modi(place + 3)] = byte;
+	set_player_pos(c, env, place);
 }

@@ -112,6 +112,7 @@ void					move_cursor(t_cursor *cursor, t_env *env);
 void					move_cursor_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code);
 void					set_carry(t_cursor *cursor, int mode);
 int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
+int						get_arg(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num);
 void					free_env(t_env **env);
 void					intro_players(t_env *env);
 void					announce_winner(t_env *env);
@@ -149,7 +150,7 @@ int						count_registers(unsigned char encode);
 unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
 unsigned int			modi(int index);
 void					write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos);
-int						get_tdir(t_env *env, int position);
+int						get_tdir(unsigned char op_code, t_env *env, int position);
 short					get_tind(t_env *env, int position);
 int						valid_regs(t_cursor *cursor, t_env *env, unsigned char encode);
 

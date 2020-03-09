@@ -28,7 +28,7 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 	if (arg_1_size == 4)
 	{
 		type_flag = 1;
-		t_dir_value = get_tdir(env, cursor->position + 2);
+		t_dir_value = get_tdir(cursor->op_code, env, cursor->position + 2);
 	}
 	else if (arg_1_size == 2)
 	{
@@ -38,7 +38,7 @@ static	void	exec_ld(t_cursor *cursor, unsigned char arg_1_size, unsigned char re
 	if (type_flag == 0)
 	{
 		rel_pos = t_ind_value % IDX_MOD;
-		t_dir_value = get_tdir(env, cursor->position + rel_pos);
+		t_dir_value = get_tdir(cursor->op_code, env, cursor->position + rel_pos);
 	}
 	cursor->registries[reg_num - 1] = t_dir_value;
 	set_carry(cursor, t_dir_value);

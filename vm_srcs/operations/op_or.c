@@ -29,10 +29,10 @@ static	int		get_arg_1(t_cursor *cursor, t_env *env, unsigned char encode)
 	{
 		t_ind = get_tind(env, cursor->position + 2);
 		rel_pos = t_ind % IDX_MOD;
-		return (get_tdir(env, cursor->position + rel_pos));
+		return (get_tdir(cursor->op_code, env, cursor->position + rel_pos));
 	}
 	else if (size == 4)
-		return (get_tdir(env, cursor->position + 2));
+		return (get_tdir(cursor->op_code, env, cursor->position + 2));
 	error_exec(3);
 	return (0);
 }
@@ -54,10 +54,10 @@ static	int		get_arg_2(t_cursor *cursor, t_env *env, unsigned char encode, int si
 	{
 		t_ind = get_tind(env, cursor->position + size + 2);
 		rel_pos = t_ind % IDX_MOD;
-		return (get_tdir(env, cursor->position + rel_pos));
+		return (get_tdir(cursor->op_code, env, cursor->position + rel_pos));
 	}
 	else if (size == 4)
-		return (get_tdir(env, cursor->position + size + 2));
+		return (get_tdir(cursor->op_code, env, cursor->position + size + 2));
 	error_exec(3);
 	return (0);
 }

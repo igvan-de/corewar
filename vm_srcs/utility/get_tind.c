@@ -19,7 +19,7 @@
 short	get_tind(t_env *env, int position)
 {
 	short			ret;
-	unsigned char	byte;
+	char			byte;
 
 	ret = 0;
 	byte = env->map[modi(position)];

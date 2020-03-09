@@ -12,67 +12,18 @@
 
 #include "vm.h"
 
-/*
-**	retrieve the bytes of the second argument.
-*/
-
-static	short	get_arg_2(unsigned char encode, t_cursor *c, t_env *env)
+void	exec_sti(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char reg_num)
 {
-	unsigned char arg_size;
+	int val;
+	int arg_2;
+	int	arg_3;
+	int	addr;
 
-	arg_size = get_arg_size(c->op_code, get_bit(encode, 2), get_bit(encode, 3));
-	if (arg_size == 1)
-		return ((short)env->map[modi(c->position + 3)]);
-	else if (arg_size == 2)
-		return ((short)to_2bytes(env->map[modi(c->position + 3)], env->map[modi(c->position + 4)]));
-	error_exec(3);
-	return (0);
-}
-
-/*
-**	retrieve the bytes of the third argument
-*/
-
-static	short	get_arg_3(unsigned char encode, t_cursor *c, t_env *env)
-{
-	unsigned char arg_size_3;
-	unsigned char arg_size_2;
-
-	arg_size_2 = get_arg_size(c->op_code, get_bit(encode, 2), get_bit(encode, 3));
-	arg_size_3 = get_arg_size(c->op_code, get_bit(encode, 4), get_bit(encode, 5));
-	if (arg_size_3 == 1)
-		return ((short)env->map[modi(c->position + arg_size_2 + 3)]);
-	else if (arg_size_3 == 2)
-		return ((short)to_2bytes(env->map[modi(c->position + arg_size_2 + 3)], env->map[modi(c->position + arg_size_2 + 4)]));
-	error_exec(3);
-	return (0);
-}
-
-/*
-**	exec_sti retrieves the needed values from the memory map
-**	in relation to the current position of the cursor, and executes
-**	the sti operation with the values found.
-*/
-
-static	void	exec_sti(t_cursor *c, t_env *env, unsigned char encode, unsigned char reg_num)
-{
-	short		arg_2;
-	short		arg_3;
-	int			target_val;
-	int			rel_pos;
-
-	arg_2 = get_arg_2(encode, c, env);
-	arg_3 = get_arg_3(encode, c, env);
-	target_val = c->registries[reg_num - 1];
-	rel_pos = (arg_2 + arg_3) % IDX_MOD;
-	write_bytes(target_val, env, c, rel_pos);
-	if (-5 < c->registries[0] && c->registries[0] < 0)
-	{
-		env->player_pos[modi(c->position + rel_pos)] = c->registries[0] * -1;
-		env->player_pos[modi(c->position + rel_pos + 1)] = c->registries[0] * -1;
-		env->player_pos[modi(c->position + rel_pos + 2)] = c->registries[0] * -1;
-		env->player_pos[modi(c->position + rel_pos + 3)] = c->registries[0] * -1;
-	}
+	val = cursor->registries[reg_num - 1];
+	arg_2 = get_arg(cursor, env, encode, 2);
+	arg_3 = get_arg(cursor, env, encode, 3);
+	addr = (arg_2 + arg_3) % IDX_MOD;
+	write_bytes(val, env, cursor, addr);
 }
 
 /*

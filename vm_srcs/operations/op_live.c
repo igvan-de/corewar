@@ -29,7 +29,7 @@ void	op_live(t_cursor *cursor, t_env *env)
 {
 	int		value;
 
-	value = get_tdir(env, modi(cursor->position + 1));
+	value = get_tdir(cursor->op_code, env, modi(cursor->position + 1));
 	if (value == cursor->registries[0])
 		env->player_last_alive = value * -1;
 	env->live_counter++;
