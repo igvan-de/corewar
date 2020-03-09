@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/08 16:30:40 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 14:50:45 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,11 @@
 
 // }
 
-#include <stdio.h> //remove
 /*
 ** @brief Get the name object
 **
-** @param argv
-** is the argument needed to get the name
-** @return char*
-** returns the correct .cor file name
+** @param argv = is the argument needed to get the name
+** @return char* = returns the correct .cor file name
 **
 ** splits the string (argv) by / if its in the string and with .
 ** so we get the correct file name, then with strjoin we join the name with .cor
@@ -47,20 +44,20 @@ static char *get_name(char *argv)
 	name = ft_strsplit(argv, '/');
 	while (name[i] != NULL)
 		i++;
-	name = ft_strsplit(name[i - 1], '.');
-	fd_name = ft_strjoin(name[NAME], ".cor"); //need to free fd_name later in program!
-	printf("name = %s\n", fd_name);
-	/*function to free name!*/
+	fd_name = ft_strdup(name[i - 1]);
+	free_split(name);
+	name = ft_strsplit(fd_name, '.');
+	free(fd_name);
+	fd_name = ft_strjoin(name[NAME], ".cor");
+	ft_printf("name = %s\n", fd_name); //is to test if filename is correct, need to remove later!
 	return (fd_name);
 }
 
 /*
 ** @brief Create a cor file object
 **
-** @param argv
-** is the string of the last argument
-** @param list
-** is structure with all needed data in it
+** @param argv = is the string of the last argument
+** @param list = is structure with all needed data in it
 **
 ** create_cor_file is the main for creating a .cor file
 ** we get the correct .cor name by the return value of get_name function and save it in fd_name

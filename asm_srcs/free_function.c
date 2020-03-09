@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/07 16:46:34 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/09 14:50:38 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,26 @@ void	free_all_but_hash(t_func_list *list)
 		free_direction(list);
 		list->info = NULL;
 	}
+}
+
+/*
+** @brief
+**
+** @param fd_name = name of 2d char array containing splitted stings
+**
+** free_split frees every element in 2d array by iterating through it
+*/
+
+void	free_split(char **fd_name)
+{
+	int	i;
+
+	i = 0;
+	while (fd_name[i] != NULL)
+	{
+		free(fd_name[i]);
+		i++;
+	}
+	free(fd_name);
+	fd_name = NULL;
 }
