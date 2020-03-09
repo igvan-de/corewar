@@ -42,6 +42,7 @@ void		print_map(t_env *env)
 			printw("%02x ", 0xFF & env->map[i]);
 			if (cursor_pos(env->cursor_stack, i) != 0)
 				attroff(A_BOLD);
+			attroff(COLOR_PAIR(env->player_pos[i]));
 		}
 		else
 			printw("%#02x ", env->map[i]);

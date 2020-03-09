@@ -162,6 +162,7 @@ void					dump_header(header_t header);
 void					dump_exec_code(char *exec_code, unsigned int prog_size, t_env *env);
 void					dump_champ_code(t_player *player, t_env *env);
 void					dump_mem(t_env *env);
+void					dump_pos(t_env *env);
 void					dump_players(t_list *players, t_env *env);
 void					dump_cursor_stack(t_cursor *cursor_stack);
 void					dump_env_state(t_env *env);

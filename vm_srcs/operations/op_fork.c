@@ -84,6 +84,5 @@ void	op_fork(t_cursor *cursor, t_env *env)
 	new_cursor = dup_cursor(cursor, env);
 	push_cursor(new_cursor, &env->cursor_stack);
 	new_cursor->position = modi(cursor->position + addr);
-	env->player_pos[modi(new_cursor->position)] = new_cursor->registries[0] * -1;
 	move_cursor(cursor, env);
 }

@@ -56,3 +56,20 @@ void				dump_mem(t_env *env)
 	}
 	exit(0);
 }
+
+void				dump_pos(t_env *env)
+{
+	int				i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		printf("%hhi ", env->player_pos[i]);
+		fflush(stdout);
+		if ((i + 1) % (128 / 2) == 0)
+		{
+			ft_putchar('\n');
+		}
+		i++;
+	}
+}
