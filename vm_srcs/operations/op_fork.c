@@ -52,7 +52,7 @@ static	t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 	new->op_code = 0;
 	new->id = env->total_cursors;
 	new->jump = src->jump;
-	new->last_live = 0;
+	new->last_live = src->last_live;
 	new->live_counter = src->live_counter;
 	new->next = NULL;
 	new->prev = NULL;
