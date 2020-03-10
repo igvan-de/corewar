@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/09 20:25:57 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/10 15:56:05 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,10 @@ void	create_cor_file(char *argv, t_func_list *list)
 	char	*fd_name;
 	int		fd;
 
-	list->name = "testn";
+	list->name = "badman";
+	list->comment = "this city needs me";
 	fd_name = get_name(argv);
 	fd = open(fd_name, O_CREAT | O_WRONLY, 0640);
 	write_cor_file(fd, list);
-	/*functions for precossing data into file
-	** magic header
-	** champion name
-	**	- need function to get asccii value
-	** NULL
-	** champion execute code size
-	** NULL
-	** champion execute code
-	*/
 	free(fd_name);
 }
