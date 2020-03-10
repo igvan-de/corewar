@@ -47,7 +47,7 @@ static	void	cmp_lines(int my, int fd_cmp)
 	if (my_ret > 0 || cmp_ret > 0)
 		ft_putstr("	output is different lengths --> test_failed\n");
 	else if (faults == 0)
-		ft_putstr("	outputs are equal --> test passed\n");
+		ft_putstr("test passed!\n");
 	else
 		printf("	%i output differences found --> test failed\n", faults);
 }

@@ -43,6 +43,9 @@ libft/libft.a: FORCE
 unit_test:
 	@make -C unit_test/
 
+test:
+	cd unit_test && ./exec_test.sh
+
 clean:
 	@rm -f $(OBJ_COREWAR)
 	@make -C ./Libft clean
