@@ -41,7 +41,7 @@ void	error_input(int err_code)
 	else if (err_code == 5)
 		ft_putendl("	input_error 5: too many arguments provided");
 	else if (err_code == 6)
-		ft_putendl("	input_error 6: too many champions.\n");
+		ft_putendl("	input_error 6: too many champions.");
 	else if (err_code == 7)
 		ft_putendl("	input_error 7: -dump flag requires <nbr_of_cycles>");
 	else if (err_code == 8)

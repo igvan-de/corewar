@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   op_fork.c                                          :+:    :+:            */
+/*   cpy_reg_vals.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/06 10:00:12 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/06 10:00:13 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/10 14:44:39 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/03/10 14:44:40 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	op_lfork(t_cursor *cursor, t_env *env)
+void	cpy_reg_vals(t_cursor *dst, t_cursor *src)
 {
-	short		addr;
-	t_cursor	*new_cursor;
+	int i;
 
-	addr = get_tind(env, modi(cursor->position + 1));
-	(env->total_cursors)++;
-	new_cursor = dup_cursor(cursor, env);
-	new_cursor->position = modi(cursor->position + addr);
-	push_cursor(new_cursor, &env->cursor_stack);
-	move_cursor(cursor, env);
+	i = 0;
+	while (i < REG_NUMBER)
+	{
+		dst->registries[i] = src->registries[i];
+		i++;
+	}
 }

@@ -48,7 +48,6 @@ static	void	init_player(t_player **player)
 		error_mem();
 	(*player)->nbr = 0;
 	(*player)->exec_code = NULL;
-	(*player)->color = NULL;
 	init_header(&((*player)->header));
 }
 
@@ -63,7 +62,6 @@ static	void	store_player(t_player **new_player, t_env *env)
 	t_list			*player_elem;
 
 	(*new_player)->nbr = env->total_players + 1;
-	set_color(*new_player);
 	player_elem = (t_list *)malloc(sizeof(t_list));
 	if (!player_elem)
 		error_mem();

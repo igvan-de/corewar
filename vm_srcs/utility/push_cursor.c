@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   op_fork.c                                          :+:    :+:            */
+/*   push_cursor.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/06 10:00:12 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/06 10:00:13 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/10 14:36:17 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/03/10 14:36:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	op_lfork(t_cursor *cursor, t_env *env)
-{
-	short		addr;
-	t_cursor	*new_cursor;
+/*
+**	push_cursor takes a cursor and pushes that cursor on the top
+**	of the existing cursor stack.
+*/
 
-	addr = get_tind(env, modi(cursor->position + 1));
-	(env->total_cursors)++;
-	new_cursor = dup_cursor(cursor, env);
-	new_cursor->position = modi(cursor->position + addr);
-	push_cursor(new_cursor, &env->cursor_stack);
-	move_cursor(cursor, env);
+void	push_cursor(t_cursor *c, t_cursor **stack)
+{
+	if (*stack == NULL)
+		*stack = c;
+	else
+	{
+		c->next = *stack;
+		(*stack)->prev = c;
+		*stack = c;
+	}
 }

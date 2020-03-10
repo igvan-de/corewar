@@ -13,29 +13,6 @@
 #include "vm.h"
 
 /*
-**	init_registries initialized the 16 registries of
-**	a new cursor. Each cursor receives REG_NUMBER registries
-**	of REG_SIZE. (16 registries of 4 bytes);
-*/
-
-static	int					*init_registries(void)
-{
-	int	i;
-	int	*new_regs;
-
-	new_regs = (int *)malloc(sizeof(int) * (REG_NUMBER));
-	if (!new_regs)
-		error_mem();
-	i = 0;
-	while (i < REG_NUMBER)
-	{
-		new_regs[i] = 0;
-		i++;
-	}
-	return (new_regs);
-}
-
-/*
 **	get_position receives the cursor_id and loops through the player_pos
 **	map to find the first byte of the players execution code.
 **	It returns the index of that address within the memory map.
@@ -82,23 +59,6 @@ static	t_cursor			*new_cursor(t_env *env)
 	new->op_code = 0;
 	new->wait_cycles = 0;
 	return (new);
-}
-
-/*
-**	push_cursor takes a cursor and pushes that cursor on the top
-**	of the existing cursor stack.
-*/
-
-static	void				push_cursor(t_cursor *c, t_cursor **stack)
-{
-	if (*stack == NULL)
-		*stack = c;
-	else
-	{
-		c->next = *stack;
-		(*stack)->prev = c;
-		*stack = c;
-	}
 }
 
 /*

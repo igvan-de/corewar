@@ -25,7 +25,6 @@ static	void	free_player(void *player, size_t size)
 	if (size > 0)
 	{
 		free(local->header);
-		free(local->color);
 		free(local->exec_code);
 		free(local);
 	}

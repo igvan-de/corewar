@@ -32,23 +32,15 @@ static	int	get_val(t_cursor *cursor, t_env *env, unsigned char type, int rel_pos
 	addr = modi(cursor->position + rel_pos);
 	if (type == REG_CODE)
 	{
-//		printf("	type is reg\n");
 		reg_num = env->map[addr];
 		return(cursor->registries[reg_num - 1]);
 	}
 	else if (type == DIR_CODE && get_tdir_size(cursor->op_code) == 4)
-	{
-//		printf("	type is dir 4\n");
 		return (get_tdir(env, addr));
-	}
 	else if (type == DIR_CODE && get_tdir_size(cursor->op_code) == 2)
-	{
-//		printf("	type is dir 2\n");
 		return (get_tind(env, addr));
-	}
 	else if (type == IND_CODE)
 	{
-//		printf("	type is ind\n");
 		rel_pos = get_tind(env, addr);
 		return (get_tdir(env, cursor->position + rel_pos));
 	}
