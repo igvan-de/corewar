@@ -153,7 +153,7 @@ int						count_registers(unsigned char encode);
 unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
 unsigned int			modi(int index);
 void					write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos);
-int						get_tdir(unsigned char op_code, t_env *env, int position);
+int						get_tdir(t_env *env, int position);
 short					get_tind(t_env *env, int position);
 int						get_type(unsigned char encode, int arg_num);
 int						get_reg_num(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num);

@@ -39,7 +39,7 @@ static	void	exec_lld(t_cursor *cursor, t_env *env, unsigned char encode)
 	else
 	{
 		arg_1 = get_tind(env, cursor->position + 2);
-		arg_1 = get_tdir(cursor->op_code, env, cursor->position + arg_1);
+		arg_1 = get_tdir(env, cursor->position + arg_1);
 	}
 	arg_2 = get_reg_num(cursor, env, encode, 2);
 	cursor->registries[arg_2 - 1] = arg_1;

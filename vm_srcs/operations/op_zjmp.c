@@ -29,7 +29,7 @@ void	op_zjmp(t_cursor *cursor, t_env *env)
 		move_cursor(cursor, env);
 	else
 	{
-		arg = get_tdir(cursor->op_code, env, modi(cursor->position + 1));
+		arg = get_tind(env, modi(cursor->position + 1));
 		rel_pos = arg % IDX_MOD;
 		cursor->position = modi(cursor->position + rel_pos);
 		cursor->op_code = 0;

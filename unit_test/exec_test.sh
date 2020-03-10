@@ -25,7 +25,7 @@ echo "creating .cor files.."
 S_FILES=tests/*
 for s in $S_FILES
 do 
-	./support/asm $s >/dev/null 2>&1
+	./support/asm $s
 done
 
 echo "testing corewar.."

@@ -23,7 +23,7 @@ void	exec_lldi(t_cursor *cursor, t_env *env, unsigned char encode)
 	arg_2 = get_arg(cursor, env, encode, 2);
 	arg_3 = get_reg_num(cursor, env, encode, 3);
 	addr = arg_1 + arg_2;
-	cursor->registries[arg_3 - 1] = get_tdir(cursor->op_code, env, cursor->position + addr);
+	cursor->registries[arg_3 - 1] = get_tdir(env, cursor->position + addr);
 }
 
 void			op_lldi(t_cursor *cursor, t_env *env)
