@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void	exec_sti(t_cursor *cursor, t_env *env, unsigned char encode)
+void			exec_sti(t_cursor *cursor, t_env *env, unsigned char encode)
 {
 	int arg_1;
 	int arg_2;

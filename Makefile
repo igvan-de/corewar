@@ -44,7 +44,7 @@ unit_test:
 	@make -C unit_test/
 
 test:
-	cd unit_test && ./exec_test.sh
+	cd unit_test && ./exec_test.sh && cd .. && make clean
 
 clean:
 	@rm -f $(OBJ_COREWAR)

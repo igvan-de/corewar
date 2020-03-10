@@ -15,22 +15,12 @@
 
 #include "libft.h"
 #include "op.h"
-
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdio.h>
-
 #include <ncurses.h>
 #include <time.h>
-
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_YELLOW  "\x1b[33m"
-#define ANSI_COLOR_BLUE    "\x1b[34m"
-#define ANSI_COLOR_MAGENTA "\x1b[35m"
-#define ANSI_COLOR_CYAN    "\x1b[36m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
 
 #define BYTE unsigned char
 
@@ -41,7 +31,6 @@
 typedef struct			s_player
 {
 	header_t			*header;				//	ptr to header bytes of player
-	char				*color;					//	color as str
 	char				*exec_code;				//	ptr to execution code of player
 	int					nbr;					//	player number
 }						t_player;
@@ -54,15 +43,15 @@ typedef	struct			s_cursor
 {
 	struct	s_cursor	*next;					//	ptr to next cursor in the stack
 	struct	s_cursor	*prev;					//	ptr to previous cursor in the stack
+	int					*registries;			//	registries of current cursor // REG_NUMBER of registries with REG_SIZE bytes per registry
+	int					live_counter;			//	how many live counters did this cursor execute during the last CTD iteration.
+	unsigned	char	op_code;				//	operation_code stored at the current position of the cursor
 	unsigned			id;						//	unique cursor id
 	unsigned			carry;					//	flag which can be changed by certain operations (true (1)or false (0))
-	unsigned	char	op_code;				//	operation_code stored at the current position of the cursor
 	unsigned			last_live;				//	number of cycle in which current cursor performed operation live last time
-	int					live_counter;			//	how many live counters did this cursor execute during the last CTD iteration.
 	unsigned			wait_cycles;			//	amount of cycles to wait before operation execution
 	unsigned			position;				//	index of current position in memory
 	unsigned			jump;					//	amount of bytes cursor must jump to get to the next operation
-	int					*registries;			//	registries of current cursor // REG_NUMBER of registries with REG_SIZE bytes per registry
 }						t_cursor;
 
 /*
@@ -71,22 +60,22 @@ typedef	struct			s_cursor
 
 typedef struct			s_env
 {
-	unsigned	char	flag_byte;				//	keeps track of corewar program flags (-visual / -n_dump_cycles)	
+	int					cycles;					//	cycle counter of each CYCLE_TO_DIE
+	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
+	unsigned	char	flag_byte;				//	keeps track of corewar program flags (-visual / -n_dump_cycles)
+	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 4.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
-	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
-	int					cycles;					//	cycle counter of each CYCLE_TO_DIE
 	unsigned			total_cycles;			//	total cycle counter
 	unsigned			cycle_last_check;		//	cycle number of last check performed
 	unsigned			live_counter;			//	keeps track of how many live operations where execution during last CYCLE_TO_DIE cycles
-	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
 	unsigned			checks_counter;			//	amount of checks performed
 	unsigned			dump_cycle;				// if -dump flag enabled --> stores the cycle_nbr
 	unsigned			verbosity;				//	if -v flag enabled --> stores the verbosity level
-	t_op				op_tab[17];				//	operation reference table
-	t_list				*players;				//	list of players.
 	char				*map;					//	ptr to main memory map.
 	char				*player_pos;			//	ptr to secondary memory map --> keeps track of player positions.
+	t_op				op_tab[17];				//	operation reference table
+	t_list				*players;				//	list of players.
 	t_cursor			*cursor_stack;			//	ptr to cursor stack.
 }						t_env;
 
@@ -98,7 +87,6 @@ void					init_env(t_env **env);
 void					parse_args(int arg_nb, char **argv, t_env *env);
 void					load_optab(t_env *env);
 void					add_player(char *player, t_env *env);
-void					set_color(t_player *player);
 void					load_players(t_env *env);
 void					init_cursors(t_env *env);
 
@@ -111,11 +99,10 @@ void					check_corewar(t_env *env);
 void					move_cursor(t_cursor *cursor, t_env *env);
 void					move_cursor_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code);
 void					set_carry(t_cursor *cursor, int mode);
-int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
-int						get_arg(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num);
 void					free_env(t_env **env);
 void					intro_players(t_env *env);
 void					announce_winner(t_env *env);
+int						valid_encode(BYTE op_code, BYTE encode, t_env *env);
 
 /*
 **	operation functions
@@ -142,22 +129,27 @@ void					invalid_op(t_cursor *cursor, t_env *env, int type);
 **	utility
 */
 
-int						get_bit(unsigned char octet, int index);
-int						to_4bytes(unsigned short one, unsigned short two);
-short					to_2bytes(unsigned char one, unsigned char two);
-unsigned	int			rev_endian(unsigned int oct);
-int						get_tdir_size(int opcode);
-unsigned char			get_arg_size(int op_code, int one, int two);
-int						has_encode(unsigned char op_code);
-int						count_registers(unsigned char encode);
-unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
-unsigned int			modi(int index);
+void					cpy_reg_vals(t_cursor *dst, t_cursor *src);
+void					push_cursor(t_cursor *c, t_cursor **stack);
 void					write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos);
-int						get_tdir(t_env *env, int position);
-short					get_tind(t_env *env, int position);
 int						get_type(unsigned char encode, int arg_num);
+int						get_arg(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num);
 int						get_reg_num(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num);
 int						valid_regs(t_cursor *cursor, t_env *env, unsigned char encode);
+int						get_bit(unsigned char octet, int index);
+int						to_4bytes(unsigned short one, unsigned short two);
+int						get_tdir_size(int opcode);
+int						has_encode(unsigned char op_code);
+int						count_registers(unsigned char encode);
+int						get_tdir(t_env *env, int position);
+int						*init_registries(void);
+short					get_tind(t_env *env, int position);
+short					to_2bytes(unsigned char one, unsigned char two);
+unsigned char			get_arg_size(int op_code, int one, int two);
+unsigned char			get_total_arg_size(unsigned char op_code, unsigned char encode);
+unsigned int			modi(int index);
+unsigned int			rev_endian(unsigned int oct);
+t_cursor				*dup_cursor(t_cursor *src, t_env *env);
 
 /*
 **	printing
