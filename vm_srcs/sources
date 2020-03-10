@@ -22,6 +22,9 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/operations/op_st.c				\
 		vm_srcs/operations/op_live.c			\
 		vm_srcs/operations/op_ld.c				\
+		vm_srcs/operations/op_ldi.c				\
+		vm_srcs/operations/op_lld.c				\
+		vm_srcs/operations/op_lldi.c			\
 		vm_srcs/operations/op_zjmp.c			\
 		vm_srcs/operations/op_add.c				\
 		vm_srcs/operations/op_sub.c				\

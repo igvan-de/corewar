@@ -38,10 +38,16 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 		op_xor(cursor, env);
 	else if (cursor->op_code == 9)
 		op_zjmp(cursor, env);
+	else if (cursor->op_code == 10)
+		op_ldi(cursor, env);
 	else if (cursor->op_code == 11)
 		op_sti(cursor, env);
 	else if (cursor->op_code == 12)
 		op_fork(cursor, env);
+	else if (cursor->op_code == 13)
+		op_lld(cursor, env);
+	else if (cursor->op_code == 14)
+		op_lldi(cursor, env);
 	else if (cursor->op_code == 15)
 		op_lfork(cursor, env);
 	else if (cursor->op_code < 1 || 16 < cursor->op_code)
