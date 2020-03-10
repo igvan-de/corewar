@@ -12,19 +12,17 @@
 
 #include "vm.h"
 
-static	void	exec_sub(t_cursor *cursor, t_env *env)
+void	exec_sub(t_cursor *cursor, t_env *env, unsigned char encode)
 {
-	int				val1;
-	int				val2;
-	unsigned char	reg_num;
+	int arg_1;
+	int arg_2;
+	int arg_3;
 
-	reg_num = env->map[modi(cursor->position + 2)];
-	val1 = cursor->registries[reg_num - 1];
-	reg_num = env->map[modi(cursor->position + 3)];
-	val2 = cursor->registries[reg_num - 1];
-	reg_num = env->map[modi(cursor->position + 4)];
-	cursor->registries[reg_num - 1] = val1 - val2;
-	set_carry(cursor, val1 - val2);
+	arg_1 = get_arg(cursor, env, encode, 1);
+	arg_2 = get_arg(cursor, env, encode, 2);
+	arg_3 = get_reg_num(cursor, env, encode, 3);
+	cursor->registries[arg_3 - 1] = arg_1 - arg_2;
+	set_carry(cursor, arg_1 - arg_2);
 }
 
 /*
@@ -43,6 +41,6 @@ void			op_sub(t_cursor *cursor, t_env *env)
 		return (invalid_op(cursor, env, 1));
 	if (valid_regs(cursor, env, encode) == 0)
 		return (invalid_op(cursor, env, 2));
-	exec_sub(cursor, env);
+	exec_sub(cursor, env, encode);
 	move_cursor_encode(cursor, env, encode, op_code);
 }

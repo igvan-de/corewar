@@ -79,7 +79,7 @@ void	op_fork(t_cursor *cursor, t_env *env)
 	short addr;
 	t_cursor *new_cursor;
 
-	addr = to_2bytes(env->map[modi(cursor->position + 1)], env->map[modi(cursor->position + 2)]) % IDX_MOD;
+	addr = get_tdir(cursor->op_code, env, modi(cursor->position + 1)) % IDX_MOD;
 	(env->total_cursors)++;
 	new_cursor = dup_cursor(cursor, env);
 	push_cursor(new_cursor, &env->cursor_stack);

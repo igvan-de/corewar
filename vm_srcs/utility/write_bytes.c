@@ -17,7 +17,7 @@ static	void set_player_pos(t_cursor *cursor, t_env *env, int place)
 	int player;
 
 	player = cursor->registries[0];
-	if (player < -5 || 0 < player)
+	if (player <= -5 || 0 <= player)
 		return ;
 	env->player_pos[modi(place)] = player * -1;
 	env->player_pos[modi(place + 1)] = player * -1;

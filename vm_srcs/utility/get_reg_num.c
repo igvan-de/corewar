@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_tind.c                                         :+:    :+:            */
+/*   get_reg_num.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:43:56 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 16:43:56 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/10 08:30:52 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/03/10 08:30:52 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/*
-**	read and return a T_IND value from memory
-*/
-
-short	get_tind(t_env *env, int position)
+int	get_reg_num(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num)
 {
-	short			ret;
+	int place;
 
-	ret = to_2bytes(
-			env->map[modi(position)],
-			env->map[modi(position + 1)]);
-	return (ret);
+	place = modi(cursor->position + 2);
+	if (arg_num > 1)
+		place += get_arg_size(cursor->op_code, get_bit(encode, 0), get_bit(encode, 1));
+	if (arg_num > 2)
+		place += get_arg_size(cursor->op_code, get_bit(encode, 2), get_bit(encode, 3));
+	return ((int)env->map[modi(place)]);
 }

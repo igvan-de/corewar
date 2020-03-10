@@ -14,34 +14,22 @@
 
 static	void	exec_st(t_cursor *cursor, t_env *env, unsigned char encode)
 {
-	unsigned char	src_reg;
-	unsigned char	dst_reg;
-	int				arg_2_size;
-	int				val;
-	int				rel_pos;
+	int arg_1;
+	int arg_2;
+	int addr;
 
-	src_reg = env->map[modi(cursor->position + 2)];
-	val = cursor->registries[src_reg - 1];
-	arg_2_size = get_arg_size(cursor->op_code, get_bit(encode, 2), get_bit(encode, 3));
-	if (arg_2_size == 1)
+	arg_1 = get_arg(cursor, env, encode, 1);
+	if (get_type(encode, 2) == REG_CODE)
 	{
-		dst_reg = env->map[modi(cursor->position + 3)];
-		cursor->registries[dst_reg - 1] = val;
+		arg_2 = get_reg_num(cursor, env, encode, 2);
+		cursor->registries[arg_2 - 1] = arg_1;
 	}
-	else if (arg_2_size == 2)
+	else if (get_type(encode, 2) == IND_CODE)
 	{
-		rel_pos = get_tind(env, cursor->position + 3) % IDX_MOD;
-		write_bytes(val, env, cursor, rel_pos);
-		if (-5 < cursor->registries[0] && cursor->registries[0] < 0)
-		{
-			env->player_pos[modi(cursor->position + rel_pos)] = cursor->registries[0] * -1;
-			env->player_pos[modi(cursor->position + rel_pos + 1)] = cursor->registries[0] * -1;
-			env->player_pos[modi(cursor->position + rel_pos + 2)] = cursor->registries[0] * -1;
-			env->player_pos[modi(cursor->position + rel_pos + 3)] = cursor->registries[0] * -1;
-		}
+		arg_2 = get_tind(env, cursor->position + 3);
+		addr = arg_2  % IDX_MOD;
+		write_bytes(arg_1, env, cursor, addr);
 	}
-	else 
-		error_exec(3);
 }
 
 void			op_st(t_cursor *cursor, t_env *env)

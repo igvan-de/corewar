@@ -44,6 +44,8 @@ SRCS =	vm_srcs/core/main.c						\
 		vm_srcs/utility/write_bytes.c			\
 		vm_srcs/utility/get_tdir.c				\
 		vm_srcs/utility/get_tind.c				\
+		vm_srcs/utility/get_reg_num.c			\
+		vm_srcs/utility/get_type.c				\
 		vm_srcs/error/error.c					\
 		vm_srcs/error/exit_usage.c				\
 		vm_srcs/debugging/print_bits.c			\

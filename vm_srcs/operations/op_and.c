@@ -12,70 +12,16 @@
 
 #include "vm.h"
 
-static	int		get_arg_1(t_cursor *cursor, t_env *env, unsigned char encode)
-{
-	int				size;
-	unsigned char	reg;
-	int				rel_pos;
-	short			t_ind;
-
-	size = get_arg_size(cursor->op_code, get_bit(encode, 0), get_bit(encode, 1));
-	if (size == 1)
-	{
-		reg = env->map[modi(cursor->position + 2)];
-		return (cursor->registries[reg - 1]);
-	}
-	else if (size == 2)
-	{
-		t_ind = get_tind(env, cursor->position + 2);
-		rel_pos = t_ind % IDX_MOD;
-		return (get_tdir(cursor->op_code, env, cursor->position + rel_pos));
-	}
-	else if (size == 4)
-		return (get_tdir(cursor->op_code, env, cursor->position + 2));
-	error_exec(3);
-	return (0);
-}
-
-static	int		get_arg_2(t_cursor *cursor, t_env *env, unsigned char encode, int size)
-{
-	int				arg_size;
-	unsigned char	reg;
-	int				rel_pos;
-	short			t_ind;
-
-	arg_size = get_arg_size(cursor->op_code, get_bit(encode, 2), get_bit(encode, 3));
-	if (size == 1)
-	{
-		reg = env->map[modi(cursor->position + size + 2)];
-		return (cursor->registries[reg - 1]);
-	}
-	else if (size == 2)
-	{
-		t_ind = get_tind(env, cursor->position + size + 2);
-		rel_pos = t_ind % IDX_MOD;
-		return (get_tdir(cursor->op_code, env, cursor->position + rel_pos));
-	}
-	else if (size == 4)
-		return (get_tdir(cursor->op_code, env, cursor->position + size + 2));
-	error_exec(3);
-	return (0);
-}
-
 static	void	exec_and(t_cursor *cursor, t_env *env, unsigned char encode)
 {
-	int			arg_1;
-	int			arg_2;
-	int			arg_1_size;
-	int			arg_2_size;
-	unsigned	target_reg;
+	int arg_1;
+	int arg_2;
+	int arg_3;
 
-	arg_1 = get_arg_1(cursor, env, encode);
-	arg_1_size = get_arg_size(cursor->op_code, get_bit(encode, 0), get_bit(encode, 1));
-	arg_2 = get_arg_2(cursor, env, encode, arg_1_size);
-	arg_2_size = get_arg_size(cursor->op_code, get_bit(encode, 2), get_bit(encode, 3));
-	target_reg = env->map[modi(cursor->position + arg_1_size + arg_2_size + 2)];
-	cursor->registries[target_reg - 1] = arg_1 & arg_2;
+	arg_1 = get_arg(cursor, env, encode, 1);
+	arg_2 = get_arg(cursor, env, encode, 2);
+	arg_3 = get_reg_num(cursor, env, encode, 3);
+	cursor->registries[arg_3 - 1] = arg_1 & arg_2;
 	set_carry(cursor, arg_1 & arg_2);
 }
 
