@@ -29,9 +29,11 @@ void	op_zjmp(t_cursor *cursor, t_env *env)
 		move_cursor(cursor, env);
 	else
 	{
+		env->datamap[cursor->position].cursor = 0;
 		arg = get_tind(env, modi(cursor->position + 1));
 		rel_pos = arg % IDX_MOD;
 		cursor->position = modi(cursor->position + rel_pos);
+		env->datamap[cursor->position].cursor = 1;
 		cursor->op_code = 0;
 	}
 }

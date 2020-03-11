@@ -12,20 +12,6 @@
 
 #include "vm.h"
 
-static	int	cursor_pos(t_cursor *cursor_stack, unsigned index)
-{
-	t_cursor *iter;
-
-	iter = cursor_stack;
-	while (iter)
-	{
-		if (iter->position == index)
-			return (1);
-		iter = iter->next;
-	}
-	return (0);
-}
-
 void		print_map(t_env *env)
 {
 	int i;
@@ -34,19 +20,19 @@ void		print_map(t_env *env)
 	erase();
 	while (i < MEM_SIZE)
 	{
-		if (env->player_pos[i] != 0)
+		if (env->datamap[i].player != 0)
 		{
-			attron(COLOR_PAIR(env->player_pos[i]));
-			if (cursor_pos(env->cursor_stack, i) != 0)
+			attron(COLOR_PAIR(env->datamap[i].player));
+			if (env->datamap[i].cursor == 1)
 				attron(A_BOLD);
 			printw("%02x ", 0xFF & env->map[i]);
-			if (cursor_pos(env->cursor_stack, i) != 0)
+			if (env->datamap[i].cursor == 1)
 				attroff(A_BOLD);
-			attroff(COLOR_PAIR(env->player_pos[i]));
+			attroff(COLOR_PAIR(env->datamap[i].player));
 		}
 		else
 			printw("%#02x ", env->map[i]);
-		if ((i + 1) % (128 / 2) == 0)
+		if (((i + 1) & ((128 / 2) - 1)) == 0)
 			printw("\n");
 		i++;
 	}

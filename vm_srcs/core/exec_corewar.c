@@ -60,7 +60,9 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 		op_lfork(cursor, env);
 	else if (cursor->op_code < 1 || 16 < cursor->op_code)
 	{
+		env->datamap[cursor->position].cursor = 0;
 		cursor->position = modi(cursor->position + 1);
+		env->datamap[cursor->position].cursor = 1;
 		cursor->op_code = 0;
 	}
 	else

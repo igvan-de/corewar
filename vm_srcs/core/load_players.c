@@ -73,7 +73,7 @@ static	void		load_player(t_env *env, int player_nb)
 	while (i < size)
 	{
 		env->map[load_index] = curr_player->exec_code[i];
-		env->player_pos[load_index] = player_nb;
+		env->datamap[load_index].player = player_nb;
 		i++;
 		load_index++;
 	}

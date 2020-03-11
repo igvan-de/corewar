@@ -21,6 +21,7 @@ void	op_fork(t_cursor *cursor, t_env *env)
 	(env->total_cursors)++;
 	new_cursor = dup_cursor(cursor, env);
 	new_cursor->position = modi(cursor->position + addr);
+	env->datamap[new_cursor->position].cursor = 1;
 	push_cursor(new_cursor, &env->cursor_stack);
 	move_cursor(cursor, env);
 }

@@ -24,6 +24,12 @@
 
 #define BYTE unsigned char
 
+typedef struct	s_datamap
+{
+	char	cursor;
+	char	player;
+}				t_datamap;
+
 /*
 **	struct for each player
 */
@@ -73,7 +79,7 @@ typedef struct			s_env
 	unsigned			dump_cycle;				// if -dump flag enabled --> stores the cycle_nbr
 	unsigned			verbosity;				//	if -v flag enabled --> stores the verbosity level
 	char				*map;					//	ptr to main memory map.
-	char				*player_pos;			//	ptr to secondary memory map --> keeps track of player positions.
+	t_datamap			*datamap;				//	ptr to secondary memory map --> keeps track of player positions.
 	t_op				op_tab[17];				//	operation reference table
 	t_list				*players;				//	list of players.
 	t_cursor			*cursor_stack;			//	ptr to cursor stack.

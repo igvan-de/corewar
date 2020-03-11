@@ -12,26 +12,25 @@
 
 #include "vm.h"
 
-/*
-**	get_max_bytes receives an op_code and returns the maximum
-**	total size of this operation in bytes.
-*/
-
-static	unsigned char	get_max_bytes(unsigned char op_code, int type)
+unsigned char validate_jump(unsigned char op_code, int type, unsigned char bytes)
 {
-	if (op_code == 1 || op_code == 4 || op_code == 5)
-		return (5);
-	else if (op_code == 2 && type == 2)
-		return (7);
-	else if (op_code == 2 && type == 1)
-		return (5);
-	else if (op_code == 3 && type == 2)
-		return (4);
-	else if (op_code == 11)
-		return (7);
-	else if (op_code == 9)
+	if (type == 1 && op_code == 6)
+		return (6);
+	if (type == 1 && op_code == 5)
+		return (6);
+	if (type == 1 && op_code == 4)
 		return (3);
-	return (0);
+	if (type == 1 && op_code == 8)
+		return (6);
+	if (type == 1)
+		return (2);
+	if (op_code == 11 && type == 2)
+		return (7);
+	if (op_code == 2 && type == 2 && bytes > 7)
+		return (7);
+	if (op_code == 3 && type == 2)
+		return (4);
+	return (bytes);
 }
 
 /*
@@ -48,7 +47,8 @@ void					invalid_op(t_cursor *cursor, t_env *env, int type)
 	unsigned char	bytes;
 	unsigned		index;
 
-	max_bytes = get_max_bytes(cursor->op_code, type);
+	env->datamap[cursor->position].cursor = 0;
+	max_bytes = 25;
 	bytes = 1;
 	index = modi(cursor->position + 1);
 	while ((env->map[modi(index)] < 1 || 16 < env->map[modi(index)]) && bytes < max_bytes)
@@ -56,23 +56,27 @@ void					invalid_op(t_cursor *cursor, t_env *env, int type)
 		index++;
 		bytes++;
 	}
-	if (type == 2 && cursor->op_code == 11)
+	bytes = validate_jump(cursor->op_code, type, bytes);
+	index = modi(cursor->position + bytes);
+	if (env->map[modi(index - 1)] == -1)
 	{
-		bytes = 7;
-		index = modi(cursor->position + 7);
+		while (env->map[modi(index)] == -1 && cursor->op_code == 6)
+		{
+			index++;
+			bytes++;
+		}
 	}
-	else if (type == 1 && cursor->op_code == 6)
+	if (cursor->op_code == 10 && type == 1 && env->map[modi(index + 1)] == 0 && env->map[modi(cursor->position + 1)] != 0)
 	{
-		bytes = 8;
-		index = modi(cursor->position + 8);
-	}
-	else if (type == 1)
-	{
-		bytes = 2;
-		index = modi(cursor->position + 2);
+		while (bytes < 4)
+		{
+			index++;
+			bytes++;
+		}
 	}
 	if ((env->flag_byte & (1 << 2)) == (1 << 2))
 		dump_op_invalid(cursor, env, bytes);
 	cursor->position = modi(index);
+	env->datamap[cursor->position].cursor = 1;
 	cursor->op_code = 0;
 }

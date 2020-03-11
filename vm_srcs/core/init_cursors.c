@@ -32,8 +32,11 @@ static	unsigned	int		get_position(unsigned id, t_env *env)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if ((unsigned char)env->player_pos[i] == id)
+		if ((unsigned char)env->datamap[i].player == id)
+		{
+			env->datamap[i].cursor = 1;
 			return (i);
+		}
 		i++;
 	}
 	error_init(2);

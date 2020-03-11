@@ -90,8 +90,8 @@ void			free_env(t_env **env)
 		free_cursor_stack(&(*env)->cursor_stack);
 	if ((*env)->map != NULL)
 		free((*env)->map);
-	if ((*env)->player_pos != NULL)
-		free((*env)->player_pos);
+	if ((*env)->datamap != NULL)
+		free((*env)->datamap);
 	free(*env);
 	*env = NULL;
 }

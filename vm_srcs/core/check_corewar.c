@@ -95,6 +95,7 @@ static	void	parse_cursor_stack(t_env *env)
 	{
 		if (is_dead(iter, env) == 1 || env->cycles_to_die <= 0)
 		{
+			env->datamap[iter->position].cursor = 0;
 			delete_cursor(iter, &env->cursor_stack);
 			iter = env->cursor_stack;
 			env->total_cursors--;

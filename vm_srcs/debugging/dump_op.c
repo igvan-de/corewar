@@ -47,7 +47,7 @@ static	void	dump_bytes(t_cursor *cursor, t_env *env, unsigned char bytes)
 	i = 0;
 	while (i < bytes)
 	{
-		if (env->player_pos[modi(cursor->position + i)] != 0)
+		if (env->datamap[modi(cursor->position + i)].player != 0)
 		{
 			printf("%02x ", 0xFF & env->map[modi(cursor->position + i)]);
 			fflush(stdout);

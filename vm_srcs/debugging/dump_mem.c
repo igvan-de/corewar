@@ -37,7 +37,7 @@ void				dump_mem(t_env *env)
 			bytes += 64;
 			addr_trig = 0;
 		}
-		if (env->player_pos[i] != 0)
+		if (env->datamap[i].player != 0)
 		{
 			printf("%02x ", 0xFF & env->map[i]);
 			fflush(stdout);
@@ -64,7 +64,7 @@ void				dump_pos(t_env *env)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		printf("%hhi ", env->player_pos[i]);
+		printf("%hhi ", env->datamap[i].player);
 		fflush(stdout);
 		if ((i + 1) % (128 / 2) == 0)
 		{

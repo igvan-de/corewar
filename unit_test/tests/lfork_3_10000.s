@@ -3,16 +3,11 @@
 
 	zjmp%:main
 fork:
-	lfork%:fork2
 	sti r1, %:live, %1
 	ld %0, r6
 	zjmp%:live
 main:
 	lfork %:fork
-	sti r1, %:live, %1
-	ld %0, r6
-	zjmp%:live
-fork2:
 	sti r1, %:live, %1
 	ld %0, r6
 	zjmp%:live

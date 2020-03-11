@@ -12,6 +12,19 @@
 
 #include "vm.h"
 
+static	void	init_datamap(t_datamap *map)
+{
+	int i;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		map[i].cursor = 0;
+		map[i].player = 0;
+		i++;
+	}
+}
+
 /*
 **	@brief:	initialize the memory and player_pos maps 
 **
@@ -27,9 +40,10 @@ static	void	init_maps(t_env **env)
 	(*env)->map = ft_strnew(MEM_SIZE);
 	if (!(*env)->map)
 		error_mem();
-	(*env)->player_pos = ft_strnew(MEM_SIZE);
-	if (!(*env)->player_pos)
+	(*env)->datamap = (t_datamap *)malloc(sizeof(t_datamap) * MEM_SIZE);
+	if (!(*env)->datamap)
 		error_mem();
+	init_datamap((*env)->datamap);
 }
 
 /*

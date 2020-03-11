@@ -14,10 +14,10 @@
 
 static	void set_player_pos(t_cursor *cursor, t_env *env, int place)
 {
-	env->player_pos[modi(place)] = env->player_pos[modi(cursor->position)];
-	env->player_pos[modi(place + 1)] = env->player_pos[modi(cursor->position)];
-	env->player_pos[modi(place + 2)] = env->player_pos[modi(cursor->position)];
-	env->player_pos[modi(place + 3)] = env->player_pos[modi(cursor->position)];
+	env->datamap[modi(place)].player = env->datamap[modi(cursor->position)].player;
+	env->datamap[modi(place + 1)].player = env->datamap[modi(cursor->position)].player;
+	env->datamap[modi(place + 2)].player = env->datamap[modi(cursor->position)].player;
+	env->datamap[modi(place + 3)].player = env->datamap[modi(cursor->position)].player;
 }
 
 /*

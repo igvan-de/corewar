@@ -31,6 +31,6 @@ void	dump_env_state(t_env *env)
 	printf("		cycles to die: %u\n", env->cycles_to_die);
 	printf("		checks counter: %u\n", env->checks_counter);
 	printf("		map: %p\n", env->map);
-	printf("		player_pos: %p\n", env->player_pos);
+	printf("		player_pos: %p\n", env->datamap);
 	printf("		cursor stack: %p\n", env->cursor_stack);
 }
