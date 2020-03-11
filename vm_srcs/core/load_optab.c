@@ -13,6 +13,10 @@
 #include "vm.h"
 
 /*
+**	@brief: retrieve operation reference table 
+**
+**	@param env	: global environment struct
+**
 **	load_optab receives a ptr to the global env struct and
 **	loads the operation reference table into its op_tab variable
 */

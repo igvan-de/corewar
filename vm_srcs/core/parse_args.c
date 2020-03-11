@@ -13,11 +13,16 @@
 #include "vm.h"
 
 /*
+**	@brief:	validate flag byte 
+**
+**	@param env	: global environment struct
+**
 **	valid_flag checks the flag byte and makes sure there are
 **	no contradicting flags active.
 **
-**	if the -dump flag is active, the visualizer gets disabled.
-**	if the -v flag is active, the visualizer gets disabled.
+**	->	if the -dump flag is active, the visualizer gets disabled.
+**
+**	->	if the -v flag is active, the visualizer gets disabled.
 */
 
 static	void	valid_flags(t_env *env)
@@ -33,9 +38,20 @@ static	void	valid_flags(t_env *env)
 }
 
 /*
-**	get_verbosity retrieves the verbosity level for the -v flag
-**	if verbosity is 2 or 18 (16 + 2) --> enable cycle verbosity
-**	if verbosity is 16 or 18 (16 + 2) --> enable operation verbosity
+**	@brief: retrieve the verbosity level
+**
+**	@param curr_arg		: 	number of current parameter 
+**	@param arg_nb		:	total number of parameters
+**	@param argv			:	parameters
+**	@param env			:	global environment struct
+**
+**	after the '-v' flag is encountered, parse_args calls
+**	get_verbosity to retrieve the verbosity level from
+**	the parameter directly after the flag.
+**
+**	->	if verbosity is 2 or 18 (16 + 2) --> enable cycle verbosity
+**
+**	->	if verbosity is 16 or 18 (16 + 2) --> enable operation verbosity
 */
 
 static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
@@ -54,9 +70,17 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 	env->verbosity = (unsigned)verbosity;
 }
 
-/*
-**	get_dump_cycle retrieves the nbr_cycle argument for the -dump flag.
-**	if the dump_cycle is higher than CYCLE_TO_DIE --> -dump flag is disabled.
+/**
+**	@brief: retrieve the dump cycle value
+**
+**	@param curr_arg	:	the number of the current parameter
+**	@param arg_nb	:	the total number of parameters
+**	@param argv		:	parameters 
+**	@param env		:	global environment struct
+**
+**	after the '-dump' flag is encountered, parse_args calls
+**	get_dump_cycle to retrieve the dump cycle value from
+**	the parameter directly after the flag.
 */
 
 static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
@@ -71,14 +95,29 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 	env->dump_cycle = (unsigned)nbr_cycle;
 }
 
-/*
-**	parse all arguments
+/**
+**	@brief:	parse and interpret program parameters 
 **
-**	flags:
+**	@param arg_nb	:	number of parameters 
+**	@param argv		:	parameters 
+**	@param env		:	global environment struct
+** 
+**	parse_args iterates through the parameters passed to the program
+**	and performs action based on the type of the parameter.
 **
-**	-visual --> enables visualizer
-**	-dump <nbr_of_cycles> --> dumb memory after <nbr_of_cycles> cycles. --> disables visualizer
-**	-v <verbosity level> --> print all performed operations --> disables visualizer
+**	->	if the parameter is a flag, the related bit in the flag byte
+**		is turned on. for the '-dump' and '-v' flag, the parameter
+**		directly after the flag is saved as either the dump cycle
+**		or the verbosity level.
+**
+**	->	otherwise, the parameter is assumed to be a player file
+**		and is processed with add_player.
+**
+**	->	if the number of players is higher than MAX_PLAYERS or
+**		if there are no players, the program exits with error.
+**
+**	lastly, valid_flags gets called to make sure there are
+**	contradicting flags turned on.
 */
 
 void			parse_args(int arg_nb, char **argv, t_env *env)

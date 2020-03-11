@@ -13,8 +13,13 @@
 #include "vm.h"
 
 /*
-**	free_player takes a ptr to a player and frees
-**	that player's variables and the t_player struct.
+**	@brief:	free a player 
+**
+**	@param player	:	the player to be freed. 
+**	@param size		:	the size of the player 
+**
+**	note: 	player type is void so that the function can be
+**			passed to ft_lstdel.
 */
 
 static	void	free_player(void *player, size_t size)
@@ -30,9 +35,12 @@ static	void	free_player(void *player, size_t size)
 	}
 }
 
-/*
-**	free_cursor takes a ptr to a cursor and frees that cursor
-**	and its registries.
+/**
+**	@brief:	free a cursor 
+**
+**	@param cursor
+**
+**	free a cursor and its registries
 */
 
 static	void	free_cursor(t_cursor *cursor)
@@ -41,9 +49,13 @@ static	void	free_cursor(t_cursor *cursor)
 	free(cursor);
 }
 
-/*
-**	free_cursor_stack frees all cursors currently stored
-**	in the env->cursor_stack variable of the main env struct.
+/**
+**	@brief:	free the cursor stack 
+**
+**	@param cursor_stack
+**
+**	iterates through the cursor stack and frees each cursor
+**	by calling free cursor. 
 */
 
 static	void	free_cursor_stack(t_cursor **cursor_stack)
@@ -62,8 +74,12 @@ static	void	free_cursor_stack(t_cursor **cursor_stack)
 }
 
 /*
-**	free_env frees the main environment struct and
-**	all its variables if still allocated.
+**	@brief:	free the global environment struct 
+**
+**	@param env	:	global environment struct
+**
+**	once the main process has finished, free_env is called
+**	to clean up remaining allocated memory in the env struct. 
 */
 
 void			free_env(t_env **env)

@@ -91,7 +91,7 @@ static	void	set_opcode(t_cursor *cursor, t_env *env)
 **	@param cursor 	:	target cursor
 **	@param env 		:	global environment structure
 **
-**	exec_cursors can performs different actions depending on the
+**	exec_cursors can perform different actions depending on the
 **	current state of the cursor.
 **
 **	-> if it is the very first cycle or if the wait_cycles of this

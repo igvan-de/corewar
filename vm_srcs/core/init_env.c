@@ -13,8 +13,13 @@
 #include "vm.h"
 
 /*
-**	init_maps allocates memory for the main memory map at
-**	env->map and the player position lookup map at env->player_pos.
+**	@brief:	initialize the memory and player_pos maps 
+**
+**	@param env	: global environment struct
+**
+**	init_maps allocates the main memory area where
+**	the program's main process will take place. A second area
+**	is allocated to keep track of player positions. 
 */
 
 static	void	init_maps(t_env **env)
@@ -28,8 +33,13 @@ static	void	init_maps(t_env **env)
 }
 
 /*
-**	init_env allocates memory for the main environment
-**	struct and the memory areas env->map and env->player_pos.
+**	@brief:	initialize the global environment struct 
+**
+**	@param env	: global environment struct
+**
+**	the env struct is used to store data pointers and variables
+**	detailing game state. in init_env this structure is allocated
+**	and initialized. 
 */
 
 void			init_env(t_env **env)

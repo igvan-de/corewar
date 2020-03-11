@@ -13,7 +13,14 @@
 #include "vm.h"
 
 /*
-**	get_position receives the cursor_id and loops through the player_pos
+**	@brief: get the starting position of the cursor
+**
+**	@param id				:	unique cursor/player id 
+**	@param env				:	global environment struct 
+**	@return unsigned int	:	starting position
+**
+**
+**	get_position receives the cursor_id and iterates through the player_pos
 **	map to find the first byte of the players execution code.
 **	It returns the index of that address within the memory map.
 */
@@ -34,6 +41,11 @@ static	unsigned	int		get_position(unsigned id, t_env *env)
 }
 
 /*
+**	@brief:	create a new cursor 
+**
+**	@param env			: 	global environment struct 
+**	@return t_cursor*	:	new cursor
+**
 **	new_cursor is used in init_cursors to create a new
 **	cursor for each active player.
 */
@@ -62,6 +74,10 @@ static	t_cursor			*new_cursor(t_env *env)
 }
 
 /*
+**	@brief:	initialize the cursor stack 
+**
+**	@param env	:	global environment struct 
+**
 **	init_cursors sets up the initial cursor_stack variable of env, at
 **	the beginning of the program.
 **	For each active player, a new cursor is created with a position
