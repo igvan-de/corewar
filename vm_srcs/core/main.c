@@ -27,6 +27,8 @@ int				main(int argc, char **argv)
 	load_players(env);
 	init_cursors(env);
 	intro_players(env);
+	if ((env->flag_byte & 1) == 1)
+		init_ncurses(env);
 	exec_corewar(env);
 	if ((env->flag_byte & 1) == 1)
 		endwin();

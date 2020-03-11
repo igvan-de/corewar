@@ -12,6 +12,18 @@
 
 #include "vm.h"
 
+/**
+**	@brief:	find and return a players' name
+**
+**	@param env		:	global environment struct 
+**	@param id		:	unique player id
+**	@return char*	:	player name
+**
+**	player_name iterates through the players list and if it finds the player
+**	with the matching id, returns the name of that player stored in the player header.
+**	if it could not find the player, the function returns NULL as a string literal.
+*/
+
 static	char	*player_name(t_env *env, int id)
 {
 	t_list		*iter;
@@ -27,6 +39,16 @@ static	char	*player_name(t_env *env, int id)
 	}
 	return ("NULL");
 }
+
+/*
+**	@brief:	print the winning player to stdout 
+**
+**	@param env		:	global environment struct
+**
+**	announce_winner gets called after the corewar main
+**	process is finished. It retrieves the id of the last
+**	player alive and prints a message, declaring the winner.
+*/
 
 void			announce_winner(t_env *env)
 {

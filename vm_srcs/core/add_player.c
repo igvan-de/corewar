@@ -13,8 +13,13 @@
 #include "vm.h"
 
 /*
-**	init_exece_code allocates memory for the exec_code variable
-**	of the new t_player struct.
+**	@brief:	initialize the players' execution code as a char * 
+**
+**	@param player		:	ptr to t_player struct
+**	@param size 		:	execution code size
+**
+**	init_exec_code allocates memory for the exec_code variable
+**	of the new t_player struct.	
 */
 
 static	void	init_exec_code(t_player **player, size_t size)
@@ -24,7 +29,11 @@ static	void	init_exec_code(t_player **player, size_t size)
 		error_mem();
 }
 
-/*
+/**
+**	@brief:	initialize a new header_t struct 
+**
+**	@param header		:	ptr to the new header
+**
 **	init_header allocates memory for the header_t variable
 **	of the new t_player struct.
 */
@@ -36,9 +45,14 @@ static	void	init_header(header_t **header)
 		error_mem();
 }
 
-/*
-**	init_player allocates memory for the t_player struct
-**	of the new player.
+/**
+**	@brief:	initialize a new t_player struct.
+**
+**	@param player		: ptr to the new player
+**
+**	init_player receives a ptr to an unallocated
+**	player struct and allocates memory for that struct
+**	as well as its header variable as player->header.
 */
 
 static	void	init_player(t_player **player)
@@ -51,10 +65,16 @@ static	void	init_player(t_player **player)
 	init_header(&((*player)->header));
 }
 
-/*
-**	store_player takes a reference to a newly created player and stores
-**	this pointer in the players list of the main env struct as a new list
-**	element.
+/**
+**	@brief: store the new corewar player in the players list
+**
+**	@param new_player	:	new player struct
+**	@param env			:	global environment struct
+**
+**	store_player receives a ptr to a new player struct and
+**	stores that struct in a t_list node. It then adds that node
+**	to the end of the current players list.
+**	The players list is a t_list and is part of the env struct as env->players.
 */
 
 static	void	store_player(t_player **new_player, t_env *env)
@@ -76,10 +96,15 @@ static	void	store_player(t_player **new_player, t_env *env)
 }
 
 /*
-**	add_player takes a ptr to a program argument (arg) and parses
-**	this argument as a player. A new t_player struct is created,
+**	@brief: take a program parameter and store it as a corewar player 
+**
+**	@param arg		: corewar program parameter
+**	@param env		: global environment struct
+**
+**	add_player takes a ptr to a program parameter (arg) and parses
+**	this parameter as a player. A new t_player struct is created,
 **	with the header stored in player->header and the execution_code
-**	in player->exec_code. The player is also given a number and a color.
+**	in player->exec_code. The player is also given a unique number.
 **	If the given argument is not a valid player, the function returns error.
 **	The new player is stored within the players list in the main env struct at
 **	env->players.
