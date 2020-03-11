@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/07 17:21:17 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/11 10:13:24 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,13 +14,13 @@ include asm_srcs/sources
 include asm_srcs/error_functions/sources
 include asm_srcs/asm_to_byte/sources
 
-OBJ_ASM = $(SRCS:%.c=%.o)
+OBJ_ASM = $(ASM_SRCS:%.c=%.o)
 LIBFT_H = -I ./libft/includes
 ASM_H = -I ./includes
 PRTF_H = -I ./ft_printf
 NAME = asm
 CFLAGS =  -Wall -Werror -Wextra
-NORM = norminette $(SRCS) | grep -e "Error" -e "Warning" -B 1
+NORM = norminette $(ASM_SRCS) | grep -e "Error" -e "Warning" -B 1
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_RED = $(shell printf "\e[31;5;10m")

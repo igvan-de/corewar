@@ -6,11 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:51:42 by mlokhors       #+#    #+#                */
-<<<<<<< HEAD
-/*   Updated: 2020/03/05 15:08:36 by igvan-de      ########   odam.nl         */
-=======
-/*   Updated: 2020/03/06 11:08:48 by mlokhors      ########   odam.nl         */
->>>>>>> asm
+/*   Updated: 2020/03/11 10:11:50 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

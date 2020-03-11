@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/07 17:44:46 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/11 10:08:18 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*error_function(int error_code)
 	"add_instruction x iteration",
 	"get_label_name -> ft_strsub failed",
 	"",
-	"malloc contineu node failed in add_instruction_node",
+	"malloc continue node failed in add_instruction_node",
 	"error in get_op_code",
 	"error in make_hash_table",
 	"error in get_op_code",
