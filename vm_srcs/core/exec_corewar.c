@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   run_corewar.c                                      :+:    :+:            */
+/*   exec_corewar.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/26 08:27:14 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/26 08:27:15 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/26 08:27:14 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:09:42 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	@brief:	attempt to execute the operation in the cursor 
+**	@brief:	attempt to execute the operation in the cursor
 **
 **	@param cursor	:	target cursor
 **	@param env		:	global environment struct
-** 
+**
 **	once a cursors' wait_cycles has reached 0, the cursor
 **	will attempt to execute the operation by calling exec_op.
 **	if the value stored in cursor->op_code is a valid operation code,
@@ -72,7 +72,7 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 /*
 **	@brief: set the operation code within the cursor
 **
-**	@param cursor	: target cursor 
+**	@param cursor	: target cursor
 **	@param env		: global environment struct
 **
 **	set_opcode receives a cursor and loads the op_code
@@ -132,7 +132,7 @@ static	void	exec_cursor(t_cursor *cursor, t_env *env)
 }
 
 /*
-**	@brief:	iterate through the cursor stack and call exec_cursor 
+**	@brief:	iterate through the cursor stack and call exec_cursor
 **
 **	@param env	:	global environment struct
 **
@@ -155,7 +155,7 @@ static	void	exec_cursor_stack(t_env *env)
 }
 
 /*
-**	@brief:	parse the flag byte and call related actions 
+**	@brief:	parse the flag byte and call related actions
 **
 **	@param env:	global environment structure.
 **
@@ -186,32 +186,6 @@ static	void	check_flags(t_env *env)
 		ft_putchar('\n');
 	}
 }
-
-/**
-**	@brief:	run the main corewar process 
-**
-**	@param env	:	global environment structure
-**
-**	exec_corewar runs the programs main process. The process continues
-**	as long as there are active cursors in the cursor stack and 
-**	env->cycles_to_die is higher or equal to zero. The main process
-**	consists of several parts:
-**
-**	->	check which flags are enabled in check_flags.
-**	->	process each cursor in exec_cursor_stack.
-**	->	if CYCLE_TO_DIE is 0, run a check each cycle. The check is described
-**		in check_corewar.c
-**
-**	once CYCLE_TO_DIE cycles have been processed, the current iteration ends
-**	and a check occurs in check_corewar. Afterwards, exec_corewar gets
-**	called recursively for the next iteration.
-**
-**	note: 	Over the course of the game, CYCLE_TO_DIE will continue to get
-**			smaller, which gives cursors less time to send a live signal. This means that,
-**			the longer the game continues, the harder it becomes for cursors to stay alive.
-**
-**	the last player to send a valid live signal wins the game.
-*/
 
 void			exec_corewar(t_env *env)
 {

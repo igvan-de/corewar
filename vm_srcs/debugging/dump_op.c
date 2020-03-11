@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/03 14:19:14 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/03 14:19:14 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/03 14:19:14 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:20:19 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,6 @@ static	void	dump_bytes(t_cursor *cursor, t_env *env, unsigned char bytes)
 	ft_putchar('\n');
 }
 
-/*
-**	dump_op prints a performed operation to stdout
-**	if the -v 16 flag is enabled.
-*/
-
 void			dump_op(t_cursor *cursor, t_env *env)
 {
 	unsigned char bytes;
@@ -76,14 +71,6 @@ void			dump_op(t_cursor *cursor, t_env *env)
 	dump_movement(cursor, bytes);
 	dump_bytes(cursor, env, bytes);
 }
-
-/*
-**	dump_op_encode is an alternative version of dump_op
-**	that is used with operations that have encoding bytes.
-**	encoding byte and op_code are passed manually, because the
-**	the cursor state might be overwritten by the execution of the
-**	the last operation.
-*/
 
 void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code)
 {
@@ -95,11 +82,6 @@ void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsign
 	dump_movement(cursor, bytes);
 	dump_bytes(cursor, env, bytes);
 }
-
-/*
-**	dump_op_invalid is an alternative version of dump_op that gets
-**	called when an operation was found to be invalid.
-*/
 
 void			dump_op_invalid(t_cursor *cursor, t_env *env, unsigned char bytes)
 {

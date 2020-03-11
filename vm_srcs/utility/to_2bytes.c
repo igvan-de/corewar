@@ -5,17 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 12:31:14 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/20 12:31:15 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 12:31:14 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:29:16 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	to_2bytes takes two bytes and returns them in their
-**	two byte representation in a short.
-*/
 
 short	to_2bytes(unsigned char one, unsigned char two)
 {

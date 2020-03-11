@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   dump_prog_code.c                                   :+:    :+:            */
+/*   dump_exec_code.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:16:03 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:16:04 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/19 18:16:03 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:19:34 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,6 @@ static	void	parse_instr(char *exec, unsigned *index, t_env *env)
 		*index += parse_encbyte(i + 2, exec, exec[i + 1], op_code) + 2;
 	ft_putchar('\n');
 }
-
-/*
-**	dump_prog_code takes a ptr to the champions execution code (exec) and
-**	prints its instructions to stdout.
-*/
 
 void			dump_exec_code(char *exec, unsigned int prog_size, t_env *env)
 {

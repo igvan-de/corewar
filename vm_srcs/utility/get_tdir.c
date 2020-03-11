@@ -5,16 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:38:42 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 16:38:43 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 16:38:42 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:28:03 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	read and return a T_DIR value from memory
-*/
 
 int	get_tdir(t_env *env, int position)
 {

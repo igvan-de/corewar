@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/04 13:04:54 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/04 13:04:55 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/04 13:04:54 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:10:58 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
 **	@brief:	find and return a players' name
 **
-**	@param env		:	global environment struct 
+**	@param env		:	global environment struct
 **	@param id		:	unique player id
 **	@return char*	:	player name
 **
@@ -39,16 +39,6 @@ static	char	*player_name(t_env *env, int id)
 	}
 	return ("NULL");
 }
-
-/*
-**	@brief:	print the winning player to stdout 
-**
-**	@param env		:	global environment struct
-**
-**	announce_winner gets called after the corewar main
-**	process is finished. It retrieves the id of the last
-**	player alive and prints a message, declaring the winner.
-*/
 
 void			announce_winner(t_env *env)
 {

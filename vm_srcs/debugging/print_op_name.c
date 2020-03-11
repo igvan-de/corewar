@@ -5,17 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 13:24:02 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 13:24:05 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/18 13:24:02 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:21:12 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	prints the name of operation currently stored in
-**	the op_table, based on the given op_code.
-*/
 
 void	print_op_name(int op_code, t_env *env)
 {

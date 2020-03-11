@@ -5,21 +5,21 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/21 13:15:19 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/21 13:15:20 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/21 13:15:19 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:07:03 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	@brief:	initialize the players' execution code as a char * 
+**	@brief:	initialize the players' execution code as a char *
 **
 **	@param player		:	ptr to t_player struct
 **	@param size 		:	execution code size
 **
 **	init_exec_code allocates memory for the exec_code variable
-**	of the new t_player struct.	
+**	of the new t_player struct.
 */
 
 static	void	init_exec_code(t_player **player, size_t size)
@@ -30,7 +30,7 @@ static	void	init_exec_code(t_player **player, size_t size)
 }
 
 /**
-**	@brief:	initialize a new header_t struct 
+**	@brief:	initialize a new header_t struct
 **
 **	@param header		:	ptr to the new header
 **
@@ -94,21 +94,6 @@ static	void	store_player(t_player **new_player, t_env *env)
 		ft_lstaddend(&env->players, player_elem);
 	env->total_players++;
 }
-
-/*
-**	@brief: take a program parameter and store it as a corewar player 
-**
-**	@param arg		: corewar program parameter
-**	@param env		: global environment struct
-**
-**	add_player takes a ptr to a program parameter (arg) and parses
-**	this parameter as a player. A new t_player struct is created,
-**	with the header stored in player->header and the execution_code
-**	in player->exec_code. The player is also given a unique number.
-**	If the given argument is not a valid player, the function returns error.
-**	The new player is stored within the players list in the main env struct at
-**	env->players.
-*/
 
 void			add_player(char *arg, t_env *env)
 {

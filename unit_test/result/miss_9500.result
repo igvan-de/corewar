@@ -1,0 +1,5 @@
+	lines are not equal!
+Contestant 1, "mise_a_jour_windows95", has won !
+ADV 3 (0x001d -> 0x0020) 0c 01 6a 
+
+	output is different lengths --> test_failed

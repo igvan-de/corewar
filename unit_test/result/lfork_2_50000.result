@@ -1,0 +1,5 @@
+	lines are not equal!
+Contestant 1, "terminator", has won !
+ADV 7 (0x0172 -> 0x0179) 0b 68 04 01 f4 00 00 
+
+	output is different lengths --> test_failed

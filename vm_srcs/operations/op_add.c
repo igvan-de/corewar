@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 09:57:08 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 09:57:08 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 09:57:08 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:19:25 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void			exec_add(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_3 - 1] = arg_1 + arg_2;
 	set_carry(cursor, arg_1 + arg_2);
 }
-
-/*
-**	op_add executes the operation add at the current
-**	position of the cursor. It receives 3 T_REGS,
-**	and stores the sum of the values in reg 1 and 2
-**	in reg 3.
-*/
 
 void			op_add(t_cursor *cursor, t_env *env)
 {

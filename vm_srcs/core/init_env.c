@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 08:11:19 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/25 08:11:20 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/25 08:11:19 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:07:23 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static	void	init_datamap(t_datamap *map)
 }
 
 /*
-**	@brief:	initialize the memory and player_pos maps 
+**	@brief:	initialize the memory and player_pos maps
 **
 **	@param env	: global environment struct
 **
 **	init_maps allocates the main memory area where
 **	the program's main process will take place. A second area
-**	is allocated to keep track of player positions. 
+**	is allocated to keep track of player positions.
 */
 
 static	void	init_maps(t_env **env)
@@ -45,16 +45,6 @@ static	void	init_maps(t_env **env)
 		error_mem();
 	init_datamap((*env)->datamap);
 }
-
-/*
-**	@brief:	initialize the global environment struct 
-**
-**	@param env	: global environment struct
-**
-**	the env struct is used to store data pointers and variables
-**	detailing game state. in init_env this structure is allocated
-**	and initialized. 
-*/
 
 void			init_env(t_env **env)
 {

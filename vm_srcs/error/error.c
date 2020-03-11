@@ -5,28 +5,18 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/21 12:29:55 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/21 12:29:55 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/21 12:29:55 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:22:10 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	error_mem is the default error handler for memory allocation
-**	errors.
-*/
 
 void	error_mem(void)
 {
 	ft_putendl("	memory_error: could not allocate memory.");
 	exit(0);
 }
-
-/*
-**	error_input is the default error handler for errors related
-**	to input parsing.
-*/
 
 void	error_input(int err_code)
 {
@@ -55,11 +45,6 @@ void	error_input(int err_code)
 	exit(0);
 }
 
-/*
-**	error_init is the default error handler for errors related
-**	to setting up the initial game state.
-*/
-
 void	error_init(int err_code)
 {
 	if (err_code == 1)
@@ -68,11 +53,6 @@ void	error_init(int err_code)
 		ft_putendl("	init_error 2: could not find cursor position.");
 	exit(0);
 }
-
-/*
-**	error_exec is the default error handler for the corewar program
-**	execution cycle.
-*/
 
 void	error_exec(int err_code)
 {

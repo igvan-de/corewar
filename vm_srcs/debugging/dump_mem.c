@@ -5,17 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/21 13:35:42 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/21 13:35:43 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/21 13:35:42 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:19:47 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	dump_mem prints the current state of the memory map
-**	to stdout.
-*/
 
 void				dump_mem(t_env *env)
 {

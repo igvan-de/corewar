@@ -5,15 +5,15 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/04 17:48:37 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/04 17:48:38 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/04 17:48:37 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:08:21 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	@brief:	validate flag byte 
+**	@brief:	validate flag byte
 **
 **	@param env	: global environment struct
 **
@@ -40,7 +40,7 @@ static	void	valid_flags(t_env *env)
 /*
 **	@brief: retrieve the verbosity level
 **
-**	@param curr_arg		: 	number of current parameter 
+**	@param curr_arg		: 	number of current parameter
 **	@param arg_nb		:	total number of parameters
 **	@param argv			:	parameters
 **	@param env			:	global environment struct
@@ -75,7 +75,7 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 **
 **	@param curr_arg	:	the number of the current parameter
 **	@param arg_nb	:	the total number of parameters
-**	@param argv		:	parameters 
+**	@param argv		:	parameters
 **	@param env		:	global environment struct
 **
 **	after the '-dump' flag is encountered, parse_args calls
@@ -94,31 +94,6 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 		error_input(8);
 	env->dump_cycle = (unsigned)nbr_cycle;
 }
-
-/**
-**	@brief:	parse and interpret program parameters 
-**
-**	@param arg_nb	:	number of parameters 
-**	@param argv		:	parameters 
-**	@param env		:	global environment struct
-** 
-**	parse_args iterates through the parameters passed to the program
-**	and performs action based on the type of the parameter.
-**
-**	->	if the parameter is a flag, the related bit in the flag byte
-**		is turned on. for the '-dump' and '-v' flag, the parameter
-**		directly after the flag is saved as either the dump cycle
-**		or the verbosity level.
-**
-**	->	otherwise, the parameter is assumed to be a player file
-**		and is processed with add_player.
-**
-**	->	if the number of players is higher than MAX_PLAYERS or
-**		if there are no players, the program exits with error.
-**
-**	lastly, valid_flags gets called to make sure there are
-**	contradicting flags turned on.
-*/
 
 void			parse_args(int arg_nb, char **argv, t_env *env)
 {

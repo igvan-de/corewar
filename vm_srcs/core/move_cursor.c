@@ -5,18 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/26 16:25:33 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/26 16:25:33 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/26 16:25:33 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:12:31 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	move_cursor receives a cursor and moves the position
-**	to the next operation. If the -v 16 flag is enabled,
-**	the operation details are printed to stdout.
-*/
 
 void	move_cursor(t_cursor *c, t_env *env)
 {
@@ -27,11 +21,6 @@ void	move_cursor(t_cursor *c, t_env *env)
 	env->datamap[c->position].cursor = 1;
 	c->op_code = 0;
 }
-
-/*
-**	move_cursor_encode is an alternative version of move_cursor
-**	that gets called in operations that have a valid encoding byte.
-*/
 
 void	move_cursor_encode(t_cursor *c, t_env *env, BYTE encode, BYTE op_code)
 {

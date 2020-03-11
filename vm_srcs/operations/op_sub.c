@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 11:36:10 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 11:36:11 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 11:36:10 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:21:44 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ void			exec_sub(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_3 - 1] = arg_1 - arg_2;
 	set_carry(cursor, arg_1 - arg_2);
 }
-
-/*
-**	op_sub executes the instruction op_sub at the
-**	current position of the cursor.
-*/
 
 void			op_sub(t_cursor *cursor, t_env *env)
 {

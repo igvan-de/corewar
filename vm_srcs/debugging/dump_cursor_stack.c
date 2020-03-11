@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 11:10:32 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/25 11:10:33 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/25 11:10:32 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:19:11 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,6 @@ static	void	dump_cursor(t_cursor *cursor)
 		reg[6], reg[7], reg[8], reg[9], reg[10], reg[11],
 		reg[12], reg[13], reg[14], reg[15]);
 }
-
-/*
-**	dump_cursor_stack receives a ptr to the cursor_stack
-**	and prints the variables of each cursor to stdout.
-*/
 
 void			dump_cursor_stack(t_cursor *cursor_stack)
 {

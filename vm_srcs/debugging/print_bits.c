@@ -5,16 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:03:45 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:03:46 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/19 18:03:45 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:20:53 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	print_bits prints octet in binary to stdout.
-*/
 
 void	print_bits(unsigned char octet)
 {

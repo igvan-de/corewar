@@ -5,18 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 08:37:46 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/27 08:37:47 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 08:37:46 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:28:45 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	has_encode receives an op_code and checks if that operation
-**	has an encoding byte. If it does, the function returns 1,
-**	otherwise it returns 0.
-*/
 
 int	has_encode(unsigned char op_code)
 {

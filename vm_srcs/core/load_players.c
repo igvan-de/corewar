@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/21 14:13:19 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/21 14:13:20 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/21 14:13:19 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:08:12 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,6 @@ static	t_player	*get_player(int player_nbr, t_env *env)
 	error_init(1);
 	return (NULL);
 }
-
-/*
-**	load_player takes a ptr to the main environment struct and
-**	a player number, and loads the player with that number into
-**	the allocated memory area at env->map. The player number is also
-**	set in env->player_pos at the loaded memory area to keep track of player
-**	positions.
-*/
 
 static	void		load_player(t_env *env, int player_nb)
 {

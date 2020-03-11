@@ -5,19 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 17:50:49 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 17:50:50 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/19 17:50:49 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:28:13 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	T_DIR can have a different size in bytes depending
-**	on the operation that uses it. By calling get_tdir_size with the
-**	op_code, this function returns the correct T_DIR size in bytes.
-**	return value is either 2 or 4 if correct, 0 if error.
-*/
 
 int	get_tdir_size(int op_code)
 {

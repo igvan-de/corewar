@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/04 08:46:13 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/04 08:46:13 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/04 08:46:13 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:19:07 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,6 @@ unsigned char validate_jump(unsigned char op_code, int type, unsigned char bytes
 		return (4);
 	return (bytes);
 }
-
-/*
-**	invalid_op gets called when the cursor found a valid op_code
-**	but its parameters were invalid. In this case, the cursor
-**	is moved to the next operation. However, the cursor cannot
-**	move more bytes than the max amount of bytes of the paremeters
-**	if the op_code were valid.
-*/
 
 void					invalid_op(t_cursor *cursor, t_env *env, int type)
 {

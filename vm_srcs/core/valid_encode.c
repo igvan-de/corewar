@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   validate_encode.c                                  :+:    :+:            */
+/*   valid_encode.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 13:28:49 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/27 13:28:50 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 13:28:49 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:13:09 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ static	int	validate_arg(unsigned char arg, int bit1, int bit2)
 		return (0);
 	return (1);
 }
-
-/*
-**	validate_encode receives the encode byte of an operation and
-**	checks if that encode byte is valid. returns 1 if valid and
-**	returns 0 if the encode byte is invalid.
-*/
 
 int			valid_encode(BYTE op_code, BYTE encode, t_env *env)
 {

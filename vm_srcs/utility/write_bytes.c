@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/03 07:38:51 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/03 07:38:52 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/03 07:38:51 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:22:37 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,6 @@ char	get_byte(int value, int index)
 	error_exec(2);
 	return (-1);
 }
-
-/*
-**	write_bytes receives a value and writes that value onto the
-**	memory map at the position calculated by:
-**
-**	modi(cursor->position + rel_pos);
-*/
 
 void	write_bytes(int target_val, t_env *env, t_cursor *c, int rel_pos)
 {

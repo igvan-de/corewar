@@ -5,17 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:49:48 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 16:49:48 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 16:49:48 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:22:56 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	valid_regs checks each argument and if it is a T_REG,
-**	checks if the value contained is a valid register number.
-*/
 
 int	valid_regs(t_cursor *c, t_env *env, unsigned char encode)
 {

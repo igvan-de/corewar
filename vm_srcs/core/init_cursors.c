@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 10:03:18 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/25 10:03:19 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/25 10:03:18 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:07:13 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 /*
 **	@brief: get the starting position of the cursor
 **
-**	@param id				:	unique cursor/player id 
-**	@param env				:	global environment struct 
+**	@param id				:	unique cursor/player id
+**	@param env				:	global environment struct
 **	@return unsigned int	:	starting position
 **
 **
@@ -44,9 +44,9 @@ static	unsigned	int		get_position(unsigned id, t_env *env)
 }
 
 /*
-**	@brief:	create a new cursor 
+**	@brief:	create a new cursor
 **
-**	@param env			: 	global environment struct 
+**	@param env			: 	global environment struct
 **	@return t_cursor*	:	new cursor
 **
 **	new_cursor is used in init_cursors to create a new
@@ -75,17 +75,6 @@ static	t_cursor			*new_cursor(t_env *env)
 	new->wait_cycles = 0;
 	return (new);
 }
-
-/*
-**	@brief:	initialize the cursor stack 
-**
-**	@param env	:	global environment struct 
-**
-**	init_cursors sets up the initial cursor_stack variable of env, at
-**	the beginning of the program.
-**	For each active player, a new cursor is created with a position
-**	pointing to the first byte of the execution code.
-*/
 
 void						init_cursors(t_env *env)
 {

@@ -5,16 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 14:57:12 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/20 14:57:12 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 14:57:12 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:19:41 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	print header to stdout
-*/
 
 void	dump_header(header_t header)
 {

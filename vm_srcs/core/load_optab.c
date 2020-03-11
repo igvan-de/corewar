@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   op.c                                               :+:    :+:            */
+/*   load_optab.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 09:01:48 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 09:01:50 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/18 09:01:48 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:07:28 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	@brief: retrieve operation reference table 
-**
-**	@param env	: global environment struct
-**
-**	load_optab receives a ptr to the global env struct and
-**	loads the operation reference table into its op_tab variable
-*/
 
 void			load_optab(t_env *env)
 {

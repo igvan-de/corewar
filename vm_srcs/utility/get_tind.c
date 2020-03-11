@@ -5,16 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:43:56 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 16:43:56 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 16:43:56 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:28:20 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	read and return a T_IND value from memory
-*/
 
 short	get_tind(t_env *env, int position)
 {

@@ -5,17 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 08:47:58 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/27 08:48:00 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 08:47:58 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:28:29 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	get_total_arg_size receives an encoding byte, and returns
-**	the combined size of all arguments noted in the encoding byte.
-*/
 
 unsigned char	get_total_arg_size(unsigned char op_code, unsigned char encode)
 {

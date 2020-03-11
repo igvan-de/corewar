@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:23:12 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 16:23:12 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 16:23:12 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:21:20 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ static	void	exec_or(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_3 - 1] = arg_1 | arg_2;
 	set_carry(cursor, arg_1 | arg_2);
 }
-
-/*
-**	op_or executes the operation op_or at the
-**	current position of the cursor.
-*/
 
 void			op_or(t_cursor *cursor, t_env *env)
 {

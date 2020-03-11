@@ -5,18 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/10 14:38:37 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/10 14:38:38 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/10 14:38:37 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:28:52 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	init_registries initialized the 16 registries of
-**	a new cursor. Each cursor receives REG_NUMBER registries
-**	of REG_SIZE. (16 registries of 4 bytes);
-*/
 
 int		*init_registries(void)
 {

@@ -5,16 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 14:08:43 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/20 14:08:43 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/20 14:08:43 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:29:08 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	reverse the endianness of a 4-byte number
-*/
 
 unsigned	int	rev_endian(unsigned int oct)
 {

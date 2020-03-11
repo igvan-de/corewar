@@ -5,16 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/26 08:06:29 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/26 08:06:30 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/26 08:06:29 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 17:19:24 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	dump_env_state prints the variables of env to stdout.
-*/
 
 void	dump_env_state(t_env *env)
 {

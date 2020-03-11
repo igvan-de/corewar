@@ -5,18 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 08:28:28 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/27 08:28:29 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 08:28:28 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:27:47 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	get_arg receives 2 bits and interprets them as a bitpair
-**	of an encoding byte. It then returns the size related
-**	to the argument type specified by the bitpair.
-*/
 
 unsigned char	get_arg_size(int op_code, int one, int two)
 {

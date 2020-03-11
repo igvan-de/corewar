@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/26 11:04:59 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/26 11:04:59 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/26 11:04:59 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:21:36 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,6 @@ void			exec_sti(t_cursor *cursor, t_env *env, unsigned char encode)
 	addr = (arg_2 + arg_3) % IDX_MOD;
 	write_bytes(arg_1, env, cursor, addr);
 }
-
-/*
-**	op_sti executes the operation sti at the current position
-**	of the cursor passed as parameter. It receives a register number
-**	as first argument, and writes the value stored in that register
-**	to the relative address calculated as a result of:
-**
-**	cursor->position + (SECOND_ARGUMENT + THIRD_ARGUMENT % IDX_MOD);
-**
-**	if the encoding byte or the register numbers are invalid, the function
-**	moves the cursor to the next operation by calling move_cursor.
-*/
 
 void			op_sti(t_cursor *cursor, t_env *env)
 {

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/26 16:18:53 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/26 16:18:54 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/26 16:18:53 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:19:58 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,6 @@ static	void	exec_ld(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_2 - 1] = arg_1;
 	set_carry(cursor, arg_1);
 }
-
-/*
-**	op_ld executes the operation ld at the current position of the cursor.
-**	if the first argument is a T_DIR, the value stored within this T_DIR
-**	is written into the cursor registry at the number stored as the second
-**	argument T_REG.
-**
-**	Otherwise, if the first argument is a T_IND, it represents a relative address.
-**	It then reads the value stored at the address calculated by:
-**
-**	cursor->position + (FIRST_ARGUMENT % IDX_MOD);
-**
-**	and writes this value into cursor registry with the number stored as the second
-**	argument T_REG.
-**
-**	If the value written is 0, the carry flag in the cursor is set to 1. Otherwise,
-**	if the value written is !0, the carry flag is set to 0.
-*/
 
 void			op_ld(t_cursor *cursor, t_env *env)
 {

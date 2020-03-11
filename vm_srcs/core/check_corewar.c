@@ -5,15 +5,15 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 11:59:22 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/28 11:59:23 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/28 11:59:22 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:11:12 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /**
-**	@brief: print current CYCLES_TO_DIE to stdout 
+**	@brief: print current CYCLES_TO_DIE to stdout
 **
 **	@param cycles_to_die : current value of CYCLES_TO_DIE
 **
@@ -29,16 +29,16 @@ static	void	dump_ctd(int cycles_to_die)
 }
 
 /**
-**	@brief:	determine if a cursor is dead 
+**	@brief:	determine if a cursor is dead
 **
-**	@param cursor	: 	target cursor 
+**	@param cursor	: 	target cursor
 **	@param env		: 	global environment structure
 **	@return int		:	true (1) or false (0)
 **
 **
 **	is_dead checks if a cursor is dead or alive.
 **	A cursor is considered dead if:
-**	
+**
 **	-> 	it performed operation live more than CYCLES_TO_DIE
 **
 **	->	it performed its last live operation more than CYCLES_TO_DIE cycles
@@ -55,9 +55,9 @@ static	int		is_dead(t_cursor *cursor, t_env *env)
 }
 
 /**
-**	@brief:	free a cursor and remove it from the cursor stack 
+**	@brief:	free a cursor and remove it from the cursor stack
 **
-**	@param cursor			:	cursor to be removed 
+**	@param cursor			:	cursor to be removed
 **	@param cursor_stack 	:	cursor stack
 **
 **	delete_cursor frees the cursor passed as paremeter and
@@ -78,9 +78,9 @@ static	void	delete_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 }
 
 /*
-**	@brief:	remove dead cursors from the cursor stack 
+**	@brief:	remove dead cursors from the cursor stack
 **
-**	@param env	:	global environment struct 
+**	@param env	:	global environment struct
 **
 **	parse_cursor_stack iterates through the cursor_stack
 **	and, if a cursor is dead, it is freed and removed from the stack.
@@ -107,25 +107,6 @@ static	void	parse_cursor_stack(t_env *env)
 		iter = iter->next;
 	}
 }
-
-/**
-**	@brief:	perform a periodic 'check' during the main corewar process. 
-**
-**	@param env	:	gloval environment struct
-**
-**	check_corewar gets called every CYCLE_TO_DIE cycles to evaluate the
-**	state of the game at the current cycle. Based on the game state, several
-**	things can happen during the check:
-**
-**	->	for each cursor in the cursor stack, if it is dead, it is removed from the stack.
-**
-**	->	if during the last CYCLE_TO_DIE cycles, live was performed more than NBR_LIVES,
-**		CYCLE_TO_DIE is reduced by CYCLE_DELTA.
-**
-**	->	if during the last CYCLE_TO_DIE cycles, live was performed less than NBR_LIVES,
-**		compare the env->checks_counter to MAX_CHECKS. if more than MAX_CHECKS were performed,
-**		CYCLE_TO_DIE is reduced by CYCLE_DELTA.
-*/
 
 void			check_corewar(t_env *env)
 {

@@ -5,15 +5,15 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/03 12:19:30 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/03 12:19:30 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/03 12:19:30 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:12:13 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
-**	@brief:	print player intro message 
+**	@brief:	print player intro message
 **
 **	@param player : target player
 */
@@ -30,15 +30,6 @@ static	void	intro_player(t_player *player)
 	ft_putstr(player->header->comment);
 	ft_putendl("\") !");
 }
-
-/*
-**	@brief:	introduce the players on stdout 
-**
-**	@param env	: global environment struct
-**
-**	for each player, a message is printed to stdout,
-**	with the name, size and number of the player. 
-*/
 
 void			intro_players(t_env *env)
 {

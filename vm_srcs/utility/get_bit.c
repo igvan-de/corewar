@@ -5,17 +5,12 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:00:27 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/19 18:00:27 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/19 18:00:27 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:23:06 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
-
-/*
-**	get_bit returns the bit (0 or 1) at the index within octet.
-**	If the index is not within byte-range, the function returns -1.
-*/
 
 int	get_bit(unsigned char octet, int index)
 {

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:30:39 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/05 16:30:40 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/03/05 16:30:39 by jdunnink       #+#    #+#                */
+/*   Updated: 2020/03/11 16:21:52 by ygroenev      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ static	void	exec_xor(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_3 - 1] = arg_1 ^ arg_2;
 	set_carry(cursor, arg_1 ^ arg_2);
 }
-
-/*
-**	op_xor executes the operation op_xor at the current
-**	position of the cursor.
-*/
 
 void			op_xor(t_cursor *cursor, t_env *env)
 {
