@@ -20,7 +20,7 @@ t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 	if(!new)
 		error_mem();
 	new->carry = src->carry;
-	new->op_code = 0;
+	new->op_code = src->op_code;
 	new->id = env->total_cursors;
 	new->jump = src->jump;
 	new->last_live = src->last_live;
@@ -29,6 +29,6 @@ t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 	new->prev = NULL;
 	new->registries = init_registries();
 	cpy_reg_vals(new, src);
-	new->wait_cycles = 0;
+	new->wait_cycles = src->wait_cycles;
 	return (new);
 }
