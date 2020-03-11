@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 09:59:56 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/09 19:37:34 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/11 10:01:28 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int till_power(char letter, int power)
 }
 
 /*
-** @brief
+** @brief reverse the bytes by four
 **
 ** @param oct = octal receiving
 ** @return unsigned	int

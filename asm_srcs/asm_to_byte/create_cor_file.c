@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/10 15:56:05 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/11 10:02:19 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 
 /*
-** @brief Get the name object
+** @brief gets the right file name
 **
 ** @param argv = is the argument needed to get the name
 ** @return char* = returns the correct .cor file name
@@ -44,7 +44,7 @@ static char *get_name(char *argv)
 }
 
 /*
-** @brief Create a cor file object
+** @brief creates cor file
 **
 ** @param argv = is the string of the last argument
 ** @param list = is structure with all needed data in it

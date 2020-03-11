@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 17:41:05 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/10 16:55:24 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/11 10:02:11 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 
 /*
-** @brief magic header object
+** @brief writes magic header into filediscriptor
 **
 ** @param fd = is filediscriptor to place magic header in
 ** @param list = is structure with all needed data in it
@@ -32,7 +32,7 @@ static void	write_magic_header(int fd)
 }
 
 /*
-** @brief
+** @brief writes null into filediscriptor
 **
 ** @param fd = filediscripter to wright nulls in
 ** @param index = the size of filediscriptor already filled
@@ -51,7 +51,7 @@ static void	write_null(int fd, int index, int limit)
 }
 
 /*
-** @brief
+** @brief writes string into filediscriptor
 **
 ** @param fd = filediscripter to write string in
 ** @param string = is string wanted to be written in filediscriptor
@@ -79,7 +79,7 @@ static void	write_string(int fd, char *string, int limit)
 
 
 /*
-** @brief
+** @brief writes all needed data into filediscriptor
 **
 ** @param fd = filediscripter to write string in
 ** @param list = struct containing all needed data

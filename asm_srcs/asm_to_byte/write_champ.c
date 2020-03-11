@@ -6,14 +6,14 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/10 16:48:24 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/11 10:02:51 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
-** @brief
+** @brief writes size of executable champion commands into filediscriptor
 **
 ** @param fd = filediscripter to write string in
 ** @param champ_size = size of the champion
@@ -35,7 +35,7 @@ void	write_champ_size(int fd, int champ_size)
 }
 
 /*
-** @brief
+** @brief writes executable champion commands in byte_code into filediscriptor
 **
 ** @param fd
 ** @param list
