@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/11 13:55:42 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/11 16:28:18 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ libft/libft.a: FORCE
 ft_printf/libftprintf.a: FORCE
 	@make -C ft_printf/
 
-unit_test: FORCE
+unit_test:
 	@make -C unit_test/
 
 clean:
