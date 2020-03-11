@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 17:41:05 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/11 10:02:11 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/11 11:56:07 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,5 @@ void	write_cor_file(int fd, t_func_list *list)
 	write_champ_size(fd, champ_size); //needs to be list->info->byte_index + list->info->byte_size
 	write_string(fd, list->comment, COMMENT_LENGTH);
 	write_null(fd, 0, 4);
-	write_champ(fd, list);
+	// write_champ(fd, list);
 }

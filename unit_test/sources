@@ -1,1 +1,1 @@
-TESTSRCS = unit_test/validity_check_test.c
+TESTSRCS = create_cor_test.c

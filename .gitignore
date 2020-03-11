@@ -38,6 +38,7 @@
 *.hex
 asm
 vim
+unit_test_corewar
 
 # Debug files
 *.dSYM/
