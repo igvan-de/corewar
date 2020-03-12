@@ -7,6 +7,7 @@
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
 #    Updated: 2020/03/11 14:11:25 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/02/18 11:51:06 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +39,7 @@ all: $(NAME)
 %.o: %.c includes/asm.h
 	@gcc $< -c -o $@ $(CFLAGS) $(ASM_H) $(LIBFT_H) $(PRTF_H)
 	@echo "$(PRINT_PLUS) $@"
+
 
 $(NAME): $(MAIN) $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
 	@gcc $(CFLAGS) $(MAIN) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
