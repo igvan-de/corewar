@@ -91,6 +91,7 @@ void						init_cursors(t_env *env)
 		new = new_cursor(env, curr->nbr);
 		push_cursor(new, &env->cursor_stack);
 		new = NULL;
+		iter = iter->next;
 		i++;
 	}
 }

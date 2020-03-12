@@ -93,7 +93,10 @@ static	void	store_player(t_player **new_player, t_env *env)
 	else
 		ft_lstaddend(&env->players, player_elem);
 	env->total_players++;
-	env->player_nbr = env->total_players;
+	if (env->player_nbr == env->total_players)
+		env->player_nbr = env->total_players + 1;
+	else
+		env->player_nbr = env->total_players;
 }
 
 void			add_player(char *arg, t_env *env)
