@@ -1,22 +1,22 @@
 language: c
 os: osx
 env:
-	global:
+    global:
         - CODECOV_TOKEN="fb5641ce-5938-4a57-8265-5c08a1a0d4f7"
-		- HOMEBREW_NO_AUTO_UPDATE=1
-		- HOMEBREW_NO_INSTALL_CLEANUP=1
+        - HOMEBREW_NO_AUTO_UPDATE=1
+        - HOMEBREW_NO_INSTALL_CLEANUP=1
 
 branches:
-	only:
-		master
+  only:
+    master
 
 install:
-	- brew install snaipe/soft/criterion
-	- make test_asm
+  - brew install snaipe/soft/criterion
+  - make test_asm
 
 script:
-	- make test_corewar
-	- ./unit_test_asm --verbose
+  - make test_corewar
+  - ./unit_test_corewar --verbose
 
 notifications:
-	slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
+  slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
