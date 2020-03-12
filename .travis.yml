@@ -15,7 +15,7 @@ install:
   - make unit_test
 
 script:
-  - unit_test_corewar --verbose
+  - ./unit_test_corewar --verbose
 
 notifications:
   slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
