@@ -4,6 +4,22 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
+FILE=./output
+if test -f "$FILE"; then
+	echo "$FILE exists"
+else
+	echo "$FILE does not exist --> creating.."
+	mkdir output
+fi
+
+FILE=./result
+if test -f "$FILE"; then
+	echo "$FILE exists"
+else
+	echo "$FILE does not exist --> creating.."
+	mkdir result
+fi
+
 FILE=../corewar
 if test -f "$FILE"; then
 	echo "$FILE exists"
