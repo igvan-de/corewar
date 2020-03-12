@@ -95,10 +95,27 @@ static	void	get_dump_cycle(int curr_arg, int arg_nb, char **argv, t_env *env)
 	env->dump_cycle = (unsigned)nbr_cycle;
 }
 
+/*
+
+static	int	is_flag(char *param)
+{
+	if (ft_strncmp(param, "-", 1) == 1)
+		return (0);
+	else if (ft_strcmp(param, "-visual") == 0)
+		return (1);
+	else if (ft_strcmp(param, "-dump") == 0)
+		return (1);
+	else if (ft_strcmp(param, "-v") == 0)
+		return (1);
+}
+
+*/
+
 void			parse_args(int arg_nb, char **argv, t_env *env)
 {
 	int		i;
 	char	*player;
+//	int		player_nbr;
 
 	i = 1;
 	while (i < arg_nb)

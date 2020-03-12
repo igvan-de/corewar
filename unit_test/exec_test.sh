@@ -69,9 +69,11 @@ do
 		rm output/$TEST.real
 		echo -e "${green}$TEST test passed${reset}"
 	else
+		exit -1;
     	echo "${red}$TEST faaaaaaaaaaaaill${reset}"
 	fi
-
 done
+exit 0;
+
 
 
