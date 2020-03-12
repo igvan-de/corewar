@@ -673,4 +673,6 @@ void					init_ncurses(t_env *env);
 */
 void					print_map(t_env *env);
 
+void					process_flag(char **argv, int *i, int arg_nb, t_env *env);
+
 #endif
