@@ -16,7 +16,7 @@ install:
 
 script:
   - make test_corewar
-  - ./test_asm --verbose
+  - ./unit_test_asm --verbose
 
 notifications:
   slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
