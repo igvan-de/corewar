@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/16 09:11:59 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/11 13:57:28 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/12 11:17:07 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ COLOR_DEFAULT = $(shell printf "\e[39m")
 PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
+	@mv $(NAME) ../$(NAME)
 
 %.o: %.c
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES)
