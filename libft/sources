@@ -54,7 +54,6 @@ ft_strsub.c \
 ft_strtrim.c \
 ft_tolower.c \
 ft_toupper.c \
-ft_labs.c \
 ft_lstnew.c \
 ft_lstdelone.c \
 ft_lstadd.c \

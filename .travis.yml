@@ -1,6 +1,5 @@
 language: c
 os: osx
-
 env:
     global:
         - CODECOV_TOKEN="fb5641ce-5938-4a57-8265-5c08a1a0d4f7"
@@ -13,10 +12,11 @@ branches:
 
 install:
 	- brew install snaipe/soft/criterion
-	- make test
 
 script:
-	- ./unit_test/exec_test.sh
+	- make test_corewar
+  - make test_asm
+  - ./unit_test_asm --verbose
 
 notifications:
   slack: 42born2code:K3KW273c79IbfeMN74un4Hb6

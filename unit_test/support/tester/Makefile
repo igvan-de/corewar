@@ -21,10 +21,10 @@ OBJDIR = objs
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(addprefix $(OBJDIR)/, $(OBJ))
 
-HEADER = -I includes/ -I libft/includes/
+HEADER = -I ../../../includes/
 cc = gcc
 CFLAGS = -Wall -Wextra -Werror
-LIB = -L libft/ -lft
+LIB = ../../../libft/libft.a
 
 .PHONY: all clean fclean re
 .SUFFIXES: .c .o
@@ -32,21 +32,20 @@ LIB = -L libft/ -lft
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C libft/ 
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(HEADER) $(LIB)
+	@$(CC) -o $(NAME) $(CFLAGS) $(OBJS) $(HEADER) $(LIB)
 
 $(OBJS): $(SRCS)
-	/bin/mkdir -p $(OBJDIR)
-	$(CC) -c $(CFLAGS) $(SRCS) $(HEADER)
-	/bin/mv $(OBJ) $(OBJDIR)/
+	@/bin/mkdir -p $(OBJDIR)
+	@$(CC) -c $(CFLAGS) $(SRCS) $(HEADER)
+	@/bin/mv $(OBJ) $(OBJDIR)/
 
 clean:
-	/bin/rm -Rf $(OBJDIR)
-	/bin/rm -Rf *~ *#
-	make -C libft/ clean
+	@/bin/rm -Rf $(OBJDIR)
+	@/bin/rm -Rf *~ *#
 
 fclean: clean
-	make -C libft/ fclean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
-re: fclean all
+re: 
+	@make fclean
+	@make all

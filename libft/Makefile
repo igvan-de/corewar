@@ -18,14 +18,14 @@ COLOR_DEFAULT = $(shell printf "\e[39m")
 NAME = libft.a
 OBJ := $(SRCS:%.c=%.o)
 INCLUDE = -I .././includes
-CFLAGS = -Wall -Werror -Wextra $(INCLUDE)
+FLAGS = -Wall -Werror -Wextra $(INCLUDE)
 NORM = norminette $(SRCS) $(HEADER) | grep -e "Error" -e "Warning" -B 1
 PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
 
 %.o: %.c .././includes/libft.h
-	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDE)
+	@gcc $< -c -o $@ $(FLAGS) $(INCLUDE)
 	@echo "$(PRINT_PLUS) $@"
 
 $(NAME): $(OBJ)
@@ -37,7 +37,16 @@ clean:
 fclean: clean
 	@/bin/rm -f $(NAME)
 
+author:
+	@rm -f author
+	@touch author
+	@echo | env LOGNAME >>author
+	@echo "Authorfile is made"
+
 re: fclean all
+
+print:
+	@echo "$(OBJ)"
 
 norm:
 	@echo "===============NORMINETTE==============="

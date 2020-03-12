@@ -11,6 +11,7 @@
 *.ilk
 *.map
 *.exp
+*.cor
 
 # Precompiled Headers
 *.gch
@@ -35,6 +36,9 @@
 *.i*86
 *.x86_64
 *.hex
+asm
+vim
+unit_test_corewar
 
 # Debug files
 *.dSYM/

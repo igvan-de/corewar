@@ -7,6 +7,7 @@ reset=`tput sgr0`
 FILE=../corewar
 if test -f "$FILE"; then
 	echo "$FILE exists"
+	make -C ..
 else
 	echo "$FILE does not exist --> creating.."
 	make re -C ..
