@@ -89,15 +89,19 @@ static	void	delete_cursor(t_cursor *cursor, t_cursor **cursor_stack)
 static	void	parse_cursor_stack(t_env *env)
 {
 	t_cursor *iter;
+	t_cursor *prev;
 
 	iter = env->cursor_stack;
 	while (iter)
 	{
 		if (is_dead(iter, env) == 1 || env->cycles_to_die <= 0)
 		{
+			prev = iter->prev;
 			env->datamap[iter->position].cursor = 0;
 			delete_cursor(iter, &env->cursor_stack);
-			iter = env->cursor_stack;
+			iter = prev;
+			if (iter == NULL)
+				iter = env->cursor_stack;
 			env->total_cursors--;
 			if (iter == NULL)
 				return ;
