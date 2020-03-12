@@ -69,6 +69,8 @@ static	void		load_player(t_env *env, int player_nb)
 		i++;
 		load_index++;
 	}
+	free(curr_player->exec_code);
+	curr_player->exec_code = NULL;
 }
 
 /*
