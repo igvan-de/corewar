@@ -70,25 +70,43 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 	env->verbosity = (unsigned)verbosity;
 }
 
-static	void	get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
+static	int	dup_nbr(int nbr, t_list *players)
+{
+	t_list		*iter;
+	t_player 	*curr;
+
+	iter = players;
+	while (iter)
+	{
+		curr = iter->content;
+		if (curr->nbr == nbr)
+			return (1);
+		iter = iter->next;
+	}
+	return (0);
+}
+
+static	int	get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 {
 	long long player_nbr;
 
 	if (index >= arg_nb)
-		return ;
+		return (0);
 	player_nbr = ft_atoilong(argv[index]);
 	if (player_nbr < -2147483648 || 2147483648 < player_nbr)
-		return ;
+		return (0);
+	if (player_nbr == 0)
+		return (0);
+	if (dup_nbr((int)player_nbr, env->players) == 1)
+		return (1);
 	env->player_nbr = (int)player_nbr;
+	return (1);
 }
 
 void	process_flag(char **argv, int *i, int arg_nb, t_env *env)
 {
 	if (ft_strcmp(argv[*i], "-n") == 0)
-	{
-		get_player_nbr(argv, (*i) + 1, arg_nb, env);
-		(*i)++;
-	}
+		*i += get_player_nbr(argv, (*i) + 1, arg_nb, env);
 	else if (ft_strcmp(argv[*i], "-visual") == 0)
 		env->flag_byte = env->flag_byte | 1;
 	else if (ft_strcmp(argv[*i], "-dump") == 0)
