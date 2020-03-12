@@ -1,5 +1,10 @@
 language: c
 os: osx
+env:
+    global:
+        - CODECOV_TOKEN="fb5641ce-5938-4a57-8265-5c08a1a0d4f7"
+        - HOMEBREW_NO_AUTO_UPDATE=1
+        - HOMEBREW_NO_INSTALL_CLEANUP=1
 
 branches:
   only:
@@ -9,7 +14,7 @@ install:
   - brew install snaipe/soft/criterion
 
 script:
-  - ./test/coretest --verbose
+  - unit_test_corewar --verbose
 
 notifications:
   slack: 42born2code:K3KW273c79IbfeMN74un4Hb6
