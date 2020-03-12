@@ -116,6 +116,8 @@ void			add_player(char *arg, t_env *env)
 	bytes = read(fd, new_player->exec_code, exec_code_size);
 	if (bytes != exec_code_size)
 		error_input(4);
+	if (bytes > CHAMP_MAX_SIZE)
+		error_input(12);
 	close(fd);
 	store_player(&new_player, env);
 }

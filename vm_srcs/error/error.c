@@ -42,6 +42,8 @@ void	error_input(int err_code)
 		ft_putendl("	input_error 10: -v flag requires verbosity level.");
 	else if (err_code == 11)
 		ft_putendl("	input_error 11: specified verbosity level not supported.");
+	else if (err_code == 12)
+		ft_putendl("	input_error 12: champion execution code size exceeds CHAMP_MAX_SIZE.");
 	exit(0);
 }
 

@@ -29,7 +29,7 @@ PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
 
-%.o: %.c includes/vm.h
+%.o: %.c includes/vm.h includes/op.h
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES)
 	@echo "$(PRINT_PLUS) $@"
 
