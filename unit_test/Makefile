@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/16 09:11:59 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/12 11:19:18 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/12 11:32:04 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ clean:
 	@rm -f $(OBJ_FILES)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f ../$(NAME)
 
 re:
 	@make fclean

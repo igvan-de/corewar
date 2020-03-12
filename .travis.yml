@@ -12,6 +12,7 @@ branches:
 
 install:
   - brew install snaipe/soft/criterion
+  - make unit_test
 
 script:
   - unit_test_corewar --verbose
