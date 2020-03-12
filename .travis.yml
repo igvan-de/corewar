@@ -12,10 +12,10 @@ branches:
 
 install:
 	- brew install snaipe/soft/criterion
+  - make test_asm
 
 script:
 	- make test_corewar
-  - make test_asm
   - ./unit_test_asm --verbose
 
 notifications:
