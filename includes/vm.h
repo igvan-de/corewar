@@ -69,7 +69,8 @@ typedef struct			s_env
 	int					cycles;					//	cycle counter of each CYCLE_TO_DIE
 	int					cycles_to_die;			//	length of current check period. Decreases by CYCLE_DELTA, every CYCLE_TO_DIE cycles.
 	unsigned	char	flag_byte;				//	keeps track of corewar program flags (-visual / -n_dump_cycles)
-	unsigned	char	player_last_alive;		//	the id of the player who last executed a live operation
+	int					player_last_alive;		//	the id of the player who last executed a live operation
+	id_t				player_nbr;				//	used during input reading to keep track of player nbrs
 	unsigned			total_players;			//	total amount of players loaded. Between 0 and 4.
 	unsigned			total_cursors;			//	total amount of cursors in the cursor stack
 	unsigned			total_cycles;			//	total cycle counter

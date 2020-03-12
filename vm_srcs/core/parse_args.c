@@ -49,6 +49,8 @@ static	int	is_flag(char *param)
 		return (1);
 	else if (ft_strcmp(param, "-help") == 0)
 		return (1);
+	else if (ft_strcmp(param, "-n") == 0)
+		return (1);
 	return (0);
 }
 

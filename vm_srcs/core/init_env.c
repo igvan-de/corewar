@@ -52,6 +52,7 @@ void			init_env(t_env **env)
 	if (!*env)
 		error_mem();
 	(*env)->flag_byte = 0;
+	(*env)->player_nbr = 1;
 	(*env)->total_players = 0;
 	(*env)->players = NULL;
 	(*env)->total_cursors = 0;

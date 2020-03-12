@@ -38,14 +38,17 @@ static	t_player	*get_player(int player_nbr, t_env *env)
 {
 	t_list		*iter;
 	t_player	*curr;
+	int			i;
 
+	i = 1;
 	iter = env->players;
 	while (iter)
 	{
 		curr = iter->content;
-		if (curr->nbr == player_nbr)
+		if (i == player_nbr)
 			return (curr);
 		iter = iter->next;
+		i++;
 	}
 	error_init(1);
 	return (NULL);

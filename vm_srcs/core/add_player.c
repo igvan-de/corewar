@@ -81,7 +81,7 @@ static	void	store_player(t_player **new_player, t_env *env)
 {
 	t_list			*player_elem;
 
-	(*new_player)->nbr = env->total_players + 1;
+	(*new_player)->nbr = env->player_nbr;
 	player_elem = (t_list *)malloc(sizeof(t_list));
 	if (!player_elem)
 		error_mem();
@@ -93,6 +93,7 @@ static	void	store_player(t_player **new_player, t_env *env)
 	else
 		ft_lstaddend(&env->players, player_elem);
 	env->total_players++;
+	env->player_nbr = env->total_players;
 }
 
 void			add_player(char *arg, t_env *env)

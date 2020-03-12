@@ -53,7 +53,7 @@ static	unsigned	int		get_position(unsigned id, t_env *env)
 **	cursor for each active player.
 */
 
-static	t_cursor			*new_cursor(t_env *env)
+static	t_cursor			*new_cursor(t_env *env, int player_nbr)
 {
 	t_cursor	*new;
 
@@ -65,7 +65,7 @@ static	t_cursor			*new_cursor(t_env *env)
 	new->prev = NULL;
 	new->next = NULL;
 	new->registries = init_registries();
-	new->registries[0] = -1 * new->id;
+	new->registries[0] = -1 * player_nbr;
 	new->carry = 0;
 	new->jump = 0;
 	new->last_live = 0;
@@ -80,11 +80,15 @@ void						init_cursors(t_env *env)
 {
 	unsigned	i;
 	t_cursor	*new;
+	t_player	*curr;
+	t_list		*iter;
 
 	i = 0;
+	iter = env->players;
 	while (i < env->total_players)
 	{
-		new = new_cursor(env);
+		curr = iter->content;
+		new = new_cursor(env, curr->nbr);
 		push_cursor(new, &env->cursor_stack);
 		new = NULL;
 		i++;

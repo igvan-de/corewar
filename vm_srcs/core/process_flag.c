@@ -70,8 +70,25 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 	env->verbosity = (unsigned)verbosity;
 }
 
+static	void	get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
+{
+	long long player_nbr;
+
+	if (index == arg_nb)
+		return ;
+	player_nbr = ft_atoilong(argv[index]);
+	if (player_nbr < -2147483648 || 2147483648 < player_nbr)
+		return ;
+	env->player_nbr = (int)player_nbr;
+}
+
 void	process_flag(char **argv, int *i, int arg_nb, t_env *env)
 {
+	if (ft_strcmp(argv[*i], "-n") == 0)
+	{
+		get_player_nbr(argv, (*i) + 1, arg_nb, env);
+		(*i)++;
+	}
 	if (ft_strcmp(argv[*i], "-visual") == 0)
 		env->flag_byte = env->flag_byte | 1;
 	else if (ft_strcmp(argv[*i], "-dump") == 0)
