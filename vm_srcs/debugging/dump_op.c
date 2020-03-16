@@ -22,17 +22,10 @@ static	void	dump_movement(t_cursor *cursor, unsigned char bytes)
 	ft_putstr("ADV ");
 	ft_putnbr(bytes);
 	ft_putstr(" (");
-	fflush(stdout);
 	if (cursor->position != 0)
-	{
-		printf("%#06x -> %#06x) ", modi(cursor->position), modi(cursor->position + bytes));
-		fflush(stdout);
-	}
+		ft_printf("%#06x -> %#06x) ", modi(cursor->position), modi(cursor->position + bytes));
 	else
-	{
-		printf("0x0000 -> %#06x) ", modi(cursor->position + bytes));
-		fflush(stdout);
-	}
+		ft_printf("0x0000 -> %#06x) ", modi(cursor->position + bytes));
 }
 
 /*
@@ -48,15 +41,9 @@ static	void	dump_bytes(t_cursor *cursor, t_env *env, unsigned char bytes)
 	while (i < bytes)
 	{
 		if (env->datamap[modi(cursor->position + i)].player != 0)
-		{
-			printf("%02x ", 0xFF & env->map[modi(cursor->position + i)]);
-			fflush(stdout);
-		}
+			ft_printf("%02x ", 0xFF & env->map[modi(cursor->position + i)]);
 		else
-		{
-			printf("%#02x ", env->map[modi(cursor->position + i)]);
-			fflush(stdout);
-		}
+			ft_printf("%#02x ", env->map[modi(cursor->position + i)]);
 		i++;
 	}
 	ft_putchar('\n');

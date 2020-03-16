@@ -64,7 +64,7 @@ test_corewar:
 
 clean:
 	@rm -f $(OBJ_COREWAR) $(OBJ_ASM)
-	@make -C ./Libft clean
+	@make -C ./libft clean
 	@make -C ./ft_printf clean
 	@make -C ./unit_test clean
 	@make -C ./unit_test/support/tester clean

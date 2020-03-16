@@ -72,6 +72,15 @@ static	void	free_cursor_stack(t_cursor **cursor_stack)
 	*cursor_stack = NULL;
 }
 
+/*
+**	@brief:	free the global environment struct
+**
+**	@param env	:	global environment struct
+**
+**	once the main process has finished, free_env is called
+**	to clean up remaining allocated memory in the env struct.
+*/
+
 void			free_env(t_env **env)
 {
 	if ((*env)->players != NULL)

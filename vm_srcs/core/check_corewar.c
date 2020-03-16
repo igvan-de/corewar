@@ -112,6 +112,25 @@ static	void	parse_cursor_stack(t_env *env)
 	}
 }
 
+/*
+**	@brief:	perform a periodic 'check' during the main corewar process.
+**
+**	@param env	:	gloval environment struct
+**
+**	check_corewar gets called every CYCLE_TO_DIE cycles to evaluate the
+**	state of the game at the current cycle. Based on the game state, several
+**	things can happen during the check:
+**
+**	->	for each cursor in the cursor stack, if it is dead, it is removed from the stack.
+**
+**	->	if during the last CYCLE_TO_DIE cycles, live was performed more than NBR_LIVES,
+**		CYCLE_TO_DIE is reduced by CYCLE_DELTA.
+**
+**	->	if during the last CYCLE_TO_DIE cycles, live was performed less than NBR_LIVES,
+**		compare the env->checks_counter to MAX_CHECKS. if more than MAX_CHECKS were performed,
+**		CYCLE_TO_DIE is reduced by CYCLE_DELTA.
+*/
+
 void			check_corewar(t_env *env)
 {
 	env->checks_counter++;

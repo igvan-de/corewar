@@ -187,6 +187,32 @@ static	void	check_flags(t_env *env)
 	}
 }
 
+/*
+**	@brief:	run the main corewar process
+**
+**	@param env	:	global environment structure
+**
+**	exec_corewar runs the programs main process. The process continues
+**	as long as there are active cursors in the cursor stack and
+**	env->cycles_to_die is higher or equal to zero. The main process
+**	consists of several parts:
+**
+**	->	check which flags are enabled in check_flags.
+**	->	process each cursor in exec_cursor_stack.
+**	->	if CYCLE_TO_DIE is 0, run a check each cycle. The check is described
+**		in check_corewar.c
+**
+**	once CYCLE_TO_DIE cycles have been processed, the current iteration ends
+**	and a check occurs in check_corewar. Afterwards, exec_corewar gets
+**	called recursively for the next iteration.
+**
+**	note: 	Over the course of the game, CYCLE_TO_DIE will continue to get
+**			smaller, which gives cursors less time to send a live signal. This means that,
+**			the longer the game continues, the harder it becomes for cursors to stay alive.
+**
+**	the last player to send a valid live signal wins the game.
+*/
+
 void			exec_corewar(t_env *env)
 {
 	if (env->cycles_to_die <= 0)

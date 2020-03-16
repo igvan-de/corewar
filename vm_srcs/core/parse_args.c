@@ -54,6 +54,31 @@ static	int	is_flag(char *param)
 	return (0);
 }
 
+/*
+**	@brief:	parse and interpret program parameters
+**
+**	@param arg_nb	:	number of parameters
+**	@param argv		:	parameters
+**	@param env		:	global environment struct
+**
+**	parse_args iterates through the parameters passed to the program
+**	and performs action based on the type of the parameter.
+**
+**	->	if the parameter is a flag, the related bit in the flag byte
+**		is turned on. for the '-dump' and '-v' flag, the parameter
+**		directly after the flag is saved as either the dump cycle
+**		or the verbosity level.
+**
+**	->	otherwise, the parameter is assumed to be a player file
+**		and is processed with add_player.
+**
+**	->	if the number of players is higher than MAX_PLAYERS or
+**		if there are no players, the program exits with error.
+**
+**	lastly, valid_flags gets called to make sure there are
+**	contradicting flags turned on.
+*/
+
 void			parse_args(int arg_nb, char **argv, t_env *env)
 {
 	int		i;

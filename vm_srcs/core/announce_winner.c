@@ -40,6 +40,16 @@ static	char	*player_name(t_env *env, int id)
 	return ("NULL");
 }
 
+/*
+**	@brief:	print the winning player to stdout
+**
+**	@param env		:	global environment struct
+**
+**	announce_winner gets called after the corewar main
+**	process is finished. It retrieves the id of the last
+**	player alive and prints a message, declaring the winner.
+*/
+
 void			announce_winner(t_env *env)
 {
 	ft_putstr("Contestant ");

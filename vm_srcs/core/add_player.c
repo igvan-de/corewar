@@ -99,6 +99,21 @@ static	void	store_player(t_player **new_player, t_env *env)
 		env->player_nbr = env->total_players;
 }
 
+/*
+**	@brief: take a program parameter and store it as a corewar player
+**
+**	@param arg		: corewar program parameter
+**	@param env		: global environment struct
+**
+**	add_player takes a ptr to a program parameter (arg) and parses
+**	this parameter as a player. A new t_player struct is created,
+**	with the header stored in player->header and the execution_code
+**	in player->exec_code. The player is also given a unique number.
+**	If the given argument is not a valid player, the function returns error.
+**	The new player is stored within the players list in the main env struct at
+**	env->players.
+*/
+
 void			add_player(char *arg, t_env *env)
 {
 	int				fd;

@@ -26,22 +26,16 @@ void				dump_mem(t_env *env)
 		if (addr_trig == 1)
 		{
 			if (bytes == 0)
-				printf("0x0000 : ");
+				ft_printf("0x0000 : ");
 			else
-				printf("%#06x : ", bytes);
+				ft_printf("%#06x : ", bytes);
 			bytes += 64;
 			addr_trig = 0;
 		}
 		if (env->datamap[i].player != 0)
-		{
-			printf("%02x ", 0xFF & env->map[i]);
-			fflush(stdout);
-		}
+			ft_printf("%02x ", 0xFF & env->map[i]);
 		else
-		{
-			printf("%#02x ", env->map[i]);
-			fflush(stdout);
-		}
+			ft_printf("%#02x ", env->map[i]);
 		if ((i + 1) % (128 / 2) == 0)
 		{
 			addr_trig = 1;
@@ -59,12 +53,9 @@ void				dump_pos(t_env *env)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		printf("%hhi ", env->datamap[i].player);
-		fflush(stdout);
+		ft_printf("%hhi ", env->datamap[i].player);
 		if ((i + 1) % (128 / 2) == 0)
-		{
 			ft_putchar('\n');
-		}
 		i++;
 	}
 }

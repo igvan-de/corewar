@@ -76,6 +76,17 @@ static	t_cursor			*new_cursor(t_env *env, int player_nbr)
 	return (new);
 }
 
+/*
+**	@brief:	initialize the cursor stack
+**
+**	@param env	:	global environment struct
+**
+**	init_cursors sets up the initial cursor_stack variable of env, at
+**	the beginning of the program.
+**	For each active player, a new cursor is created with a position
+**	pointing to the first byte of the execution code.
+*/
+
 void						init_cursors(t_env *env)
 {
 	unsigned	i;

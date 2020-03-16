@@ -76,12 +76,6 @@ static	void		load_player(t_env *env, int player_nb)
 	curr_player->exec_code = NULL;
 }
 
-/*
-**	load_players takes a ptr to the main environment struct and
-**	loads the players stored in the list env->players into the
-**	allocated memory area at env->map.
-*/
-
 void				load_players(t_env *env)
 {
 	unsigned	i;

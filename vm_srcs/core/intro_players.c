@@ -31,6 +31,15 @@ static	void	intro_player(t_player *player)
 	ft_putendl("\") !");
 }
 
+/*
+**	@brief:	introduce the players on stdout
+**
+**	@param env	: global environment struct
+**
+**	for each player, a message is printed to stdout,
+**	with the name, size and number of the player.
+*/
+
 void			intro_players(t_env *env)
 {
 	t_list *iter;

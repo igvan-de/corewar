@@ -46,6 +46,16 @@ static	void	init_maps(t_env **env)
 	init_datamap((*env)->datamap);
 }
 
+/*
+**	@brief:	initialize the global environment struct
+**
+**	@param env	: global environment struct
+**
+**	the env struct is used to store data pointers and variables
+**	detailing game state. in init_env this structure is allocated
+**	and initialized.
+*/
+
 void			init_env(t_env **env)
 {
 	(*env) = (t_env *)malloc(sizeof(t_env));
