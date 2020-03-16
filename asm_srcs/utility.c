@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 09:59:56 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/11 10:01:28 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/16 21:21:14 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,8 @@ int till_power(char letter, int power)
 {
 	int number;
 	int total;
-<<<<<<< HEAD
-	int	i;
 
 	number = (int)(letter - '`');
-	i = 0;
-=======
-
-	number = (int)(letter - '`');
->>>>>>> master
 	total = number;
 	while (power != 0)
 	{
