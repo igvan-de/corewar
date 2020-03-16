@@ -35,7 +35,7 @@ Test(unit_create_cor_test, simple_input_test)
 	t_func_list *list = (t_func_list*)ft_memalloc(sizeof(t_func_list));
 	char *argv;
 
-	argv = "../vm_champs/champs/barriere.s";
+	argv = "../test_champs/champs/barriere.s";
 	create_cor_file(argv, list);
 	cr_assert_eq(0, access("barriere.cor", F_OK));
 }

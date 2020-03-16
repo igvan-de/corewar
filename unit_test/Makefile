@@ -23,7 +23,7 @@ OBJ_ASM = $(ASM_SRCS_:%.c=%.o)
 INCLUDES = -I .././includes -I $(HOME)/.brew/include
 
 
-NAME = unit_test_corewar
+NAME = unit_test_asm
 CFLAGS = -Wall -Werror
 CRITERION := -L $(HOME)/.brew/lib -lcriterion
 LIB = .././libft/libft.a .././ft_printf/libftprintf.a

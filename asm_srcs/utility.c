@@ -14,10 +14,8 @@ int till_power(char letter, int power)
 {
 	int number;
 	int total;
-	int	i;
 
 	number = (int)(letter - '`');
-	i = 0;
 	total = number;
 	while (power != 0)
 	{
