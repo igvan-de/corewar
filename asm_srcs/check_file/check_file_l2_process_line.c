@@ -6,7 +6,11 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de       #+#    #+#                */
+<<<<<<< HEAD
 /*   Updated: 2020/03/11 16:17:12 by igvan-de      ########   odam.nl         */
+=======
+/*   Updated: 2020/03/07 17:55:51 by igvan-de      ########   odam.nl         */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,9 +213,13 @@ void	process_line_into_list(t_func_list *list, char *line)
 		get_name_or_comment(list, line);
 	}
 	else
+<<<<<<< HEAD
 	{
 		if (list->name == NULL)
 			error_message();
 		insert_file_node(list, line);
 	}
+=======
+		insert_file_node(list, line);
+>>>>>>> master
 }

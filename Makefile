@@ -6,10 +6,18 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
+<<<<<<< HEAD
 #    Updated: 2020/03/11 16:28:18 by igvan-de      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
+=======
+#    Updated: 2020/02/18 13:13:36 by jdunnink      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
+include vm_srcs/sources
+>>>>>>> master
 include asm_srcs/sources
 include asm_srcs/error_functions/sources
 include asm_srcs/asm_to_byte/sources
@@ -17,6 +25,7 @@ include asm_srcs/asm_to_byte/sources
 
 
 OBJ_ASM = $(ASM_SRCS:%.c=%.o)
+<<<<<<< HEAD
 MAIN = asm_srcs/main.o
 LIBFT_H = -I ./libft/includes
 ASM_H = -I ./includes
@@ -24,6 +33,17 @@ PRTF_H = -I ./ft_printf
 NAME = asm
 CFLAGS =  -Wall -Werror -Wextra
 NORM = norminette $(ASM_SRCS) | grep -e "Error" -e "Warning" -B 1
+=======
+OBJ_COREWAR = $(COREWAR_SRCS:%.c=%.o)
+INCLUDES = -I ./includes
+MAIN_ASM = asm_srcs/main.o
+LIBFT_H = -I ./libft/includes
+PRTF_H = -I ./ft_printf
+NAME_ASM = asm
+NAME_COREWAR = corewar
+CFLAGS =  -Wall -Werror -Wextra
+NORM = norminette $(ASM_SRCS) $(COREWAR_SRCS) | grep -e "Error" -e "Warning" -B 1
+>>>>>>> master
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_RED = $(shell printf "\e[31;5;10m")
@@ -33,14 +53,27 @@ PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 PRINT_CLEAN = $(shell printf '$(COLOR_RED)[ - ]$(COLOR_DEFAULT)')
 PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
-all: $(NAME)
+all: $(NAME_ASM) $(NAME_COREWAR)
 
+<<<<<<< HEAD
 %.o: %.c includes/asm.h
 	@gcc $< -c -o $@ $(CFLAGS) $(ASM_H) $(LIBFT_H) $(PRTF_H)
 	@echo "$(PRINT_PLUS) $@"
 
 $(NAME): $(MAIN) $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
 	@gcc $(CFLAGS) $(MAIN) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+=======
+%.o: %.c includes/vm.h includes/op.h includes/asm.h
+	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES) $(LIBFT_H) $(PRTF_H)
+	@echo "$(PRINT_PLUS) $@"
+
+$(NAME_COREWAR): $(OBJ_COREWAR) libft/libft.a ft_printf/libftprintf.a
+	@gcc $(CFLAGS) $(OBJ_COREWAR) -lncurses libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+	@echo "$(PRINT_DONE) Compiling corewar completed"
+
+$(NAME_ASM): $(MAIN_ASM) $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
+	@gcc $(CFLAGS) $(MAIN_ASM) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+>>>>>>> master
 	@echo "$(PRINT_DONE) Compiling asm completed"
 
 libft/libft.a: FORCE
@@ -49,21 +82,40 @@ libft/libft.a: FORCE
 ft_printf/libftprintf.a: FORCE
 	@make -C ft_printf/
 
+<<<<<<< HEAD
 unit_test:
+=======
+test_asm:
+>>>>>>> master
 	@make -C unit_test/
 
+test_corewar:
+	cd unit_test && ./exec_test.sh && cd .. && make clean
+
 clean:
+<<<<<<< HEAD
 	@rm -f $(OBJ_FILES)
 	@make -C ./Libft clean
 	@make -C ./ft_printf clean
 	@make -C ./unit_test clean
+=======
+	@rm -f $(OBJ_COREWAR) $(OBJ_ASM)
+	@make -C ./libft clean
+	@make -C ./ft_printf clean
+	@make -C ./unit_test clean
+	@make -C ./unit_test/support/tester clean
+>>>>>>> master
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(NAME_ASM) $(NAME_COREWAR)
 	@make -C ./libft fclean
 	@make -C ./ft_printf fclean
 	@make -C ./unit_test fclean
+<<<<<<< HEAD
+=======
+	@make -C ./unit_test/support/tester fclean
+>>>>>>> master
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:
@@ -77,4 +129,8 @@ norm:
 
 FORCE:
 
+<<<<<<< HEAD
 .PHONY: all clean fclean re norm asm unit_test
+=======
+.PHONY: all clean fclean re norm asm test_asm test_corewars
+>>>>>>> master

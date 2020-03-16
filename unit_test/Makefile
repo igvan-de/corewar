@@ -6,11 +6,16 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/02/16 09:11:59 by igvan-de       #+#    #+#                 #
+<<<<<<< HEAD
 #    Updated: 2020/03/11 13:57:28 by igvan-de      ########   odam.nl          #
+=======
+#    Updated: 2020/03/12 11:32:04 by igvan-de      ########   odam.nl          #
+>>>>>>> master
 #                                                                              #
 # **************************************************************************** #
 
 include sources
+<<<<<<< HEAD
 include ../asm_srcs/sources
 include ../asm_srcs/asm_to_byte/sources
 # include ../asm_srcs/check_file/sources
@@ -22,16 +27,36 @@ OBJ_ASM = $(ASM_SRCS_:%.c=%.o)
 INCLUDES = -I .././includes -I $(HOME)/.brew/include
 
 NAME = unit_test_corewar
+=======
+
+include ../asm_srcs/sources
+include ../asm_srcs/asm_to_byte/sources
+# include ../asm_srcs/check_file/sources
+include ../asm_srcs/error_functions/sources
+
+OBJ_FILES = $(TESTSRCS:%.c=%.o)
+ASM_SRCS_ = $(ASM_SRCS:%.c=../%.c)
+OBJ_ASM = $(ASM_SRCS_:%.c=%.o)
+INCLUDES = -I .././includes -I $(HOME)/.brew/include
+
+
+NAME = unit_test_asm
+>>>>>>> master
 CFLAGS = -Wall -Werror
 CRITERION := -L $(HOME)/.brew/lib -lcriterion
 LIB = .././libft/libft.a .././ft_printf/libftprintf.a
 ASM = ../asm
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_DEFAULT = $(shell printf "\e[39m")
 PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 
 all: $(NAME)
+	@mv $(NAME) ../$(NAME)
 
 %.o: %.c
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES)
@@ -47,7 +72,11 @@ clean:
 	@rm -f $(OBJ_FILES)
 
 fclean: clean
+<<<<<<< HEAD
 	@rm -f $(NAME)
+=======
+	@rm -f ../$(NAME)
+>>>>>>> master
 
 re:
 	@make fclean

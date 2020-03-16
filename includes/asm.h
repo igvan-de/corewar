@@ -6,7 +6,11 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
+<<<<<<< HEAD
 /*   Updated: 2020/03/11 16:35:31 by igvan-de      ########   odam.nl         */
+=======
+/*   Updated: 2020/03/11 10:14:05 by igvan-de      ########   odam.nl         */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +19,11 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+<<<<<<< HEAD
 # include "ft_printf.h"
+=======
+# include	"ft_printf.h"
+>>>>>>> master
 # include "op.h"
 # include <stdbool.h>
 # include <stdio.h>
@@ -60,7 +68,10 @@ typedef struct				s_func_list
 	int						*hash_table;
 	int						line_number;
 	int						line_char;
+<<<<<<< HEAD
 	int						byte_total;
+=======
+>>>>>>> master
 	t_direction				*info;
 }							t_func_list;
 

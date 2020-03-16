@@ -1,17 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
+<<<<<<< HEAD
 /*   ft_printf.h                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2019/08/21 14:35:36 by mark           #+#    #+#                */
 /*   Updated: 2020/03/07 17:37:49 by igvan-de      ########   odam.nl         */
+=======
+/*   printf.h                                           :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: jdunnink <marvin@codam.nl>                   +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2019/06/14 09:30:42 by jdunnink      #+#    #+#                 */
+/*   Updated: 2019/06/14 09:55:36 by jdunnink      ########   odam.nl         */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+<<<<<<< HEAD
 # include <stdarg.h>
 # include <stdlib.h>
 # include <limits.h>
@@ -180,3 +190,13 @@ int						ft_dprintf(int fd, char *format, ...);
 int						ft_sprintf(char *str, char *format, ...);
 
 #endif
+=======
+
+# include <stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+int				ft_printf(const char *format, ...);
+
+# endif
+>>>>>>> master

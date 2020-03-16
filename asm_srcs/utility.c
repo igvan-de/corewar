@@ -14,10 +14,15 @@ int till_power(char letter, int power)
 {
 	int number;
 	int total;
+<<<<<<< HEAD
 	int	i;
 
 	number = (int)(letter - '`');
 	i = 0;
+=======
+
+	number = (int)(letter - '`');
+>>>>>>> master
 	total = number;
 	while (power != 0)
 	{

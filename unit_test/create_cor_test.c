@@ -6,7 +6,11 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/05 12:22:46 by igvan-de       #+#    #+#                */
+<<<<<<< HEAD
 /*   Updated: 2020/03/11 17:32:41 by igvan-de      ########   odam.nl         */
+=======
+/*   Updated: 2020/03/11 13:51:57 by igvan-de      ########   odam.nl         */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +34,7 @@
 // 	cr_redirect_stderr();
 // }
 
+<<<<<<< HEAD
 /*
 ** @brief Construct a new Test object
 ** tests if the directory is wrong or non existing
@@ -51,15 +56,23 @@ Test(unit_create_cor_test, only_space_test)
 */
 
 Test(unit_create_cor_test, wrong_input_test)
+=======
+Test(unit_create_cor_test, simple_input_test)
+>>>>>>> master
 {
 	t_func_list *list = (t_func_list*)ft_memalloc(sizeof(t_func_list));
 	char *argv;
 
+<<<<<<< HEAD
 	argv = "../vm_champs/champs/barri.ere";
+=======
+	argv = "../test_champs/champs/barriere.s";
+>>>>>>> master
 	create_cor_file(argv, list);
 	cr_assert_eq(0, access("barriere.cor", F_OK));
 }
 
+<<<<<<< HEAD
 /*
 ** @brief Construct a new Test object
 ** tests when the correct input is given and of result is correct
@@ -74,6 +87,9 @@ Test(unit_create_cor_test, simple_input_test)
 	create_cor_file(argv, list);
 	cr_assert_eq(0, access("barriere.cor", F_OK));
 }
+=======
+
+>>>>>>> master
 
 
 

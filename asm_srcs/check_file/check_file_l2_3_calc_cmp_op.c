@@ -6,7 +6,11 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:24:17 by mlokhors       #+#    #+#                */
+<<<<<<< HEAD
 /*   Updated: 2020/03/11 16:05:48 by igvan-de      ########   odam.nl         */
+=======
+/*   Updated: 2020/03/06 11:42:22 by mlokhors      ########   odam.nl         */
+>>>>>>> master
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +59,11 @@ int		calc_cmp_operation(t_func_list *list, char *line, int j)
 	total = line_hash(list, line, j);
 	op = cmp_op(list->hash_table, total);
 	if (op == -1)
+<<<<<<< HEAD
 		error_message();
 	return (op);
 }
+=======
+		return (23);
+}
+>>>>>>> master
