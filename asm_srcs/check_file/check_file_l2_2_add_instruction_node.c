@@ -6,13 +6,13 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:09:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 15:14:14 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/17 06:01:27 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	init_new_direction(t_direction **iter)
+void	init_new_node(t_direction **iter)
 {
 	(*iter)->op_code = 0;
 	(*iter)->encode = 0;
@@ -33,7 +33,7 @@ void	init_new_direction(t_direction **iter)
 */
 
 void	add_instruction_node(t_func_list *list,
-		t_direction *pointer, t_count *counter)
+		t_direction *pointer, int *last_index)
 {
 	t_direction *iter;
 
@@ -52,7 +52,7 @@ void	add_instruction_node(t_func_list *list,
 	{
 		while (iter)
 		{
-			counter->byte_count = iter->byte_index;
+			*last_index = iter->byte_index;
 			iter = iter->next;
 		}
 		/* ft_memalloc zet alle waardes in struct al naar 0/NULL. scheelt weer een lijn*/
@@ -61,7 +61,7 @@ void	add_instruction_node(t_func_list *list,
 		if (!iter)
 			error_messege(list, 8, 2);
 	}
-	init_new_direction(&iter);
+	init_new_node(&iter);
 	pointer = iter;
 	return (0);
 }

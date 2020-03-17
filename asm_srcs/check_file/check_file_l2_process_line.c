@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/07 17:55:51 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/17 06:43:46 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		insert_encode(t_direction *new, int i, int operation)
 	new->encode += bits;
 }
 
-int		check_label_char(char c)
+static bool		check_label_char(char c)
 {
 	int i;
 
@@ -63,10 +63,10 @@ int		check_label_char(char c)
 	while (i < 35)
 	{
 		if (c == LABEL_CHARS[i])
-			return (0);
+			return (true);
 		i++;
 	}
-	return (-1);
+	return (false);
 }
 
 /* dit is een bool functie, maakt het stuk makkelijker om code te lezen.
@@ -125,7 +125,12 @@ int		cmp_line(t_func_list *list, t_direction *new, char *line, int arg)
 
 void	insert_operation(t_func_list *list, t_direction *new, char *line)
 {
-	while (i < arg)
+	int i;
+	int args;
+
+	i = 0;
+	args = op_tab_info(new->op_code, 0, 0);
+	while (i < args)
 	{
 		while (ft_isspace(line[list->line_char]) == 1)
 			list->line_char++;
@@ -135,7 +140,7 @@ void	insert_operation(t_func_list *list, t_direction *new, char *line)
 	}
 }
 
-void	get_label_name(t_func_list *list, t_direction *new, char *line, int j)
+void	get_label_name(t_func_list *list, t_direction *new, char *line, int len)
 {
 	int i;
 	int start;
@@ -144,59 +149,77 @@ void	get_label_name(t_func_list *list, t_direction *new, char *line, int j)
 	i = 0;
 	start = list->line_char;
 	ret = 0;
-	while (list->line_char < j)
+	while (list->line_char < len)
 	{
 		ret = check_label_char(line[list->line_char]);
 		if (ret == -1)
 			error_message(list, 100, 0);
 		list->line_char++;
 	}
-	new->label = ft_strsub(line, start, j - start);
+	new->label = ft_strsub(line, start, len);
 	if (new->label == NULL)
 		error_message(list, 8, 2);
-	list->line_char = j;
+	list->line_char = len;
 }
 
-void	insert_info_into_node(t_func_list *list, char *line,
-		t_direction *new, t_count counter)
+void	check_operation(t_func_list *list, char *line,
+		t_direction *new, int i)
 {
-	int j;
-	int ret;
 	int number;
+	int len;
 
-	ret = 0;
-	j = 0;
-	while (ft_isspace(line[list->line_char]) == 1)
-		list->line_char++;
-	j = list->line_char;
-	while (ft_isspace(line[j]) == 0)
-		j++;
-	if (line[j - 1] == LABEL_CHAR)
-		get_label_name(list, new, line, j);
-	while (ft_isspace(line[j]) == 1)
-		j++;
-	if (j > 5)
-		error_message(list, 102, 0);
-	number = calc_cmp_operation(list, line, j);
+	number = 0;
+	len = list->line_char - i;
+	if (len > 5 || len <= 0)
+		error_message(list, 103, 0);
+	number = calc_cmp_operation(list, line, len);
 	if (number == -1)
 		error_message(list, 101, 0);
 	new->op_code = number;
-	list->line_char = j;
+	list->line_char = i;
+}
+
+void	check_sort(t_func_list *list, char *line,
+		t_direction *new, int i)
+{
+	while (ft_isspace(line[list->line_char]) == 1)
+		list->line_char++;
+	i = list->line_char;
+	while (ft_isspace(line[i]) == 0)
+		i++;
+	if (line[i - 1] == LABEL_CHAR)
+	{
+		if (new->label != NULL)
+			error_message(list, 102, 0);
+		get_label_name(list, new, line, i);
+		list->line_char = i;
+		return (check_sort(list, line, new, i));
+	}
+	else
+		check_operation(list, line, new, i);
+}
+
+void	insert_info_into_node(t_func_list *list, char *line,
+		t_direction *new, int last_index)
+{
+	int i;
+
+	i = 0;
+	check_sort(list, line, new, i);
 	insert_operation(list, new, line);
 }
 
 void	insert_file_node(t_func_list *list, char *line)
 {
-	int j;
 	int ret;
-	t_count counter;
+	int last_index;
 	t_direction *new;
 
-	counter.byte_count = 0;
-	counter.i = 0;
+	last_index = 0;
 	new = NULL;
-	add_instruction_node(list, new, &counter);
-	insert_info_into_node(list, line, new, counter);
+	add_instruction_node(list, new, &last_index);
+	insert_info_into_node(list, line, new, last_index);
+	list->total_bytes += new->byte_size;
 }
 
 void	process_line_into_list(t_func_list *list, char *line)
