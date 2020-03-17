@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/07 17:16:40 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/17 07:22:49 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 ** and check if the format is correct in the function validity_check
 */
 
-void	pre_process_line(t_func_list *list, char *line)
+void	pre_process_line(t_func_list *list)
 {
-	if (line != NULL && line[0] != '\0')
-		process_line_into_list(list, line);
-	free(line);
-	line = NULL;
+	if (list->line != NULL && list->line[0] != '\0')
+		process_line_into_list(list);
+	free(list->line);
+	list->line = NULL;
 }
 
 /*
@@ -33,16 +33,14 @@ void	pre_process_line(t_func_list *list, char *line)
 void	read_file(int fd, t_func_list *list)
 {
 	int		ret;
-	char	*line;
 
-	line = NULL;
-	ret = get_next_line(fd, &line);
+	ret = 0;
 	while (ret > 0)
 	{
 		list->line_char = -1;
 		list->line_number++;
-		pre_process_line(list, line);
-		ret = get_next_line(fd, &line);
+		pre_process_line(list);
+		ret = get_next_line(fd, &list->line);
 		if (ret == -1)
 		{
 			close(fd);

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/17 05:58:05 by mark          ########   odam.nl         */
+/*   Updated: 2020/03/17 08:09:25 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,8 @@ typedef struct				s_direction
 {
 	unsigned char			op_code;
 	char					encode;		// 1 byte //
-	char 					*arg_1;
-	int						arg_1_number;			// 1 byte // T_REG // 1 <-> 16 // unsigned
-	char					*arg_2;
-	int						arg_2_number;			//	2 bytes // T_IND of T_DIR // // signed
-	char					*arg_3;
-	int						arg_3_number;			//	4 bytes  // T_DIR //	 signed
+	char 					*arg_num;			// 1 byte // T_REG // 1 <-> 16 // unsigned			//	2 bytes // T_IND of T_DIR // // signed
+	int						**arg_str;			//	4 bytes  // T_DIR //	 signed
 	char 					*label;
 	int						byte_index;
 	int						byte_size;
@@ -57,6 +53,7 @@ typedef struct				s_func_list
 {
 	char					*name;
 	char					*comment;
+	char					*line;
 	int						*hash_table;
 	int						line_number;
 	int						line_char;
@@ -69,9 +66,9 @@ typedef struct				s_func_list
 // 	0			1 2 3 4 		5 		6 7 		8 				9 10 11 12
 
 void						add_instruction_node(t_func_list *list,
-							t_direction *pointer, t_count *counter);
-void						get_name_or_comment(t_func_list *list, char *line);
-void						process_line_into_list(t_func_list *list, char *line);
+							t_direction *pointer, int *last_index);
+void						get_name_or_comment(t_func_list *list);
+void						process_line_into_list(t_func_list *list);
 void						check_file(char *file_name, t_func_list *list);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/07 17:57:03 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/17 07:24:39 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ void	search_for_str(t_func_list *list, char *line, char **target, int len)
 ** if that is equal it will adds the length. so it keeps going
 */
 
-void	get_name_or_comment(t_func_list *list, char *line)
+void	get_name_or_comment(t_func_list *list)
 {
+	char *line;
+
+	line = list->line;
 	if (ft_strncmp(line + list->line_char, "name", 4) == 0)
 	{
 		list->line_char += 5;

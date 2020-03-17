@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/09 15:20:20 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/03/17 08:12:16 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,22 @@ void	free_direction(t_func_list *list)
 {
 	t_direction *iter;
 	t_direction *next;
+	int			i;
 
+	i = 0;
 	iter = list->info;
 	next = NULL;
 	while (iter != NULL)
 	{
 		next = iter->next;
-		if (iter->arg_1 != NULL)
-			ft_memdel((void **)iter->arg_1);
-		if (iter->arg_2 != NULL)
-			ft_memdel((void **)iter->arg_2);
-		if (iter->arg_3 != NULL)
-			ft_memdel((void **)iter->arg_3);
+		while (i < 3)
+		{
+			if (iter->arg_str[i] != NULL)
+				ft_memdel((void **)iter->arg_str[i]);
+			i++;
+		}
+		ft_memdel((void **)iter->arg_str);
+		ft_memdel((void **)iter->arg_num);
 		if (iter->label != NULL)
 			ft_memdel((void **)iter->label);
 		iter = next;

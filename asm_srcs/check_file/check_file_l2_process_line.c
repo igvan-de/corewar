@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/17 06:43:46 by mark          ########   odam.nl         */
+/*   Updated: 2020/03/17 08:28:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int		op_tab_info(int op_code, int section, int part)
 
 int		insert_encode(t_direction *new, int i, int operation)
 {
-	static int shift[4] = {0, 6, 4, 2};
-	int i;
+	static int shift[3] = {6, 4, 2};
+	int j;
 	char bits = (char)operation;
 
 	i = 0;
@@ -86,61 +86,91 @@ static bool		check_label_char(char c)
 // 	return (false);
 // }
 
-int		fill_t_ind(t_func_list *list, t_direction *new, char *line, int arg)
+int		process_args(t_direction *new, int arg, int conv, char *str)
+{
+	if (str != NULL)
+		return (ft_memmove(new->arg_str[arg], str, ft_strlen(str)));
+	else
+	{
+		new->arg_num[arg] = conv;
+	}
+}
+
+int		process_t_ind(t_func_list *list, t_direction *new, int arg)
+{
+	int converted;
+
+	converted = ft_atoi(list->line + list->line_char);
+	insert_encode(new, arg, 3);
+	process_args(new, arg, converted, NULL);
+}
+
+int		process_t_reg(t_func_list *list, t_direction *new,int arg)
 {
 	int i;
 
 	i = list->line_char;
 	insert_encode(new, arg, 3);
-	while ()
+	ft_atoi(list->line + list->line_char);
 }
 
-int		cmp_line(t_func_list *list, t_direction *new, char *line, int arg)
+int		process_t_dir(t_func_list *list, t_direction *new, int arg)
 {
-	int dir;
+	int i;
 
-	dir = op_tab_info(new->op_code, 1, arg);
-	if (line[list->line_char] >= '0' && line[list->line_char] <= '9')
+	i = list->line_char;
+	insert_encode(new, arg, 3);
+	ft_atoi(list->line + list->line_char);
+}
+
+int		process_kind(t_func_list *list, t_direction *new, int kind, int arg)
+{
+	if (list->line[list->line_char] >= '0' && list->line[list->line_char] <= '9')
 	{
-		if (dir & T_IND)
-			return (fill_t_ind(list, new, line, arg));
+		if (kind & T_IND)
+			return (process_t_ind(list, new, arg));
 		else
 			return (40);
 	}
-	else if (line[list->line_char] == 'r')
+	else if (list->line[list->line_char] == 'r')
 	{
-		if (dir & T_REG)
-			return (fill_t_reg(list, new, line, arg));
+		if (kind & T_REG)
+			return (process_t_reg(list, new, arg));
 		else
 			return (41);
 	}
-	else if (line[list->line_char] == DIRECT_CHAR)
+	else if (list->line[list->line_char] == DIRECT_CHAR)
 	{
-		if (dir & T_DIR)
-			return (fill_t_dir(list, new, line, arg));
+		if (kind & T_DIR)
+			return (process_t_dir(list, new, arg));
 		else
 			return (42);
 	}
 }
 
-void	insert_operation(t_func_list *list, t_direction *new, char *line)
+void	insert_operation(t_func_list *list, t_direction *new)
 {
 	int i;
+	int kind;
 	int args;
 
 	i = 0;
+	kind = 0;
 	args = op_tab_info(new->op_code, 0, 0);
 	while (i < args)
 	{
-		while (ft_isspace(line[list->line_char]) == 1)
+		kind = 0;
+		while (ft_isspace(list->line[list->line_char]) == 1)
 			list->line_char++;
-		dir = op_tab_info(new->op_code, 1, i + 1); //wat doen we verder met dir?
-		cmp_line_op(list, new, line, i + 1);
+		kind = op_tab_info(new->op_code, 1, i);
+		process_kind(list, new, kind, i);
+		while (ft_isspace(list->line[list->line_char]) == 1)
+			list->line_char++;
 		i++;
 	}
 }
 
-void	get_label_name(t_func_list *list, t_direction *new, char *line, int len)
+void	get_label_name(t_func_list *list, t_direction *new, int len)
 {
 	int i;
 	int start;
@@ -151,18 +181,18 @@ void	get_label_name(t_func_list *list, t_direction *new, char *line, int len)
 	ret = 0;
 	while (list->line_char < len)
 	{
-		ret = check_label_char(line[list->line_char]);
+		ret = check_label_char(list->line[list->line_char]);
 		if (ret == -1)
 			error_message(list, 100, 0);
 		list->line_char++;
 	}
-	new->label = ft_strsub(line, start, len);
+	new->label = ft_strsub(list->line, start, len);
 	if (new->label == NULL)
 		error_message(list, 8, 2);
 	list->line_char = len;
 }
 
-void	check_operation(t_func_list *list, char *line,
+void	check_operation(t_func_list *list,
 		t_direction *new, int i)
 {
 	int number;
@@ -172,44 +202,44 @@ void	check_operation(t_func_list *list, char *line,
 	len = list->line_char - i;
 	if (len > 5 || len <= 0)
 		error_message(list, 103, 0);
-	number = calc_cmp_operation(list, line, len);
+	number = calc_cmp_operation(list, len);
 	if (number == -1)
 		error_message(list, 101, 0);
 	new->op_code = number;
 	list->line_char = i;
 }
 
-void	check_sort(t_func_list *list, char *line,
+void	check_sort(t_func_list *list,
 		t_direction *new, int i)
 {
-	while (ft_isspace(line[list->line_char]) == 1)
+	while (ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
 	i = list->line_char;
-	while (ft_isspace(line[i]) == 0)
+	while (ft_isspace(list->line[i]) == 0)
 		i++;
-	if (line[i - 1] == LABEL_CHAR)
+	if (list->line[i - 1] == LABEL_CHAR)
 	{
 		if (new->label != NULL)
 			error_message(list, 102, 0);
-		get_label_name(list, new, line, i);
+		get_label_name(list, new, i);
 		list->line_char = i;
-		return (check_sort(list, line, new, i));
+		return (check_sort(list, new, i));
 	}
 	else
-		check_operation(list, line, new, i);
+		check_operation(list, new, i);
 }
 
-void	insert_info_into_node(t_func_list *list, char *line,
+void	insert_info_into_node(t_func_list *list,
 		t_direction *new, int last_index)
 {
 	int i;
 
 	i = 0;
-	check_sort(list, line, new, i);
-	insert_operation(list, new, line);
+	check_sort(list, new, i);
+	insert_operation(list, new);
 }
 
-void	insert_file_node(t_func_list *list, char *line)
+void	insert_file_node(t_func_list *list)
 {
 	int ret;
 	int last_index;
@@ -218,19 +248,19 @@ void	insert_file_node(t_func_list *list, char *line)
 	last_index = 0;
 	new = NULL;
 	add_instruction_node(list, new, &last_index);
-	insert_info_into_node(list, line, new, last_index);
+	insert_info_into_node(list, new, last_index);
 	list->total_bytes += new->byte_size;
 }
 
-void	process_line_into_list(t_func_list *list, char *line)
+void	process_line_into_list(t_func_list *list)
 {
-	while (ft_isspace(line[list->line_char]) == 1)
+	while (ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
-	if (line[list->line_char] == '.')
+	if (list->line[list->line_char] == '.')
 	{
 		list->line_char++;
-		get_name_or_comment(list, line);
+		get_name_or_comment(list);
 	}
 	else
-		insert_file_node(list, line);
+		insert_file_node(list);
 }
