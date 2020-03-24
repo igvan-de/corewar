@@ -58,6 +58,8 @@ static	void	exec_op(t_cursor *cursor, t_env *env)
 		op_lldi(cursor, env);
 	else if (cursor->op_code == 15)
 		op_lfork(cursor, env);
+	else if (cursor->op_code == 16)
+		op_aff(cursor, env);
 	else if (cursor->op_code < 1 || 16 < cursor->op_code)
 	{
 		env->datamap[cursor->position].cursor = 0;

@@ -132,7 +132,8 @@ void					op_st(t_cursor *cursor, t_env *env);
 void					op_sti(t_cursor *cursor, t_env *env);
 void					op_sub(t_cursor *cursor, t_env *env);
 void					op_xor(t_cursor *cursor, t_env *env);
-void					op_zjmp(t_cursor	*cursor, t_env *env);
+void					op_zjmp(t_cursor *cursor, t_env *env);
+void					op_aff(t_cursor *cursor, t_env *env);
 
 /*
 **	utility
