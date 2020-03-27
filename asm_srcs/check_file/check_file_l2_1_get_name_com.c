@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/17 07:24:39 by mark          ########   odam.nl         */
+/*   Updated: 2020/03/27 01:36:34 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	found_str(t_func_list *list, char *line, char **target, int len)
 	int start;
 
 	start = list->line_char;
-	while (line[list->line_char] && line[list->line_char] != "\"")
+	while (line[list->line_char] && line[list->line_char] != '\"')
 		list->line_char++;
-	if (list->line_char == ft_strlen(line))
+	if (list->line_char == (int)ft_strlen(line))
 		error_message(list, 102, 5);
-	if (line[list->line_char] == "\"")
+	if (line[list->line_char] == '\"')
 	{
 		if (list->line_char - start < len)
 		{
@@ -52,19 +52,21 @@ void	found_str(t_func_list *list, char *line, char **target, int len)
 
 void	search_for_str(t_func_list *list, char *line, char **target, int len)
 {
-	int	iter;
-
-	iter = 0;
 	while (line[list->line_char] && ft_isspace(line[list->line_char]) == 1)
 		list->line_char++;
-	if (line[list->line_char] && line[list->line_char] != "\"")
+	if (line[list->line_char] && line[list->line_char] != '\"')
 	{
 		if (line[list->line_char + 1] != '\0')
 			list->line_char++;
-		error_messege(list, 102, 5);
+		error_message(list, 102, 5);
 	}
 	list->line_char++;
 	found_str(list, line, target, len);
+	list->line_char++;
+	while (line[list->line_char] && ft_isspace(line[list->line_char]) == 1)
+		list->line_char++;
+	if (line[list->line_char] != '\0' && line[list->line_char] != '#')
+		error_message(list, 102, 5);
 }
 
 /*
@@ -77,19 +79,21 @@ void	get_name_or_comment(t_func_list *list)
 	char *line;
 
 	line = list->line;
+	printf("2\n");
 	if (ft_strncmp(line + list->line_char, "name", 4) == 0)
 	{
+		printf("3\n");
 		list->line_char += 5;
-		search_str(list, line, &(list->name), PROG_NAME_LENGTH);
+		search_for_str(list, line, &(list->name), PROG_NAME_LENGTH);
 	}
 	else if (ft_strncmp(line + list->line_char, "comment", 7) == 0)
 	{
 		list->line_char += 8;
-		insert_str(list, line, &(list->comment), COMMENT_LENGTH);
+		search_for_str(list, line, &(list->comment), COMMENT_LENGTH);
 	}
 	else
 	{
 		list->line_char++;
-		error_messege(list, 102, 5);
+		error_message(list, 102, 5);
 	}
 }

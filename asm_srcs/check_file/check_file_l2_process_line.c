@@ -6,11 +6,13 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/17 08:28:24 by mark          ########   odam.nl         */
+/*   Updated: 2020/03/27 04:16:09 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+#include <stdio.h>
 
 /*
 **	because it can contain as many spaces we split it up in a double array
@@ -42,6 +44,7 @@ int		op_tab_info(int op_code, int section, int part)
 		return (get_op[op_code].nb_params);
 	else if (section == 1)
 		return (get_op[op_code].params_type[part]);
+	return (-1);
 }
 
 int		insert_encode(t_direction *new, int i, int operation)
@@ -69,23 +72,6 @@ static bool		check_label_char(char c)
 	return (false);
 }
 
-/* dit is een bool functie, maakt het stuk makkelijker om code te lezen.
-** true = 1, false = 0. Je moet even kijken wat je zelf fijner vind, maar ik ben voorstander van bool
-*/
-// bool		check_label_char(char c)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (i < 35)
-// 	{
-// 		if (c == LABEL_CHARS[i])
-// 			return (true);
-// 		i++;
-// 	}
-// 	return (false);
-// }
-
 int		process_args(t_direction *new, int arg, int conv, char *str)
 {
 	if (str != NULL)
@@ -96,30 +82,47 @@ int		process_args(t_direction *new, int arg, int conv, char *str)
 	}
 }
 
+int		get_dir_size(int op_code)
+{
+	const int dir_size[16] = {4, 4, 4, 4, 4, 4, 4, 4,
+	2, 2, 2, 2, 4, 2, 2, 4};
+
+	return (dir_size[op_code - 1]);
+}
+
 int		process_t_ind(t_func_list *list, t_direction *new, int arg)
 {
 	int converted;
 
-	converted = ft_atoi(list->line + list->line_char);
-	insert_encode(new, arg, 3);
+	list->total_bytes += 2;
+	new->byte_size += 2;
+	converted = ft_atoill(list->line + list->line_char);
+	insert_encode(new, arg, 2);
 	process_args(new, arg, converted, NULL);
 }
 
 int		process_t_reg(t_func_list *list, t_direction *new,int arg)
 {
-	int i;
+	int converted;
 
-	i = list->line_char;
-	insert_encode(new, arg, 3);
+	list->total_bytes += 1;
+	new->byte_size += 1;
+	list->line_char++;
+	converted = ft_atoill(list);
+	insert_encode(new, arg, 1);
 	ft_atoi(list->line + list->line_char);
 }
 
 int		process_t_dir(t_func_list *list, t_direction *new, int arg)
 {
-	int i;
+	int dir_size;
+	int converted;
 
-	i = list->line_char;
+	dir_size =  get_dir_bytes(new->op_code);
+	new->byte_size += dir_size;
+	list->total_bytes += dir_size;
 	insert_encode(new, arg, 3);
+	converted = ft_atoill(list->line + list->line_char);
 	ft_atoi(list->line + list->line_char);
 }
 
@@ -130,21 +133,21 @@ int		process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 		if (kind & T_IND)
 			return (process_t_ind(list, new, arg));
 		else
-			return (40);
+			error_message(list, 0, 0);
 	}
 	else if (list->line[list->line_char] == 'r')
 	{
 		if (kind & T_REG)
 			return (process_t_reg(list, new, arg));
 		else
-			return (41);
+			error_message(list, 0, 0);
 	}
 	else if (list->line[list->line_char] == DIRECT_CHAR)
 	{
 		if (kind & T_DIR)
 			return (process_t_dir(list, new, arg));
 		else
-			return (42);
+			error_message(list, 0, 0);
 	}
 }
 
@@ -172,11 +175,9 @@ void	insert_operation(t_func_list *list, t_direction *new)
 
 void	get_label_name(t_func_list *list, t_direction *new, int len)
 {
-	int i;
 	int start;
 	int ret;
 
-	i = 0;
 	start = list->line_char;
 	ret = 0;
 	while (list->line_char < len)
@@ -192,20 +193,33 @@ void	get_label_name(t_func_list *list, t_direction *new, int len)
 	list->line_char = len;
 }
 
+int		if_encode(int op_code)
+{
+	const int	encode[16] = {1, 2, 2, 2, 2, 2, 2, 2, 1,
+	2, 2, 1, 2, 2, 1, 2};
+
+	return (encode[op_code - 1]);
+}
+
 void	check_operation(t_func_list *list,
 		t_direction *new, int i)
 {
 	int number;
 	int len;
+	int op_encode;
 
+	op_encode = 0;
 	number = 0;
-	len = list->line_char - i;
+	len = i - list->line_char;
 	if (len > 5 || len <= 0)
 		error_message(list, 103, 0);
 	number = calc_cmp_operation(list, len);
 	if (number == -1)
 		error_message(list, 101, 0);
 	new->op_code = number;
+	op_encode = if_encode(number);
+	list->total_bytes += op_encode;
+	new->byte_size += op_encode;
 	list->line_char = i;
 }
 
@@ -215,7 +229,7 @@ void	check_sort(t_func_list *list,
 	while (ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
 	i = list->line_char;
-	while (ft_isspace(list->line[i]) == 0)
+	while (list->line[i] && ft_isspace(list->line[i]) == 0)
 		i++;
 	if (list->line[i - 1] == LABEL_CHAR)
 	{
@@ -234,6 +248,7 @@ void	insert_info_into_node(t_func_list *list,
 {
 	int i;
 
+	last_index *= 2;
 	i = 0;
 	check_sort(list, new, i);
 	insert_operation(list, new);
@@ -241,13 +256,12 @@ void	insert_info_into_node(t_func_list *list,
 
 void	insert_file_node(t_func_list *list)
 {
-	int ret;
 	int last_index;
 	t_direction *new;
 
 	last_index = 0;
 	new = NULL;
-	add_instruction_node(list, new, &last_index);
+	add_instruction_node(list, &new, &last_index);
 	insert_info_into_node(list, new, last_index);
 	list->total_bytes += new->byte_size;
 }
@@ -261,6 +275,8 @@ void	process_line_into_list(t_func_list *list)
 		list->line_char++;
 		get_name_or_comment(list);
 	}
-	else
+	else if(list->name != NULL)
 		insert_file_node(list);
+	else
+		error_message(list, 0, 0);	
 }

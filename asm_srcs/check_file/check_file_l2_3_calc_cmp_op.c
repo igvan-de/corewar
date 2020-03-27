@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:24:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/06 11:42:22 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/03/27 03:19:15 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		cmp_op(int *hash_table, int number)
 	{
 		if (hash_table[i] == number)
 			return (i + 1);
+		i++;
 	}
 	return (-1);
 }
@@ -46,14 +47,13 @@ int		line_hash(t_func_list *list, char *operation, int len)
 ** calculate
 */
 
-int		calc_cmp_operation(t_func_list *list, char *line, int j)
+int		calc_cmp_operation(t_func_list *list, int j)
 {
 	int total;
 	int op;
 
 	op = 0;
-	total = line_hash(list, line, j);
+	total = line_hash(list,list->line + list->line_char , j);
 	op = cmp_op(list->hash_table, total);
-	if (op == -1)
-		return (23);
+	return (op);
 }

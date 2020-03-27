@@ -6,15 +6,15 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/11 14:11:25 by igvan-de      ########   odam.nl          #
-#    Updated: 2020/02/18 11:51:06 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/03/27 00:46:12 by mark          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
+
 
 include asm_srcs/sources
 include asm_srcs/error_functions/sources
 include asm_srcs/asm_to_byte/sources
-# include asm_srcs/check_file/sources
+include asm_srcs/check_file/sources
 
 
 OBJ_ASM = $(ASM_SRCS:%.c=%.o)
@@ -56,16 +56,16 @@ unit_test: FORCE
 
 clean:
 	@rm -f $(OBJ_FILES)
-	@make -C ./Libft clean
-	@make -C ./ft_printf clean
-	@make -C ./unit_test clean
+	@make -C ./libft/ clean
+	@make -C ./ft_printf/ clean
+	@make -C ./unit_test/ clean
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
 fclean: clean
 	@rm -f $(NAME)
-	@make -C ./libft fclean
-	@make -C ./ft_printf fclean
-	@make -C ./unit_test fclean
+	@make -C ./libft/ fclean
+	@make -C ./ft_printf/ fclean
+	@make -C ./unit_test/ fclean
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:
