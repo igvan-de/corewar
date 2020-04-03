@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/17 08:12:16 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/03 03:42:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	free_direction(t_func_list *list)
 	next = NULL;
 	while (iter != NULL)
 	{
+		i = 0;
 		next = iter->next;
 		while (i < 3)
 		{
@@ -32,8 +33,6 @@ void	free_direction(t_func_list *list)
 		}
 		ft_memdel((void **)iter->arg_str);
 		ft_memdel((void **)iter->arg_num);
-		if (iter->label != NULL)
-			ft_memdel((void **)iter->label);
 		iter = next;
 	}
 }
@@ -44,20 +43,10 @@ void	free_func(t_func_list *list)
 		ft_memdel((void**)list->name); //ft_memdel freed current data and sets it to NULL
 	if (list->comment != NULL)
 		ft_memdel((void**)list->comment);
+	if (list->hash_table != NULL)
+		ft_memdel((void**)list->hash_table);
 }
 
-void	free_all_but_hash(t_func_list *list)
-{
-	if (list->name != NULL)
-		ft_memdel((void**)list->name);
-	if (list->comment != NULL)
-		ft_memdel((void**)list->comment);
-	if (list->info != NULL)
-	{
-		free_direction(list);
-		list->info = NULL;
-	}
-}
 
 /*
 ** @brief

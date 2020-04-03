@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_file_l2_3_calc_cmp_op.c                      :+:    :+:            */
+/*   calc_cmp_op.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:24:17 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/27 03:19:15 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/03 03:04:04 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		cmp_op(int *hash_table, int number)
+int		cmp_op(uint64_t *hash_table, uint64_t number)
 {
 	int i;
 
@@ -25,7 +25,7 @@ int		cmp_op(int *hash_table, int number)
 	}
 	return (-1);
 }
-
+/*
 int		line_hash(t_func_list *list, char *operation, int len)
 {
 	int total;
@@ -42,18 +42,19 @@ int		line_hash(t_func_list *list, char *operation, int len)
 	}
 	return (total);
 }
-
+*/
 /*
 ** calculate
 */
 
 int		calc_cmp_operation(t_func_list *list, int j)
 {
-	int total;
+	uint64_t total;
 	int op;
 
 	op = 0;
-	total = line_hash(list,list->line + list->line_char , j);
+	total = calc_hash(list->line + list->line_char, j - list->line_char);
+//	total = line_hash(list,list->line + list->line_char , j);
 	op = cmp_op(list->hash_table, total);
 	return (op);
 }

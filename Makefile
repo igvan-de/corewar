@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de       #+#    #+#                 #
-#    Updated: 2020/03/27 00:46:12 by mark          ########   odam.nl          #
+#    Updated: 2020/03/31 10:55:05 by mark          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ unit_test: FORCE
 	@make -C unit_test/
 
 clean:
-	@rm -f $(OBJ_FILES)
+	@rm -f $(OBJ_ASM)
 	@make -C ./libft/ clean
 	@make -C ./ft_printf/ clean
 	@make -C ./unit_test/ clean

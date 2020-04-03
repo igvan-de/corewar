@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_file_l2_2_add_instruction_node.c             :+:    :+:            */
+/*   add_instruction_node.c                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:09:42 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/27 02:13:08 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/03 02:44:08 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	init_args(t_func_list *list, t_direction *iter)
 {
 	iter->arg_str = ft_memalloc(sizeof(char *) * 3);
 	if (iter->arg_str == NULL)
-		error_message(list, 0, 0);
+		error_message(list, 52, 0, 5);
 	iter->arg_num = ft_memalloc(sizeof(int) * 3);
 	if (iter->arg_num == NULL)
-		error_message(list, 0, 0);
+		error_message(list, 53, 0, 5);
 }
 
 void	add_instruction_node(t_func_list *list,
@@ -36,7 +36,7 @@ void	add_instruction_node(t_func_list *list,
 	{
 		iter = (t_direction *)ft_memalloc(sizeof(t_direction));
 		if (iter == NULL)
-			error_message(list, 7, 2);
+			error_message(list, 50, 0, 5);
 	}
 	else
 	{
@@ -47,7 +47,7 @@ void	add_instruction_node(t_func_list *list,
 		}
 		iter = (t_direction *)ft_memalloc(sizeof(t_direction));
 		if (iter == NULL)
-			error_message(list, 8, 2);
+			error_message(list, 51, 0, 5);
 	}
 	init_args(list, iter);
 	(*pointer) = iter;
