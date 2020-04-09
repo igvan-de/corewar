@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/03 01:11:27 by mark           #+#    #+#                */
-/*   Updated: 2020/04/03 04:22:25 by mark          ########   odam.nl         */
+/*   Created: 2020/04/03 01:11:27 by mark          #+#    #+#                 */
+/*   Updated: 2020/04/09 03:07:49 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ void	process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 			error_message(list, 87, 1, 8);
 	}
 	else
-	{
-		ft_printf("%c testing1\n", list->line[list->line_char]);
-		ft_printf("%s testing2\n", list->line);
 		error_message(list, 86, 2, 8);
-	}
 }
 
 int		op_tab_info(int op_code, int section, int part)
@@ -94,16 +90,19 @@ void	insert_operation(t_func_list *list, t_direction *new)
 	while (i < args)
 	{
 		kind = 0;
-		while (ft_isspace(list->line[list->line_char]) == 1)
-			list->line_char++;
+		while (list->line[list->line_char] && ft_isspace(list->line[list->line_char]) == 1)
+			list->line_char += 1;
 		kind = op_tab_info(new->op_code, 1, i);
 		process_kind(list, new, kind, i);
-		while (ft_isspace(list->line[list->line_char]) == 1)
-			list->line_char++;
-		if (comma != 0 && list->line[list->line_char] != ',')
+		while (list->line[list->line_char] && ft_isspace(list->line[list->line_char]) == 1)
+			list->line_char += 1;
+		if (comma == 0 && list->line[list->line_char] == ',')
 			error_message(list, 80, 0, 8);
-		list->line_char++;
+		if (list->line[list->line_char + 1] != '\0' &&
+			comma != 0)
+			list->line_char += 1;
 		comma--;
+
 		i++;
 	}
 	check_end_line(list);

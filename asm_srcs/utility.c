@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 09:59:56 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/04/03 04:23:32 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/03 09:51:27 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 void	check_end_line(t_func_list *list)
 {
-	while (ft_isspace(list->line[list->line_char]) == 1)
+	while (list->line[list->line_char] && ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
-	if (list->line[list->line_char] != '\0' && list->line[list->line_char] != COMMENT_CHAR)
+	if (list->line_number == 13)
+		ft_printf("24str %s \nchar %c \nnumber char %d\n\n", list->line, list->line[list->line_char], list->line_char);
+	if (list->line[list->line_char] && list->line[list->line_char] != COMMENT_CHAR)
 	{
-		ft_printf("%c testing1\n", list->line[list->line_char]);
-		ft_printf("%s testing2\n", list->line);
 		error_message(list, 40, 0, 4);
 	}
+	if (list->line_number == 13)
+		ft_printf("25str %s \nchar %c \nnumber char %d\n\n", list->line, list->line[list->line_char], list->line_char);
 }
 
 int			pm_atoi(t_func_list *list)
@@ -31,7 +33,7 @@ int			pm_atoi(t_func_list *list)
 
 	nega = 1;
 	result = 0;
-	while (ft_isspace(list->line[list->line_char]) == 1)
+	while (list->line[list->line_char] && ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
 	if (list->line[list->line_char] == '+' || list->line[list->line_char] == '-')
 	{

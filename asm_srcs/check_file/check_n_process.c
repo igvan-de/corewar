@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/04/03 04:38:49 by mark          ########   odam.nl         */
+/*   Created: 2020/02/29 05:25:21 by mlokhors      #+#    #+#                 */
+/*   Updated: 2020/04/09 04:12:29 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void		read_file(t_func_list *list, int fd)
 	int		ret;
 
 	ret = 1;
+	list->line_number++;
 	while (ret > 0)
 	{
 		list->line_char = 0;
@@ -38,10 +39,11 @@ static void		read_file(t_func_list *list, int fd)
 		}
 		if (list->line != NULL && list->line[0] != '\0')
 			process_line_into_list(list);
-		ft_memdel((void **)list->line);
+		ft_memdel((void **)&list->line);
 		list->line_number++;
 	}
 	close(fd);
+	transfrom_arg_label(list);
 }
 
 /*

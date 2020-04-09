@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/04/03 04:44:45 by mark          ########   odam.nl         */
+/*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/09 03:17:25 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdio.h>
 # define TRUE 0
 # define FALSE -1
-
+# define S_LINE 
 typedef enum				s_input_variables
 {
 	NAME = 0,
@@ -73,6 +73,7 @@ typedef struct				s_func_list
 	int						line_number;
 	int						line_char;
 	int						total_bytes;
+	int						new_node;
 	t_hash_label			*labels;
 	t_direction				*info;
 }							t_func_list;
@@ -86,18 +87,19 @@ typedef struct				s_func_list
 **===============================CHECK FUNCTIONS================================
 */
 
+void 						transfrom_arg_label(t_func_list *list);
 void						insert_encode(t_direction *new, int i, int operation);
 void						process_t_dir(t_func_list *list, t_direction *new, int arg);
 void						process_t_ind(t_func_list *list, t_direction *new, int arg);
 void						process_t_reg(t_func_list *list, t_direction *new,int arg);
 typedef	void				(*t_print)(t_func_list *list, int code, int kind);
-void						add_to_hash(t_func_list *list, char *label, int index);
+void						add_to_hash(t_func_list *list, char *label);
 void						insert_operation(t_func_list *list, t_direction *new);
 int							calc_cmp_operation(t_func_list *list, int j);
 void						check_sort(t_func_list *list,
 							t_direction *new, int i);
-void						add_instruction_node(t_func_list *list,
-							t_direction **pointer, int *last_index);
+void						add_instruction_node(t_func_list *list, t_direction **info,
+							t_direction **pointer);
 void						get_name_or_comment(t_func_list *list);
 void						process_line_into_list(t_func_list *list);
 void						check_n_process(char *file_name, t_func_list *list);

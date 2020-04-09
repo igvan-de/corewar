@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/03 01:01:53 by mark           #+#    #+#                */
-/*   Updated: 2020/04/03 02:55:24 by mark          ########   odam.nl         */
+/*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
+/*   Updated: 2020/04/09 03:05:14 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,12 @@ static void		check_operation(t_func_list *list,
 	list->line_char = i;
 }
 
-static void		get_label_name(t_func_list *list, t_direction *new, int len)
+static void		get_label_name(t_func_list *list,
+				int len)
 {
-	int start;
-	int ret;
-	char *sub;
+	int		start;
+	int		ret;
+	char	*sub;
 
 	sub = NULL;
 	start = list->line_char;
@@ -58,26 +59,36 @@ static void		get_label_name(t_func_list *list, t_direction *new, int len)
 			error_message(list, 60, 0, 6);
 		list->line_char++;
 	}
-	sub = ft_strsub(list->line, start, len);
+	sub = ft_strsub(list->line, start, len - 1);
 	if (sub == NULL)
 		error_message(list, 61, 1, 6);
-	add_to_hash(list, sub, new->byte_index);
+	add_to_hash(list, sub);
 	list->line_char = len;
 }
 
 void			check_sort(t_func_list *list,
 		t_direction *new, int i)
 {
-	while (ft_isspace(list->line[list->line_char]) == 1)
+	while (list->line[list->line_char] &&
+		ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
 	i = list->line_char;
 	while (list->line[i] && ft_isspace(list->line[i]) == 0)
 		i++;
 	if (list->line[i - 1] == LABEL_CHAR)
 	{
-		get_label_name(list, new, i);
+		get_label_name(list, i);
 		list->line_char = i;
-		return (check_sort(list, new, i));
+		while (list->line[list->line_char] &&
+			ft_isspace(list->line[list->line_char]) == 1)
+			list->line_char++;
+		if (list->line[list->line_char] == '\0')
+		{
+			list->new_node = 1;
+			return ;
+		}
+		else
+			return (check_sort(list, new, i + 1));
 	}
 	else
 		check_operation(list, new, i);

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/04/03 02:30:29 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/03 08:20:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,15 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 			*target = ft_strsub(line, start,
 			list->line_char - start);
 			if (*target == NULL)
+			{
 				error_message(list, 32, 3, 3);
+				list->line_char++;
+			}
 		}
 		else
 			error_message(list, 33, 4, 3);
+		list->line_char++;
 	}
-	// return (8);
-	/*we kunnen dit ook zo opschrijven, die return (0) heeft geen meerwaarde onderaan de functie*/
-	// else
-	// 	return (8);
-	// return (0);
 }
 
 /*
@@ -62,7 +61,6 @@ static void	search_for_str(t_func_list *list, char *line, char **target, int len
 	}
 	list->line_char++;
 	found_str(list, line, target, len);
-	list->line_char++;
 	check_end_line(list);
 }
 
@@ -78,12 +76,12 @@ void	get_name_or_comment(t_func_list *list)
 	line = list->line;
 	if (ft_strncmp(line + list->line_char, "name", 4) == 0)
 	{
-		list->line_char += 5;
+		list->line_char += 4;
 		search_for_str(list, line, &(list->name), PROG_NAME_LENGTH);
 	}
 	else if (ft_strncmp(line + list->line_char, "comment", 7) == 0)
 	{
-		list->line_char += 8;
+		list->line_char += 7;
 		search_for_str(list, line, &(list->comment), COMMENT_LENGTH);
 	}
 	else

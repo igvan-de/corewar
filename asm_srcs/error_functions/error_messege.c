@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/04/03 03:43:01 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/03 08:46:54 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	e_process_t_dir(t_func_list *list, int error_code, int kind)
 	static char errors [1][50]={
 	"invalid input"
 	};
-	ft_printf("Error code : %d\n file : insert_operation\n description : %s\n",error_code, errors[kind]);
-	ft_printf("at line %d", list->line_number);
+	ft_printf("Error code:%d\nfile: process_t_dir\ndescription: %s\n",error_code, errors[kind]);
+	ft_printf("at line %d char %d\n", list->line_number, list->line_char);
 	free_func(list);
 }
 
@@ -28,7 +28,7 @@ void	e_process_t_ind(t_func_list *list, int error_code, int kind)
 	"invalid input"
 	};
 	
-	ft_printf("Error code : %d\n file : insert_operation\n description : %s\n",error_code, errors[kind]);
+	ft_printf("Error code:%d\nfile: process_t_ind\ndescription: %s\n",error_code, errors[kind]);
 	ft_printf("at line %d char %d", list->line_number, list->line_char);
 	free_func(list);
 }
@@ -41,10 +41,10 @@ void	e_process_t_reg(t_func_list *list, int error_code, int kind)
 	"invalid input"
 	};
 	if (error_code < 98)
-		ft_printf("Error code : %d\n file : insert_operation\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
 	else
 	{
-		ft_printf("Error code : %d\n file : insert_operation\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
 		ft_printf("at line %d char : %d", list->line_number, list->line_char);
 	}
 	free_func(list);
@@ -58,10 +58,10 @@ void	e_insert_operation(t_func_list *list, int error_code, int kind)
 	"invalid input"
 	};
 	if (error_code < 86)
-		ft_printf("Error code : %d\n file : insert_operation\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
 	else
 	{
-		ft_printf("Error code : %d\n file : insert_operation\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
 		ft_printf("at line %d", list->line_number);
 	}
 	free_func(list);
@@ -73,7 +73,7 @@ void	e_add_to_hash(t_func_list *list, int error_code, int kind)
 	"malloc failed"
 	};
 
-	ft_printf("Error code : %d\n file : add_instruction_node\n description : %s\n",error_code, errors[kind]);
+	ft_printf("Error code:%d\nfile:add_instruction_node\ndescription: %s\n",error_code, errors[kind]);
 	free_func(list);
 }
 
@@ -86,10 +86,10 @@ void	e_check_sort(t_func_list *list, int error_code, int kind)
 	"invalid operation"
 	};
 	if (error_code < 68)
-		ft_printf("Error code : %d\n file : check_sort\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",error_code, errors[kind]);
 	else
 	{
-		ft_printf("Error code : %d\n file : check_sort\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",error_code, errors[kind]);
 		ft_printf("at line %d", list->line_number);
 	}
 	free_func(list);
@@ -101,7 +101,7 @@ void	e_add_instruction_node(t_func_list *list, int error_code, int kind)
 	"malloc failed"
 	};
 
-	ft_printf("Error code : %d\n file : add_instruction_node\n description : %s\n",error_code, errors[kind]);
+	ft_printf("Error code:%d\nfile:add_instruction_node\ndescription: %s\n",error_code, errors[kind]);
 	free_func(list);
 }
 
@@ -127,10 +127,10 @@ void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
 	};
 
 	if (error_code < 39)
-		ft_printf("Error code : %d\n file : get_name_comment\n description : %s\n",error_code, errors[kind]);
+		ft_printf("Error code:%d\nfile:get_name_comment\ndescription: %s\n",error_code, errors[kind]);
 	else
 	{
-		ft_printf("Error code : %d\n file : get_name_comment\n description : %s\n at line %d char %d wrong character\n"
+		ft_printf("Error code:%d\nfile:get_name_comment\ndescription: %s\n at line %d char %d wrong character\n"
 		,error_code, errors[kind], list->line_number, list->line_char);
 	}
 	free_func(list);
@@ -142,7 +142,7 @@ void	e_procces_line(t_func_list *list, int error_code, int kind)
 	"no champion name"
 	};
 
-	ft_printf("Error code : %d\n file : process_line\n description : %s\n",error_code, errors[kind]);
+	ft_printf("Error code:%d\nfile:process_line\ndescription: %s\n",error_code, errors[kind]);
 	free_func(list);
 }
 
@@ -154,7 +154,7 @@ void	e_check_n_sort(t_func_list *list, int error_code, int kind)
 	"gnl failed"
 	};
 
-	ft_printf("Error code : %d\n file : check_n_sort\n description : %s\n",error_code, errors[kind]);
+	ft_printf("Error code:%d\nfile:check_n_sort\ndescription: %s\n",error_code, errors[kind]);
 	free_func(list);
 }
 
@@ -165,7 +165,7 @@ void	e_main(t_func_list *list, int error_code, int kind)
 	"hash table has failed"
 	};
 
-	ft_printf("Error code : %d\n file : main\n description : %s\n",error_code ,errors[kind]);
+	ft_printf("Error code:%d\nfile:main\ndescription: %s\n",error_code ,errors[kind]);
 	free_func(list);
 }
 

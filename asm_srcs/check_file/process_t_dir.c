@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/03 01:13:15 by mark           #+#    #+#                */
-/*   Updated: 2020/04/03 04:41:41 by mark          ########   odam.nl         */
+/*   Created: 2020/04/03 01:13:15 by mark          #+#    #+#                 */
+/*   Updated: 2020/04/09 03:04:05 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void		get_label_op(t_func_list *list, t_direction *new, int arg)
 {
 	int i;
 
-	i = list->line_char;
+	i = list->line_char + 1;
 	while (check_label_char(list->line[i]) == true)
 		i++;
 	if (ft_isspace(list->line[i]) == 0 && list->line[i] != SEPARATOR_CHAR)
-		error_message(list, 110, 0, 11);
+		error_message(list, 111, 0, 11);
 	i--;
-	new->arg_str[arg] = ft_strsub(list->line, list->line_char, i - list->line_char);
+	new->arg_str[arg] = ft_strsub(list->line, list->line_char + 1, i - list->line_char);
 	list->line_char = i + 1;
 }
 
@@ -49,7 +49,8 @@ void		process_t_dir(t_func_list *list, t_direction *new, int arg)
 		new->label_in_op = 1;
 		get_label_op(list, new, arg);
 	}
-	else if (!(list->line[list->line_char] >= '0' && list->line[list->line_char] <= '9'))
+	else if (!((list->line[list->line_char] >= '0' && list->line[list->line_char] <= '9') ||
+	list->line[list->line_char] == '-'))
 		error_message(list, 110 ,0, 11);
 	else
 	{
