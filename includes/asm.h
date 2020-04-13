@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/13 12:42:52 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/13 14:09:35 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,6 @@ void						free_split(char **fd_name);
 void						create_cor_file(char *argv, t_func_list *list);
 void						write_cor_file(int fd, t_func_list *list);
 void						write_champ_size(int fd, int champ_size);
-void						write_champ(int fd, t_func_list *list);
+void						write_champ(int fd, t_direction *info);
 
 #endif
