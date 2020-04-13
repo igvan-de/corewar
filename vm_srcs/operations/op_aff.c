@@ -19,8 +19,8 @@ void    op_aff(t_cursor *cursor, t_env *env)
     reg_num = env->map[modi(cursor->position + 1)];
     if (1 <= reg_num && reg_num <= 16)
     {
-        ft_putchar(cursor->registries[reg_num - 1]);
-        ft_putchar('\n');
+//        ft_putchar(cursor->registries[reg_num - 1]);
+//        ft_putchar('\n');
         move_cursor(cursor, env);
     }
     else
