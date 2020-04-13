@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/10 15:37:30 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/11 10:02:51 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/13 12:42:24 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,52 @@ void	write_champ_size(int fd, int champ_size)
 }
 
 /*
+** @brief checks if there is an encoding byte and writes is in filediscripter
+**
+** @param fd = filediscripter to write string in
+** @param encode = is data containing encode
+*/
+void	check_encode(int fd, char encode)
+{
+	if (encode != NULL)
+		write(fd, &encode, 1);
+}
+
+/*
+** @brief check_size checks the op_code and returns size 2 or 4 for T_DIR depending on op_code
+**
+** @param op_code = data of op_code
+** @return size_t = size needed to T_DIR
+*/
+size_t	check_size(unsigned char op_code)
+{
+	if (op_code == 0x09 || op_code == 0x0a || op_code == 0x0b
+		|| op_code == 0x0c || op_code == 0x0e || op_code == 0x0f)
+		return(2);
+	return(4);
+}
+
+/*
 ** @brief writes executable champion commands in byte_code into filediscriptor
 **
-** @param fd
-** @param list
+** @param fd = filediscripter to write string in
+** @param info = struct with needed data for writing champ
 **
 ** write_champ writes all the labels and operations into byte_code into the filediscriptor
 */
 
-void	write_champ(int fd, t_func_list *list)
+void	write_champ(int fd, t_direction *info)
 {
-	if (list->info->label != NULL)
-		write(fd ,&list->info->label, 4);
-	if (list->info->arg_1 != NULL)
-		write(fd, &list->info->arg_1, list->info->arg_1_number);
-	if (list->info->arg_2 != NULL)
-		write(fd, &list->info->arg_2, list->info->arg_2_number);
-	if (list->info->arg_2 != NULL)
-		write(fd, &list->info->arg_2, list->info->arg_2_number);
+	t_direction	*probe;
+	size_t		size;
+
+	probe = info;
+	while (probe->next != NULL)
+	{
+		check_encode(fd, probe->encode);
+		size = check_size(info->op_code);
+		write(fd, &probe->arg_num, size);
+		write_null(fd, 0, 1);
+		probe = probe->next;
+	}
 }

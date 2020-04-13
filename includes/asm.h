@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/17 16:59:43 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/16 21:19:17 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/13 12:42:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ typedef struct				s_direction
 {
 	unsigned char			op_code;
 	char					encode;		// 1 byte //
-	char 					*arg_1;
-	int						arg_1_number;			// 1 byte // T_REG // 1 <-> 16 // unsigned
-	char					*arg_2;
-	int						arg_2_number;			//	2 bytes // T_IND of T_DIR // // signed
-	char					*arg_3;
-	int						arg_3_number;			//	4 bytes  // T_DIR //	 signed
-	char 					*label;
+	int 					*arg_num;			// 1 byte // T_REG // 1 <-> 16 // unsigned			//	2 bytes // T_IND of T_DIR // // signed
+	char					**arg_str;			//	4 bytes  // T_DIR //	 signed
 	int						byte_index;
+	int						label_in_op;
 	int						byte_size;
 	struct s_direction		*next;
 }							t_direction;
@@ -57,9 +53,13 @@ typedef struct				s_func_list
 {
 	char					*name;
 	char					*comment;
-	int						*hash_table;
+	char					*line;
+	uint64_t				*hash_table;
 	int						line_number;
 	int						line_char;
+	int						total_bytes;
+	int						new_node;
+	t_hash_label			*labels;
 	t_direction				*info;
 }							t_func_list;
 
