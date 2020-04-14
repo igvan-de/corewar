@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/13 14:09:03 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/14 09:50:38 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	write_champ_size(int fd, int champ_size)
 ** @param fd = filediscripter to write string in
 ** @param encode = is data containing encode
 */
+
 static void	write_encode(int fd, char encode)
 {
 	if (encode != NULL)
@@ -94,10 +95,11 @@ static void	write_ind(int fd, int arg_num)
 ** @param fd = filediscripter to write string in
 ** @param arg_num = argument to write in filediscriptor
 */
+
 static void write_reg(int fd, int arg_num)
 {
 	if (arg_num != 0)
-		write(fd, (unsigned char)&arg_num, 1);
+		write(fd, (char)&arg_num, 1);
 	else
 		write(fd, 0, 1);
 }
