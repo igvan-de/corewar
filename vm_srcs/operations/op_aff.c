@@ -23,7 +23,8 @@ void    op_aff(t_cursor *cursor, t_env *env)
         if ((env->flag_byte & (1 << 4)) == (1 << 4))
         {
             ascii = (char)cursor->registries[reg_num - 1];
-            ft_printf("%c", ascii);
+            if (ft_isprint((int)ascii) == 1)
+                ft_printf("%c\n", ascii);
         }
         move_cursor(cursor, env);
     }
