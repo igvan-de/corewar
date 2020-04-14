@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   check_file_l1.c                                    :+:    :+:            */
+/*   check_n_process.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/29 05:25:21 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/07 17:16:40 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/02/29 05:25:21 by mlokhors      #+#    #+#                 */
+/*   Updated: 2020/04/09 04:12:29 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,52 +18,46 @@
 ** and check if the format is correct in the function validity_check
 */
 
-void	pre_process_line(t_func_list *list, char *line)
-{
-	if (line != NULL && line[0] != '\0')
-		process_line_into_list(list, line);
-	free(line);
-	line = NULL;
-}
-
 /*
 ** read the file line for line
 */
 
-void	read_file(int fd, t_func_list *list)
+static void		read_file(t_func_list *list, int fd)
 {
 	int		ret;
-	char	*line;
 
-	line = NULL;
-	ret = get_next_line(fd, &line);
+	ret = 1;
+	list->line_number++;
 	while (ret > 0)
 	{
-		list->line_char = -1;
-		list->line_number++;
-		pre_process_line(list, line);
-		ret = get_next_line(fd, &line);
+		list->line_char = 0;
+		ret = get_next_line(fd, &list->line);
 		if (ret == -1)
 		{
 			close(fd);
-			error_message(list, 4, 2);
+			error_message(list, 12, 2, 1);
 		}
+		if (list->line != NULL && list->line[0] != '\0')
+			process_line_into_list(list);
+		ft_memdel((void **)&list->line);
+		list->line_number++;
 	}
 	close(fd);
+	transfrom_arg_label(list);
 }
 
 /*
 ** check for the fd of the file
 */
 
-void			transfer_into_struct(char *file_name, t_func_list *list)
+static void		transfer_into_struct(char *file_name, t_func_list *list)
 {
-	int			fd;
+	int fd;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
-		error_message(list, 3, 2);
-	read_file(fd, list);
+		error_message(list, 11, 1, 1);
+	read_file(list, fd);
 }
 
 /*
@@ -80,9 +74,9 @@ static bool		check_correct_file(char *file_name)
 	return (false);
 }
 
-void			check_file(char *file_name, t_func_list *list)
+void			check_n_process(char *file_name, t_func_list *list)
 {
 	if (check_correct_file(file_name) == false)
-		error_message(list, 2, 2);
+		error_message(list, 10, 0, 1);
 	transfer_into_struct(file_name, list);
 }

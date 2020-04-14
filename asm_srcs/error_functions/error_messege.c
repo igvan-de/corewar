@@ -6,51 +6,178 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/11 10:08:18 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/03 08:46:54 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-char	*error_function(int error_code)
+void	e_process_t_dir(t_func_list *list, int error_code, int kind)
 {
-	static char errors [15][128]={
-	"init_func_list",
-	"no files are given",
-	"check_correct_file",
-	"transfer_into_struct",
-	"found_str malloc failed",
-	"comment length or program length exceeded the max",
-	"add_instruction first iteration",
-	"add_instruction x iteration",
-	"get_label_name -> ft_strsub failed",
-	"",
-	"malloc continue node failed in add_instruction_node",
-	"error in get_op_code",
-	"error in make_hash_table",
-	"error in get_op_code",
-	"error in main.c no arguments"
+	static char errors [1][50]={
+	"invalid input"
 	};
-	return(errors[error_code]);
+	ft_printf("Error code:%d\nfile: process_t_dir\ndescription: %s\n",error_code, errors[kind]);
+	ft_printf("at line %d char %d\n", list->line_number, list->line_char);
+	free_func(list);
 }
 
-void	error_message(t_func_list *list, int error_code, int kind)
+void	e_process_t_ind(t_func_list *list, int error_code, int kind)
 {
-	static char loc[5][25] = {
-	"its in init_func_list, ",
-	"its in main, ",
-	"its in check file, ",
-	"its in process_asm, ",
-	""
+	static char errors [1][50]={
+	"invalid input"
 	};
-	if (error_code < 100)
-		ft_printf("Error code %d, %s in function: %s\n", error_code, loc[kind], error_function(error_code));
-	else if (error_code == 100)
-		ft_printf("Lexical error at [%d:%d]\n", list->line_number, list->line_char);
-	else if (error_code == 101)
-		ft_printf("Invalid instruction [%.3d:%.3d]\n", list->line_number, list->line_char);
-	else if (error_code == 102)
-		ft_printf("Syntax error at [%.3d:%.3d]\n", list->line_number, list->line_char);
+	
+	ft_printf("Error code:%d\nfile: process_t_ind\ndescription: %s\n",error_code, errors[kind]);
+	ft_printf("at line %d char %d", list->line_number, list->line_char);
 	free_func(list);
+}
+
+void	e_process_t_reg(t_func_list *list, int error_code, int kind)
+{
+	static char errors [3][50]={
+	"invalid input",
+	"bigger 16 smaller then 0",
+	"invalid input"
+	};
+	if (error_code < 98)
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
+	else
+	{
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
+		ft_printf("at line %d char : %d", list->line_number, list->line_char);
+	}
+	free_func(list);
+}
+
+void	e_insert_operation(t_func_list *list, int error_code, int kind)
+{
+	static char errors [3][50]={
+	"no seperate char",
+	"invalid argument with operations",
+	"invalid input"
+	};
+	if (error_code < 86)
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
+	else
+	{
+		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",error_code, errors[kind]);
+		ft_printf("at line %d", list->line_number);
+	}
+	free_func(list);
+}
+
+void	e_add_to_hash(t_func_list *list, int error_code, int kind)
+{
+	static char errors [1][50]={
+	"malloc failed"
+	};
+
+	ft_printf("Error code:%d\nfile:add_instruction_node\ndescription: %s\n",error_code, errors[kind]);
+	free_func(list);
+}
+
+
+void	e_check_sort(t_func_list *list, int error_code, int kind)
+{
+	static char errors [3][50]={
+	"label contain illegal chars",
+	"ft_strsub failed",
+	"invalid operation"
+	};
+	if (error_code < 68)
+		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",error_code, errors[kind]);
+	else
+	{
+		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",error_code, errors[kind]);
+		ft_printf("at line %d", list->line_number);
+	}
+	free_func(list);
+}
+
+void	e_add_instruction_node(t_func_list *list, int error_code, int kind)
+{
+	static char errors [1][50]={
+	"malloc failed"
+	};
+
+	ft_printf("Error code:%d\nfile:add_instruction_node\ndescription: %s\n",error_code, errors[kind]);
+	free_func(list);
+}
+
+void	e_check_end_line(t_func_list *list, int error_code, int kind)
+{
+	static char errors [1][50]={
+	"incorrect char"
+	};
+
+	ft_printf("Error code : %d file : utility : %s\n",error_code, errors[kind]);
+	ft_printf("at line %d char %d\n",list->line_number, list->line_char);
+	free_func(list);
+}
+
+void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
+{
+	static char errors [5][50]={
+	"invalid input",
+	"missing \"",
+	"missing second \"",
+	"ft_strsub failed",
+	"name/comment to big"
+	};
+
+	if (error_code < 39)
+		ft_printf("Error code:%d\nfile:get_name_comment\ndescription: %s\n",error_code, errors[kind]);
+	else
+	{
+		ft_printf("Error code:%d\nfile:get_name_comment\ndescription: %s\n at line %d char %d wrong character\n"
+		,error_code, errors[kind], list->line_number, list->line_char);
+	}
+	free_func(list);
+}
+
+void	e_procces_line(t_func_list *list, int error_code, int kind)
+{
+	static char errors [1][50]={
+	"no champion name"
+	};
+
+	ft_printf("Error code:%d\nfile:process_line\ndescription: %s\n",error_code, errors[kind]);
+	free_func(list);
+}
+
+void	e_check_n_sort(t_func_list *list, int error_code, int kind)
+{
+	static char errors [3][50]={
+	"not a .s file",
+	"fd failed",
+	"gnl failed"
+	};
+
+	ft_printf("Error code:%d\nfile:check_n_sort\ndescription: %s\n",error_code, errors[kind]);
+	free_func(list);
+}
+
+void	e_main(t_func_list *list, int error_code, int kind)
+{
+	static char errors [2][50]={
+	"no file given",
+	"hash table has failed"
+	};
+
+	ft_printf("Error code:%d\nfile:main\ndescription: %s\n",error_code ,errors[kind]);
+	free_func(list);
+}
+
+void	error_message(t_func_list *list, int error_code, int kind, int file)
+{
+	const t_print var_list[12] = {
+	e_main, e_check_n_sort, e_procces_line,
+	e_get_name_or_comment, e_check_end_line, e_add_instruction_node, e_check_sort,
+	e_add_to_hash, e_insert_operation, e_process_t_reg, e_process_t_ind, e_process_t_dir
+	};
+
+	var_list[file](list, error_code, kind);
+
 	exit(-1);
 }

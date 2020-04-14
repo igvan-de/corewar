@@ -6,13 +6,14 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/13 14:09:35 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/14 10:39:03 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
+# include <stdint.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include	"ft_printf.h"
@@ -21,7 +22,7 @@
 # include <stdio.h>
 # define TRUE 0
 # define FALSE -1
-
+# define S_LINE
 typedef enum				s_input_variables
 {
 	NAME = 0,
@@ -36,6 +37,20 @@ typedef struct				s_count
 	int						byte_count;
 	int						i;
 }							t_count;
+
+typedef struct				s_labels
+{
+	char 					*label;
+	int						index;
+	struct s_labels			*next;
+}							t_labels;
+
+typedef struct				s_hash_label
+{
+	uint64_t				hash_label;
+	t_labels				*label;
+	struct s_hash_label		*next;
+}							t_hash_label;
 
 typedef struct				s_direction
 {
@@ -67,23 +82,36 @@ typedef struct				s_func_list
 //	op_code		/	arg_1 / 	zjmp   	%label1			label1: live
 // 	0			1 2 3 4 		5 		6 7 		8 				9 10 11 12
 
-void						add_instruction_node(t_func_list *list,
-							t_direction *pointer, t_count *counter);
-void						get_name_or_comment(t_func_list *list, char *line);
-void						process_line_into_list(t_func_list *list, char *line);
-void						check_file(char *file_name, t_func_list *list);
 
 /*
 **===============================CHECK FUNCTIONS================================
 */
-void						check_file(char *file_name, t_func_list *list);
-void						validity_check(char *line, t_func_list *list);
-void						check_name(char *line, t_func_list *list);
-void						check_comment(char *line, t_func_list *list);
 
+void 						transfrom_arg_label(t_func_list *list);
+void						insert_encode(t_direction *new, int i, int operation);
+void						process_t_dir(t_func_list *list, t_direction *new, int arg);
+void						process_t_ind(t_func_list *list, t_direction *new, int arg);
+void						process_t_reg(t_func_list *list, t_direction *new,int arg);
+typedef	void				(*t_print)(t_func_list *list, int code, int kind);
+void						add_to_hash(t_func_list *list, char *label);
+void						insert_operation(t_func_list *list, t_direction *new);
+int							calc_cmp_operation(t_func_list *list, int j);
+void						check_sort(t_func_list *list,
+							t_direction *new, int i);
+void						add_instruction_node(t_func_list *list, t_direction **info,
+							t_direction **pointer);
+void						get_name_or_comment(t_func_list *list);
+void						process_line_into_list(t_func_list *list);
+void						check_n_process(char *file_name, t_func_list *list);
 /*
 **===============================UTILITY FUNCTIONS==============================
 */
+
+void						check_end_line(t_func_list *list);
+uint64_t    				calc_hash(const void *bytes, size_t len);
+bool						check_label_char(char c);
+int							pm_atoi(t_func_list *list);
+void						check_end_line(t_func_list *list);
 int 						till_power(char letter, int power);
 unsigned int				rev_endian(unsigned int oct);
 
@@ -91,7 +119,7 @@ unsigned int				rev_endian(unsigned int oct);
 **===============================ERROR FUNCTIONS================================
 */
 void						input_error(void);
-void						error_message(t_func_list *list, int error_code, int kind);
+void						error_message(t_func_list *list, int error_code, int kind, int file);
 
 /*
 **===============================FREE FUNCTIONS=================================

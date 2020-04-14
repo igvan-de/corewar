@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/14 09:50:38 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/14 18:31:03 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 void	write_champ_size(int fd, int champ_size)
 {
 	if (champ_size > CHAMP_MAX_SIZE)
-	/*need to place error message, need to give t_func_struct, but need to know where to find champ size in info*/
 	{
+		/*need to place error message, need to give t_func_struct, but need to know where to find champ size in info*/
 		ft_putendl("champion is to big");
 		exit(-1);
 	}
@@ -41,10 +41,11 @@ void	write_champ_size(int fd, int champ_size)
 ** @param encode = is data containing encode
 */
 
-static void	write_encode(int fd, char encode)
+static void	write_encode(int fd, t_direction *info)
 {
-	if (encode != NULL)
-		write(fd, &encode, 1);
+	if (info->op_code != 0x01 || info->op_code != 0x09 || info->op_code != 0x0c
+	|| info->op_code != 0x0f)
+		write(fd, &info->encode, 1);
 }
 
 /*
@@ -69,12 +70,12 @@ static size_t	check_size(unsigned char op_code)
 ** @param info = contains all needed data, op_code and arg_num
 */
 
-static void		write_dir(int fd, t_direction *info)
+static void		write_dir(int fd, int arg, char opcode)
 {
 	size_t size;
 
-	size = check_size(info->op_code);
-	write(fd, &info->arg_num, size);
+	size = check_size(opcode);
+	write(fd, &arg, size);
 }
 
 /*
@@ -86,7 +87,10 @@ static void		write_dir(int fd, t_direction *info)
 
 static void	write_ind(int fd, int arg_num)
 {
-	write(fd, (short)&arg_num, 2);
+	short	arg;
+
+	arg = (short)arg_num;
+	write(fd, &arg, 2);
 }
 
 /*
@@ -98,10 +102,24 @@ static void	write_ind(int fd, int arg_num)
 
 static void write_reg(int fd, int arg_num)
 {
+	char	arg;
+
+	arg = (char)arg_num;
 	if (arg_num != 0)
-		write(fd, (char)&arg_num, 1);
+		write(fd, &arg, 1);
 	else
 		write(fd, 0, 1);
+}
+
+static void	func_pointer_arr(int value)
+{
+	const func_pointer[3] = {write_dir, write_ind, write_reg};
+	func_pointer[value];
+}
+
+static void	write_args(int fd, t_direction *info)
+{
+	func_pointer_arr();
 }
 
 /*
@@ -115,19 +133,13 @@ static void write_reg(int fd, int arg_num)
 void	write_champ(int fd, t_direction *info)
 {
 	t_direction	*probe;
-	size_t		size;
 
 	probe = info;
-	while (probe->next != NULL)
+	while (probe != NULL)
 	{
+		write(fd, &probe->op_code, 1);
 		write_encode(fd, probe->encode);
-		if (probe->arg_num == T_DIR)
-			write_dir(fd, probe->arg_num);
-		if (probe->arg_num == T_IND)
-			write_ind(fd, probe->arg_num);
-		if (probe->arg_num == T_REG)
-			write_reg(fd, probe->arg_num);
-		write_null(fd, 0, 1);
+		write_args(fd, info);
 		probe = probe->next;
 	}
 }

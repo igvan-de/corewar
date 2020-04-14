@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/14 10:06:10 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/14 10:12:28 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 			error_message(list, 33, 4, 3);
 		list->line_char++;
 	}
-	// return (8);
-	/*we kunnen dit ook zo opschrijven, die return (0) heeft geen meerwaarde onderaan de functie*/
-	// else
-	// 	return (8);
-	// return (0);
 }
 
 /*
