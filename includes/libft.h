@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/01/17 10:18:46 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/02/18 14:28:08 by jdunnink      ########   odam.nl         */
+/*   Created: 2019/01/17 10:18:46 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/14 22:48:50 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isspace(char c);
 int					ft_isupper(int c);
 int					ft_toupper(int c);
 int					ft_tolower(int c);
