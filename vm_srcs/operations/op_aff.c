@@ -15,12 +15,16 @@
 void    op_aff(t_cursor *cursor, t_env *env)
 {
     char    reg_num;
+    char    ascii;
 
     reg_num = env->map[modi(cursor->position + 1)];
     if (1 <= reg_num && reg_num <= 16)
     {
-//        ft_putchar(cursor->registries[reg_num - 1]);
-//        ft_putchar('\n');
+        if ((env->flag_byte & (1 << 4)) == (1 << 4))
+        {
+            ascii = (char)cursor->registries[reg_num - 1];
+            ft_printf("%c", ascii);
+        }
         move_cursor(cursor, env);
     }
     else

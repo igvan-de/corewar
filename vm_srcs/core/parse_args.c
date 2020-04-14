@@ -23,6 +23,9 @@
 **	->	if the -dump flag is active, the visualizer gets disabled.
 **
 **	->	if the -v flag is active, the visualizer gets disabled.
+**
+**	->	if the -a flag is active, the visualizer gets disabled.
+**
 */
 
 static	void	valid_flags(t_env *env)
@@ -34,6 +37,8 @@ static	void	valid_flags(t_env *env)
 	else if ((env->flag_byte & (1 << 2)) == (1 << 2))
 		env->flag_byte ^= 1;
 	else if ((env->flag_byte & (1 << 3)) == (1 << 3))
+		env->flag_byte ^= 1;
+	else if ((env->flag_byte & (1 << 4)) == (1 << 4))
 		env->flag_byte ^= 1;
 }
 
@@ -50,6 +55,8 @@ static	int	is_flag(char *param)
 	else if (ft_strcmp(param, "-help") == 0)
 		return (1);
 	else if (ft_strcmp(param, "-n") == 0)
+		return (1);
+	else if (ft_strcmp(param, "-a") == 0)
 		return (1);
 	return (0);
 }
@@ -75,7 +82,7 @@ static	int	is_flag(char *param)
 **	->	if the number of players is higher than MAX_PLAYERS or
 **		if there are no players, the program exits with error.
 **
-**	lastly, valid_flags gets called to make sure there are
+**	lastly, valid_flags gets called to make sure there are no
 **	contradicting flags turned on.
 */
 

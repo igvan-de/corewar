@@ -109,6 +109,8 @@ void	process_flag(char **argv, int *i, int arg_nb, t_env *env)
 		*i += get_player_nbr(argv, (*i) + 1, arg_nb, env);
 	else if (ft_strcmp(argv[*i], "-visual") == 0)
 		env->flag_byte = env->flag_byte | 1;
+	else if (ft_strcmp(argv[*i], "-a") == 0)
+		env->flag_byte = env->flag_byte | (1 << 4);
 	else if (ft_strcmp(argv[*i], "-dump") == 0)
 	{
 		env->flag_byte = env->flag_byte | (1 << 1);
