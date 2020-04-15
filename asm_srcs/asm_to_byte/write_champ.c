@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/14 18:31:03 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/15 07:31:13 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ static size_t	check_size(unsigned char op_code)
 ** @param info = contains all needed data, op_code and arg_num
 */
 
+// zo werkt t_dir niet. het is of een short(16 bits) of een int container(32) bits
+
 static void		write_dir(int fd, int arg, char opcode)
 {
 	size_t size;
@@ -100,6 +102,9 @@ static void	write_ind(int fd, int arg_num)
 ** @param arg_num = argument to write in filediscriptor
 */
 
+// waarom deze cast?
+// je weet als je van encode afleest dan maakt het toch niks meer uit?
+
 static void write_reg(int fd, int arg_num)
 {
 	char	arg;
@@ -110,6 +115,8 @@ static void write_reg(int fd, int arg_num)
 	else
 		write(fd, 0, 1);
 }
+
+// maken van deze ipv 3 4 en zet de 0 waarde op NULL
 
 static void	func_pointer_arr(int value)
 {
@@ -129,6 +136,11 @@ static void	write_args(int fd, t_direction *info)
 ** @param info = struct with needed data for writing champ
 **
 */
+
+// waarom een adress van probe->op_code?
+// je hoeft deze niet mmer veranderen.
+// put_nbr niet beter? 
+// write accepteerd het zo niet volgens mij
 
 void	write_champ(int fd, t_direction *info)
 {
