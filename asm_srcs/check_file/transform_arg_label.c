@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/09 03:15:15 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 03:09:52 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 07:17:22 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void		transfrom_arg_label(t_func_list *list)
 			{
 				conv_search_hash(list, &iter, i);
 				ft_memdel((void**)&iter->arg_str[i]);
-				return ;
 			}
 			i++;
 		}

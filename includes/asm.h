@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 03:56:08 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 05:44:35 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct				s_hash_label
 typedef struct				s_direction
 {
 	unsigned char			op_code;
-	int						has_label;
 	char					encode;		// 1 byte //
 	int 					*arg_num;			// 1 byte // T_REG // 1 <-> 16 // unsigned			//	2 bytes // T_IND of T_DIR // // signed
 	char					**arg_str;			//	4 bytes  // T_DIR //	 signed

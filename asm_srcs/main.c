@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/14 23:39:24 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 07:14:55 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void print_list(t_func_list *list)
 	while (ptr)
 	{
 		i = 0;
-
+		ft_printf("index:%d\n", ptr->byte_index);
 		ft_printf("op_code %d\nbyte_size %d\n", ptr->op_code, ptr->byte_size);
 		while (i < 8)
 		{

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:04:13 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 03:00:35 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 07:19:08 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** if there is none it will make a new sub node within the hash node
 */
 
-static void	add_label_node(t_func_list *list, t_labels **last,
+static bool	check_label_node(t_func_list *list, t_labels **last,
 		t_labels **ptr, char *label)
 {
 	t_labels *iter;
@@ -34,7 +34,9 @@ static void	add_label_node(t_func_list *list, t_labels **last,
 	while (iter)
 	{
 		if (ft_strcmp(iter->label, label) == 0)
-			return ;
+		{
+			return (FALSE);
+		}
 		iter = iter->next;
 	}
 	new = ft_memalloc(sizeof(t_labels));
@@ -42,6 +44,7 @@ static void	add_label_node(t_func_list *list, t_labels **last,
 		error_message(list, 72, 0, 7);
 	(*ptr) = new;
 	iter->next = new;
+	return (TRUE);
 }
 
 static void	add_hash_label_node(t_func_list *list, t_hash_label **ptr,
@@ -63,15 +66,19 @@ static void	search_ex_hash(t_func_list *list, char *label, uint64_t hash)
 
 	table = NULL;
 	ptr = list->labels;
-	while (ptr && ptr->next)
+	while (ptr)
 	{
 		if (hash == ptr->hash_label)
 		{
-			add_label_node(list, &(ptr->label), &table, label);
-			table->label = ft_strdup(label);
-			table->index = list->total_bytes;
+			if (check_label_node(list, &(ptr->label), &table, label) == TRUE)
+			{
+				table->label = ft_strdup(label);
+				table->index = list->total_bytes;
+			}
 			return ;
 		}
+		if (ptr->next == NULL)
+			break ;
 		ptr = ptr->next;
 	}
 	add_hash_label_node(list, &ptr->next, hash);

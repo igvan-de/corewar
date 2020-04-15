@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:21:48 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 04:04:54 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 05:44:18 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,10 @@ void	e_add_to_hash(t_func_list *list, int error_code, int kind)
 
 void	e_check_sort(t_func_list *list, int error_code, int kind)
 {
-	static char errors[4][50] = {
+	static char errors[3][50] = {
 	"label contain illegal chars",
 	"ft_strsub failed",
-	"invalid operation",
-	"empty label"
+	"invalid operation"
 	};
 
 	if (error_code < 67)
@@ -83,8 +82,6 @@ void	e_check_sort(t_func_list *list, int error_code, int kind)
 	}
 	else
 	{
-		if (error_code == 67)
-			list->line_number--;
 		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",
 		error_code, errors[kind]);
 		ft_printf("at line %d", list->line_number);

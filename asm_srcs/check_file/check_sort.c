@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 04:07:01 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 05:50:15 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		check_operation(t_func_list *list,
 ** convert labels to the indirect value based on the index
 */
 
-static void		get_label_name(t_func_list *list, t_direction *new,
+static void		get_label_name(t_func_list *list,
 				int len)
 {
 	int		start;
@@ -66,8 +66,6 @@ static void		get_label_name(t_func_list *list, t_direction *new,
 	sub = NULL;
 	start = list->line_char;
 	ret = 0;
-	if (new->has_label == 1)
-		error_message(list, 67, 3, 6);
 	while (list->line_char < len)
 	{
 		ret = check_label_char(list->line[list->line_char]);
@@ -80,7 +78,6 @@ static void		get_label_name(t_func_list *list, t_direction *new,
 		error_message(list, 61, 1, 6);
 	add_to_hash(list, sub);
 	list->line_char = len;
-	new->has_label = 1;
 }
 
 /*
@@ -103,7 +100,7 @@ void			check_sort(t_func_list *list,
 		i++;
 	if (list->line[i - 1] == LABEL_CHAR)
 	{
-		get_label_name(list, new, i);
+		get_label_name(list, i);
 		list->line_char = i;
 		while (list->line[list->line_char] &&
 			ft_isspace(list->line[list->line_char]) == 1)
