@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:13:55 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/14 23:21:22 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 03:40:04 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,14 @@ void	e_check_end_line(t_func_list *list, int error_code, int kind)
 
 void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
 {
-	static char errors[5][50] = {
+	static char errors[7][50] = {
 	"invalid input",
 	"missing \"",
 	"missing second \"",
 	"ft_strsub failed",
-	"name/comment to big"
+	"name/comment to big",
+	"name already initialised",
+	"comment already initialised"
 	};
 
 	if (error_code < 39)

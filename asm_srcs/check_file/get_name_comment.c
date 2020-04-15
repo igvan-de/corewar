@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/15 02:59:43 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 03:38:27 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,15 @@ void		get_name_or_comment(t_func_list *list)
 	line = list->line;
 	if (ft_strncmp(line + list->line_char, "name", 4) == 0)
 	{
+		if (list->name != NULL)
+			error_message(list, 34, 5, 3);
 		list->line_char += 4;
 		search_for_str(list, line, &(list->name), PROG_NAME_LENGTH);
 	}
 	else if (ft_strncmp(line + list->line_char, "comment", 7) == 0)
 	{
+		if (list->comment != NULL)
+			error_message(list, 35, 6, 3);
 		list->line_char += 7;
 		search_for_str(list, line, &(list->comment), COMMENT_LENGTH);
 	}
