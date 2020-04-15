@@ -6,15 +6,12 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/07 16:28:15 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/14 23:39:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-/*
-** make the hash table
-*/
+// remove this test when final
 
 static void print_list(t_func_list *list)
 {
@@ -67,6 +64,12 @@ static void print_list(t_func_list *list)
 	ft_printf("\n");
 }
 
+/*
+** Here it malloc the hash table for valid operations
+** it will transform them into a hash.
+** its based on the Fowler–Noll–Vo hash function
+*/
+
 static uint64_t	*make_hash_table(void)
 {
 	uint64_t	*table;
@@ -82,7 +85,7 @@ static uint64_t	*make_hash_table(void)
 	ft_bzero(table, 16 * (sizeof(uint64_t)));
 	while (i < 16)
 	{
-		table[i] = calc_hash(operation[i] , ft_strlen(operation[i]));
+		table[i] = calc_hash(operation[i], ft_strlen(operation[i]));
 		i++;
 	}
 	return (table);
@@ -90,6 +93,7 @@ static uint64_t	*make_hash_table(void)
 
 /*
 **		init the main store data structure
+**		also it makes his own hash table;
 */
 
 static void	init_func_list(t_func_list *list)
@@ -105,6 +109,10 @@ static void	init_func_list(t_func_list *list)
 	if (list->hash_table == NULL)
 		error_message(list, 1, 1, 0);
 }
+
+/*
+** This function start the whole process. Its the Main duh.
+*/
 
 int			main(int argc, char **argv)
 {

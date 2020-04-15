@@ -6,13 +6,18 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:24:17 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/14 10:12:10 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/15 03:01:15 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int		cmp_op(uint64_t *hash_table, uint64_t number)
+/*
+** here its calcuate the operation hash and
+** compares with the operation hash table
+*/
+
+static int	cmp_op(uint64_t *hash_table, uint64_t number)
 {
 	int i;
 
@@ -26,10 +31,10 @@ int		cmp_op(uint64_t *hash_table, uint64_t number)
 	return (-1);
 }
 
-int		calc_cmp_operation(t_func_list *list, int j)
+int			calc_cmp_operation(t_func_list *list, int j)
 {
-	uint64_t total;
-	int op;
+	uint64_t	total;
+	int			op;
 
 	op = 0;
 	total = calc_hash(list->line + list->line_char, j);

@@ -6,11 +6,23 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:27:28 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/14 23:28:59 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 03:12:52 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void	e_transform_arg_label(t_func_list *list, int error_code, int kind)
+{
+	static char errors[2][50] = {
+	"label hash doesnt exist",
+	"label hash exist. Did not found it"
+	};
+
+	ft_printf("Error code:%d\nfile:transform_arg_label\ndescription: %s\n",
+	error_code, errors[kind]);
+	free_func(list);
+}
 
 void	e_process_t_dir(t_func_list *list, int error_code, int kind)
 {

@@ -6,17 +6,13 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:09:42 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/09 03:04:38 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 03:03:25 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-/*
-** adds a node to the list and set them to 0
-*/
-
-void	add_back_end(t_direction **info, t_direction *new)
+static void	add_back_end(t_direction **info, t_direction *new)
 {
 	t_direction *tmp;
 
@@ -26,7 +22,14 @@ void	add_back_end(t_direction **info, t_direction *new)
 	tmp->next = new;
 }
 
-void	init_args(t_func_list *list, t_direction **iter)
+/*
+** init the arrays needed to store the arguments.
+** it will keep making an array of 3 for strings and number
+** even if there is only 1 argument. the reason is,
+** dont we dont have to reallocate to make the size bigger
+*/
+
+static void	init_args(t_func_list *list, t_direction **iter)
 {
 	(*iter)->arg_str = ft_memalloc(sizeof(char *) * 3);
 	if ((*iter)->arg_str == NULL)
@@ -36,7 +39,11 @@ void	init_args(t_func_list *list, t_direction **iter)
 		error_message(list, 52, 0, 5);
 }
 
-void	add_instruction_node(t_func_list *list, t_direction **info,
+/*
+** Here it will Make the new node and put it at the end of the list
+*/
+
+void		add_instruction_node(t_func_list *list, t_direction **info,
 		t_direction **pointer)
 {
 	t_direction *new;

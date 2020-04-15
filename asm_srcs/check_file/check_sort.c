@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/09 03:05:14 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 01:21:57 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ static int		if_encode(int op_code)
 
 	return (encode[op_code - 1]);
 }
+
+/*
+** check if its an valid op_code.
+** Also it checks if there is an encode byte
+** it will add to the total bytes but to the node byte amount
+*/
 
 static void		check_operation(t_func_list *list,
 		t_direction *new, int i)
@@ -41,6 +47,14 @@ static void		check_operation(t_func_list *list,
 	new->byte_size += op_encode;
 	list->line_char = i;
 }
+
+/*
+** checks the label with correct chars then it makes a sub string.
+** after the substring has been made it will convert to a hash
+** it will be added into a new list that remembers the hash.
+** and the index. so once everything is finished it can easily
+** convert labels to the indirect value based on the index
+*/
 
 static void		get_label_name(t_func_list *list,
 				int len)
@@ -65,6 +79,15 @@ static void		get_label_name(t_func_list *list,
 	add_to_hash(list, sub);
 	list->line_char = len;
 }
+
+/*
+** this is quite a heavy read. so it first check for a label name
+** if this has been found it will process then it will recurse so it
+** will check again. because its already been found it will skip this
+** and goes straight to the process the remaining arguments.
+** or it stops since the the end of line have been found.
+** it wil set list->new_node to 1 so no new node is being made
+*/
 
 void			check_sort(t_func_list *list,
 		t_direction *new, int i)

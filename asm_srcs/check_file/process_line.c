@@ -6,13 +6,19 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/09 03:11:03 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 02:58:59 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	search_last_node(t_func_list *list, t_direction **ptr)
+/*
+** search for the next existing node and saves the pointer to it.
+** it will set the new_node back to 0
+** so it can make a new node in the next iteration
+*/
+
+static void	search_last_node(t_func_list *list, t_direction **ptr)
 {
 	t_direction *iter;
 
@@ -23,7 +29,12 @@ void	search_last_node(t_func_list *list, t_direction **ptr)
 	list->new_node = 0;
 }
 
-void	insert_info_into_node(t_func_list *list,
+/*
+** this will call the check for valid operation.
+** then it calls it to process the valid operation.
+*/
+
+static void	insert_info_into_node(t_func_list *list,
 		t_direction *new)
 {
 	int i;
@@ -33,7 +44,13 @@ void	insert_info_into_node(t_func_list *list,
 	insert_operation(list, new);
 }
 
-void	insert_file_node(t_func_list *list)
+/*
+** here it will make a new node of t_direction and it saves the pointer of it
+** if there was an label name only present in the last line the pointer will aim
+** to the last malloced node
+*/
+
+static void	insert_file_node(t_func_list *list)
 {
 	t_direction *new;
 
@@ -45,9 +62,18 @@ void	insert_file_node(t_func_list *list)
 	insert_info_into_node(list, new);
 }
 
-void	process_line_into_list(t_func_list *list)
+/*
+** here it checks if it starts with a .name or .comment
+** it doesnt matter which order. if .name has not been given
+** and there is an valid operation the program stops.
+** if there already is a valid .name and there anything else it goes
+** into insert_file_node to further process
+*/
+
+void		process_line_into_list(t_func_list *list)
 {
-	while (list->line[list->line_char] && ft_isspace(list->line[list->line_char]) == 1)
+	while (list->line[list->line_char] &&
+	ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
 	if (list->line[list->line_char] == '.')
 	{

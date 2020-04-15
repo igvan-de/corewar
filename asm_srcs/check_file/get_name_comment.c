@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/14 10:12:28 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/15 02:59:43 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 ** if there is a character that is not a " it will exit it
 */
 
-static void	search_for_str(t_func_list *list, char *line, char **target, int len)
+static void	search_for_str(t_func_list *list, char *line,
+		char **target, int len)
 {
 	while (line[list->line_char] && ft_isspace(line[list->line_char]) == 1)
 		list->line_char++;
@@ -65,11 +66,12 @@ static void	search_for_str(t_func_list *list, char *line, char **target, int len
 }
 
 /*
-** cmp it with name or comment.
-** if that is equal it will adds the length. so it keeps going
+** compares it with name or comment.
+** if that is the same it will adds the length. so it keeps going
+** else it its not a valid input since we already checked for the '.'
 */
 
-void	get_name_or_comment(t_func_list *list)
+void		get_name_or_comment(t_func_list *list)
 {
 	char *line;
 

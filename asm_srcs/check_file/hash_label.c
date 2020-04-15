@@ -6,13 +6,22 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:04:13 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/09 03:07:29 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 03:00:35 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	add_label_node(t_func_list *list, t_labels **last,
+/*
+** So All what this file does is that it makes a hash from the label
+** if it does exist it does nothing
+** if it doesnt exist it will make a new node.
+** if the hash exist but it isnt the same then the actually string
+** it will compare with the nexts sub node.
+** if there is none it will make a new sub node within the hash node
+*/
+
+static void	add_label_node(t_func_list *list, t_labels **last,
 		t_labels **ptr, char *label)
 {
 	t_labels *iter;
@@ -35,7 +44,7 @@ void	add_label_node(t_func_list *list, t_labels **last,
 	iter->next = new;
 }
 
-void	add_hash_label_node(t_func_list *list, t_hash_label **ptr,
+static void	add_hash_label_node(t_func_list *list, t_hash_label **ptr,
 		uint64_t hash)
 {
 	*ptr = ft_memalloc(sizeof(t_hash_label));
@@ -47,7 +56,7 @@ void	add_hash_label_node(t_func_list *list, t_hash_label **ptr,
 		error_message(list, 71, 0, 7);
 }
 
-void	search_ex_hash(t_func_list *list, char *label, uint64_t hash)
+static void	search_ex_hash(t_func_list *list, char *label, uint64_t hash)
 {
 	t_hash_label	*ptr;
 	t_labels		*table;
@@ -71,7 +80,7 @@ void	search_ex_hash(t_func_list *list, char *label, uint64_t hash)
 	ptr->next->label->index = list->total_bytes;
 }
 
-void	add_to_hash(t_func_list *list, char *label)
+void		add_to_hash(t_func_list *list, char *label)
 {
 	uint64_t hash;
 

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/09 04:12:29 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/14 23:44:02 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 #include <fcntl.h>
 
 /*
-** read_file read line for line the given champin file
-** and check if the format is correct in the function validity_check
-*/
-
-/*
-** read the file line for line
+** read the file line for line.
+**	if there is only a label it will not make a new node.
+** it will go to the next line but its still the same node.
+** after it ready it transforms the labels which came in als arguments
+** to the index number
 */
 
 static void		read_file(t_func_list *list, int fd)
@@ -47,7 +46,7 @@ static void		read_file(t_func_list *list, int fd)
 }
 
 /*
-** check for the fd of the file
+** check for the fd of the file and checks if its valid
 */
 
 static void		transfer_into_struct(char *file_name, t_func_list *list)

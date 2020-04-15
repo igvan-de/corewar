@@ -6,13 +6,21 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/09 03:15:15 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/09 03:46:46 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 03:09:52 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	cmp_str_hash(t_func_list *list, t_labels *h_label, t_direction **iter, int i)
+/*
+** here we actually do the converation
+** the label is targetting an other label
+** the distance from the current node to the targeted node
+** is the indirect adress
+*/
+
+static void	cmp_str_hash(t_func_list *list, t_labels *h_label,
+			t_direction **iter, int i)
 {
 	t_labels *l_iter;
 
@@ -26,13 +34,20 @@ void	cmp_str_hash(t_func_list *list, t_labels *h_label, t_direction **iter, int 
 		}
 		l_iter = l_iter->next;
 	}
-	error_message(list, 0, 0, 0);
+	error_message(list, 131, 1, 13);
 }
 
-void	conv_search_hash(t_func_list *list, t_direction **iter , int i)
+/*
+** here the str is being transformed into hash
+** it will search for the correspoding existing hash
+** if there is no corresponding hash then the label isnt valid
+** this is to avoid collision with the hash function
+*/
+
+static void	conv_search_hash(t_func_list *list, t_direction **iter, int i)
 {
-	uint64_t hash;
-	t_hash_label *table;
+	uint64_t		hash;
+	t_hash_label	*table;
 
 	hash = calc_hash((*iter)->arg_str[i], ft_strlen((*iter)->arg_str[i]));
 	table = list->labels;
@@ -42,13 +57,18 @@ void	conv_search_hash(t_func_list *list, t_direction **iter , int i)
 			return (cmp_str_hash(list, table->label, iter, i));
 		table = table->next;
 	}
-	error_message(list, 0 , 0, 0);
+	error_message(list, 130, 0, 13);
 }
 
-void 	transfrom_arg_label(t_func_list *list)
+/*
+** search for each node that all arg_str are NULL
+** if it isnt not then it means there is a label that must be converted
+*/
+
+void		transfrom_arg_label(t_func_list *list)
 {
 	t_direction *iter;
-	int i;
+	int			i;
 
 	i = 0;
 	iter = list->info;
