@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: zaz <marvin@42.fr>                           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2013/10/04 11:33:27 by zaz            #+#    #+#                */
-/*   Updated: 2020/03/16 21:20:45 by igvan-de      ########   odam.nl         */
+/*   Created: 2013/10/04 11:33:27 by zaz           #+#    #+#                 */
+/*   Updated: 2020/04/15 11:00:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ typedef struct		s_op
 	int		acb;
 	int		label_size;
 }					t_op;
+
+
 
 #endif

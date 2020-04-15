@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 07:31:13 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 12:13:29 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ void	write_champ_size(int fd, int champ_size)
 ** @param encode = is data containing encode
 */
 
-static void	write_encode(int fd, t_direction *info)
-{
-	if (info->op_code != 0x01 || info->op_code != 0x09 || info->op_code != 0x0c
-	|| info->op_code != 0x0f)
-		write(fd, &info->encode, 1);
-}
-
 /*
 ** @brief check_size checks the op_code and returns size 2 or 4 for T_DIR depending on op_code
 **
@@ -63,6 +56,60 @@ static size_t	check_size(unsigned char op_code)
 	return(4);
 }
 
+
+static void		write_dir(int fd, t_direction *info, int i)
+{
+	size_t size;
+
+	size = check_size(info->op_code);
+	write(fd, &info->arg_num[i], size);
+}
+
+static void	write_ind(int fd, t_direction *info, int i)
+{
+	short	arg;
+
+	arg = (short)info->arg_num[i];
+	write(fd, &arg, 2);
+}
+
+static void write_reg(int fd, t_direction *info, int i)
+{
+	char	arg;
+
+	arg = (char)info->arg_num[i];
+	write(fd, &arg, 1);
+}
+
+static void	func_pointer_arr(int fd, t_direction *info, unsigned char new, int i)
+{
+	const t_arg type[4] = {NULL, write_dir, write_ind, write_reg};
+	type[new](fd, info, i);
+}
+
+static void	write_encode(int fd, t_direction *info)
+{
+	static int left[3] = {0, 2, 4};
+	unsigned char new;
+	int i;
+
+	new = (unsigned char)info->encode;
+	i = 0;
+	if (info->op_code != 0x01 || info->op_code != 0x09 || info->op_code != 0x0c
+	|| info->op_code != 0x0f)
+		write(fd, &info->encode, 1);
+	while (i < 3)
+	{
+		new = (unsigned char)info->encode;
+		new <<= left[i];
+		new >>= 6;
+		if (new != 0)
+			func_pointer_arr(fd, info, new, i);
+		i++;
+	}
+
+}
+
 /*
 ** @brief write_dir looks via check_size the size of T_DIR and write bytes of size in fd
 **
@@ -72,13 +119,7 @@ static size_t	check_size(unsigned char op_code)
 
 // zo werkt t_dir niet. het is of een short(16 bits) of een int container(32) bits
 
-static void		write_dir(int fd, int arg, char opcode)
-{
-	size_t size;
 
-	size = check_size(opcode);
-	write(fd, &arg, size);
-}
 
 /*
 ** @brief
@@ -87,13 +128,7 @@ static void		write_dir(int fd, int arg, char opcode)
 ** @param arg_num = argument to write in filediscriptor
 */
 
-static void	write_ind(int fd, int arg_num)
-{
-	short	arg;
 
-	arg = (short)arg_num;
-	write(fd, &arg, 2);
-}
 
 /*
 ** @brief write_reg writes the size of T_REG in filediscriptor
@@ -105,29 +140,11 @@ static void	write_ind(int fd, int arg_num)
 // waarom deze cast?
 // je weet als je van encode afleest dan maakt het toch niks meer uit?
 
-static void write_reg(int fd, int arg_num)
-{
-	char	arg;
 
-	arg = (char)arg_num;
-	if (arg_num != 0)
-		write(fd, &arg, 1);
-	else
-		write(fd, 0, 1);
-}
 
 // maken van deze ipv 3 4 en zet de 0 waarde op NULL
 
-static void	func_pointer_arr(int value)
-{
-	const func_pointer[3] = {write_dir, write_ind, write_reg};
-	func_pointer[value];
-}
 
-static void	write_args(int fd, t_direction *info)
-{
-	func_pointer_arr();
-}
 
 /*
 ** @brief writes executable champion commands in byte_code into filediscriptor
@@ -137,10 +154,6 @@ static void	write_args(int fd, t_direction *info)
 **
 */
 
-// waarom een adress van probe->op_code?
-// je hoeft deze niet mmer veranderen.
-// put_nbr niet beter? 
-// write accepteerd het zo niet volgens mij
 
 void	write_champ(int fd, t_direction *info)
 {
@@ -150,8 +163,7 @@ void	write_champ(int fd, t_direction *info)
 	while (probe != NULL)
 	{
 		write(fd, &probe->op_code, 1);
-		write_encode(fd, probe->encode);
-		write_args(fd, info);
+		write_encode(fd, probe);
 		probe = probe->next;
 	}
 }

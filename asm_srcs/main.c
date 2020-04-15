@@ -6,13 +6,13 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 07:14:55 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/15 12:13:27 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 // remove this test when final
-
+/*
 static void print_list(t_func_list *list)
 {
 	t_direction *ptr;
@@ -63,7 +63,7 @@ static void print_list(t_func_list *list)
 	}
 	ft_printf("\n");
 }
-
+*/
 /*
 ** Here it malloc the hash table for valid operations
 ** it will transform them into a hash.
@@ -126,10 +126,9 @@ int			main(int argc, char **argv)
 	while (argv[i] != NULL)
 		i++;
 	check_n_process(argv[argc - 1], &list);
-	print_list(&list);
-	exit(-1);
+//	print_list(&list);
 	// process_asm(argv[i - 1]);
-//	create_cor_file(argv[i - 1], &list);
+	create_cor_file(argv[i - 1], &list);
 //	free_all_but_hash(&list);
 	return (0);
 }

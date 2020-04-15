@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/06 18:27:18 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/11 11:59:02 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/03/06 18:27:18 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/15 11:00:51 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	create_cor_file(char *argv, t_func_list *list)
 	list->name = "badman";
 	list->comment = "This city needs me";
 	fd_name = get_name(argv);
-	fd = open(fd_name, O_CREAT | O_WRONLY, 0640);
+	fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	write_cor_file(fd, list);
 	free(fd_name);
 }
