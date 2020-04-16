@@ -34,7 +34,7 @@ static	void	free_player(void *player, size_t size)
 	}
 }
 
-/**
+/*
 **	@brief:	free a cursor
 **
 **	@param cursor
@@ -48,7 +48,7 @@ static	void	free_cursor(t_cursor *cursor)
 	free(cursor);
 }
 
-/**
+/*
 **	@brief:	free the cursor stack
 **
 **	@param cursor_stack

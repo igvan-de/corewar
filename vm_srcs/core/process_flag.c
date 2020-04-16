@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-/**
+/*
 **	@brief: retrieve the dump cycle value
 **
 **	@param curr_arg	:	the number of the current parameter
@@ -70,6 +70,17 @@ static	void	get_verbosity(int curr_arg, int arg_nb, char **argv, t_env *env)
 	env->verbosity = (unsigned)verbosity;
 }
 
+/*
+**	@brief: check custom player number for duplicates
+**
+**	@param nbr			:	custom player number
+**	@param players		:	current list of players
+**
+**	after the '-n' flag is encountered, dup_nbr checks if the retrieved custom
+**	player number does not conflict with and existing player number.
+**	The function returns 1 of a conflict was found, and 0 otherwise.
+*/
+
 static	int	dup_nbr(int nbr, t_list *players)
 {
 	t_list		*iter;
@@ -85,6 +96,20 @@ static	int	dup_nbr(int nbr, t_list *players)
 	}
 	return (0);
 }
+
+/*
+**	@brief: read custom player number
+**
+**	@param argv			:	array of program parameters
+**	@param index		:	index of current parameter
+**	@param arg_nb		:	total number of parameters
+**	@param env			:	global environment struct
+**
+**	if the '-n' flag is enabled, get_player_nbr is called to retrieve
+**	the custom player number from the parameters array. if a valid nbr
+**	is found, it is stored at env->player_nbr and the function returns true.
+**	otherwise, env->player_nbr is set to 0, and the function returns false.
+*/
 
 static	int	get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 {
@@ -102,6 +127,27 @@ static	int	get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 	env->player_nbr = (int)player_nbr;
 	return (1);
 }
+
+/*
+**	@brief: process flag call
+**
+**	@param argv			:	array of program parameters
+**	@param player_nb	:	ptr to index of current parameter
+**	@param arg_nb		:	total number of parameters
+**	@param env			:	global environment struct 
+**
+**	process_flag gets called once a valid flag has been encountered
+**	as program parameter.
+**
+**		- if the flag is '-n', the next player receives a
+**		  custom player nbr.
+**		- if the flag is '-visual' the visualizer is turned on.
+**		- if the flag is '-a', the op_aff operation is enabled.
+**		- if the flag is '-dump', corewar will exit and
+**		  dump memory after the specified number of cycles.
+**		- if the flag is '-v', extra verbosity is enabled.
+**		- if the flag is -help', corewar will exit and show usage.
+*/
 
 void	process_flag(char **argv, int *i, int arg_nb, t_env *env)
 {

@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-/**
+/*
 **	@brief: print current CYCLES_TO_DIE to stdout
 **
 **	@param cycles_to_die : current value of CYCLES_TO_DIE
@@ -28,7 +28,7 @@ static	void	dump_ctd(int cycles_to_die)
 	ft_putchar('\n');
 }
 
-/**
+/*
 **	@brief:	determine if a cursor is dead
 **
 **	@param cursor	: 	target cursor
@@ -54,7 +54,7 @@ static	int		is_dead(t_cursor *cursor, t_env *env)
 	return (0);
 }
 
-/**
+/*
 **	@brief:	free a cursor and remove it from the cursor stack
 **
 **	@param cursor			:	cursor to be removed

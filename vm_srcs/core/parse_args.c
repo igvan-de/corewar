@@ -42,6 +42,16 @@ static	void	valid_flags(t_env *env)
 		env->flag_byte ^= 1;
 }
 
+/*
+**	@brief: validate flag parameter
+**
+**	@param param			:	program parameter
+**
+**	is_flag receives a parameter passed to corewar
+**	and checks if that parameter is a valid flag call.
+**	returns 1 if true, 0 if false.
+*/
+
 static	int	is_flag(char *param)
 {
 	if (ft_strncmp(param, "-", 1) == 1)

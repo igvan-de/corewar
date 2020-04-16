@@ -12,6 +12,20 @@
 
 #include "vm.h"
 
+/*
+**	@brief: validate register numbers
+**
+**	@param c		:	current cursor
+**	@param env	 	:	global environment struct
+**	@param encode	:	encoding byte	
+**
+**	valid_regs receives a cursor and its encoding byte
+**	and checks if the register numbers at the current  cursor position
+**	are valid. A valid register number is between 1 and 16.
+**	The function returns true if the register numbers are valid. Otherwise,
+**	the function returns false.
+*/
+
 int	valid_regs(t_cursor *c, t_env *env, unsigned char encode)
 {
 	int			size_1;

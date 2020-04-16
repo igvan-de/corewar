@@ -29,7 +29,7 @@ static	void	init_exec_code(t_player **player, size_t size)
 		error_mem();
 }
 
-/**
+/*
 **	@brief:	initialize a new header_t struct
 **
 **	@param header		:	ptr to the new header
@@ -45,7 +45,7 @@ static	void	init_header(header_t **header)
 		error_mem();
 }
 
-/**
+/*
 **	@brief:	initialize a new t_player struct.
 **
 **	@param player		: ptr to the new player
@@ -65,7 +65,7 @@ static	void	init_player(t_player **player)
 	init_header(&((*player)->header));
 }
 
-/**
+/*
 **	@brief: store the new corewar player in the players list
 **
 **	@param new_player	:	new player struct

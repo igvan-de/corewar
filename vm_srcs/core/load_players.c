@@ -13,9 +13,15 @@
 #include "vm.h"
 
 /*
-**	get_load_index takes a player number and calculates the
-**	starting position of that player within the memory area at
-**	env->map.
+**	@brief: determine player location
+**
+**	@param env			:	global environment struct
+**	@param player_nb	:	player number
+**
+**	get_load_index receives a player number and calculates the starting
+**	position of this player in memory. It returns the index of the starting
+**	byte of the players' target position.
+**
 */
 
 static	int			get_load_index(int player_nb, t_env *env)
@@ -29,9 +35,14 @@ static	int			get_load_index(int player_nb, t_env *env)
 }
 
 /*
-**	get_player takes a ptr to the main environment struct
-**	and a player number. It returns a ptr to the player with
-**	that number within the env->players list.
+**	@brief: retrieve a pointer to target player
+**
+**	@param env			:	global environment struct
+**	@param player_nbr	:	target player number
+**
+**	get_player receives a player number and retrieves a ptr
+**	to that player from the env->players list. If the number is not found,
+**	the function produces an error.
 */
 
 static	t_player	*get_player(int player_nbr, t_env *env)
@@ -54,6 +65,19 @@ static	t_player	*get_player(int player_nbr, t_env *env)
 	return (NULL);
 }
 
+/*
+**	@brief: load a player into memory
+**
+**	@param env			:	global environment struct
+**	@param player_nb	:	player number
+**
+**	load_player receives the number of the player to be loaded into memory.
+**	It then loads the source code of this player into memory at env->map and
+**	stores the player number at env->datamap. After the source code has been
+**	copied into memory, the initial source code version in the players list
+**	is freed.
+*/
+
 static	void		load_player(t_env *env, int player_nb)
 {
 	unsigned		i;
@@ -75,6 +99,15 @@ static	void		load_player(t_env *env, int player_nb)
 	free(curr_player->exec_code);
 	curr_player->exec_code = NULL;
 }
+
+/*
+**	@brief: load saved players into the memory map
+**
+**	@param env	: global environment struct
+**
+**	load_players receives the list of players in env->players
+**	and loads their source code into memory at env->map.
+*/
 
 void				load_players(t_env *env)
 {

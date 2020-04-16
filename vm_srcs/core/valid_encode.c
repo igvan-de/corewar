@@ -13,9 +13,14 @@
 #include "vm.h"
 
 /*
-**	validate_arg receives the arg value stored in the operations,
-**	op_tab entry and checks if the related bitpair in the encode byte
-**	matches the op_tab entry. returns 1 if match, 0 if it does not match.
+**	@brief:	validate encoding byte bitpair
+**
+**	@param arg	:	operation table reference
+**	@param bit1	:	first bit of bitpair
+**	@param bit2 :	second bit of bitpair
+**
+**	validate_arg receives a bitpair and checks if that
+**	bitpair is a valid match to the arg bitpair passed as parameter.
 */
 
 static	int	validate_arg(unsigned char arg, int bit1, int bit2)
@@ -42,6 +47,18 @@ static	int	validate_arg(unsigned char arg, int bit1, int bit2)
 		return (0);
 	return (1);
 }
+
+/*
+**	@brief: validate the encoding byte of an operation
+**
+**	@param op_code		:	operatione code byte
+**	@param encode		:	encode byte
+**	@param env			:	global environment struct
+**
+**	validate_encode receives an operation code and an encoding byte
+**	and checks if the encoding byte is a valid match to the operation code
+**	given by checking values against the operations reference table.
+*/
 
 int			valid_encode(BYTE op_code, BYTE encode, t_env *env)
 {

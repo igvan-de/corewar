@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-/**
+/*
 **	@brief:	find and return a players' name
 **
 **	@param env		:	global environment struct
