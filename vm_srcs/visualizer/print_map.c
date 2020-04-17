@@ -15,7 +15,7 @@
 static	void	print_vars(t_env *env)
 {
 	printw("	cycles: %u", env->cycles);
-	printw("	cycle todie: %u", env->cycles_to_die);
+	printw("	cycle to die: %u", env->cycles_to_die);
 	printw("	total cycles: %u", env->total_cycles);
 	printw("	processes: %u", env->total_cursors);
 	printw("	lives: %u", env->live_counter);

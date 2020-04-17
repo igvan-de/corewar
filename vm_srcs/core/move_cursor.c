@@ -43,7 +43,7 @@ void	move_cursor(t_cursor *c, t_env *env)
 **	@param op_code		:	last operation operation code
 **
 **	move_cursor_encode is a version of move_cursor that gets called after
-**	succesfull operations with an encode byte. It receives the encode byte 
+**	succesfull operations with an encode byte. It receives the encode byte
 **	and op_code seperately because the execution of the last operation
 **	could have overwritten them in memory.
 */

@@ -17,7 +17,7 @@
 **
 **	@param c		:	current cursor
 **	@param env	 	:	global environment struct
-**	@param encode	:	encoding byte	
+**	@param encode	:	encoding byte
 **
 **	valid_regs receives a cursor and its encoding byte
 **	and checks if the register numbers at the current  cursor position
@@ -36,7 +36,7 @@ static	int	check_reg(t_env *env, t_cursor *c, int index)
 	return (1);
 }
 
-int	valid_regs(t_cursor *c, t_env *env, unsigned char encode)
+int			valid_regs(t_cursor *c, t_env *env, unsigned char encode)
 {
 	int			size_1;
 	int			size_2;

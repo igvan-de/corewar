@@ -25,7 +25,6 @@
 **	->	if the -v flag is active, the visualizer gets disabled.
 **
 **	->	if the -a flag is active, the visualizer gets disabled.
-**
 */
 
 static	void	valid_flags(t_env *env)
@@ -52,7 +51,7 @@ static	void	valid_flags(t_env *env)
 **	returns 1 if true, 0 if false.
 */
 
-static	int	is_flag(char *param)
+static	int		is_flag(char *param)
 {
 	if (ft_strncmp(param, "-", 1) == 1)
 		return (0);

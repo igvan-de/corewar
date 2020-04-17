@@ -21,7 +21,6 @@
 **	get_load_index receives a player number and calculates the starting
 **	position of this player in memory. It returns the index of the starting
 **	byte of the players' target position.
-**
 */
 
 static	int			get_load_index(int player_nb, t_env *env)

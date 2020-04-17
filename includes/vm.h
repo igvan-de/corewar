@@ -23,6 +23,7 @@
 #include <time.h>
 
 #define BYTE unsigned char
+#define ALL T_REG | T_IND | T_DIR
 
 typedef struct	s_datamap
 {
