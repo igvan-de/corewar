@@ -14,8 +14,8 @@
 
 void	op_aff(t_cursor *cursor, t_env *env)
 {
-    char    reg_num;
-    char    ascii;
+	char	reg_num;
+	char	ascii;
 
 	reg_num = env->map[modi(cursor->position + 1)];
 	if (1 <= reg_num && reg_num <= 16)
@@ -24,7 +24,7 @@ void	op_aff(t_cursor *cursor, t_env *env)
 		{
 			ascii = (char)cursor->registries[reg_num - 1];
 			if (ft_isprint((int)ascii) == 1)
-			ft_printf("%c\n", ascii);
+				ft_printf("%c\n", ascii);
 		}
 		move_cursor(cursor, env);
 	}
