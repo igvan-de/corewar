@@ -12,6 +12,17 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print contents of each player
+**
+**	@param players	:	list of players
+**	@param env		:	global environment struct
+**
+**	dump_players is a debug function which can
+**	print the contents of each player struct within
+**	the players list with repeated calls to dump_champ_code.
+*/
+
 void	dump_players(t_list *players, t_env *env)
 {
 	t_list *iter;

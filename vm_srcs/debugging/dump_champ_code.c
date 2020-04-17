@@ -12,6 +12,16 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print a players' header and execution code to stdout
+**
+**	@param p			:	target player
+**	@param env 			:	global environment struct
+**
+**	dump_champ is a debugging function with which the contents of a player
+**	struct can be printed to stdout.
+*/
+
 void	dump_champ_code(t_player *p, t_env *env)
 {
 	dump_header(*(p->header));

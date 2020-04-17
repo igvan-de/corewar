@@ -12,6 +12,15 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print the contents of a t_header
+**
+**	@param header	:	target header to print
+**
+**	dump_header is a debug function used to print
+**	and inspect a header struct.
+*/
+
 void	dump_header(header_t header)
 {
 	ft_putstr("\n\n<------ PLAYER HEADER DUMP ------->\n\n\n");

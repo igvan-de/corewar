@@ -12,6 +12,15 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print the contents of the env struct to stdout.
+**
+**	@param env		:	global environment struct
+**
+**	dump_env_state is a debug function with which the contents of the
+**	env struct can be printed to stdout.
+*/
+
 void	dump_env_state(t_env *env)
 {
 	ft_putstr("\n\n<------ ENV STATE DUMP ------->\n\n\n");

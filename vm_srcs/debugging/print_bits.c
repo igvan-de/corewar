@@ -12,6 +12,15 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print a byte in binary
+**
+**	@param octet	:	byte
+**
+**	print_bits is a debug function which can be used
+**	to print a byte in its binary representation.
+*/
+
 void	print_bits(unsigned char octet)
 {
 	int	i;

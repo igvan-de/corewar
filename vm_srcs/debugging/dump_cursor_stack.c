@@ -13,8 +13,12 @@
 #include "vm.h"
 
 /*
-**	dump_cursor prints the values stored in the cursor
-**	passed as argument to stdout.
+**	@brief:	print the contents of a cursor to stdout
+**
+**	@param cursor		:	ptr to target cursor
+**
+**	dump_cursor is a debug function with which the contents of a 
+**	cursor struct can be printed to stdout.
 */
 
 static	void	dump_cursor(t_cursor *cursor)
@@ -37,6 +41,15 @@ static	void	dump_cursor(t_cursor *cursor)
 		reg[6], reg[7], reg[8], reg[9], reg[10], reg[11],
 		reg[12], reg[13], reg[14], reg[15]);
 }
+
+/*
+**	@brief:	print the contents of the entire cursor stack to stdout
+**
+**	@param cursor_stack		:	target cursor stack
+**
+**	dump_cursor_stack is a debug function that prints the entire
+**	cursor stack to stdout with repeated calls to dump_cursor.
+*/
 
 void			dump_cursor_stack(t_cursor *cursor_stack)
 {

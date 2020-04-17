@@ -13,8 +13,14 @@
 #include "vm.h"
 
 /*
-**	dump_movement prints the cursor movement to stdout
-**	in four-digit hexidecimal.
+**	@brief:	print program counter movement
+**
+**	@param cursor	:	target cursor
+**	@param bytes	:	movement size in bytes
+**
+**	dump_movement is a debug function that can be used to print
+**	program counter movement of the cursor passed as parameter. dump_movement
+**	is also called when operation verbosity is enabled.
 */
 
 static	void	dump_movement(t_cursor *cursor, unsigned char bytes)
@@ -29,6 +35,12 @@ static	void	dump_movement(t_cursor *cursor, unsigned char bytes)
 }
 
 /*
+**	@brief:	print operation bytes
+**
+**	@param cursor	:	target cursor
+**	@param env		:	global environment struct
+**	@param bytes	:	operation size in bytes
+**
 **	dump_bytes prints the bytes related to the last operation
 **	to stdout in two digit hexidecimal.
 */
@@ -49,6 +61,16 @@ static	void	dump_bytes(t_cursor *cursor, t_env *env, unsigned char bytes)
 	ft_putchar('\n');
 }
 
+/*
+**	@brief:	print operation and PC movement
+**
+**	@param cursor	:	target cursor
+**	@param env		:	global environment struct
+**
+**	dump_op prints operation bytes and PC movement to stdout.
+**	gets called when operation verbosity is enabled.
+*/
+
 void			dump_op(t_cursor *cursor, t_env *env)
 {
 	unsigned char bytes;
@@ -58,6 +80,20 @@ void			dump_op(t_cursor *cursor, t_env *env)
 	dump_movement(cursor, bytes);
 	dump_bytes(cursor, env, bytes);
 }
+
+/*
+**	@brief:	print operation and PC movement
+**
+**	@param cursor	:	target cursor
+**	@param env		:	global environment struct
+**	@param encode	:	operation encode byte
+**	@param op_code	:	operation code
+**
+**	dump_op prints operation bytes and PC movement to stdout.
+**	gets called when operation verbosity is enabled.
+**
+**	version of dump_op for operations with an encode byte
+*/
 
 void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code)
 {
@@ -69,6 +105,19 @@ void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsign
 	dump_movement(cursor, bytes);
 	dump_bytes(cursor, env, bytes);
 }
+
+/*
+**	@brief:	print operation and PC movement
+**
+**	@param cursor	:	target cursor
+**	@param env		:	global environment struct
+**	@param bytes	:	operation size in bytes
+**
+**	dump_op prints operation bytes and PC movement to stdout.
+**	gets called when operation verbosity is enabled.
+**
+**	version of dump_op for invalid operations
+*/
 
 void			dump_op_invalid(t_cursor *cursor, t_env *env, unsigned char bytes)
 {

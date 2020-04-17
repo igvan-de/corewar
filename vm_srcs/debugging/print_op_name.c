@@ -12,6 +12,16 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print operation name
+**
+**	@param op_code	:	operation code
+**	@param env		:	global environment struct
+**
+**	print_op_name receives a operation code and prints
+**	the name of the operation the stdout.
+*/
+
 void	print_op_name(int op_code, t_env *env)
 {
 	t_op local_op;
