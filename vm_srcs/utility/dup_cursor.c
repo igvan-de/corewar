@@ -17,7 +17,7 @@ t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 	t_cursor *new;
 
 	new = (t_cursor *)malloc(sizeof(t_cursor));
-	if(!new)
+	if (!new)
 		error_mem();
 	new->carry = src->carry;
 	new->op_code = src->op_code;

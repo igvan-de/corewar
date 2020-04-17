@@ -36,10 +36,11 @@ void			op_sti(t_cursor *cursor, t_env *env)
 
 	op_code = cursor->op_code;
 	encode = env->map[modi(cursor->position + 1)];
-	if (valid_encode(cursor->op_code, env->map[modi(cursor->position + 1)], env) == 0)
+	if (valid_encode(cursor->op_code,
+		env->map[modi(cursor->position + 1)], env) == 0)
 		return (invalid_op(cursor, env, 1));
 	if (valid_regs(cursor, env, encode) == 0)
-		return (invalid_op(cursor, env, 2));;
+		return (invalid_op(cursor, env, 2));
 	exec_sti(cursor, env, encode);
 	move_cursor_encode(cursor, env, encode, op_code);
 }

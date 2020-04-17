@@ -27,7 +27,7 @@ static	void	exec_st(t_cursor *cursor, t_env *env, unsigned char encode)
 	else if (get_type(encode, 2) == IND_CODE)
 	{
 		arg_2 = get_tind(env, cursor->position + 3);
-		addr = arg_2  % IDX_MOD;
+		addr = arg_2 % IDX_MOD;
 		write_bytes(arg_1, env, cursor, addr);
 	}
 }
