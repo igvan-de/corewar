@@ -12,7 +12,35 @@
 
 #include "vm.h"
 
-void		print_map(t_env *env)
+static	void	print_vars(t_env *env)
+{
+	printw("	cycles: %u", env->cycles);
+	printw("	cycle todie: %u", env->cycles_to_die);
+	printw("	total cycles: %u", env->total_cycles);
+	printw("	processes: %u", env->total_cursors);
+	printw("	lives: %u", env->live_counter);
+	printw("	player last alive: %i\n", env->player_last_alive);
+}
+
+static	void	print_byte(t_env *env, int i)
+{
+	if (env->datamap[i].player != 0)
+	{
+		attron(COLOR_PAIR(env->datamap[i].player));
+		if (env->datamap[i].cursor == 1)
+			attron(A_BOLD);
+		printw("%02x ", 0xFF & env->map[i]);
+		if (env->datamap[i].cursor == 1)
+			attroff(A_BOLD);
+		attroff(COLOR_PAIR(env->datamap[i].player));
+	}
+	else
+		printw("%#02x ", env->map[i]);
+	if (((i + 1) & ((128 / 2) - 1)) == 0)
+		printw("\n");
+}
+
+void			print_map(t_env *env)
 {
 	int i;
 
@@ -20,24 +48,10 @@ void		print_map(t_env *env)
 	erase();
 	while (i < MEM_SIZE)
 	{
-		if (env->datamap[i].player != 0)
-		{
-			attron(COLOR_PAIR(env->datamap[i].player));
-			if (env->datamap[i].cursor == 1)
-				attron(A_BOLD);
-			printw("%02x ", 0xFF & env->map[i]);
-			if (env->datamap[i].cursor == 1)
-				attroff(A_BOLD);
-			attroff(COLOR_PAIR(env->datamap[i].player));
-		}
-		else
-			printw("%#02x ", env->map[i]);
-		if (((i + 1) & ((128 / 2) - 1)) == 0)
-			printw("\n");
+		print_byte(env, i);
 		i++;
 	}
 	printw("\n");
-	printw("	cycles: %u		cycle_to_die: %u	total cycles: %u	processes: %u lives: %u player last alive: %i\n", 
-			env->cycles, env->cycles_to_die, env->total_cycles, env->total_cursors, env->live_counter, env->player_last_alive);
+	print_vars(env);
 	refresh();
 }
