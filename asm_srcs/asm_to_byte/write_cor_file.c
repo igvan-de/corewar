@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 17:41:05 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 12:15:00 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/18 11:01:22 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static void	write_magic_header(int fd)
 	int	magic;
 
 	magic = rev_endian(COREWAR_EXEC_MAGIC);
-	// magic = COREWAR_EXEC_MAGIC;
 	write(fd, &magic, 4);
 }
 

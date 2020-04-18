@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 12:13:29 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/18 15:58:10 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,16 @@ void	write_champ_size(int fd, int champ_size)
 ** @return size_t = size needed to T_DIR
 */
 
+#include <stdio.h>
 static size_t	check_size(unsigned char op_code)
 {
 	if (op_code == 0x09 || op_code == 0x0a || op_code == 0x0b
 		|| op_code == 0x0c || op_code == 0x0e || op_code == 0x0f)
+	{
+		printf("IN statement opcode = %hx\n", op_code);
 		return(2);
+	}
+	printf("OUT statement opcode = %hx\n", op_code);
 	return(4);
 }
 
@@ -65,12 +70,24 @@ static void		write_dir(int fd, t_direction *info, int i)
 	write(fd, &info->arg_num[i], size);
 }
 
+short	swap_2_bytes(short nb)
+{
+	int b1;
+	int b2;
+
+	b1 = (nb & 0x00ff) << 8;
+	b2 = (nb & 0xff00) >> 8;
+	return (b1 | b2);
+}
+
 static void	write_ind(int fd, t_direction *info, int i)
 {
 	short	arg;
+	short	swap;
 
 	arg = (short)info->arg_num[i];
-	write(fd, &arg, 2);
+	swap = swap_2_bytes(arg);
+	write(fd, &swap, 2);
 }
 
 static void write_reg(int fd, t_direction *info, int i)
@@ -91,12 +108,11 @@ static void	write_encode(int fd, t_direction *info)
 {
 	static int left[3] = {0, 2, 4};
 	unsigned char new;
-	int i;
+	int		i;
 
 	new = (unsigned char)info->encode;
 	i = 0;
-	if (info->op_code != 0x01 || info->op_code != 0x09 || info->op_code != 0x0c
-	|| info->op_code != 0x0f)
+	if (info->op_code != 0x01 || info->op_code != 0x09 || info->op_code != 0x0c || info->op_code != 0x0f)
 		write(fd, &info->encode, 1);
 	while (i < 3)
 	{
@@ -107,44 +123,7 @@ static void	write_encode(int fd, t_direction *info)
 			func_pointer_arr(fd, info, new, i);
 		i++;
 	}
-
 }
-
-/*
-** @brief write_dir looks via check_size the size of T_DIR and write bytes of size in fd
-**
-** @param fd = filediscripter to write string in
-** @param info = contains all needed data, op_code and arg_num
-*/
-
-// zo werkt t_dir niet. het is of een short(16 bits) of een int container(32) bits
-
-
-
-/*
-** @brief
-**
-** @param fd = filediscripter to write string in
-** @param arg_num = argument to write in filediscriptor
-*/
-
-
-
-/*
-** @brief write_reg writes the size of T_REG in filediscriptor
-**
-** @param fd = filediscripter to write string in
-** @param arg_num = argument to write in filediscriptor
-*/
-
-// waarom deze cast?
-// je weet als je van encode afleest dan maakt het toch niks meer uit?
-
-
-
-// maken van deze ipv 3 4 en zet de 0 waarde op NULL
-
-
 
 /*
 ** @brief writes executable champion commands in byte_code into filediscriptor
