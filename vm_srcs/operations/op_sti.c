@@ -29,6 +29,20 @@ void			exec_sti(t_cursor *cursor, t_env *env, unsigned char encode)
 	write_bytes(arg_1, env, cursor, addr);
 }
 
+/*
+**	@brief:	read a value and write it to memory
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_sti is an operation function which can be used to read
+**	a value from a target registry and write it to memory.
+**	alternatively, op_sti can also read values directly from memory
+**	instead of registries.
+**	op_sti uses an index as second argument which makes it different
+**	from op_st.
+*/
+
 void			op_sti(t_cursor *cursor, t_env *env)
 {
 	unsigned char	op_code;

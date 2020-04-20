@@ -12,6 +12,19 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	jump to a place in memory.
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_zjmp is an operation function which can be used to
+**	jump the cursor to another place in memory. The operation
+**	only executes if the carry flag of the cursor is set to
+**	zero, otherwise the zjmp does not execute and the cursor
+**	moves to the next operation in memory.
+*/
+
 void	op_zjmp(t_cursor *cursor, t_env *env)
 {
 	short	arg;

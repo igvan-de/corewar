@@ -12,11 +12,6 @@
 
 #include "vm.h"
 
-/*
-**	exec_ld executes the ld operation at the current position of the cursor.
-**	behavior differs based on the first argument --> look below for details.
-*/
-
 static	void	exec_ld(t_cursor *cursor, t_env *env, unsigned char encode)
 {
 	int arg_1;
@@ -27,6 +22,18 @@ static	void	exec_ld(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_2 - 1] = arg_1;
 	set_carry(cursor, arg_1);
 }
+
+/*
+**	@brief:	operation --> read and load a value into registry.
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_ld is an operation function which can be used to
+**	read values and store them into the registry. The carry
+**	is set depending on the stored value. values can either be
+**	read from memory or from registries.
+*/
 
 void			op_ld(t_cursor *cursor, t_env *env)
 {

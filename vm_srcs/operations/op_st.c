@@ -32,6 +32,18 @@ static	void	exec_st(t_cursor *cursor, t_env *env, unsigned char encode)
 	}
 }
 
+/*
+**	@brief:	read a value and write it to memory
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_st is an operation function which can be used to read
+**	a value from a target registry and write it to memory.
+**	alternatively, op_st can also read values directly from memory
+**	instead of registries.
+*/
+
 void			op_st(t_cursor *cursor, t_env *env)
 {
 	unsigned char op_code;

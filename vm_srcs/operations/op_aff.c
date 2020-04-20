@@ -12,6 +12,19 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	print a byte if it is a writable character.
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_aff is an operation function which can be used to
+**	print the character stored in a register to stdout.
+**	the character only gets printed if it is a writable character
+**	and if the -a flag is enabled. op_aff is flag dependent because
+**	it can interfere with the ncurses visualizer.
+*/
+
 void	op_aff(t_cursor *cursor, t_env *env)
 {
 	char	reg_num;

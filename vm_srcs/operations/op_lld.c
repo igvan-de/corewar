@@ -34,6 +34,20 @@ static	void	exec_lld(t_cursor *cursor, t_env *env, unsigned char encode)
 	set_carry(cursor, arg_1);
 }
 
+/*
+**	@brief:	operation --> read and load a value into registry.
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_ld is an operation function which can be used to
+**	read values and store them into the registry. The carry
+**	is set depending on the stored value. values can either be
+**	read from memory or from registries.
+**	lld has a higher range than ld because it does not use
+**	modulo truncation.
+*/
+
 void			op_lld(t_cursor *cursor, t_env *env)
 {
 	unsigned char	op_code;

@@ -12,6 +12,21 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	duplicate a process
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_fork is a operation function which can be used
+**	to duplicate a cursor. The cursor and all its values,
+**	is copied and pushed onto the existing cursor stack.
+**	lfork differs from fork in that the position of the new cursor
+**	is calculated without truncation. In effect, this means that
+**	lfork has a higher range than fork because new cursors can be spawned
+**	further away from the source cursor.
+*/
+
 void	op_lfork(t_cursor *cursor, t_env *env)
 {
 	short		addr;

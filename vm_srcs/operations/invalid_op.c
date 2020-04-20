@@ -12,6 +12,17 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	determine the number of bytes that the cursor needs to jump.
+**
+**	@param op_code		:	cursor operation code
+**	@param type			:	error type
+**	@param bytes		:	default number of  bytes to jump
+**
+**	validate_jump can alter the number of bytes to jump, depending
+**	on the operation code.
+*/
+
 unsigned	char	validate_jump(BYTE op_code, int type, BYTE bytes)
 {
 	if (type == 1 && op_code == 6)
@@ -57,6 +68,19 @@ static	void		walk_one(t_cursor *c, t_env *env, BYTE *bytes, unsigned *i)
 		}
 	}
 }
+
+/*
+**	@brief:	move cursor past invalid operation code
+**
+**	@param c		:	target cursor
+**	@param env 		:	global environment struct
+**	@param type		:	type of error
+**
+**	invalid_op gets called when a cursor tries to execute
+**	and invalid operation code or encode byte of the instruction
+**	is invalid. In that case, the cursor is moved to the next
+**	operation without executing.
+*/
 
 void				invalid_op(t_cursor *cursor, t_env *env, int type)
 {

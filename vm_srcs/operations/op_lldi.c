@@ -26,6 +26,20 @@ void			exec_lldi(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_3 - 1] = get_tdir(env, cursor->position + addr);
 }
 
+/*
+**	@brief:	operation --> read and load a value into registry.
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_lldi is an operation function which can be used to
+**	read values and store them into the registry. values can either be
+**	read from memory or from registries.
+**	lldi used an index with the second argument, which makes it different
+**	from lld. It has a higher range than ldi, because it does not
+**	modulo truncation.
+*/
+
 void			op_lldi(t_cursor *cursor, t_env *env)
 {
 	unsigned char	op_code;
