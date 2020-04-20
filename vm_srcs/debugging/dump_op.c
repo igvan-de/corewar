@@ -15,7 +15,7 @@
 /*
 **	@brief:	print program counter movement
 **
-**	@param cursor	:	target cursor
+**	@param c		:	target cursor
 **	@param bytes	:	movement size in bytes
 **
 **	dump_movement is a debug function that can be used to print
@@ -23,15 +23,16 @@
 **	is also called when operation verbosity is enabled.
 */
 
-static	void	dump_movement(t_cursor *cursor, unsigned char bytes)
+static	void	dump_movement(t_cursor *c, unsigned char bytes)
 {
 	ft_putstr("ADV ");
 	ft_putnbr(bytes);
 	ft_putstr(" (");
-	if (cursor->position != 0)
-		ft_printf("%#06x -> %#06x) ", modi(cursor->position), modi(cursor->position + bytes));
+	if (c->position != 0)
+		ft_printf("%#06x -> %#06x) ",
+		modi(c->position), modi(c->position + bytes));
 	else
-		ft_printf("0x0000 -> %#06x) ", modi(cursor->position + bytes));
+		ft_printf("0x0000 -> %#06x) ", modi(c->position + bytes));
 }
 
 /*
@@ -84,9 +85,9 @@ void			dump_op(t_cursor *cursor, t_env *env)
 /*
 **	@brief:	print operation and PC movement
 **
-**	@param cursor	:	target cursor
+**	@param c		:	target cursor
 **	@param env		:	global environment struct
-**	@param encode	:	operation encode byte
+**	@param enc		:	operation encode byte
 **	@param op_code	:	operation code
 **
 **	dump_op prints operation bytes and PC movement to stdout.
@@ -95,21 +96,21 @@ void			dump_op(t_cursor *cursor, t_env *env)
 **	version of dump_op for operations with an encode byte
 */
 
-void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsigned char op_code)
+void			dump_op_encode(t_cursor *c, t_env *env, BYTE enc, BYTE op_code)
 {
-	unsigned char bytes;
+	BYTE bytes;
 
 	bytes = 1;
-	bytes += get_total_arg_size(op_code, encode);
+	bytes += get_total_arg_size(op_code, enc);
 	bytes++;
-	dump_movement(cursor, bytes);
-	dump_bytes(cursor, env, bytes);
+	dump_movement(c, bytes);
+	dump_bytes(c, env, bytes);
 }
 
 /*
 **	@brief:	print operation and PC movement
 **
-**	@param cursor	:	target cursor
+**	@param c		:	target cursor
 **	@param env		:	global environment struct
 **	@param bytes	:	operation size in bytes
 **
@@ -119,8 +120,8 @@ void			dump_op_encode(t_cursor *cursor, t_env *env, unsigned char encode, unsign
 **	version of dump_op for invalid operations
 */
 
-void			dump_op_invalid(t_cursor *cursor, t_env *env, unsigned char bytes)
+void			dump_op_invalid(t_cursor *c, t_env *env, BYTE bytes)
 {
-	dump_movement(cursor, bytes);
-	dump_bytes(cursor, env, bytes);
+	dump_movement(c, bytes);
+	dump_bytes(c, env, bytes);
 }

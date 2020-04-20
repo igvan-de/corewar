@@ -12,6 +12,16 @@
 
 #include "vm.h"
 
+static	void		dump_addr(unsigned int *bytes, int *addr_trig)
+{
+	if (*bytes == 0)
+		ft_printf("0x0000 : ");
+	else
+		ft_printf("%#06x : ", *bytes);
+	(*bytes) += 64;
+	(*addr_trig) = 0;
+}
+
 /*
 **	@brief:	dump_mem prints memory to stdout
 **
@@ -34,14 +44,7 @@ void				dump_mem(t_env *env)
 	while (i < MEM_SIZE)
 	{
 		if (addr_trig == 1)
-		{
-			if (bytes == 0)
-				ft_printf("0x0000 : ");
-			else
-				ft_printf("%#06x : ", bytes);
-			bytes += 64;
-			addr_trig = 0;
-		}
+			dump_addr(&bytes, &addr_trig);
 		if (env->datamap[i].player != 0)
 			ft_printf("%02x ", 0xFF & env->map[i]);
 		else
@@ -57,7 +60,7 @@ void				dump_mem(t_env *env)
 }
 
 /*
-**	@brief:	print player positions to stdout	
+**	@brief:	print player positions to stdout
 **
 **	@param env		:	global environment struct
 **

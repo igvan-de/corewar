@@ -66,7 +66,7 @@ static	void	exec_big_op(t_cursor *cursor, t_env *env)
 **	to the next operation within the memory map.
 */
 
-void	exec_op(t_cursor *cursor, t_env *env)
+void			exec_op(t_cursor *cursor, t_env *env)
 {
 	if (1 <= cursor->op_code && cursor->op_code <= 10)
 		exec_basic_op(cursor, env);
