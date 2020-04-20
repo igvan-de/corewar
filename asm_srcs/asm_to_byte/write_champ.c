@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/18 15:58:10 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/20 16:42:17 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,7 @@ static size_t	check_size(unsigned char op_code)
 {
 	if (op_code == 0x09 || op_code == 0x0a || op_code == 0x0b
 		|| op_code == 0x0c || op_code == 0x0e || op_code == 0x0f)
-	{
-		printf("IN statement opcode = %hx\n", op_code);
 		return(2);
-	}
-	printf("OUT statement opcode = %hx\n", op_code);
 	return(4);
 }
 
@@ -66,6 +62,7 @@ static void		write_dir(int fd, t_direction *info, int i)
 {
 	size_t size;
 
+	printf("dir\n");
 	size = check_size(info->op_code);
 	write(fd, &info->arg_num[i], size);
 }
@@ -85,6 +82,7 @@ static void	write_ind(int fd, t_direction *info, int i)
 	short	arg;
 	short	swap;
 
+	printf("ind\n");
 	arg = (short)info->arg_num[i];
 	swap = swap_2_bytes(arg);
 	write(fd, &swap, 2);
@@ -94,14 +92,19 @@ static void write_reg(int fd, t_direction *info, int i)
 {
 	char	arg;
 
+	printf("reg\n");
 	arg = (char)info->arg_num[i];
 	write(fd, &arg, 1);
 }
 
-static void	func_pointer_arr(int fd, t_direction *info, unsigned char new, int i)
+static void check_value(int fd, unsigned char new ,t_direction *info, int i)
 {
-	const t_arg type[4] = {NULL, write_dir, write_ind, write_reg};
-	type[new](fd, info, i);
+	if (new == T_DIR)
+		write_dir(fd, info, i);
+	if (new == T_REG)
+		write_reg(fd, info, i);
+	if (new == T_IND)
+		write_ind(fd, info, i);
 }
 
 static void	write_encode(int fd, t_direction *info)
@@ -120,7 +123,7 @@ static void	write_encode(int fd, t_direction *info)
 		new <<= left[i];
 		new >>= 6;
 		if (new != 0)
-			func_pointer_arr(fd, info, new, i);
+			check_value(fd, new, info, i);
 		i++;
 	}
 }
