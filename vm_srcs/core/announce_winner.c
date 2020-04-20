@@ -20,8 +20,9 @@
 **	@return char*	:	player name
 **
 **	player_name iterates through the players list and if it finds the player
-**	with the matching id, returns the name of that player stored in the player header.
-**	if it could not find the player, the function returns NULL as a string literal.
+**	with the matching id, returns the name of that player.
+**	If it could not find the player,
+**	the function returns NULL as a string literal.
 */
 
 static	char	*player_name(t_env *env, int id)

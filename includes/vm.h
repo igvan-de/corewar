@@ -105,6 +105,7 @@ void					parse_args(int arg_nb, char **argv, t_env *env);
 void					announce_winner(t_env *env);
 void					check_corewar(t_env *env);
 void					exec_corewar(t_env *env);
+void					exec_op(t_cursor *cursor, t_env *env);
 void					free_env(t_env **env);
 void					intro_players(t_env *env);
 void					move_cursor(t_cursor *cursor, t_env *env);
