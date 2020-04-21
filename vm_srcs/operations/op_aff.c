@@ -12,6 +12,20 @@
 
 #include "vm.h"
 
+static	void	exec_aff(t_cursor *cursor, t_env *env, t_byt encode)
+{
+	t_byt	reg_num;
+	int		ascii;
+
+	reg_num = get_reg_num(cursor, env, encode, 1);
+	if ((env->flag_byte & (1 << 4)) == (1 << 4))
+	{
+		ascii = cursor->registries[reg_num - 1];
+		if (ft_isprint(ascii) == 1)
+			ft_printf("Aff: %c\n", (char)ascii);
+	}
+}
+
 /*
 **	@brief:	print a byte if it is a writable character.
 **
@@ -27,20 +41,15 @@
 
 void	op_aff(t_cursor *cursor, t_env *env)
 {
-	char	reg_num;
-	char	ascii;
+	unsigned char op_code;
+	unsigned char encode;
 
-	reg_num = env->map[modi(cursor->position + 1)];
-	if (1 <= reg_num && reg_num <= 16)
-	{
-		if ((env->flag_byte & (1 << 4)) == (1 << 4))
-		{
-			ascii = (char)cursor->registries[reg_num - 1];
-			if (ft_isprint((int)ascii) == 1)
-				ft_printf("%c\n", ascii);
-		}
-		move_cursor(cursor, env);
-	}
-	else
-		invalid_op(cursor, env, 1);
+	op_code = cursor->op_code;
+	encode = env->map[modi(cursor->position + 1)];
+	if (valid_encode(cursor->op_code, encode, env) == 0)
+		return (invalid_op(cursor, env, 1));
+	if (valid_regs(cursor, env, encode) == 0)
+		return (invalid_op(cursor, env, 2));
+	exec_aff(cursor, env, encode);
+	move_cursor_encode(cursor, env, encode, op_code);
 }
