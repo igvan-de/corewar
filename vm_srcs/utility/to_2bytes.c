@@ -12,6 +12,13 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	merge two bytes
+**
+**	@param one	:	byte one
+**	@param two	:	byte two
+*/
+
 short	to_2bytes(unsigned char one, unsigned char two)
 {
 	short ret;

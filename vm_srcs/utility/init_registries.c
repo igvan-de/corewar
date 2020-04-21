@@ -12,6 +12,10 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	initiate process registries
+*/
+
 int		*init_registries(void)
 {
 	int	i;

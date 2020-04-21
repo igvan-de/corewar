@@ -12,6 +12,12 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	check if an operation has an encode byte
+**
+**	@param op_code	:	operation code
+*/
+
 int	has_encode(unsigned char op_code)
 {
 	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)

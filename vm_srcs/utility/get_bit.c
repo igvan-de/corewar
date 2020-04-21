@@ -12,6 +12,15 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	return a single bit from a byte as an integer (0 or 1)
+**
+**	@param octet	:	source byte
+**
+**	get_bit receives a byte and an index and returns the bit
+**	at the index specified (0 or 1).
+*/
+
 int	get_bit(unsigned char octet, int index)
 {
 	int shift_right;

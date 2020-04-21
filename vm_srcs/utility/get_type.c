@@ -18,6 +18,16 @@ static	void	load_bits(BYTE *bit1, BYTE *bit2, int i, BYTE encode)
 	*bit2 = get_bit(encode, i + 1);
 }
 
+/*
+**	@brief:	read an argument type from the encode byte
+**
+**	@param	encode	:	encode byte
+**	@param	arg_num	:	argument index
+**
+**	get_type receives an encode byte and returns the type of the argument
+**	at the index arg_num.
+*/
+
 int				get_type(unsigned char encode, int arg_num)
 {
 	unsigned char bitpair;

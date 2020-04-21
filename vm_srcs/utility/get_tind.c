@@ -12,6 +12,12 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	read and return two bytes from memory
+**
+**	@param env	:	global environment structure
+*/
+
 short	get_tind(t_env *env, int position)
 {
 	short			ret;

@@ -12,6 +12,17 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	determine argument size in bytes
+**
+**	@param op_code	:	operation code
+**	@param one		:	bit one
+**	@param two		:	but two
+**
+**	get_arg_size receives a bitpair argument representation and
+**	returns the size of this argument type in bytes.
+*/
+
 unsigned char	get_arg_size(int op_code, int one, int two)
 {
 	if (one == 0 && two == 1)

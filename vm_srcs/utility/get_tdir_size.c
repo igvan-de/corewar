@@ -12,6 +12,16 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	retrieve the T_DIR size of an operation
+**
+**	@param op_code	:	operation code
+**
+**	t_dir (direct values) can have either 2 or 4 bytes depending on the type
+**	of the operation that uses it. get_tdir_size can be used to retrieve
+**	the associated size by calling the function with the operation code.
+*/
+
 int	get_tdir_size(int op_code)
 {
 	int			tdir_size;

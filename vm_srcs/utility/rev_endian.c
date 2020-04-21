@@ -12,6 +12,12 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	reverse the endianness of a four byte number
+**
+**	@param oct	:	target number
+*/
+
 unsigned	int	rev_endian(unsigned int oct)
 {
 	return (((oct & 0xff) << 24) + ((oct & 0xff00) << 8) +

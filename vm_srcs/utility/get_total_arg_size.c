@@ -12,6 +12,16 @@
 
 #include "vm.h"
 
+/*
+**	@brief: determine the size of all operation arguments combined
+**
+**	@param op_code	:	operation code
+**	@param encode	:	encode byte
+**
+**	get_total_arg_size receives an encode byte and returns the size of
+**	all arguments combined in bytes.
+*/
+
 unsigned char	get_total_arg_size(unsigned char op_code, unsigned char encode)
 {
 	unsigned char total_arg_size;

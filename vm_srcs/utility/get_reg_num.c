@@ -12,6 +12,20 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	retrieve a register number from memory
+**
+**	@param cursor	: target cursor
+**	@param env		: global environment structure
+**	@param encode	: encode byte
+**	@param arg_num	: argument index
+**
+**	get_reg_num can be used to read a register number from memory.
+**	If an argument is a T_REG, get_reg_num is used by operation functions
+**	to read the number of the register from memory. The arg_num variable
+**	is used to indicate which argument should be targeted.
+*/
+
 int	get_reg_num(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num)
 {
 	int place;

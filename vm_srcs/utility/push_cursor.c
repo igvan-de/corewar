@@ -12,6 +12,13 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	push a cursor unto the cursor stack
+**
+**	@param c		:	cursor
+**	@param stack	:	ptr to cursor stack
+*/
+
 void	push_cursor(t_cursor *c, t_cursor **stack)
 {
 	if (*stack == NULL)

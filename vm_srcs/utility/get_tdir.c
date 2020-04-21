@@ -12,6 +12,12 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	read and return four bytes from memory
+**
+**	@param env	:	global environment structure
+*/
+
 int	get_tdir(t_env *env, int position)
 {
 	int					ret;

@@ -12,6 +12,15 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	determine argument size
+**
+**	@param op_code	:	operation code
+**
+**	get_size receives an argument type and returns the size of that
+**	that argument type.
+*/
+
 static	unsigned char	get_size(unsigned char op_code, unsigned char type)
 {
 	if (type == REG_CODE)
@@ -23,6 +32,21 @@ static	unsigned char	get_size(unsigned char op_code, unsigned char type)
 	error_exec(4);
 	return (-1);
 }
+
+/*
+**	@brief:	read the argument value from memory
+**
+**	@param c		:	target cursor
+**	@param env		:	global environment struct
+**	@param type 	:	argument type
+**	@param rel_pos	:	relative position
+**
+**	get_val is called by get_arg after the type of the argument has been
+**	determined. depending on the type, get_val will either read a registry
+**	value or read 4 or 2 bytes from memory. The rel_pos position is used
+**	to indicate target read location relative to the current position
+**	of the cursor.
+*/
 
 static	int				get_val(t_cursor *c, t_env *env, BYTE type, int rel_pos)
 {
@@ -47,6 +71,22 @@ static	int				get_val(t_cursor *c, t_env *env, BYTE type, int rel_pos)
 	error_exec(4);
 	return (-1);
 }
+
+/*
+**	@brief:	retrieve an argument value
+**
+**	@param c		:	target cursor
+**	@param env		:	global environment struct
+**	@param encode	:	encode byte
+**	@param num		:	argument index
+**
+**	get_arg is a versatile utility function which is used by various
+**	operation functions to retrieve argument values. The function
+**	interprets the encode byte to determine which type of argument
+**	it should get. It uses get_type to determine the type of the argument
+**	and get_size to determine the size. The num value is used to indicate
+**	which argument should be returned.
+*/
 
 int						get_arg(t_cursor *c, t_env *env, BYTE encode, int num)
 {

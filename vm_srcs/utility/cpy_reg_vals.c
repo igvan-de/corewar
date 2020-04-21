@@ -12,6 +12,16 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	copy registry values
+**
+**	@param dst	:	destination cursor
+**	@param src	:	source cursor
+**
+**	cpy_reg_vals receives two cursors and copies the registry values
+**	from the source cursor to the destination cursor.
+*/
+
 void	cpy_reg_vals(t_cursor *dst, t_cursor *src)
 {
 	int i;

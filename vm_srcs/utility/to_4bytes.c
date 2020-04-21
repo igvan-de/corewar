@@ -12,6 +12,13 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	merge two shorts into an int
+**
+**	@param one	:	short one
+**	@param two	:	short two
+*/
+
 int		to_4bytes(unsigned short one, unsigned short two)
 {
 	int ret;

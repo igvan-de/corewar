@@ -12,6 +12,15 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	count the operation arguments that are registries
+**
+**	@param encode	:	encode byte
+**
+**	count_registers receives an encode byte and counts the bitpairs
+**	within this encode byte that represent registries.
+*/
+
 int	count_registers(unsigned char encode)
 {
 	int one;

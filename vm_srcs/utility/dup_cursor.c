@@ -12,6 +12,17 @@
 
 #include "vm.h"
 
+/*
+**	@brief:	duplicate a cursor
+**
+**	@param src	:	source cursor
+**	@param env	:	global environment struct
+**
+**	duplicate a cursor. This function is used in fork and lfork
+**	to create duplicate cursors. The new cursor has all the same values
+**	as its parent and is pushed unto the top of the cursor_stack.
+*/
+
 t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 {
 	t_cursor *new;
