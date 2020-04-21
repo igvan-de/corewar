@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static	void	load_bits(BYTE *bit1, BYTE *bit2, int i, BYTE encode)
+static	void	load_bits(t_byt *bit1, t_byt *bit2, int i, t_byt encode)
 {
 	*bit1 = get_bit(encode, i);
 	*bit2 = get_bit(encode, i + 1);
@@ -28,7 +28,7 @@ static	void	load_bits(BYTE *bit1, BYTE *bit2, int i, BYTE encode)
 **	at the index arg_num.
 */
 
-int				get_type(unsigned char encode, int arg_num)
+int				get_type(t_byt encode, int arg_num)
 {
 	unsigned char bitpair;
 	unsigned char bit1;

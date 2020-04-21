@@ -23,7 +23,7 @@
 **	on the operation code.
 */
 
-unsigned	char	validate_jump(BYTE op_code, int type, BYTE bytes)
+unsigned	char	validate_jump(t_byt op_code, int type, t_byt bytes)
 {
 	if (type == 1 && op_code == 6)
 		return (6);
@@ -44,7 +44,7 @@ unsigned	char	validate_jump(BYTE op_code, int type, BYTE bytes)
 	return (bytes);
 }
 
-static	void		walk_two(t_cursor *c, BYTE *bytes, unsigned *i, t_env *env)
+static	void		walk_two(t_cursor *c, t_byt *bytes, unsigned *i, t_env *env)
 {
 	if (c->op_code == 10 && env->map[modi((*i) + 1)] == 0 &&
 		env->map[modi(c->position + 1)] != 0)
@@ -57,7 +57,7 @@ static	void		walk_two(t_cursor *c, BYTE *bytes, unsigned *i, t_env *env)
 	}
 }
 
-static	void		walk_one(t_cursor *c, t_env *env, BYTE *bytes, unsigned *i)
+static	void		walk_one(t_cursor *c, t_env *env, t_byt *bytes, unsigned *i)
 {
 	if (env->map[modi(*i - 1)] == -1)
 	{

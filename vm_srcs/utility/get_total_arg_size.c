@@ -22,7 +22,7 @@
 **	all arguments combined in bytes.
 */
 
-unsigned char	get_total_arg_size(unsigned char op_code, unsigned char encode)
+unsigned char	get_total_arg_size(t_byt op_code, t_byt encode)
 {
 	unsigned char total_arg_size;
 

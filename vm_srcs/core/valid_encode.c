@@ -60,7 +60,7 @@ static	int	validate_arg(unsigned char arg, int bit1, int bit2)
 **	given by checking values against the operations reference table.
 */
 
-int			valid_encode(BYTE op_code, BYTE encode, t_env *env)
+int			valid_encode(t_byt op_code, t_byt encode, t_env *env)
 {
 	unsigned char	arg;
 	int				nb_params;

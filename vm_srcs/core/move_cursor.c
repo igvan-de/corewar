@@ -48,13 +48,13 @@ void	move_cursor(t_cursor *c, t_env *env)
 **	could have overwritten them in memory.
 */
 
-void	move_cursor_encode(t_cursor *c, t_env *env, BYTE encode, BYTE op_code)
+void	move_cursor_encode(t_cursor *c, t_env *env, t_byt encode, t_byt op_code)
 {
 	unsigned char	total_arg_size;
 
 	env->datamap[c->position].cursor = 0;
 	if ((env->flag_byte & (1 << 2)) == (1 << 2))
-		dump_op_encode(c, env, encode, op_code);
+		dump_op_enc(c, env, encode, op_code);
 	total_arg_size = get_total_arg_size(op_code, encode);
 	c->position = modi(c->position + total_arg_size + 2);
 	env->datamap[c->position].cursor = 1;

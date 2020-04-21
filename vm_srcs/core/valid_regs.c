@@ -36,7 +36,7 @@ static	int	check_reg(t_env *env, t_cursor *c, int index)
 	return (1);
 }
 
-int			valid_regs(t_cursor *c, t_env *env, unsigned char encode)
+int			valid_regs(t_cursor *c, t_env *env, t_byt encode)
 {
 	int			size_1;
 	int			size_2;

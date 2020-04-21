@@ -96,9 +96,9 @@ void			dump_op(t_cursor *cursor, t_env *env)
 **	version of dump_op for operations with an encode byte
 */
 
-void			dump_op_encode(t_cursor *c, t_env *env, BYTE enc, BYTE op_code)
+void			dump_op_enc(t_cursor *c, t_env *env, t_byt enc, t_byt op_code)
 {
-	BYTE bytes;
+	t_byt bytes;
 
 	bytes = 1;
 	bytes += get_total_arg_size(op_code, enc);
@@ -120,7 +120,7 @@ void			dump_op_encode(t_cursor *c, t_env *env, BYTE enc, BYTE op_code)
 **	version of dump_op for invalid operations
 */
 
-void			dump_op_invalid(t_cursor *c, t_env *env, BYTE bytes)
+void			dump_op_invalid(t_cursor *c, t_env *env, t_byt bytes)
 {
 	dump_movement(c, bytes);
 	dump_bytes(c, env, bytes);

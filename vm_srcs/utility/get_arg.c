@@ -48,25 +48,25 @@ static	unsigned char	get_size(unsigned char op_code, unsigned char type)
 **	of the cursor.
 */
 
-static	int				get_val(t_cursor *c, t_env *env, BYTE type, int rel_pos)
+static	int				get_val(t_cursor *c, t_env *e, t_byt type, int rel_pos)
 {
-	BYTE	reg_num;
+	t_byt	reg_num;
 	int		addr;
 
 	addr = modi(c->position + rel_pos);
 	if (type == REG_CODE)
 	{
-		reg_num = env->map[addr];
+		reg_num = e->map[addr];
 		return (c->registries[reg_num - 1]);
 	}
 	else if (type == DIR_CODE && get_tdir_size(c->op_code) == 4)
-		return (get_tdir(env, addr));
+		return (get_tdir(e, addr));
 	else if (type == DIR_CODE && get_tdir_size(c->op_code) == 2)
-		return (get_tind(env, addr));
+		return (get_tind(e, addr));
 	else if (type == IND_CODE)
 	{
-		rel_pos = get_tind(env, addr);
-		return (get_tdir(env, c->position + rel_pos));
+		rel_pos = get_tind(e, addr);
+		return (get_tdir(e, c->position + rel_pos));
 	}
 	error_exec(4);
 	return (-1);
@@ -88,7 +88,7 @@ static	int				get_val(t_cursor *c, t_env *env, BYTE type, int rel_pos)
 **	which argument should be returned.
 */
 
-int						get_arg(t_cursor *c, t_env *env, BYTE encode, int num)
+int						get_arg(t_cursor *c, t_env *env, t_byt encode, int num)
 {
 	unsigned char type;
 	unsigned char rel_pos;

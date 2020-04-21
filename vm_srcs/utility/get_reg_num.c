@@ -26,7 +26,7 @@
 **	is used to indicate which argument should be targeted.
 */
 
-int	get_reg_num(t_cursor *cursor, t_env *env, unsigned char encode, int arg_num)
+int	get_reg_num(t_cursor *cursor, t_env *env, t_byt encode, int arg_num)
 {
 	int place;
 
