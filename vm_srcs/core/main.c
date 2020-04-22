@@ -26,9 +26,10 @@ int				main(int argc, char **argv)
 	parse_args(argc, argv, env);
 
 	dump_players(env->players, env);
-	exit (0);
 
 	load_players(env);
+	dump_mem(env);
+	exit (0);
 	init_cursors(env);
 	intro_players(env);
 	if ((env->flag_byte & 1) == 1)

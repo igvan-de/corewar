@@ -12,6 +12,7 @@
 
 #include "asm.h"
 // remove this test when final
+
 /*
 static void print_list(t_func_list *list)
 {
@@ -63,7 +64,9 @@ static void print_list(t_func_list *list)
 	}
 	ft_printf("\n");
 }
+
 */
+
 /*
 ** Here it malloc the hash table for valid operations
 ** it will transform them into a hash.
@@ -109,10 +112,6 @@ static void	init_func_list(t_func_list *list)
 	if (list->hash_table == NULL)
 		error_message(list, 1, 1, 0);
 }
-
-/*
-** This function start the whole process. Its the Main duh.
-*/
 
 int			main(int argc, char **argv)
 {

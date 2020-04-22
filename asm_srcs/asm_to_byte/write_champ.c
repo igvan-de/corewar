@@ -57,14 +57,42 @@ static size_t	check_size(unsigned char op_code)
 	return(4);
 }
 
+static	void	write_empty(int fd, size_t size)
+{
+	unsigned char byte;
+
+	byte = 0;
+	if (size == 4)
+	{
+		write(fd, &byte, 1);
+		write(fd, &byte, 1);
+	}
+	write(fd, &byte, 1);
+	write(fd, &byte, 1);
+}
 
 static void		write_dir(int fd, t_direction *info, int i)
 {
 	size_t size;
+	unsigned char byte;
 
-	printf("dir\n");
 	size = check_size(info->op_code);
-	write(fd, &info->arg_num[i], size);
+	if (info->arg_num[i] == 0)
+	{
+		write_empty(fd, size);
+		return ;
+	}
+	if (size == 4)
+	{
+		byte = (unsigned char)(info->arg_num[i] >> 24);
+		write(fd, &byte, 1);
+		byte = (unsigned char)(info->arg_num[i] >> 16);
+		write(fd, &byte, 1);
+	}
+	byte = (unsigned char)(info->arg_num[i] >> 8);
+	write(fd, &byte, 1);
+	byte = (unsigned char)info->arg_num[i];
+	write(fd, &byte, 1);
 }
 
 short	swap_2_bytes(short nb)
@@ -82,7 +110,6 @@ static void	write_ind(int fd, t_direction *info, int i)
 	short	arg;
 	short	swap;
 
-	printf("ind\n");
 	arg = (short)info->arg_num[i];
 	swap = swap_2_bytes(arg);
 	write(fd, &swap, 2);
@@ -92,7 +119,6 @@ static void write_reg(int fd, t_direction *info, int i)
 {
 	char	arg;
 
-	printf("reg\n");
 	arg = (char)info->arg_num[i];
 	write(fd, &arg, 1);
 }
@@ -107,6 +133,13 @@ static void check_value(int fd, unsigned char new ,t_direction *info, int i)
 		write_ind(fd, info, i);
 }
 
+int	has_encode(unsigned char op_code)
+{
+	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
+		return (0);
+	return (1);
+}
+
 static void	write_encode(int fd, t_direction *info)
 {
 	static int left[3] = {0, 2, 4};
@@ -115,7 +148,7 @@ static void	write_encode(int fd, t_direction *info)
 
 	new = (unsigned char)info->encode;
 	i = 0;
-	if (info->op_code != 0x01 || info->op_code != 0x09 || info->op_code != 0x0c || info->op_code != 0x0f)
+	if (has_encode(info->op_code) == 1)
 		write(fd, &info->encode, 1);
 	while (i < 3)
 	{
@@ -135,7 +168,6 @@ static void	write_encode(int fd, t_direction *info)
 ** @param info = struct with needed data for writing champ
 **
 */
-
 
 void	write_champ(int fd, t_direction *info)
 {
