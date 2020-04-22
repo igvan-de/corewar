@@ -95,12 +95,10 @@ static void	write_string(int fd, char *string, int limit)
 
 void	write_cor_file(int fd, t_func_list *list)
 {
-	int champ_size = 22; //for testing
-
 	write_magic_header(fd);
 	write_string(fd, list->name, PROG_NAME_LENGTH);
 	write_null(fd, 0, 4);
-	write_champ_size(fd, champ_size); //needs to be list->info->byte_index + list->info->byte_size
+	write_champ_size(fd, list->total_bytes); //needs to be list->info->byte_index + list->info->byte_size
 	write_string(fd, list->comment, COMMENT_LENGTH);
 	write_null(fd, 0, 4);
 	write_champ(fd, list->info);

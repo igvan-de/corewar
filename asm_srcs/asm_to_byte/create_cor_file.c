@@ -58,8 +58,6 @@ void	create_cor_file(char *argv, t_func_list *list)
 	char	*fd_name;
 	int		fd;
 
-	list->name = "badman";
-	list->comment = "This city needs me";
 	fd_name = get_name(argv);
 	fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	write_cor_file(fd, list);

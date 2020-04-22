@@ -64,6 +64,7 @@ test_corewar:
 
 clean:
 	@rm -f $(OBJ_COREWAR) $(OBJ_ASM)
+	@rm -f ./asm_srcs/main.o
 	@make -C ./libft clean
 	@make -C ./ft_printf clean
 	@make -C ./unit_test clean
