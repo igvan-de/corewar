@@ -5,12 +5,21 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 14:57:12 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 17:19:41 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	print the contents of a t_header
+**
+**	@param header	:	target header to print
+**
+**	dump_header is a debug function used to print
+**	and inspect a header struct.
+*/
 
 void	dump_header(header_t header)
 {

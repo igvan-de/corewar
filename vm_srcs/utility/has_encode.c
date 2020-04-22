@@ -5,12 +5,18 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 08:37:46 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:28:45 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	check if an operation has an encode byte
+**
+**	@param op_code	:	operation code
+*/
 
 int	has_encode(unsigned char op_code)
 {

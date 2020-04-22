@@ -5,12 +5,19 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 12:31:14 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:29:16 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	merge two bytes
+**
+**	@param one	:	byte one
+**	@param two	:	byte two
+*/
 
 short	to_2bytes(unsigned char one, unsigned char two)
 {

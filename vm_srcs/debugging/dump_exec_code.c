@@ -5,14 +5,20 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:16:03 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 17:19:34 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
 /*
+**	@brief:	print operation argument type to stdout
+**
+**	@param op_code		:	current operation code
+**	@param one			:	first bit of argument bitpair
+**	@param two			:	second bit of argument bitpair
+**
 **	print_arg_type takes two bit representations (one and two)
 **	and prints the related argument type to stdout.
 **	It also returns the argument size so that the parser can
@@ -40,6 +46,12 @@ static	int		print_arg_type(int op_code, int one, int two)
 }
 
 /*
+**	@brief:	print operation arguments to stdout
+**
+**	@param index		:	current byte index
+**	@param arg_size 	:	size of target argument
+**	@param prog_code	:	ptr to execution code
+**
 **	print_arg_val receives the champion execution code as prog_code,
 **	an index pointing at an instruction argument, and the size of that
 **	argument as arg_size. The function then prints the value contained
@@ -64,6 +76,13 @@ static	void	print_arg_val(int index, int arg_size, char *prog_code)
 }
 
 /*
+**	@brief:	local encoding byte parser
+**
+**	@param i		:	current byte index
+**	@param exec 	:	ptr to execution code
+**	@param oct		:	encode byte
+**	@param op_code	:	current operation code
+**
 **	parse_encode_byte receives the encoding byte and the op_code
 **	stored in the preceding byte. It then parses this byte
 **	to determine the file types stored as operation arguments.
@@ -99,6 +118,12 @@ static	int		parse_encbyte(int i, char *exec, unsigned char oct, int op_code)
 }
 
 /*
+**	@brief:	local execution code parser
+**
+**	@param exec		:	ptr to execution code
+**	@param index 	:	ptr to current index within execution code
+**	@param env		:	global environment struct
+**
 **	parse_instr receives the execution code and the current parse location
 **	as index. It prints the operation at index and parses the following
 **	encoding byte if necessary. Index gets adjusted to point to the next
@@ -123,6 +148,18 @@ static	void	parse_instr(char *exec, unsigned *index, t_env *env)
 		*index += parse_encbyte(i + 2, exec, exec[i + 1], op_code) + 2;
 	ft_putchar('\n');
 }
+
+/*
+**	@brief:	print a players' execution code to stdout
+**
+**	@param exec			:	ptr to execution code
+**	@param prog_size 	:	execution code size in bytes
+**	@param env			:	global environment struct
+**
+**	dump_exec_code is a debug function that can be used to
+**	print a players' execution code to stdout in human readable
+**	format.
+*/
 
 void			dump_exec_code(char *exec, unsigned int prog_size, t_env *env)
 {

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   op_sti.c                                           :+:    :+:            */
+/*   op_aff.c                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
@@ -12,49 +12,44 @@
 
 #include "vm.h"
 
-void			exec_sti(t_cursor *cursor, t_env *env, unsigned char encode)
+static	void	exec_aff(t_cursor *cursor, t_env *env, t_byt encode)
 {
-	int arg_1;
-	int arg_2;
-	int	arg_3;
-	int	addr;
+	t_byt	reg_num;
+	int		ascii;
 
-	arg_1 = get_arg(cursor, env, encode, 1);
-	if (get_type(encode, 2) != IND_CODE)
-		arg_2 = get_arg(cursor, env, encode, 2);
-	else
-		arg_2 = get_tind(env, cursor->position + 3);
-	arg_3 = get_arg(cursor, env, encode, 3);
-	addr = (arg_2 + arg_3) % IDX_MOD;
-	write_bytes(arg_1, env, cursor, addr);
+	reg_num = get_reg_num(cursor, env, encode, 1);
+	if ((env->flag_byte & (1 << 4)) == (1 << 4))
+	{
+		ascii = cursor->registries[reg_num - 1];
+		if (ft_isprint(ascii) == 1)
+			ft_printf("Aff: %c\n", (char)ascii);
+	}
 }
 
 /*
-**	@brief:	read a value and write it to memory
+**	@brief:	print a byte if it is a writable character.
 **
 **	@param cursor		:	target cursor
 **	@param env 			:	global environment struct
 **
-**	op_sti is an operation function which can be used to read
-**	a value from a target registry and write it to memory.
-**	alternatively, op_sti can also read values directly from memory
-**	instead of registries.
-**	op_sti uses an index as second argument which makes it different
-**	from op_st.
+**	op_aff is an operation function which can be used to
+**	print the character stored in a register to stdout.
+**	the character only gets printed if it is a writable character
+**	and if the -a flag is enabled. op_aff is flag dependent because
+**	it can interfere with the ncurses visualizer.
 */
 
-void			op_sti(t_cursor *cursor, t_env *env)
+void	op_aff(t_cursor *cursor, t_env *env)
 {
-	unsigned char	op_code;
-	unsigned char	encode;
+	unsigned char op_code;
+	unsigned char encode;
 
 	op_code = cursor->op_code;
 	encode = env->map[modi(cursor->position + 1)];
-	if (valid_encode(cursor->op_code,
-		env->map[modi(cursor->position + 1)], env) == 0)
+	if (valid_encode(cursor->op_code, encode, env) == 0)
 		return (invalid_op(cursor, env, 1));
 	if (valid_regs(cursor, env, encode) == 0)
 		return (invalid_op(cursor, env, 2));
-	exec_sti(cursor, env, encode);
+	exec_aff(cursor, env, encode);
 	move_cursor_encode(cursor, env, encode, op_code);
 }

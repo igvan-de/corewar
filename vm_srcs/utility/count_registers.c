@@ -5,12 +5,21 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 08:39:50 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:27:27 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	count the operation arguments that are registries
+**
+**	@param encode	:	encode byte
+**
+**	count_registers receives an encode byte and counts the bitpairs
+**	within this encode byte that represent registries.
+*/
 
 int	count_registers(unsigned char encode)
 {
