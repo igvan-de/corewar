@@ -23,17 +23,17 @@ static	int		print_arg_type(int op_code, int one, int two)
 {
 	if (one == 0 && two == 1)
 	{
-		ft_putstr("		T_REG	");
+		ft_putstr("	T_REG	");
 		return (1);
 	}
 	else if (one == 1 && two == 0)
 	{
-		ft_putstr("		T_DIR	");
+		ft_putstr("	T_DIR	");
 		return (get_tdir_size(op_code));
 	}
 	else if (one == 1 && two == 1)
 	{
-		ft_putstr("		T_IND	");
+		ft_putstr("	T_IND	");
 		return (2);
 	}
 	return (0);
@@ -87,6 +87,9 @@ static	int		parse_encbyte(int i, char *exec, unsigned char oct, int op_code)
 	int arg_size_2;
 	int arg_size_3;
 
+	ft_putstr("	");
+	print_bits(oct);
+
 	arg_size_1 = print_arg_type(op_code, get_bit(oct, 0), get_bit(oct, 1));
 	print_arg_val(i, arg_size_1, exec);
 	arg_size_2 = print_arg_type(op_code, get_bit(oct, 2), get_bit(oct, 3));
@@ -115,7 +118,7 @@ static	void	parse_instr(char *exec, unsigned *index, t_env *env)
 	print_op_name(op_code, env);
 	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
 	{
-		ft_putstr("		T_DIR	");
+		ft_putstr("			T_DIR	");
 		print_arg_val(i + 1, get_tdir_size(op_code), exec);
 		*index += get_tdir_size(op_code) + 1;
 	}

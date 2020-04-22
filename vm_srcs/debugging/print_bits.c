@@ -23,5 +23,4 @@ void	print_bits(unsigned char octet)
 		(octet / i) ? octet -= i : 0;
 		i /= 2;
 	}
-	ft_putchar('\n');
 }
