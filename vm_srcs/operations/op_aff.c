@@ -39,7 +39,7 @@ static	void	exec_aff(t_cursor *cursor, t_env *env, t_byt encode)
 **	it can interfere with the ncurses visualizer.
 */
 
-void	op_aff(t_cursor *cursor, t_env *env)
+void			op_aff(t_cursor *cursor, t_env *env)
 {
 	unsigned char op_code;
 	unsigned char encode;
