@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:13 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 02:48:37 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/22 19:34:44 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void		process_t_ind(t_func_list *list, t_direction *new, int arg)
 	}
 	if (list->line[list->line_char] != SEPARATOR_CHAR &&
 		list->line[list->line_char] != '\0' &&
-		ft_isspace(list->line[list->line_char]) == 1)
+		ft_isspace(list->line[list->line_char]) == 1 &&
+		list->line[list->line_char] != COMMENT_CHAR)
 		error_message(list, 100, 0, 10);
 	new->arg_num[arg] = converted;
 }

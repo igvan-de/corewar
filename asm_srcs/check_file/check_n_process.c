@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/14 23:44:02 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/22 19:53:34 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 ** after it ready it transforms the labels which came in als arguments
 ** to the index number
 */
+
+static bool		check_empty_line(t_func_list *list)
+{
+	while (list->line != NULL && list->line[list->line_char] &&
+	ft_isspace(list->line[list->line_char]) == 1)
+		list->line_char++;
+	if (list->line != NULL && list->line[list->line_char] != '\0' &&
+		list->line[list->line_char] != COMMENT_CHAR)
+		return (false);
+	return (true);
+}
 
 static void		read_file(t_func_list *list, int fd)
 {
@@ -36,7 +47,7 @@ static void		read_file(t_func_list *list, int fd)
 			close(fd);
 			error_message(list, 12, 2, 1);
 		}
-		if (list->line != NULL && list->line[0] != '\0')
+		if (check_empty_line(list) == false)
 			process_line_into_list(list);
 		ft_memdel((void **)&list->line);
 		list->line_number++;
