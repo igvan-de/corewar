@@ -43,15 +43,8 @@ void		insert_encode(t_direction *new, int i, int operation)
 
 static void	process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 {
-	if (list->line[list->line_char] >= '0' &&
-		list->line[list->line_char] <= '9')
-	{
-		if (kind & T_IND)
-			return (process_t_ind(list, new, arg));
-		else
-			error_message(list, 89, 1, 8);
-	}
-	else if (list->line[list->line_char] == 'r')
+	
+	if (list->line[list->line_char] == 'r')
 	{
 		if (kind & T_REG)
 			return (process_t_reg(list, new, arg));
@@ -65,6 +58,8 @@ static void	process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 		else
 			error_message(list, 87, 1, 8);
 	}
+	else if (kind & T_IND)
+		return (process_t_ind(list, new, arg));
 	else
 		error_message(list, 86, 2, 8);
 }

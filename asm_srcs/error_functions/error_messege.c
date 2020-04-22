@@ -23,5 +23,6 @@ void	error_message(t_func_list *list, int error_code, int kind, int file)
 	};
 
 	var_list[file](list, error_code, kind);
+
 	exit(-1);
 }

@@ -91,6 +91,7 @@ void		add_to_hash(t_func_list *list, char *label)
 {
 	uint64_t hash;
 
+//	ft_printf("	add to hash is called with label : %s at total bytes: %i\n", label, list->total_bytes);
 	hash = calc_hash(label, ft_strlen(label));
 	if (list->labels == NULL)
 	{

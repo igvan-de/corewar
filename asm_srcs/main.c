@@ -14,6 +14,7 @@
 // remove this test when final
 
 /*
+
 static void print_list(t_func_list *list)
 {
 	t_direction *ptr;

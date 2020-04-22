@@ -95,24 +95,14 @@ static void		write_dir(int fd, t_direction *info, int i)
 	write(fd, &byte, 1);
 }
 
-short	swap_2_bytes(short nb)
-{
-	int b1;
-	int b2;
-
-	b1 = (nb & 0x00ff) << 8;
-	b2 = (nb & 0xff00) >> 8;
-	return (b1 | b2);
-}
-
 static void	write_ind(int fd, t_direction *info, int i)
 {
-	short	arg;
-	short	swap;
+	unsigned char byte;
 
-	arg = (short)info->arg_num[i];
-	swap = swap_2_bytes(arg);
-	write(fd, &swap, 2);
+	byte = (unsigned char)(info->arg_num[i] >> 8);
+	write(fd, &byte, 1);
+	byte = (unsigned char)info->arg_num[i];
+	write(fd, &byte, 1);
 }
 
 static void write_reg(int fd, t_direction *info, int i)
@@ -123,14 +113,34 @@ static void write_reg(int fd, t_direction *info, int i)
 	write(fd, &arg, 1);
 }
 
+void	print_bits(unsigned char octet)
+{
+	int	i;
+
+	i = 128;
+	while (i)
+	{
+		(octet / i) ? write(1, "1", 1) : write(1, "0", 1);
+		(octet / i) ? octet -= i : 0;
+		i /= 2;
+	}
+	ft_putchar('\n');
+}
+
 static void check_value(int fd, unsigned char new ,t_direction *info, int i)
 {
-	if (new == T_DIR)
+	if (new == DIR_CODE)
 		write_dir(fd, info, i);
-	if (new == T_REG)
+	else if (new == REG_CODE)
 		write_reg(fd, info, i);
-	if (new == T_IND)
+	else if (new == IND_CODE)
 		write_ind(fd, info, i);
+	else
+	{
+		printf("	error -> encode bitpair not recognized\n");
+		print_bits(new);
+		exit (0);
+	}
 }
 
 int	has_encode(unsigned char op_code)
