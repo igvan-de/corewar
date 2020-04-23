@@ -39,6 +39,7 @@ static	char	*get_name(char *argv)
 	name = ft_strsplit(fd_name, '.');
 	free(fd_name);
 	fd_name = ft_strjoin(name[NAME], ".cor");
+	free_split(name);
 	return (fd_name);
 }
 
