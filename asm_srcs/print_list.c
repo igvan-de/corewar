@@ -12,7 +12,7 @@
 
 #include "asm.h"
 
-static void	print_encode(t_direction *ptr)
+static void		print_encode(t_direction *ptr)
 {
 	int i;
 
@@ -59,7 +59,7 @@ static	void	print_labels(t_hash_label *a)
 	ft_printf("\n");
 }
 
-void print_list(t_func_list *list)
+void			print_list(t_func_list *list)
 {
 	t_direction		*ptr;
 

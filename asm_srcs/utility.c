@@ -18,7 +18,7 @@
 ** if that is not true then error
 */
 
-void		check_end_line(t_func_list *list)
+void			check_end_line(t_func_list *list)
 {
 	while (list->line[list->line_char] &&
 	ft_isspace(list->line[list->line_char]) == 1)
@@ -32,7 +32,7 @@ void		check_end_line(t_func_list *list)
 ** this is just atoi but it will remember where it left last time
 */
 
-int			pm_atoi(t_func_list *list)
+int				pm_atoi(t_func_list *list)
 {
 	int		nega;
 	int		result;
@@ -62,7 +62,7 @@ int			pm_atoi(t_func_list *list)
 ** checks if the labels are valid character based on the subject
 */
 
-bool		check_label_char(char c)
+bool			check_label_char(char c)
 {
 	int i;
 
@@ -80,7 +80,7 @@ bool		check_label_char(char c)
 ** calculate the hash based on the Fowler–Noll–Vo hash function
 */
 
-uint64_t	calc_hash(const void *bytes, size_t len)
+uint64_t		calc_hash(const void *bytes, size_t len)
 {
 	unsigned char	*p;
 	uint64_t		hash;

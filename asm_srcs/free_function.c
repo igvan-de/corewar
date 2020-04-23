@@ -75,7 +75,7 @@ void	free_direction(t_func_list *list)
 void	free_func(t_func_list *list)
 {
 	if (list->name != NULL)
-		ft_memdel((void**)&list->name); //ft_memdel freed current data and sets it to NULL
+		ft_memdel((void**)&list->name);
 	if (list->comment != NULL)
 		ft_memdel((void**)&list->comment);
 	if (list->hash_table != NULL)
@@ -85,7 +85,6 @@ void	free_func(t_func_list *list)
 	if (list->labels != NULL)
 		free_hash_labels(list);
 }
-
 
 /*
 ** @brief

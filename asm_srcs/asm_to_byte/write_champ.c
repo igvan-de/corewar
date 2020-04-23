@@ -48,109 +48,8 @@ void	write_champ_size(int fd, int champ_size)
 ** @return size_t = size needed to T_DIR
 */
 
-#include <stdio.h>
-static size_t	check_size(unsigned char op_code)
-{
-	if (op_code == 0x09 || op_code == 0x0a || op_code == 0x0b
-		|| op_code == 0x0c || op_code == 0x0e || op_code == 0x0f)
-		return(2);
-	return(4);
-}
 
-static	void	write_empty(int fd, size_t size)
-{
-	unsigned char byte;
-
-	byte = 0;
-	if (size == 4)
-	{
-		write(fd, &byte, 1);
-		write(fd, &byte, 1);
-	}
-	write(fd, &byte, 1);
-	write(fd, &byte, 1);
-}
-
-static void		write_dir(int fd, t_direction *info, int i)
-{
-	size_t size;
-	unsigned char byte;
-
-	size = check_size(info->op_code);
-	if (info->arg_num[i] == 0)
-	{
-		write_empty(fd, size);
-		return ;
-	}
-	if (size == 4)
-	{
-		byte = (unsigned char)(info->arg_num[i] >> 24);
-		write(fd, &byte, 1);
-		byte = (unsigned char)(info->arg_num[i] >> 16);
-		write(fd, &byte, 1);
-	}
-	byte = (unsigned char)(info->arg_num[i] >> 8);
-	write(fd, &byte, 1);
-	byte = (unsigned char)info->arg_num[i];
-	write(fd, &byte, 1);
-}
-
-static void	write_ind(int fd, t_direction *info, int i)
-{
-	unsigned char byte;
-
-	byte = (unsigned char)(info->arg_num[i] >> 8);
-	write(fd, &byte, 1);
-	byte = (unsigned char)info->arg_num[i];
-	write(fd, &byte, 1);
-}
-
-static void write_reg(int fd, t_direction *info, int i)
-{
-	char	arg;
-
-	arg = (char)info->arg_num[i];
-	write(fd, &arg, 1);
-}
-
-void	print_bits(unsigned char octet)
-{
-	int	i;
-
-	i = 128;
-	while (i)
-	{
-		(octet / i) ? write(1, "1", 1) : write(1, "0", 1);
-		(octet / i) ? octet -= i : 0;
-		i /= 2;
-	}
-	ft_putchar('\n');
-}
-
-static void check_value(int fd, unsigned char new ,t_direction *info, int i)
-{
-	if (new == DIR_CODE)
-		write_dir(fd, info, i);
-	else if (new == REG_CODE)
-		write_reg(fd, info, i);
-	else if (new == IND_CODE)
-		write_ind(fd, info, i);
-	else
-	{
-		printf("	error -> encode bitpair not recognized\n");
-		print_bits(new);
-		exit (0);
-	}
-}
-
-int	has_encode(unsigned char op_code)
-{
-	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
-		return (0);
-	return (1);
-}
-
-static void	write_encode(int fd, t_direction *info)
+static void	write_op(int fd, t_direction *info)
 {
 	static int left[3] = {0, 2, 4};
 	unsigned char new;
@@ -166,7 +65,7 @@ static void	write_encode(int fd, t_direction *info)
 		new <<= left[i];
 		new >>= 6;
 		if (new != 0)
-			check_value(fd, new, info, i);
+			write_args(fd, new, info, i);
 		i++;
 	}
 }
@@ -187,7 +86,7 @@ void	write_champ(int fd, t_direction *info)
 	while (probe != NULL)
 	{
 		write(fd, &probe->op_code, 1);
-		write_encode(fd, probe);
+		write_op(fd, probe);
 		probe = probe->next;
 	}
 }

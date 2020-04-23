@@ -24,7 +24,7 @@
 ** the create the correct .cor file name and save it in fd_name which we return
 */
 
-static char *get_name(char *argv)
+static	char	*get_name(char *argv)
 {
 	char	**name;
 	char	*fd_name;
@@ -39,7 +39,6 @@ static char *get_name(char *argv)
 	name = ft_strsplit(fd_name, '.');
 	free(fd_name);
 	fd_name = ft_strjoin(name[NAME], ".cor");
-	/*need to test more, unit_test!*/
 	return (fd_name);
 }
 
@@ -50,10 +49,11 @@ static char *get_name(char *argv)
 ** @param list = is structure with all needed data in it
 **
 ** create_cor_file is the main for creating a .cor file
-** we get the correct .cor name by the return value of get_name function and save it in fd_name
+** we get the correct .cor name by the return value of
+** get_name function and save it in fd_name
 */
 
-void	create_cor_file(char *argv, t_func_list *list)
+void			create_cor_file(char *argv, t_func_list *list)
 {
 	char	*fd_name;
 	int		fd;

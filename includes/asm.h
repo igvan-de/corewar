@@ -115,6 +115,9 @@ void						check_end_line(t_func_list *list);
 int 						till_power(char letter, int power);
 unsigned int				rev_endian(unsigned int oct);
 void						print_list(t_func_list *list);
+void						print_bits(unsigned char octet);
+int							has_encode(unsigned char op_code);
+size_t						get_tdir_size(unsigned char op_code);
 
 /*
 **===============================ERROR FUNCTIONS================================
@@ -139,5 +142,6 @@ void						create_cor_file(char *argv, t_func_list *list);
 void						write_cor_file(int fd, t_func_list *list);
 void						write_champ_size(int fd, int champ_size);
 void						write_champ(int fd, t_direction *info);
+void						write_args(int fd, unsigned char new, t_direction *info, int i);
 
 #endif

@@ -44,7 +44,7 @@ static uint64_t	*make_hash_table(void)
 **		also it makes his own hash table;
 */
 
-static void	init_func_list(t_func_list *list)
+static void		init_func_list(t_func_list *list)
 {
 	list->name = NULL;
 	list->comment = NULL;
@@ -58,7 +58,7 @@ static void	init_func_list(t_func_list *list)
 		error_message(list, 1, 1, 0);
 }
 
-int			main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	int			i;
 	t_func_list	list;
@@ -70,9 +70,6 @@ int			main(int argc, char **argv)
 	while (argv[i] != NULL)
 		i++;
 	check_n_process(argv[argc - 1], &list);
-	print_list(&list);
-	// process_asm(argv[i - 1]);
 	create_cor_file(argv[i - 1], &list);
-//	free_all_but_hash(&list);
 	return (0);
 }
