@@ -77,6 +77,7 @@ static void		get_label_name(t_func_list *list,
 	if (sub == NULL)
 		error_message(list, 61, 1, 6);
 	add_to_hash(list, sub);
+	free(sub);
 	list->line_char = len;
 }
 
