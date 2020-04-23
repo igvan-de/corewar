@@ -23,7 +23,8 @@ void	free_cmp_label(t_labels **label)
 	{
 		ptr2 = ptr->next;
 		if (ptr->label != NULL)
-			ft_memdel((void **)&ptr);
+			free(ptr->label);
+		free(ptr);
 		ptr = ptr2;
 	}
 }
@@ -39,10 +40,8 @@ void	free_hash_labels(t_func_list *list)
 	{
 		ptr2 = ptr->next;
 		if (ptr->label != NULL)
-		{
 			free_cmp_label(&ptr->label);
-			ft_memdel((void **)&ptr);
-		}
+		free(ptr);
 		ptr = ptr2;
 	}
 }
@@ -68,6 +67,7 @@ void	free_direction(t_func_list *list)
 		}
 		ft_memdel((void **)&iter->arg_str);
 		ft_memdel((void **)&iter->arg_num);
+		free(iter);
 		iter = next;
 	}
 }

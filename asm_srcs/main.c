@@ -71,6 +71,6 @@ int				main(int argc, char **argv)
 		i++;
 	check_n_process(argv[argc - 1], &list);
 	create_cor_file(argv[i - 1], &list);
-//	free_func(&list);
+	free_func(&list);
 	return (0);
 }
