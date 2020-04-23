@@ -18,7 +18,7 @@
 ** if that is not true then error
 */
 
-void	check_end_line(t_func_list *list)
+void		check_end_line(t_func_list *list)
 {
 	while (list->line[list->line_char] &&
 	ft_isspace(list->line[list->line_char]) == 1)

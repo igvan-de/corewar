@@ -114,6 +114,7 @@ int							pm_atoi(t_func_list *list);
 void						check_end_line(t_func_list *list);
 int 						till_power(char letter, int power);
 unsigned int				rev_endian(unsigned int oct);
+void						print_list(t_func_list *list);
 
 /*
 **===============================ERROR FUNCTIONS================================

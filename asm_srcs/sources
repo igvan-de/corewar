@@ -1,2 +1,3 @@
-ASM_SRCS = asm_srcs/free_function.c \
-asm_srcs/utility.c
+ASM_SRCS =	asm_srcs/free_function.c	\
+			asm_srcs/utility.c			\
+			asm_srcs/print_list.c		\
