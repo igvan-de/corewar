@@ -26,10 +26,10 @@ static	void	write_empty(int fd, size_t size)
 	write(fd, &byte, 1);
 }
 
-static void		write_dir(int fd, t_direction *info, int i)
+static	void	write_dir(int fd, t_direction *info, int i)
 {
-	size_t size;
-	unsigned char byte;
+	size_t			size;
+	unsigned char	byte;
 
 	size = get_tdir_size(info->op_code);
 	if (info->arg_num[i] == 0)
@@ -50,7 +50,7 @@ static void		write_dir(int fd, t_direction *info, int i)
 	write(fd, &byte, 1);
 }
 
-static void	write_ind(int fd, t_direction *info, int i)
+static	void	write_ind(int fd, t_direction *info, int i)
 {
 	unsigned char byte;
 
@@ -60,7 +60,7 @@ static void	write_ind(int fd, t_direction *info, int i)
 	write(fd, &byte, 1);
 }
 
-static void write_reg(int fd, t_direction *info, int i)
+static	void	write_reg(int fd, t_direction *info, int i)
 {
 	char	arg;
 
@@ -68,7 +68,7 @@ static void write_reg(int fd, t_direction *info, int i)
 	write(fd, &arg, 1);
 }
 
-void write_args(int fd, unsigned char new ,t_direction *info, int i)
+void			write_args(int fd, unsigned char new, t_direction *info, int i)
 {
 	if (new == DIR_CODE)
 		write_dir(fd, info, i);
@@ -80,6 +80,6 @@ void write_args(int fd, unsigned char new ,t_direction *info, int i)
 	{
 		printf("	error -> encode bitpair not recognized\n");
 		print_bits(new);
-		exit (0);
+		exit(0);
 	}
 }

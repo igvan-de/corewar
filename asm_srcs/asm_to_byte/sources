@@ -2,3 +2,4 @@ ASM_SRCS += asm_srcs/asm_to_byte/write_cor_file.c	\
 			asm_srcs/asm_to_byte/write_champ.c		\
 			asm_srcs/asm_to_byte/create_cor_file.c	\
 			asm_srcs/asm_to_byte/write_args.c		\
+			asm_srcs/asm_to_byte/write_champ_size.c	\
