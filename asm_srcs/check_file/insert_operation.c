@@ -43,7 +43,6 @@ void		insert_encode(t_direction *new, int i, int operation)
 
 static void	process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 {
-	
 	if (list->line[list->line_char] == 'r')
 	{
 		if (kind & T_REG)
@@ -73,22 +72,22 @@ static void	process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 static int	op_tab_info(int op_code, int section, int part)
 {
 	static	t_op	get_op[17] = {{{0}, 0, {0}, 0, 0, {0}, 0, 0},
-	{"live", 1, {T_DIR}, 1, 10, "alive", 0, 0},
-	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, "load", 1, 0},
-	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, "store", 1, 0},
-	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, "addition r1 + r2 -> r3", 1, 0},
-	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, "subtraction r1 - r2 -> r3", 1, 0},
-	{"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND | T_DIR, T_REG}, 6, 6, "and  r1&r2 -> r3", 1, 0},
-	{"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 7, 6, "or   r1 | r2 -> r3", 1, 0},
-	{"xor", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 6, "xor  r1^r2 -> r3", 1, 0},
-	{"zjmp", 1, {T_DIR}, 9, 20, "jump if zero", 0, 1},
-	{"ldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 25, "load index", 1, 1},
-	{"sti", 3, {T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 25, "store index", 1, 1},
-	{"fork", 1, {T_DIR}, 12, 800, "fork", 0, 1},
-	{"lld", 2, {T_DIR | T_IND, T_REG}, 13, 10, "long load", 1, 0},
-	{"lldi", 3, {T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 50, "long load index", 1, 1},
-	{"lfork", 1, {T_DIR}, 15, 1000, "long fork", 0, 1},
-	{"aff", 1, {T_REG}, 16, 2, "aff", 1, 0}};
+	{"live", 1, {T_DIR}, 1, 10, " ", 0, 0},
+	{"ld", 2, {T_DIR | T_IND, T_REG}, 2, 5, " ", 1, 0},
+	{"st", 2, {T_REG, T_IND | T_REG}, 3, 5, " ", 1, 0},
+	{"add", 3, {T_REG, T_REG, T_REG}, 4, 10, " ", 1, 0},
+	{"sub", 3, {T_REG, T_REG, T_REG}, 5, 10, " ", 1, 0},
+	{"and", 3, {ALL, ALL, T_REG}, 6, 6, " ", 1, 0},
+	{"or", 3, {ALL, ALL, T_REG}, 7, 6, " ", 1, 0},
+	{"xor", 3, {ALL, ALL, T_REG}, 8, 6, " ", 1, 0},
+	{"zjmp", 1, {T_DIR}, 9, 20, " ", 0, 1},
+	{"ldi", 3, {ALL, T_DIR | T_REG, T_REG}, 10, 25, " ", 1, 1},
+	{"sti", 3, {T_REG, ALL, T_DIR | T_REG}, 11, 25, " ", 1, 1},
+	{"fork", 1, {T_DIR}, 12, 800, " ", 0, 1},
+	{"lld", 2, {ALL}, 13, 10, " ", 1, 0},
+	{"lldi", 3, {ALL, T_DIR | T_REG, T_REG}, 14, 50, " ", 1, 1},
+	{"lfork", 1, {T_DIR}, 15, 1000, " ", 0, 1},
+	{"aff", 1, {T_REG}, 16, 2, " ", 1, 0}};
 
 	if (section == 0)
 		return (get_op[op_code].nb_params);
@@ -126,7 +125,7 @@ static void	l_insert_operation(t_func_list *list, t_direction *new,
 ** comma = the amount of comma's that has to be there
 */
 
-void	insert_operation(t_func_list *list, t_direction *new)
+void		insert_operation(t_func_list *list, t_direction *new)
 {
 	int i;
 	int args;
@@ -143,4 +142,3 @@ void	insert_operation(t_func_list *list, t_direction *new)
 	}
 	check_end_line(list);
 }
-

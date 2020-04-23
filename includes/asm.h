@@ -23,6 +23,7 @@
 # define TRUE 0
 # define FALSE -1
 # define S_LINE
+# define ALL 7
 typedef enum				s_input_variables
 {
 	NAME = 0,

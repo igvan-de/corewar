@@ -24,7 +24,7 @@
 ** its a reference to the index from the targeted label
 ** same with arg_num it will be stored in arg_str.
 ** it will will be processed afterwards into a number
-**/
+*/
 
 static int	get_dir_size(int op_code)
 {

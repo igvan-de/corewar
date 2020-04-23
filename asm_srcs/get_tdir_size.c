@@ -16,6 +16,6 @@ size_t	get_tdir_size(unsigned char op_code)
 {
 	if (op_code == 0x09 || op_code == 0x0a || op_code == 0x0b
 		|| op_code == 0x0c || op_code == 0x0e || op_code == 0x0f)
-		return(2);
-	return(4);
+		return (2);
+	return (4);
 }
