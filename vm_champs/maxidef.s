@@ -4,11 +4,10 @@
 loop:	live %0
 	zjmp %8
 
-gobepc:	st r1,6			# 03 70 01 00 06			5
-	live %66		# 01 00 00 00 42			10
-	ld -4,r1		# 02 d0 ff fc 01			5
-	st r2,-14		# 03 70 02 ff f2			5
-	
+gobepc:	st r1,6
+	live %66
+	ld -4,r1
+	st r2,-14
 	ld %0,r5
 	zjmp %:init
 
@@ -45,7 +44,7 @@ deflv:	live %1
 
 
 init:	ld %57672703,r3
-	#ld %57672560,r3
+	ld %57672560,r3
 	sti r1,%:loop,%1
 	sti r1,%:source,%1
 	sti r1,%:source,%9
