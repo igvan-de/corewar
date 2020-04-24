@@ -52,3 +52,11 @@ for s in $S_FILES
 do 
 	../asm $s
 done
+
+rm -rf asm_tests/*.cor
+
+
+#CORFILES=asm_tests/*.cor
+#for c in $CORFILES
+#do
+#	../corewar -v 16 -dump 100 c
