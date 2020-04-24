@@ -12,6 +12,18 @@
 
 #include "asm.h"
 
+/*
+**	@brief:	write operation into .cor file
+**
+**	@param fd	:	.cor file descriptor
+**	@param info	:	operation data
+**
+**	write_op writes the encode byte (if applicable)
+**	and the operations' arguments into the .cor file.
+**	the determined encode byte is parsed to determine
+**	the format in which the arguments should be written.
+*/
+
 static	void	write_op(int fd, t_direction *info)
 {
 	static int		left[3] = {0, 2, 4};
@@ -42,13 +54,13 @@ static	void	write_op(int fd, t_direction *info)
 
 void			write_champ(int fd, t_direction *info)
 {
-	t_direction	*probe;
+	t_direction	*op_data;
 
-	probe = info;
-	while (probe != NULL)
+	op_data = info;
+	while (op_data != NULL)
 	{
-		write(fd, &probe->op_code, 1);
-		write_op(fd, probe);
-		probe = probe->next;
+		write(fd, &op_data->op_code, 1);
+		write_op(fd, op_data);
+		op_data = op_data->next;
 	}
 }

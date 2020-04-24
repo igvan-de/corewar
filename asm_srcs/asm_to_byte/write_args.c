@@ -12,6 +12,18 @@
 
 #include "asm.h"
 
+/*
+**	@brief:	write zeroed bytes into .cor file
+**
+**	@param fd	:	.cor file descriptor
+**	@param info	:	operation data
+**	@param	i	:	argument index
+**
+**	write_reg receives the operation data and
+**	writes size zeroed bytes into the .cor file.
+**	size can either be four or two bytes.
+*/
+
 static	void	write_empty(int fd, size_t size)
 {
 	unsigned char byte;
@@ -25,6 +37,19 @@ static	void	write_empty(int fd, size_t size)
 	write(fd, &byte, 1);
 	write(fd, &byte, 1);
 }
+
+/*
+**	@brief:	write direct value into .cor file
+**
+**	@param fd	:	.cor file descriptor
+**	@param info	:	operation data
+**	@param	i	:	argument index
+**
+**	write_reg receives the operation data and writes a
+**	direct value into the .cor file. Written value can
+**	either be four or two bytes, depending on the performing
+**	operation.
+*/
 
 static	void	write_dir(int fd, t_direction *info, int i)
 {
@@ -50,6 +75,17 @@ static	void	write_dir(int fd, t_direction *info, int i)
 	write(fd, &byte, 1);
 }
 
+/*
+**	@brief:	write indirect value into .cor file
+**
+**	@param fd	:	.cor file descriptor
+**	@param info	:	operation data
+**	@param	i	:	argument index
+**
+**	write_ind receives the operation data and writes an
+**	indirect value into the .cor file.
+*/
+
 static	void	write_ind(int fd, t_direction *info, int i)
 {
 	unsigned char byte;
@@ -60,6 +96,17 @@ static	void	write_ind(int fd, t_direction *info, int i)
 	write(fd, &byte, 1);
 }
 
+/*
+**	@brief:	write register number into .cor file
+**
+**	@param fd	:	.cor file descriptor
+**	@param info	:	operation data
+**	@param	i	:	argument index
+**
+**	write_reg receives the operation data and writes a
+**	register number into the .cor file.
+*/
+
 static	void	write_reg(int fd, t_direction *info, int i)
 {
 	char	arg;
@@ -67,6 +114,18 @@ static	void	write_reg(int fd, t_direction *info, int i)
 	arg = (char)info->arg_num[i];
 	write(fd, &arg, 1);
 }
+
+/*
+**	@brief:	write argument values into .cor file
+**
+**	@param fd	:	.cor file descriptor
+**	@param new	:	encode byte bitpair
+**	@param info	:	operation data
+**	@param	i	:	argument index
+**
+**	write_args receives the operation data and writes the argument value
+**	into the .cor file. works for each argument type.
+*/
 
 void			write_args(int fd, unsigned char new, t_direction *info, int i)
 {
@@ -76,10 +135,4 @@ void			write_args(int fd, unsigned char new, t_direction *info, int i)
 		write_reg(fd, info, i);
 	else if (new == IND_CODE)
 		write_ind(fd, info, i);
-	else
-	{
-		printf("	error -> encode bitpair not recognized\n");
-		print_bits(new);
-		exit(0);
-	}
 }

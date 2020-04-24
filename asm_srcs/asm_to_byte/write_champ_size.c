@@ -15,8 +15,8 @@
 /*
 ** @brief writes size of executable champion commands into filediscriptor
 **
-** @param fd = filediscripter to write string in
-** @param champ_size = size of the champion
+** @param fd			= filediscripter to write string in
+** @param champ_size	= size of the champion
 **
 ** write_champ_size writes the size of only executable
 ** part of champion in filediscriptor.

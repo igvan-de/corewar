@@ -11,10 +11,9 @@
 /* ************************************************************************** */
 
 #include "asm.h"
-#include <fcntl.h>
 
 /*
-** @brief gets the right file name
+**	@brief: get the right file name
 **
 ** @param argv = is the argument needed to get the name
 ** @return char* = returns the correct .cor file name
@@ -44,14 +43,14 @@ static	char	*get_name(char *argv)
 }
 
 /*
-** @brief creates cor file
+**	@brief: creates cor file
 **
-** @param argv = is the string of the last argument
-** @param list = is structure with all needed data in it
+**	@param argv = is the string of the last argument
+**	@param list = is structure with all needed data in it
 **
-** create_cor_file is the main for creating a .cor file
-** we get the correct .cor name by the return value of
-** get_name function and save it in fd_name
+**	create_cor_file is the main function for creating a .cor file
+**	we get the correct .cor name by the return value of
+**	get_name function and save it in fd_name.
 */
 
 void			create_cor_file(char *argv, t_func_list *list)

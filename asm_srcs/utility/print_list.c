@@ -65,7 +65,7 @@ void			print_list(t_func_list *list)
 
 	ptr = list->info;
 	if (ptr->next == NULL)
-		printf("fuck]\n");
+		ft_printf("fuck]\n");
 	ft_printf("total %d\n", list->total_bytes);
 	while (ptr)
 	{
