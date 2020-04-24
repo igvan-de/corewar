@@ -12,6 +12,12 @@
 
 #include "asm.h"
 
+/*
+**	@brief	:	print a byte in binary to stdout
+**
+**	@param	octet	: source byte
+*/
+
 void	print_bits(unsigned char octet)
 {
 	int	i;

@@ -12,6 +12,16 @@
 
 #include "asm.h"
 
+/*
+**	@brief	:	get direct value size
+**
+**	@param	op_code	:	operation code
+**
+**	get_tdir_size receives an operation code and returns
+**	the direct value size of that operation. Can either
+**	be four or two bytes.
+*/
+
 size_t	get_tdir_size(unsigned char op_code)
 {
 	if (op_code == 0x09 || op_code == 0x0a || op_code == 0x0b

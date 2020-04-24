@@ -48,12 +48,12 @@ static void		read_file(t_func_list *list, int fd)
 			error_message(list, 12, 2, 1);
 		}
 		if (check_empty_line(list) == false)
-			process_line_into_list(list);
+			process_line(list);
 		ft_memdel((void **)&list->line);
 		list->line_number++;
 	}
 	close(fd);
-	transfrom_arg_label(list);
+	transform_label(list);
 }
 
 /*

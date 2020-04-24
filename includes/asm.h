@@ -88,7 +88,7 @@ typedef struct				s_func_list
 **===============================CHECK FUNCTIONS================================
 */
 
-void 						transfrom_arg_label(t_func_list *list);
+void 						transform_label(t_func_list *list);
 void						insert_encode(t_direction *new, int i, int operation);
 void						process_t_dir(t_func_list *list, t_direction *new, int arg);
 void						process_t_ind(t_func_list *list, t_direction *new, int arg);
@@ -96,13 +96,13 @@ void						process_t_reg(t_func_list *list, t_direction *new,int arg);
 typedef	void				(*t_print)(t_func_list *list, int code, int kind);
 void						add_to_hash(t_func_list *list, char *label);
 void						insert_operation(t_func_list *list, t_direction *new);
-int							calc_cmp_operation(t_func_list *list, int j);
+int							calc_cmp_op(t_func_list *list, int j);
 void						check_sort(t_func_list *list,
 							t_direction *new, int i);
 void						add_instruction_node(t_func_list *list, t_direction **info,
 							t_direction **pointer);
-void						get_name_or_comment(t_func_list *list);
-void						process_line_into_list(t_func_list *list);
+void						get_name_comment(t_func_list *list);
+void						process_line(t_func_list *list);
 void						check_n_process(char *file_name, t_func_list *list);
 /*
 **===============================UTILITY FUNCTIONS==============================
@@ -129,8 +129,7 @@ void						error_message(t_func_list *list, int error_code, int kind, int file);
 /*
 **===============================FREE FUNCTIONS=================================
 */
-void						free_all_but_hash(t_func_list *list);
-void						free_func_error(t_func_list *list);
+
 void						free_func(t_func_list *list);
 void						free_split(char **fd_name);
 

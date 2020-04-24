@@ -70,7 +70,7 @@ static void	insert_file_node(t_func_list *list)
 ** into insert_file_node to further process
 */
 
-void		process_line_into_list(t_func_list *list)
+void		process_line(t_func_list *list)
 {
 	while (list->line[list->line_char] &&
 	ft_isspace(list->line[list->line_char]) == 1)
@@ -78,7 +78,7 @@ void		process_line_into_list(t_func_list *list)
 	if (list->line[list->line_char] == '.')
 	{
 		list->line_char++;
-		get_name_or_comment(list);
+		get_name_comment(list);
 	}
 	else if (list->name != NULL)
 		insert_file_node(list);

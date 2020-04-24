@@ -38,7 +38,7 @@ static void		check_operation(t_func_list *list,
 	len = i - list->line_char;
 	if (len > 5 || len <= 0)
 		error_message(list, 69, 2, 6);
-	number = calc_cmp_operation(list, len);
+	number = calc_cmp_op(list, len);
 	if (number == -1)
 		error_message(list, 68, 2, 6);
 	new->op_code = number;

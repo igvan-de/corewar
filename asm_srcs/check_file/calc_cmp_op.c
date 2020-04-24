@@ -31,7 +31,7 @@ static int	cmp_op(uint64_t *hash_table, uint64_t number)
 	return (-1);
 }
 
-int			calc_cmp_operation(t_func_list *list, int j)
+int			calc_cmp_op(t_func_list *list, int j)
 {
 	uint64_t	total;
 	int			op;

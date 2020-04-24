@@ -1,4 +1,5 @@
 ASM_SRCS =	asm_srcs/utility/free_function.c	\
+			asm_srcs/utility/free_split.c		\
 			asm_srcs/utility/utility.c			\
 			asm_srcs/utility/print_list.c		\
 			asm_srcs/utility/print_bits.c		\

@@ -71,7 +71,7 @@ static void	search_for_str(t_func_list *list, char *line,
 ** else it its not a valid input since we already checked for the '.'
 */
 
-void		get_name_or_comment(t_func_list *list)
+void		get_name_comment(t_func_list *list)
 {
 	char *line;
 

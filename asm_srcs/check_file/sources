@@ -3,10 +3,10 @@ ASM_SRCS += asm_srcs/check_file/add_instruction_node.c 	\
 			asm_srcs/check_file/check_n_process.c		\
 			asm_srcs/check_file/check_sort.c			\
 			asm_srcs/check_file/get_name_comment.c		\
-			asm_srcs/check_file/hash_label.c			\
+			asm_srcs/check_file/add_to_hash.c			\
 			asm_srcs/check_file/insert_operation.c		\
 			asm_srcs/check_file/process_t_dir.c			\
 			asm_srcs/check_file/process_t_ind.c			\
 			asm_srcs/check_file/process_t_reg.c			\
 			asm_srcs/check_file/process_line.c			\
-			asm_srcs/check_file/transform_arg_label.c	\
+			asm_srcs/check_file/transform_label.c		\

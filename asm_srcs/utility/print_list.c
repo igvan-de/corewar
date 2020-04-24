@@ -59,6 +59,12 @@ static	void	print_labels(t_hash_label *a)
 	ft_printf("\n");
 }
 
+/*
+**	@brief	:	print contents of the func_list to stdout
+**
+**	@param	list	: main data structure
+*/
+
 void			print_list(t_func_list *list)
 {
 	t_direction		*ptr;

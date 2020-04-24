@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   transform_arg_label.c                              :+:    :+:            */
+/*   transform_label.c                                  :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
@@ -65,7 +65,7 @@ static void	conv_search_hash(t_func_list *list, t_direction **iter, int i)
 ** if it isnt not then it means there is a label that must be converted
 */
 
-void		transfrom_arg_label(t_func_list *list)
+void		transform_label(t_func_list *list)
 {
 	t_direction *iter;
 	int			i;

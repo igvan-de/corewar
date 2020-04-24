@@ -12,7 +12,16 @@
 
 #include "asm.h"
 
-void	free_cmp_label(t_labels **label)
+/*
+**	@brief	:	free label hash list
+**
+**	@param	label	:	ptr to label list
+**
+**	free_cmp_label frees the label hash and node
+**	for each node of the label list.
+*/
+
+static	void	free_cmp_label(t_labels **label)
 {
 	t_labels *ptr;
 	t_labels *ptr2;
@@ -29,7 +38,17 @@ void	free_cmp_label(t_labels **label)
 	}
 }
 
-void	free_hash_labels(t_func_list *list)
+/*
+**	@brief	:	free label data structures
+**
+**	@param	list	:	main data structure
+**
+**	free_hash_label frees the first level of
+**	label data nodes and calls free_cmp_label for
+**	each node.
+*/
+
+static	void	free_hash_labels(t_func_list *list)
 {
 	t_hash_label *ptr;
 	t_hash_label *ptr2;
@@ -46,7 +65,16 @@ void	free_hash_labels(t_func_list *list)
 	}
 }
 
-void	free_direction(t_func_list *list)
+/*
+**	@brief	:	free operation data structures
+**
+**	@param	list	:	main data structure
+**
+**	free_direction frees the list of nodes
+**	that contain the data related to the operations.
+*/
+
+static	void	free_direction(t_func_list *list)
 {
 	t_direction *iter;
 	t_direction *next;
@@ -72,6 +100,15 @@ void	free_direction(t_func_list *list)
 	}
 }
 
+/*
+**	@brief	:	free all remaining data structures
+**
+**	@param	list	:	main data structure
+**
+**	after asm has executed successfully, free_func is called
+**	to free all remaining data structures.
+*/
+
 void	free_func(t_func_list *list)
 {
 	if (list->name != NULL)
@@ -84,26 +121,4 @@ void	free_func(t_func_list *list)
 		free_direction(list);
 	if (list->labels != NULL)
 		free_hash_labels(list);
-}
-
-/*
-** @brief
-**
-** @param fd_name = name of 2d char array containing splitted stings
-**
-** free_split frees every element in 2d array by iterating through it
-*/
-
-void	free_split(char **fd_name)
-{
-	int	index;
-
-	index = 0;
-	while (fd_name[index] != NULL)
-	{
-		free(fd_name[index]);
-		index++;
-	}
-	free(fd_name);
-	fd_name = NULL;
 }
