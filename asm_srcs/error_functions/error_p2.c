@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:21:48 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 05:44:18 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/24 18:00:10 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	e_process_t_reg(t_func_list *list, int error_code, int kind)
 	{
 		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",
 		error_code, errors[kind]);
-		ft_printf("at line %d char : %d", list->line_number, list->line_char);
+		ft_printf("at line %d char : %d\n", list->line_number, list->line_char);
 	}
 	free_func(list);
 }
@@ -51,7 +51,7 @@ void	e_insert_operation(t_func_list *list, int error_code, int kind)
 	{
 		ft_printf("Error code:%d\nfile:insert_operation\ndescription: %s\n",
 		error_code, errors[kind]);
-		ft_printf("at line %d", list->line_number);
+		ft_printf("at line %d\n", list->line_number);
 	}
 	free_func(list);
 }
@@ -84,7 +84,7 @@ void	e_check_sort(t_func_list *list, int error_code, int kind)
 	{
 		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",
 		error_code, errors[kind]);
-		ft_printf("at line %d", list->line_number);
+		ft_printf("at line %d\n", list->line_number);
 	}
 	free_func(list);
 }

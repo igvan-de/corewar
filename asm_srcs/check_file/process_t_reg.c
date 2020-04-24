@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:08 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/22 19:32:38 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/24 17:52:07 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void		process_t_reg(t_func_list *list, t_direction *new, int arg)
 	converted = pm_atoi(list);
 	if (converted <= 0 || converted > REG_NUMBER)
 		error_message(list, 90, 1, 9);
+	check_between(list, 98, 0, 9);
 	insert_encode(new, arg, REG_CODE);
 	new->arg_num[arg] = converted;
 }

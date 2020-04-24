@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:15 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 03:04:28 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/24 17:53:18 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ void		process_t_dir(t_func_list *list, t_direction *new, int arg)
 		converted = pm_atoi(list);
 		new->arg_num[arg] = converted;
 	}
+	check_between(list, 112, 0, 11);
 }
