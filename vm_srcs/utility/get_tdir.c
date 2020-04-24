@@ -5,12 +5,18 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:38:42 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:28:03 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	read and return four bytes from memory
+**
+**	@param env	:	global environment structure
+*/
 
 int	get_tdir(t_env *env, int position)
 {

@@ -5,20 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/10 10:09:19 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/10 10:09:19 by jdunnink      ########   odam.nl         */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        ::::::::            */
-/*   op_ld.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: jdunnink <marvin@codam.nl>                   +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2020/02/26 16:18:53 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/26 16:18:54 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +33,20 @@ static	void	exec_lld(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_2 - 1] = arg_1;
 	set_carry(cursor, arg_1);
 }
+
+/*
+**	@brief:	operation --> read and load a value into registry.
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_ld is an operation function which can be used to
+**	read values and store them into the registry. The carry
+**	is set depending on the stored value. values can either be
+**	read from memory or from registries.
+**	lld has a higher range than ld because it does not use
+**	modulo truncation.
+*/
 
 void			op_lld(t_cursor *cursor, t_env *env)
 {

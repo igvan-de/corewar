@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/04 13:04:54 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:10:58 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/**
+/*
 **	@brief:	find and return a players' name
 **
 **	@param env		:	global environment struct
@@ -20,8 +20,9 @@
 **	@return char*	:	player name
 **
 **	player_name iterates through the players list and if it finds the player
-**	with the matching id, returns the name of that player stored in the player header.
-**	if it could not find the player, the function returns NULL as a string literal.
+**	with the matching id, returns the name of that player.
+**	If it could not find the player,
+**	the function returns NULL as a string literal.
 */
 
 static	char	*player_name(t_env *env, int id)

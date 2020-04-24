@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/20 14:12:24 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 17:22:18 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	exit_usage(void)
 	ft_putendl("		supported verbosity levels:");
 	ft_putendl("			16 --> show performed operations");
 	ft_putendl("			2 --> show cycles");
-	ft_putendl("			verbosity can be added together to enable multiple");
+	ft_putendl("			verbosity can be combined to enable multiple");
 	ft_putendl("	use '-visual' flag to visualize\n");
 	exit(0);
 }

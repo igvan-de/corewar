@@ -5,14 +5,30 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/10 08:42:10 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/10 08:42:10 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int	get_type(unsigned char encode, int arg_num)
+static	void	load_bits(t_byt *bit1, t_byt *bit2, int i, t_byt encode)
+{
+	*bit1 = get_bit(encode, i);
+	*bit2 = get_bit(encode, i + 1);
+}
+
+/*
+**	@brief:	read an argument type from the encode byte
+**
+**	@param	encode	:	encode byte
+**	@param	arg_num	:	argument index
+**
+**	get_type receives an encode byte and returns the type of the argument
+**	at the index arg_num.
+*/
+
+int				get_type(t_byt encode, int arg_num)
 {
 	unsigned char bitpair;
 	unsigned char bit1;
@@ -22,20 +38,11 @@ int	get_type(unsigned char encode, int arg_num)
 	bit1 = 0;
 	bit2 = 0;
 	if (arg_num == 1)
-	{
-		bit1 = get_bit(encode, 0);
-		bit2 = get_bit(encode, 1);
-	}
+		load_bits(&bit1, &bit2, 0, encode);
 	else if (arg_num == 2)
-	{
-		bit1 = get_bit(encode, 2);
-		bit2 = get_bit(encode, 3);
-	}
+		load_bits(&bit1, &bit2, 2, encode);
 	else if (arg_num == 3)
-	{
-		bit1 = get_bit(encode, 4);
-		bit2 = get_bit(encode, 5);
-	}
+		load_bits(&bit1, &bit2, 4, encode);
 	else
 		error_exec(4);
 	bit1 <<= 1;
