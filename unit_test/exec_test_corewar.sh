@@ -4,12 +4,12 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
-FILE=./output
+FILE=./cw_output
 if test -f "$FILE"; then
 	echo "$FILE exists"
 else
 	echo "$FILE does not exist --> creating.."
-	mkdir output
+	mkdir cw_output
 fi
 
 FILE=./result
@@ -17,7 +17,15 @@ if test -f "$FILE"; then
 	echo "$FILE exists"
 else
 	echo "$FILE does not exist --> creating.."
-	mkdir result
+	mkdir cw_result
+fi
+
+FILE=../test_champs
+if test -f "$FILE"; then
+	echo "$FILE exists"
+else
+	echo "$FILE does not exist --> creating.."
+	mkdir ../cw_test_champs
 fi
 
 FILE=../corewar
@@ -39,41 +47,41 @@ fi
 
 echo "creating .cor files.."
 
-S_FILES=tests/*
+S_FILES=cw_tests/*
 for s in $S_FILES
 do 
-	./support/asm $s
+	./support/real_asm $s
 done
 
 echo "testing corewar.."
 
-rm -rf result/*
-rm -rf output/*
-TEST_FILES=tests/*.cor
+rm -rf cw_result/*
+rm -rf cw_output/*
+TEST_FILES=cw_tests/*.cor
 SUFFIX=".cor"
 for t in $TEST_FILES
 do
 	TEST_NAME=$(echo $t | cut -c 7-50)
 	TEST_NAME=${TEST_NAME%.cor}
 	DUMP=${TEST_NAME##*_}
-	./../corewar -v 16 -dump $DUMP $t > output/test_my
-	./support/real_core -v 16 -d $DUMP $t > output/test_real
-	./support/tester/cw_tester output/test_my output/test_real > result/$TEST_NAME.result
-	mv output/test_real output/$TEST_NAME.real
-	mv output/test_my output/$TEST_NAME.my
+	./../corewar -v 16 -dump $DUMP $t > cw_output/test_my
+	./support/real_core -v 16 -d $DUMP $t > cw_output/test_real
+	./support/tester/cw_tester cw_output/test_my cw_output/test_real > cw_result/$TEST_NAME.result
+	mv cw_output/test_real cw_output/$TEST_NAME.real
+	mv cw_output/test_my cw_output/$TEST_NAME.my
 done
 
 echo "moving .cor files.."
 
-rm -rf ../test_champs/*.cor
+rm -rf ../cw_test_champs/*.cor
 for t in $TEST_FILES
 do
-	mv $t ../test_champs/
+	mv $t ../cw_test_champs/
 done
 
 echo "collecting results.."
 
-RESULTS=result/*
+RESULTS=cw_result/*
 SUCCESS="test passed!"
 for r in $RESULTS
 do
@@ -82,8 +90,8 @@ do
 	TEST=${TEST%.result}
 	if [ "$OUTPUT" = "$SUCCESS" ]; then
 		rm $r
-		rm output/$TEST.my
-		rm output/$TEST.real
+		rm cw_output/$TEST.my
+		rm cw_output/$TEST.real
 		echo -e "${green}$TEST test passed${reset}"
 	else
 		exit -1;
