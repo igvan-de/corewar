@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/09 03:15:15 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 07:17:22 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/24 17:00:24 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	conv_search_hash(t_func_list *list, t_direction **iter, int i)
 			return (cmp_str_hash(list, table->label, iter, i));
 		table = table->next;
 	}
-	error_message(list, 130, 0, 13);
+	error_message(list, 120, 0, 12);
 }
 
 /*

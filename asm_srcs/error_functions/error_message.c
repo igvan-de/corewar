@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   error_messege.c                                    :+:    :+:            */
+/*   error_message.c                                    :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 03:06:20 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/24 16:59:37 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ void	error_message(t_func_list *list, int error_code, int kind, int file)
 	};
 
 	var_list[file](list, error_code, kind);
-	ft_printf("	error occurred at line : %s\n", list->line);
 	exit(-1);
 }

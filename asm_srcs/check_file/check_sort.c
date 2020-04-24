@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 05:50:15 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/24 16:32:39 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,8 @@ void			check_sort(t_func_list *list,
 		ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
 	i = list->line_char;
-	while (list->line[i] && ft_isspace(list->line[i]) == 0)
+	while (list->line[i] && ft_isspace(list->line[i]) == 0 &&
+	list->line[i] != DIRECT_CHAR && list->line[i] != '-')
 		i++;
 	if (list->line[i - 1] == LABEL_CHAR)
 	{
