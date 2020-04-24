@@ -86,7 +86,7 @@ SUCCESS="test passed!"
 for r in $RESULTS
 do
 	OUTPUT=$(cat $r)
-	TEST=$(echo $r | cut -c 8-50)
+	TEST=$(echo $r | cut -c 10-50)
 	TEST=${TEST%.result}
 	if [ "$OUTPUT" = "$SUCCESS" ]; then
 		rm $r
