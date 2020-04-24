@@ -1,6 +1,0 @@
-ASM_SRCS =	asm_srcs/free_function.c	\
-			asm_srcs/utility.c			\
-			asm_srcs/print_list.c		\
-			asm_srcs/print_bits.c		\
-			asm_srcs/has_encode.c		\
-			asm_srcs/get_tdir_size.c	\

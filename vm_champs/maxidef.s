@@ -38,7 +38,7 @@ defm:	st r3,-510
 	st r3,-510
 	st r3,-510
 	st r3,-510
-	st r3,-510
+	st r003,-510
 deflv:	live %1
 	zjmp %:defm
 

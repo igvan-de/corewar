@@ -12,9 +12,9 @@
 
 include sources
 
-include ../asm_srcs/sources
+include ../asm_srcs/utility/sources
 include ../asm_srcs/asm_to_byte/sources
-# include ../asm_srcs/check_file/sources
+include ../asm_srcs/check_file/sources
 include ../asm_srcs/error_functions/sources
 
 OBJ_FILES = $(TESTSRCS:%.c=%.o)

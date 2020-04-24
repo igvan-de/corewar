@@ -1,4 +1,4 @@
-ASM_SRCS += asm_srcs/error_functions/error_messege.c \
-asm_srcs/error_functions/error_p1.c \
-asm_srcs/error_functions/error_p2.c \
-asm_srcs/error_functions/error_p3.c \
+ASM_SRCS += asm_srcs/error_functions/error_messege.c 	\
+			asm_srcs/error_functions/error_p1.c			\
+			asm_srcs/error_functions/error_p2.c			\
+			asm_srcs/error_functions/error_p3.c			\
