@@ -27,17 +27,9 @@ static	char	*get_name(char *argv)
 {
 	char	**name;
 	char	*fd_name;
-	int		index;
 
-	index = 0;
-	name = ft_strsplit(argv, '/');
-	while (name[index] != NULL)
-		index++;
-	fd_name = ft_strdup(name[index - 1]);
-	free_split(name);
-	name = ft_strsplit(fd_name, '.');
-	free(fd_name);
-	fd_name = ft_strjoin(name[NAME], ".cor");
+	name = ft_strsplit(argv, '.');
+	fd_name = ft_strjoin(name[0], ".cor");
 	free_split(name);
 	return (fd_name);
 }

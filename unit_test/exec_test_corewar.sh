@@ -37,6 +37,15 @@ else
 	make re -C ..
 fi
 
+FILE=../asm
+if test -f "$FILE"; then
+	echo "$FILE exists"
+	make -C ..
+else
+	echo "$FILE does not exist --> creating.."
+	make re -C ..
+fi
+
 TESTER=./support/tester/cw_tester
 if test -f "$TESTER"; then
 	echo "$TESTER exists"
@@ -50,8 +59,10 @@ echo "creating .cor files.."
 S_FILES=cw_tests/*
 for s in $S_FILES
 do 
-	./support/real_asm $s
+	../asm $s
 done
+
+exit -1;
 
 echo "testing corewar.."
 
