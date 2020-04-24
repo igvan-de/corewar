@@ -53,5 +53,6 @@ void			create_cor_file(char *argv, t_func_list *list)
 	fd_name = get_name(argv);
 	fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	write_cor_file(fd, list);
+	ft_printf("Wrote champion to %s\n", fd_name);
 	free(fd_name);
 }

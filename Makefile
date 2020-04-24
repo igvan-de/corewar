@@ -74,8 +74,11 @@ fclean: clean
 	@make -C ./ft_printf fclean
 	@make -C ./unit_test/support/tester fclean
 	rm -rf unit_test/cw_output
+	rm -rf unit_test/asm_output
 	rm -rf unit_test/cw_result
+	rm -rf unit_test/asm_result
 	rm -rf cw_test_champs
+	rm -rf asm_test_champs
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:

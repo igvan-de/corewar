@@ -12,7 +12,7 @@ else
 	mkdir cw_output
 fi
 
-FILE=./result
+FILE=./cw_result
 if test -f "$FILE"; then
 	echo "$FILE exists"
 else
@@ -20,7 +20,7 @@ else
 	mkdir cw_result
 fi
 
-FILE=../test_champs
+FILE=../cw_test_champs
 if test -f "$FILE"; then
 	echo "$FILE exists"
 else
@@ -29,15 +29,6 @@ else
 fi
 
 FILE=../corewar
-if test -f "$FILE"; then
-	echo "$FILE exists"
-	make -C ..
-else
-	echo "$FILE does not exist --> creating.."
-	make re -C ..
-fi
-
-FILE=../asm
 if test -f "$FILE"; then
 	echo "$FILE exists"
 	make -C ..
@@ -56,13 +47,11 @@ fi
 
 echo "creating .cor files.."
 
-S_FILES=cw_tests/*
+S_FILES=cw_tests/*.s
 for s in $S_FILES
 do 
-	../asm $s
+	./support/real_asm $s
 done
-
-exit -1;
 
 echo "testing corewar.."
 
@@ -72,7 +61,7 @@ TEST_FILES=cw_tests/*.cor
 SUFFIX=".cor"
 for t in $TEST_FILES
 do
-	TEST_NAME=$(echo $t | cut -c 7-50)
+	TEST_NAME=$(echo $t | cut -c 10-50)
 	TEST_NAME=${TEST_NAME%.cor}
 	DUMP=${TEST_NAME##*_}
 	./../corewar -v 16 -dump $DUMP $t > cw_output/test_my
