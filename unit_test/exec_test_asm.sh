@@ -45,6 +45,8 @@ else
 	make re -C ./support/tester
 fi
 
+###################################################
+
 echo "creating .cor files.."
 
 S_FILES=asm_tests/*.s
@@ -53,10 +55,30 @@ do
 	../asm $s
 done
 
-rm -rf asm_tests/*.cor
+mv asm_tests/*.cor asm_output
+
+COR_FILES=asm_output/*.cor
+for file in $COR_FILES
+do
+	mv "$file" "$(basename "$file" .cor).my"
+done
+
+mv *.my asm_output
 
 
-#CORFILES=asm_tests/*.cor
-#for c in $CORFILES
-#do
-#	../corewar -v 16 -dump 100 c
+################################################
+
+for s in $S_FILES
+do 
+	support/real_asm $s
+done
+
+mv asm_tests/*.cor asm_output
+
+COR_FILES=asm_output/*.cor
+for file in $COR_FILES
+do
+	mv "$file" "$(basename "$file" .cor).real"
+done
+
+mv *.real asm_output
