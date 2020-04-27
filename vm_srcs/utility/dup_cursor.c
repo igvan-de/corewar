@@ -5,19 +5,30 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/10 14:42:06 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/10 14:42:06 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	duplicate a cursor
+**
+**	@param src	:	source cursor
+**	@param env	:	global environment struct
+**
+**	duplicate a cursor. This function is used in fork and lfork
+**	to create duplicate cursors. The new cursor has all the same values
+**	as its parent and is pushed unto the top of the cursor_stack.
+*/
 
 t_cursor	*dup_cursor(t_cursor *src, t_env *env)
 {
 	t_cursor *new;
 
 	new = (t_cursor *)malloc(sizeof(t_cursor));
-	if(!new)
+	if (!new)
 		error_mem();
 	new->carry = src->carry;
 	new->op_code = src->op_code;

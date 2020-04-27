@@ -5,12 +5,22 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 17:50:49 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:28:13 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	retrieve the T_DIR size of an operation
+**
+**	@param op_code	:	operation code
+**
+**	t_dir (direct values) can have either 2 or 4 bytes depending on the type
+**	of the operation that uses it. get_tdir_size can be used to retrieve
+**	the associated size by calling the function with the operation code.
+*/
 
 int	get_tdir_size(int op_code)
 {

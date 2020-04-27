@@ -5,12 +5,23 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/27 08:28:28 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:27:47 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	determine argument size in bytes
+**
+**	@param op_code	:	operation code
+**	@param one		:	bit one
+**	@param two		:	but two
+**
+**	get_arg_size receives a bitpair argument representation and
+**	returns the size of this argument type in bytes.
+*/
 
 unsigned char	get_arg_size(int op_code, int one, int two)
 {

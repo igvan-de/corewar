@@ -5,12 +5,21 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/19 18:03:45 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 17:20:53 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	print a byte in binary
+**
+**	@param octet	:	byte
+**
+**	print_bits is a debug function which can be used
+**	to print a byte in its binary representation.
+*/
 
 void	print_bits(unsigned char octet)
 {

@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/04 17:48:37 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:08:21 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 **	->	if the -dump flag is active, the visualizer gets disabled.
 **
 **	->	if the -v flag is active, the visualizer gets disabled.
+**
+**	->	if the -a flag is active, the visualizer gets disabled.
 */
 
 static	void	valid_flags(t_env *env)
@@ -35,9 +37,21 @@ static	void	valid_flags(t_env *env)
 		env->flag_byte ^= 1;
 	else if ((env->flag_byte & (1 << 3)) == (1 << 3))
 		env->flag_byte ^= 1;
+	else if ((env->flag_byte & (1 << 4)) == (1 << 4))
+		env->flag_byte ^= 1;
 }
 
-static	int	is_flag(char *param)
+/*
+**	@brief: validate flag parameter
+**
+**	@param param			:	program parameter
+**
+**	is_flag receives a parameter passed to corewar
+**	and checks if that parameter is a valid flag call.
+**	returns 1 if true, 0 if false.
+*/
+
+static	int		is_flag(char *param)
 {
 	if (ft_strncmp(param, "-", 1) == 1)
 		return (0);
@@ -50,6 +64,8 @@ static	int	is_flag(char *param)
 	else if (ft_strcmp(param, "-help") == 0)
 		return (1);
 	else if (ft_strcmp(param, "-n") == 0)
+		return (1);
+	else if (ft_strcmp(param, "-a") == 0)
 		return (1);
 	return (0);
 }
@@ -75,7 +91,7 @@ static	int	is_flag(char *param)
 **	->	if the number of players is higher than MAX_PLAYERS or
 **		if there are no players, the program exits with error.
 **
-**	lastly, valid_flags gets called to make sure there are
+**	lastly, valid_flags gets called to make sure there are no
 **	contradicting flags turned on.
 */
 

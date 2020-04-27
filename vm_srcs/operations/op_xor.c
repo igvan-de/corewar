@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/05 16:30:39 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:21:52 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,20 @@ static	void	exec_xor(t_cursor *cursor, t_env *env, unsigned char encode)
 	cursor->registries[arg_3 - 1] = arg_1 ^ arg_2;
 	set_carry(cursor, arg_1 ^ arg_2);
 }
+
+/*
+**	@brief:	operation: xor two values and store the result
+**
+**	@param cursor		:	target cursor
+**	@param env 			:	global environment struct
+**
+**	op_and is an operation function that can be used to
+**	perform bitwise xor operations. It receives 3 register
+**	numbers and read the values stored in register 1 and 2.
+**	the result of the xor operation is stored in register 3.
+**	afterwards the carry is set depending on the result
+**	of the operation.
+*/
 
 void			op_xor(t_cursor *cursor, t_env *env)
 {

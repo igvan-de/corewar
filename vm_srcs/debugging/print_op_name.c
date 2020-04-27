@@ -5,12 +5,22 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/18 13:24:02 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 17:21:12 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	print operation name
+**
+**	@param op_code	:	operation code
+**	@param env		:	global environment struct
+**
+**	print_op_name receives a operation code and prints
+**	the name of the operation the stdout.
+*/
 
 void	print_op_name(int op_code, t_env *env)
 {

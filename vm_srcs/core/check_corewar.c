@@ -5,14 +5,14 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/28 11:59:22 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:11:12 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-/**
+/*
 **	@brief: print current CYCLES_TO_DIE to stdout
 **
 **	@param cycles_to_die : current value of CYCLES_TO_DIE
@@ -28,7 +28,7 @@ static	void	dump_ctd(int cycles_to_die)
 	ft_putchar('\n');
 }
 
-/**
+/*
 **	@brief:	determine if a cursor is dead
 **
 **	@param cursor	: 	target cursor
@@ -54,7 +54,7 @@ static	int		is_dead(t_cursor *cursor, t_env *env)
 	return (0);
 }
 
-/**
+/*
 **	@brief:	free a cursor and remove it from the cursor stack
 **
 **	@param cursor			:	cursor to be removed
@@ -118,17 +118,19 @@ static	void	parse_cursor_stack(t_env *env)
 **	@param env	:	gloval environment struct
 **
 **	check_corewar gets called every CYCLE_TO_DIE cycles to evaluate the
-**	state of the game at the current cycle. Based on the game state, several
-**	things can happen during the check:
+**	state of the game at the current cycle. Based on the game state,
+**	several things can happen during the check:
 **
-**	->	for each cursor in the cursor stack, if it is dead, it is removed from the stack.
+**	->	for each cursor in the cursor stack, if it is dead,
+**		it is removed from the stack.
 **
-**	->	if during the last CYCLE_TO_DIE cycles, live was performed more than NBR_LIVES,
-**		CYCLE_TO_DIE is reduced by CYCLE_DELTA.
+**	->	if during the last CYCLE_TO_DIE cycles, live was performed
+**		more than NBR_LIVES, CYCLE_TO_DIE is reduced by CYCLE_DELTA.
 **
-**	->	if during the last CYCLE_TO_DIE cycles, live was performed less than NBR_LIVES,
-**		compare the env->checks_counter to MAX_CHECKS. if more than MAX_CHECKS were performed,
-**		CYCLE_TO_DIE is reduced by CYCLE_DELTA.
+**	->	if during the last CYCLE_TO_DIE cycles, live was performed
+**		less than NBR_LIVES, compare the env->checks_counter to MAX_CHECKS.
+**		if more than MAX_CHECKS were performed, CYCLE_TO_DIE is reduced by
+**		CYCLE_DELTA.
 */
 
 void			check_corewar(t_env *env)
