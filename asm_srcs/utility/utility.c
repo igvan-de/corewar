@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 09:59:56 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/15 02:11:09 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/28 00:20:59 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void			check_end_line(t_func_list *list)
 	while (list->line[list->line_char] &&
 	ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;
-	if (list->line[list->line_char] && list->line[list->line_char]
+	if (list->line[list->line_char] != '\0' && list->line[list->line_char]
 	!= COMMENT_CHAR)
 		error_message(list, 40, 0, 4);
 }

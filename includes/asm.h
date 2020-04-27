@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/24 17:50:43 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/28 01:08:43 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define FALSE -1
 # define S_LINE
 # define ALL 7
-typedef enum				s_input_variables
+
+typedef	enum				e_input_variables
 {
 	NAME = 0,
 	COMMENT = 0,
@@ -33,15 +34,9 @@ typedef enum				s_input_variables
 	ARGUMENTS = 1,
 }							t_input_variables;
 
-typedef struct				s_count
-{
-	int						byte_count;
-	int						i;
-}							t_count;
-
 typedef struct				s_labels
 {
-	char 					*label;
+	char					*label;
 	int						index;
 	struct s_labels			*next;
 }							t_labels;
@@ -56,9 +51,9 @@ typedef struct				s_hash_label
 typedef struct				s_direction
 {
 	unsigned char			op_code;
-	char					encode;		// 1 byte //
-	int 					*arg_num;			// 1 byte // T_REG // 1 <-> 16 // unsigned			//	2 bytes // T_IND of T_DIR // // signed
-	char					**arg_str;			//	4 bytes  // T_DIR //	 signed
+	char					encode;
+	int						*arg_num;
+	char					**arg_str;
 	int						byte_index;
 	int						label_in_op;
 	int						byte_size;
@@ -79,29 +74,30 @@ typedef struct				s_func_list
 	t_direction				*info;
 }							t_func_list;
 
-//	live
-//	op_code		/	arg_1 / 	zjmp   	%label1			label1: live
-// 	0			1 2 3 4 		5 		6 7 		8 				9 10 11 12
-
-
 /*
 **===============================CHECK FUNCTIONS================================
 */
 
 void						check_between(t_func_list *list, int err,
 							int err_p, int err_f);
-void 						transform_label(t_func_list *list);
-void						insert_encode(t_direction *new, int i, int operation);
-void						process_t_dir(t_func_list *list, t_direction *new, int arg);
-void						process_t_ind(t_func_list *list, t_direction *new, int arg);
-void						process_t_reg(t_func_list *list, t_direction *new,int arg);
+void						transform_label(t_func_list *list);
+void						insert_encode(t_direction *new,
+							int i, int operation);
+void						process_t_dir(t_func_list *list, t_direction *new,
+							int arg);
+void						process_t_ind(t_func_list *list, t_direction *new,
+							int arg);
+void						process_t_reg(t_func_list *list, t_direction *new,
+							int arg);
 typedef	void				(*t_print)(t_func_list *list, int code, int kind);
 void						add_to_hash(t_func_list *list, char *label);
-void						insert_operation(t_func_list *list, t_direction *new);
+void						insert_operation(t_func_list *list,
+							t_direction *new);
 int							calc_cmp_op(t_func_list *list, int j);
 void						check_sort(t_func_list *list,
-							t_direction *new, int i);
-void						add_instruction_node(t_func_list *list, t_direction **info,
+							t_direction *new, int i, int rep);
+void						add_instruction_node(t_func_list *list,
+							t_direction **info,
 							t_direction **pointer);
 void						get_name_comment(t_func_list *list);
 void						process_line(t_func_list *list);
@@ -110,12 +106,13 @@ void						check_n_process(char *file_name, t_func_list *list);
 **===============================UTILITY FUNCTIONS==============================
 */
 
+void						skip_space(t_func_list *list);
 void						check_end_line(t_func_list *list);
-uint64_t    				calc_hash(const void *bytes, size_t len);
+uint64_t					calc_hash(const void *bytes, size_t len);
 bool						check_label_char(char c);
 int							pm_atoi(t_func_list *list);
 void						check_end_line(t_func_list *list);
-int 						till_power(char letter, int power);
+int							till_power(char letter, int power);
 unsigned int				rev_endian(unsigned int oct);
 void						print_list(t_func_list *list);
 void						print_bits(unsigned char octet);
@@ -126,7 +123,8 @@ size_t						get_tdir_size(unsigned char op_code);
 **===============================ERROR FUNCTIONS================================
 */
 void						input_error(void);
-void						error_message(t_func_list *list, int error_code, int kind, int file);
+void						error_message(t_func_list *list, int error_code,
+							int kind, int file);
 
 /*
 **===============================FREE FUNCTIONS=================================
@@ -144,6 +142,7 @@ void						create_cor_file(char *argv, t_func_list *list);
 void						write_cor_file(int fd, t_func_list *list);
 void						write_champ_size(int fd, int champ_size);
 void						write_champ(int fd, t_direction *info);
-void						write_args(int fd, unsigned char new, t_direction *info, int i);
+void						write_args(int fd, unsigned char new,
+							t_direction *info, int i);
 
 #endif

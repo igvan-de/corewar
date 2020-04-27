@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/15 03:38:27 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/28 01:00:36 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 static void	search_for_str(t_func_list *list, char *line,
 		char **target, int len)
 {
-	while (line[list->line_char] && ft_isspace(line[list->line_char]) == 1)
-		list->line_char++;
+	skip_space(list);
 	if (line[list->line_char] && line[list->line_char] != '\"')
 	{
 		if (line[list->line_char + 1] != '\0')

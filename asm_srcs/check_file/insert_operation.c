@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:11:27 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 03:04:50 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/28 01:01:58 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,10 @@ static void	l_insert_operation(t_func_list *list, t_direction *new,
 	int kind;
 
 	kind = 0;
-	while (list->line[list->line_char] &&
-		ft_isspace(list->line[list->line_char]) == 1)
-		list->line_char += 1;
+	skip_space(list);
 	kind = op_tab_info(new->op_code, 1, i);
 	process_kind(list, new, kind, i);
-	while (list->line[list->line_char] &&
-		ft_isspace(list->line[list->line_char]) == 1)
-		list->line_char += 1;
+	skip_space(list);
 	if (comma == 0 && list->line[list->line_char] == ',')
 		error_message(list, 80, 0, 8);
 	if (list->line[list->line_char + 1] != '\0' && comma != 0)

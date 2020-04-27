@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/24 16:32:39 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/28 00:57:56 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ static void		check_operation(t_func_list *list,
 	op_encode = 0;
 	number = 0;
 	len = i - list->line_char;
+	if (list->line[i] == COMMENT_CHAR)
+	{
+		list->line_char = i;
+		return ;
+	}
 	if (len > 5 || len <= 0)
 		error_message(list, 69, 2, 6);
 	number = calc_cmp_op(list, len);
@@ -91,29 +96,26 @@ static void		get_label_name(t_func_list *list,
 */
 
 void			check_sort(t_func_list *list,
-		t_direction *new, int i)
+		t_direction *new, int i, int rep)
 {
-	while (list->line[list->line_char] &&
-		ft_isspace(list->line[list->line_char]) == 1)
-		list->line_char++;
+	skip_space(list);
 	i = list->line_char;
 	while (list->line[i] && ft_isspace(list->line[i]) == 0 &&
-	list->line[i] != DIRECT_CHAR && list->line[i] != '-')
+		list->line[i] != DIRECT_CHAR && list->line[i] != '-' &&
+		list->line[i] != COMMENT_CHAR)
 		i++;
-	if (list->line[i - 1] == LABEL_CHAR)
+	if (list->line[i - 1] == LABEL_CHAR && rep == 0)
 	{
 		get_label_name(list, i);
 		list->line_char = i;
-		while (list->line[list->line_char] &&
-			ft_isspace(list->line[list->line_char]) == 1)
-			list->line_char++;
+		skip_space(list);
 		if (list->line[list->line_char] == '\0')
 		{
 			list->new_node = 1;
 			return ;
 		}
 		else
-			return (check_sort(list, new, i + 1));
+			return (check_sort(list, new, i + 1, 1));
 	}
 	else
 		check_operation(list, new, i);

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/22 19:53:48 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/28 00:59:48 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	insert_info_into_node(t_func_list *list,
 	int i;
 
 	i = 0;
-	check_sort(list, new, i);
+	check_sort(list, new, i, 0);
 	insert_operation(list, new);
 }
 
@@ -72,9 +72,7 @@ static void	insert_file_node(t_func_list *list)
 
 void		process_line(t_func_list *list)
 {
-	while (list->line[list->line_char] &&
-	ft_isspace(list->line[list->line_char]) == 1)
-		list->line_char++;
+	skip_space(list);
 	if (list->line[list->line_char] == '.')
 	{
 		list->line_char++;
