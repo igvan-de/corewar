@@ -17,7 +17,7 @@
 **	a variadic number of arguments given as elements to be accessed sequentially
 **	in the order specified in the input string 'format'. ft_print will
 **	look for as many arguments within the variadic list as the count of '%'s
-**	within the format string. The return value for this function is the 
+**	within the format string. The return value for this function is the
 **	total number of characters printed or the 'real' length of the format
 **	string with converted arguments included.
 */
