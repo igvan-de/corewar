@@ -108,7 +108,6 @@ static	int		parse_encbyte(int i, char *exec, unsigned char oct, int op_code)
 
 	ft_putstr("	");
 	print_bits(oct);
-
 	arg_size_1 = print_arg_type(op_code, get_bit(oct, 0), get_bit(oct, 1));
 	print_arg_val(i, arg_size_1, exec);
 	arg_size_2 = print_arg_type(op_code, get_bit(oct, 2), get_bit(oct, 3));

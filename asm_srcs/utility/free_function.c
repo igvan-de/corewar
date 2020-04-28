@@ -109,7 +109,7 @@ static	void	free_direction(t_func_list *list)
 **	to free all remaining data structures.
 */
 
-void	free_func(t_func_list *list)
+void			free_func(t_func_list *list)
 {
 	if (list->name != NULL)
 		ft_memdel((void**)&list->name);
