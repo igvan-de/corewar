@@ -20,7 +20,6 @@ include asm_srcs/check_file/sources
 OBJ_ASM = $(ASM_SRCS:%.c=%.o)
 OBJ_COREWAR = $(COREWAR_SRCS:%.c=%.o)
 INCLUDES = -I ./includes
-MAIN_ASM = asm_srcs/main.o
 LIBFT_H = -I ./libft/includes
 PRTF_H = -I ./ft_printf
 NAME_ASM = asm
@@ -46,8 +45,8 @@ $(NAME_COREWAR): $(OBJ_COREWAR) libft/libft.a ft_printf/libftprintf.a
 	@gcc $(CFLAGS) $(OBJ_COREWAR) -lncurses libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
 	@echo "$(PRINT_DONE) Compiling corewar completed"
 
-$(NAME_ASM): $(MAIN_ASM) $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
-	@gcc $(CFLAGS) $(MAIN_ASM) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+$(NAME_ASM): $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
+	@gcc $(CFLAGS) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
 	@echo "$(PRINT_DONE) Compiling asm completed"
 
 libft/libft.a: FORCE
@@ -57,17 +56,15 @@ ft_printf/libftprintf.a: FORCE
 	@make -C ft_printf/
 
 test_asm:
-	@make -C unit_test/
+	cd unit_test && ./exec_test_asm.sh && cd .. && make clean
 
 test_corewar:
-	cd unit_test && ./exec_test.sh && cd .. && make clean
+	cd unit_test && ./exec_test_corewar.sh && cd .. && make clean
 
 clean:
 	@rm -f $(OBJ_COREWAR) $(OBJ_ASM)
-	@rm -f ./asm_srcs/main.o
 	@make -C ./libft clean
 	@make -C ./ft_printf clean
-	@make -C ./unit_test clean
 	@make -C ./unit_test/support/tester clean
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
@@ -75,8 +72,13 @@ fclean: clean
 	@rm -f $(NAME_ASM) $(NAME_COREWAR)
 	@make -C ./libft fclean
 	@make -C ./ft_printf fclean
-	@make -C ./unit_test fclean
 	@make -C ./unit_test/support/tester fclean
+	rm -rf unit_test/cw_output
+	rm -rf unit_test/asm_output
+	rm -rf unit_test/cw_result
+	rm -rf unit_test/asm_result
+	rm -rf cw_test_champs
+	rm -rf asm_test_champs
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:

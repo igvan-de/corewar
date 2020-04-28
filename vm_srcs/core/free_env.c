@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/25 08:34:18 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 16:12:03 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static	void	free_player(void *player, size_t size)
 	}
 }
 
-/**
+/*
 **	@brief:	free a cursor
 **
 **	@param cursor
@@ -48,7 +48,7 @@ static	void	free_cursor(t_cursor *cursor)
 	free(cursor);
 }
 
-/**
+/*
 **	@brief:	free the cursor stack
 **
 **	@param cursor_stack

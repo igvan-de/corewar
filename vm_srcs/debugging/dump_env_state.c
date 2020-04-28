@@ -5,12 +5,21 @@
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/02/26 08:06:29 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/11 17:19:24 by ygroenev      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+
+/*
+**	@brief:	print the contents of the env struct to stdout.
+**
+**	@param env		:	global environment struct
+**
+**	dump_env_state is a debug function with which the contents of the
+**	env struct can be printed to stdout.
+*/
 
 void	dump_env_state(t_env *env)
 {

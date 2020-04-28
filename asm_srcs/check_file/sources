@@ -10,3 +10,4 @@ ASM_SRCS += asm_srcs/check_file/add_instruction_node.c 	\
 			asm_srcs/check_file/process_t_reg.c			\
 			asm_srcs/check_file/process_line.c			\
 			asm_srcs/check_file/transform_label.c		\
+			asm_srcs/check_file/main.c					\

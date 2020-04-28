@@ -27,17 +27,9 @@ static	char	*get_name(char *argv)
 {
 	char	**name;
 	char	*fd_name;
-	int		index;
 
-	index = 0;
-	name = ft_strsplit(argv, '/');
-	while (name[index] != NULL)
-		index++;
-	fd_name = ft_strdup(name[index - 1]);
-	free_split(name);
-	name = ft_strsplit(fd_name, '.');
-	free(fd_name);
-	fd_name = ft_strjoin(name[NAME], ".cor");
+	name = ft_strsplit(argv, '.');
+	fd_name = ft_strjoin(name[0], ".cor");
 	free_split(name);
 	return (fd_name);
 }
@@ -61,5 +53,6 @@ void			create_cor_file(char *argv, t_func_list *list)
 	fd_name = get_name(argv);
 	fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	write_cor_file(fd, list);
+	ft_printf("Wrote champion to %s\n", fd_name);
 	free(fd_name);
 }

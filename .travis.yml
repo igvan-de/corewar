@@ -10,13 +10,8 @@ branches:
   only:
     master
 
-install:
-  - brew install snaipe/soft/criterion
-  - make test_asm
-
 script:
   - make test_corewar
-  - ./unit_test_asm --verbose
 
 notifications:
   slack: 42born2code:K3KW273c79IbfeMN74un4Hb6

@@ -28,9 +28,12 @@ void		process_t_reg(t_func_list *list, t_direction *new, int arg)
 		list->line[list->line_char] <= '9'))
 		error_message(list, 99, 0, 9);
 	converted = pm_atoi(list);
+<<<<<<< HEAD
 	if (converted <= 0 || converted > REG_NUMBER)
 		error_message(list, 90, 1, 9);
 	check_between(list, 98, 0, 9);
+=======
+>>>>>>> assembly_to_byte_code
 	insert_encode(new, arg, REG_CODE);
 	new->arg_num[arg] = converted;
 }
