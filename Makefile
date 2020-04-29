@@ -6,11 +6,12 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de      #+#    #+#                  #
-#    Updated: 2020/04/14 10:15:02 by igvan-de      ########   odam.nl          #
+#    Updated: 2020/04/29 13:52:04 by igor          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 include vm_srcs/sources
+include dsm_srcs/sources
 include asm_srcs/utility/sources
 include asm_srcs/error_functions/sources
 include asm_srcs/asm_to_byte/sources
@@ -18,11 +19,13 @@ include asm_srcs/check_file/sources
 
 
 OBJ_ASM = $(ASM_SRCS:%.c=%.o)
+OBJ_DSM = $(DSM_SRCS:%.c=%.o)
 OBJ_COREWAR = $(COREWAR_SRCS:%.c=%.o)
 INCLUDES = -I ./includes
 LIBFT_H = -I ./libft/includes
 PRTF_H = -I ./ft_printf
 NAME_ASM = asm
+NAME_DSM = dsm
 NAME_COREWAR = corewar
 CFLAGS =  -Wall -Werror -Wextra
 NORM = norminette $(ASM_SRCS) $(COREWAR_SRCS) | grep -e "Error" -e "Warning" -B 1
@@ -35,7 +38,7 @@ PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 PRINT_CLEAN = $(shell printf '$(COLOR_RED)[ - ]$(COLOR_DEFAULT)')
 PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
-all: $(NAME_ASM) $(NAME_COREWAR)
+all: $(NAME_ASM) $(NAME_COREWAR) $(NAME_DSM)
 
 %.o: %.c includes/vm.h includes/op.h includes/asm.h
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES) $(LIBFT_H) $(PRTF_H)
@@ -48,6 +51,10 @@ $(NAME_COREWAR): $(OBJ_COREWAR) libft/libft.a ft_printf/libftprintf.a
 $(NAME_ASM): $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
 	@gcc $(CFLAGS) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
 	@echo "$(PRINT_DONE) Compiling asm completed"
+
+$(NAME_DSM): $(OBJ_DSM) libft/libft.a ft_printf/libftprintf.a
+	@gcc $(CFLAGS) $(OBJ_DSM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+	@echo "$(PRINT_DONE) Compiling dsm completed"
 
 libft/libft.a: FORCE
 	@make -C libft/
@@ -73,12 +80,12 @@ fclean: clean
 	@make -C ./libft fclean
 	@make -C ./ft_printf fclean
 	@make -C ./unit_test/support/tester fclean
-	rm -rf unit_test/cw_output
-	rm -rf unit_test/asm_output
-	rm -rf unit_test/cw_result
-	rm -rf unit_test/asm_result
-	rm -rf cw_test_champs
-	rm -rf asm_test_champs
+	@rm -rf unit_test/cw_output
+	@rm -rf unit_test/asm_output
+	@rm -rf unit_test/cw_result
+	@rm -rf unit_test/asm_result
+	@rm -rf cw_test_champs
+	@rm -rf asm_test_champs
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:

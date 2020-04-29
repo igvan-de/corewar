@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 11:00:51 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/04/28 15:21:38 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,5 @@ void			create_cor_file(char *argv, t_func_list *list)
 	fd_name = get_name(argv);
 	fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	write_cor_file(fd, list);
-	ft_printf("Wrote champion to %s\n", fd_name);
 	free(fd_name);
 }

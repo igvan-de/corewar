@@ -24,6 +24,8 @@ int				main(int argc, char **argv)
 		exit_usage();
 	init_env(&env);
 	parse_args(argc, argv, env);
+	dump_players(env->players, env);
+	exit(-1);
 	load_players(env);
 	init_cursors(env);
 	intro_players(env);

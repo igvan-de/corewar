@@ -1,0 +1,2 @@
+DSM_SRCS = dsm_srcs/main.c \
+dsm_srcs/write_s_file.c
