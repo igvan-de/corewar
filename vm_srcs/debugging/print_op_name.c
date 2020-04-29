@@ -27,7 +27,10 @@ void	print_op_name(int op_code, t_env *env)
 	t_op local_op;
 
 	if (op_code <= 0 || op_code > 16)
+	{
 		ft_putendl("	could not find operation name --> is op_code correct?");
+		return ;
+	}
 	local_op = env->op_tab[op_code];
 	ft_putstr(local_op.name);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   op.h                                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: zaz <marvin@42.fr>                         +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/02/18 08:57:49 by jdunnink      ########   odam.nl         */
+/*                                                        ::::::::            */
+/*   op.h                                               :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: zaz <marvin@42.fr>                           +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2013/10/04 11:33:27 by zaz           #+#    #+#                 */
+/*   Updated: 2020/04/15 11:00:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 #define MAX_ARGS_NUMBER			4
 #define MAX_PLAYERS				4
 #define MEM_SIZE				(4*1024)					//	4096
-#define IDX_MOD					(MEM_SIZE / 8)				//	512				
+#define IDX_MOD					(MEM_SIZE / 8)				//	512
 #define CHAMP_MAX_SIZE			(MEM_SIZE / 6)				//	682.666
 
 #define COMMENT_CHAR			'#'
@@ -88,5 +88,7 @@ typedef struct		s_op
 	int		acb;
 	int		label_size;
 }					t_op;
+
+
 
 #endif

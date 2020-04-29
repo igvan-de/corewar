@@ -5,52 +5,62 @@
 /*                                                     +:+                    */
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/10 15:37:30 by igvan-de       #+#    #+#                */
-/*   Updated: 2020/03/11 10:02:51 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/03/10 15:37:30 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/20 16:42:17 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
-** @brief writes size of executable champion commands into filediscriptor
+**	@brief:	write operation into .cor file
 **
-** @param fd = filediscripter to write string in
-** @param champ_size = size of the champion
+**	@param fd	:	.cor file descriptor
+**	@param info	:	operation data
 **
-** write_champ_size writes the size of only executable part of champion in filediscriptor
-** it write the champ_size of a four byte size
+**	write_op writes the encode byte (if applicable)
+**	and the operations' arguments into the .cor file.
+**	the determined encode byte is parsed to determine
+**	the format in which the arguments should be written.
 */
 
-void	write_champ_size(int fd, int champ_size)
+static	void	write_op(int fd, t_direction *info)
 {
-	if (champ_size > CHAMP_MAX_SIZE)
-	/*need to place error message, need to give t_func_struct, but need to know where to find champ size in info*/
+	static int		left[3] = {0, 2, 4};
+	unsigned char	new;
+	int				i;
+
+	new = (unsigned char)info->encode;
+	i = 0;
+	if (has_encode(info->op_code) == 1)
+		write(fd, &info->encode, 1);
+	while (i < 3)
 	{
-		ft_putendl("champion is to big");
-		exit(-1);
+		new = (unsigned char)info->encode;
+		new <<= left[i];
+		new >>= 6;
+		if (new != 0)
+			write_args(fd, new, info, i);
+		i++;
 	}
-	champ_size = rev_endian(champ_size);
-	write(fd, &champ_size , 4);
 }
 
 /*
 ** @brief writes executable champion commands in byte_code into filediscriptor
 **
-** @param fd
-** @param list
-**
-** write_champ writes all the labels and operations into byte_code into the filediscriptor
+** @param fd = filediscripter to write string in
+** @param info = struct with needed data for writing champ
 */
 
-void	write_champ(int fd, t_func_list *list)
+void			write_champ(int fd, t_direction *info)
 {
-	if (list->info->label != NULL)
-		write(fd ,&list->info->label, 4);
-	if (list->info->arg_1 != NULL)
-		write(fd, &list->info->arg_1, list->info->arg_1_number);
-	if (list->info->arg_2 != NULL)
-		write(fd, &list->info->arg_2, list->info->arg_2_number);
-	if (list->info->arg_2 != NULL)
-		write(fd, &list->info->arg_2, list->info->arg_2_number);
+	t_direction	*op_data;
+
+	op_data = info;
+	while (op_data != NULL)
+	{
+		write(fd, &op_data->op_code, 1);
+		write_op(fd, op_data);
+		op_data = op_data->next;
+	}
 }
