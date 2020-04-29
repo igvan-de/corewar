@@ -20,14 +20,6 @@ else
 	mkdir asm_result
 fi
 
-FILE=../asm_test_champs
-if test -f "$FILE"; then
-	echo "$FILE exists"
-else
-	echo "$FILE does not exist --> creating.."
-	mkdir ../asm_test_champs
-fi
-
 FILE=../asm
 if test -f "$FILE"; then
 	echo "$FILE exists"
@@ -46,6 +38,8 @@ else
 fi
 
 ###################################################
+
+if [ 1 -eq 0 ]; then
 
 echo "creating .cor files.."
 
@@ -83,8 +77,11 @@ done
 
 mv *.real asm_output
 
+fi
+
 TEST_FILES=asm_output/*.my
 for file in $TEST_FILES
 do
-	./support/tester/cw_tester $file "$(basename "$file" .my).real" > asm_result/"$(basename "$file").result"
+	echo "$(basename "$file" .my).real"
+	./support/tester/cw_tester $file "$(basename "$file" .my).real" > asm_result/"$(basename "$file" .my).result"
 done
