@@ -87,7 +87,7 @@ TEST_FILES=asm_output/*.my
 for file in $TEST_FILES
 do
 	hexdump $file > my_output
-	hexdump "$(basename "$file" .my).real" > real_output
+	hexdump asm_output/"$(basename "$file" .my).real" > real_output
 	./support/tester/cw_tester my_output real_output > asm_result/"$(basename "$file" .my).result"
 	rm my_output
 	rm real_output
