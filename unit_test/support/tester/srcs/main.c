@@ -30,6 +30,11 @@ static	void	cmp_lines(int my, int fd_cmp)
 	cmp_ret = get_next_line(fd_cmp, &cmp_line);
 	i = 0;
 	faults = 0;
+	if (my_ret < 0 || cmp_ret < 0)
+	{
+		ft_putstr("cannot access file\n");
+		return ;
+	}
 	while (my_ret > 0 && cmp_ret > 0)
 	{
 		if (ft_strcmp(my_line, cmp_line) != 0)

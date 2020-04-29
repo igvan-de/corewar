@@ -4,6 +4,15 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
+FILE=../asm
+if test -f "$FILE"; then
+	echo "$FILE exists"
+	make -C ..
+else
+	echo "$FILE does not exist --> creating.."
+	make re -C ..
+fi
+
 FILE=./asm_output
 if test -f "$FILE"; then
 	echo "$FILE exists"
@@ -20,13 +29,12 @@ else
 	mkdir asm_result
 fi
 
-FILE=../asm
+FILE=../asm_test_champs
 if test -f "$FILE"; then
 	echo "$FILE exists"
-	make -C ..
 else
 	echo "$FILE does not exist --> creating.."
-	make re -C ..
+	mkdir ../asm_test_champs
 fi
 
 TESTER=./support/tester/cw_tester
@@ -80,3 +88,33 @@ for file in $TEST_FILES
 do
 	./support/tester/cw_tester $file "$(basename "$file" .my).real" > asm_result/"$(basename "$file" .my).result"
 done
+
+#######################################################
+
+echo "moving .cor files.."
+
+rm -rf ../asm_test_champs/*.my
+for t in $TEST_FILES
+do
+	mv $t ../asm_test_champs/"$(basename "$t" .my).cor"
+done
+
+echo "collecting results.."
+
+RESULTS=asm_result/*.result
+SUCCESS="test passed!"
+for r in $RESULTS
+do
+	OUTPUT=$(cat $r)
+	TEST=$(echo $r | cut -c 12-50)
+	TEST=${TEST%.result}
+	if [ "$OUTPUT" = "$SUCCESS" ]; then
+		rm $r
+		rm asm_output/$TEST.real
+		echo -e "${green}$TEST test passed${reset}"
+	else
+		echo "${red}$TEST faaaaaaaaaaaaill${reset}"
+		exit -1;
+	fi
+done
+exit 0;
