@@ -4,6 +4,15 @@ red=`tput setaf 1`
 green=`tput setaf 2`
 reset=`tput sgr0`
 
+FILE=../corewar
+if test -f "$FILE"; then
+	echo "$FILE exists"
+	make -C ..
+else
+	echo "$FILE does not exist --> creating.."
+	make re -C ..
+fi
+
 FILE=./cw_output
 if test -f "$FILE"; then
 	echo "$FILE exists"
@@ -26,15 +35,6 @@ if test -f "$FILE"; then
 else
 	echo "$FILE does not exist --> creating.."
 	mkdir ../cw_test_champs
-fi
-
-FILE=../corewar
-if test -f "$FILE"; then
-	echo "$FILE exists"
-	make -C ..
-else
-	echo "$FILE does not exist --> creating.."
-	make re -C ..
 fi
 
 TESTER=./support/tester/cw_tester
