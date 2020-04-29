@@ -107,7 +107,9 @@ echo "collecting results.."
 
 RESULTS=asm_result/*.result
 SUCCESS="test passed!"
-EXIT_CODE=0
+EXIT_CODE_SUCCESS=0
+EXIT_CODE_FAIL=0
+EXIT_CODE=$EXIT_CODE_SUCCESS
 for r in $RESULTS
 do
 	OUTPUT=$(cat $r)
@@ -119,7 +121,12 @@ do
 		echo -e "${green}$TEST test passed${reset}"
 	else
 		echo "${red}$TEST faaaaaaaaaaaaill${reset}"
-		$EXIT_CODE=-1
+		EXIT_CODE_FAIL=-1
 	fi
 done
-exit $EXIT_CODE;
+
+if [ "$EXIT_CODE_SUCCESS" = "$EXIT_CODE_FAIL" ]; then
+	exit 0
+else
+	exit -1
+fi
