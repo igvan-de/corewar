@@ -82,3 +82,9 @@ do
 done
 
 mv *.real asm_output
+
+TEST_FILES=asm_output/*.my
+for file in $TEST_FILES
+do
+	./support/tester/cw_tester $file "$(basename "$file" .my).real" > asm_result/"$(basename "$file").result"
+done
