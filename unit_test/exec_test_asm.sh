@@ -39,8 +39,6 @@ fi
 
 ###################################################
 
-if [ 1 -eq 0 ]; then
-
 echo "creating .cor files.."
 
 S_FILES=asm_tests/*.s
@@ -77,11 +75,8 @@ done
 
 mv *.real asm_output
 
-fi
-
 TEST_FILES=asm_output/*.my
 for file in $TEST_FILES
 do
-	echo "$(basename "$file" .my).real"
 	./support/tester/cw_tester $file "$(basename "$file" .my).real" > asm_result/"$(basename "$file" .my).result"
 done
