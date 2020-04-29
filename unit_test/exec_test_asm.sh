@@ -86,7 +86,11 @@ mv *.real asm_output
 TEST_FILES=asm_output/*.my
 for file in $TEST_FILES
 do
-	./support/tester/cw_tester $file "$(basename "$file" .my).real" > asm_result/"$(basename "$file" .my).result"
+	hexdump $file > my_output
+	hexdump "$(basename "$file" .my).real" > real_output
+	./support/tester/cw_tester my_output real_output > asm_result/"$(basename "$file" .my).result"
+	rm my_output
+	rm real_output
 done
 
 #######################################################
