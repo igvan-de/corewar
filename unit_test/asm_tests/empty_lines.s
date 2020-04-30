@@ -16,5 +16,3 @@ sti:
 	zjmp	%:end
 sti:
 	sti r3, %23, %2834
-	zjmp	%:end
-end:

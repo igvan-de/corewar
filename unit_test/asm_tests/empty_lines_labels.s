@@ -18,5 +18,3 @@ sti:
 test2:
 
 	sti r3, %23, %2834
-	zjmp	%:end
-end:
