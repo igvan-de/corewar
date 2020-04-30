@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   utility.h                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/10/11 03:27:37 by mlokhors       #+#    #+#                */
-/*   Updated: 2020/03/07 17:15:02 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

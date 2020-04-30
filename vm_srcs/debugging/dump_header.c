@@ -21,7 +21,7 @@
 **	and inspect a header struct.
 */
 
-void	dump_header(header_t header)
+void	dump_header(t_header header)
 {
 	ft_putstr("\n\n<------ PLAYER HEADER DUMP ------->\n\n\n");
 	ft_printf("\n	magic value: %#0x\n", rev_endian(header.magic));

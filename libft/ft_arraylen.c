@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_arraylen.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/16 13:33:48 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/05/16 17:40:04 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
