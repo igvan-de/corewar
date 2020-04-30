@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   hash_label.c                                       :+:    :+:            */
+/*   add_to_hash.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:04:13 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 07:19:08 by mark          ########   odam.nl         */
+/*   Updated: 2020/04/30 10:39:05 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static bool	check_label_node(t_func_list *list, t_labels **last,
 	{
 		if (ft_strcmp(iter->label, label) == 0)
 		{
-			return (FALSE);
+			return (false);
 		}
 		iter = iter->next;
 	}
@@ -44,7 +44,7 @@ static bool	check_label_node(t_func_list *list, t_labels **last,
 		error_message(list, 72, 0, 7);
 	(*ptr) = new;
 	iter->next = new;
-	return (TRUE);
+	return (true);
 }
 
 static void	add_hash_label_node(t_func_list *list, t_hash_label **ptr,
@@ -70,7 +70,7 @@ static void	search_ex_hash(t_func_list *list, char *label, uint64_t hash)
 	{
 		if (hash == ptr->hash_label)
 		{
-			if (check_label_node(list, &(ptr->label), &table, label) == TRUE)
+			if (check_label_node(list, &(ptr->label), &table, label) == true) //changed boolean value, need to check if code is still working good
 			{
 				table->label = ft_strdup(label);
 				table->index = list->total_bytes;

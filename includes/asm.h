@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/28 12:50:27 by igor          ########   odam.nl         */
+/*   Updated: 2020/04/30 10:25:01 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "op.h"
 # include <stdbool.h>
 # include <fcntl.h>
-# define TRUE 0
-# define FALSE -1
 # define S_LINE
 # define ALL 7
 
@@ -116,7 +114,7 @@ int							till_power(char letter, int power);
 unsigned int				rev_endian(unsigned int oct);
 void						print_list(t_func_list *list);
 void						print_bits(unsigned char octet);
-int							has_encode(unsigned char op_code);
+bool						has_encode(unsigned char op_code);
 size_t						get_tdir_size(unsigned char op_code);
 
 /*

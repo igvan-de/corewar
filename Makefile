@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de      #+#    #+#                  #
-#    Updated: 2020/04/29 13:52:04 by igor          ########   odam.nl          #
+#    Updated: 2020/04/29 17:35:09 by igor          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
 all: $(NAME_ASM) $(NAME_COREWAR) $(NAME_DSM)
 
-%.o: %.c includes/vm.h includes/op.h includes/asm.h
+%.o: %.c includes/vm.h includes/op.h includes/asm.h includes/dsm.h
 	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES) $(LIBFT_H) $(PRTF_H)
 	@echo "$(PRINT_PLUS) $@"
 

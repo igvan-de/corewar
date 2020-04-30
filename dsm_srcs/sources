@@ -1,2 +1,4 @@
 DSM_SRCS = dsm_srcs/main.c \
-dsm_srcs/write_s_file.c
+dsm_srcs/write_s_file.c \
+dsm_srcs/write_arg_s.c \
+dsm_srcs/load_optab_file.c
