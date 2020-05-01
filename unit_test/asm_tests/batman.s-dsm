@@ -1,7 +1,7 @@
 .name: Batman
 .comment: This city needs me
 
-sti 
-live test3%191365376
-ld 
-zjmp test22920
+sti REG r11 IND||DIR 2920 IND||DIR 2920
+live DIR %191365376
+ld DIR %191365376REG r11DIR %0
+zjmp  IND||DIR 2920

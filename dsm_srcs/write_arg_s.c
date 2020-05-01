@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 11:27:35 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/01 15:17:46 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/01 17:28:21 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,24 +63,26 @@ static void	write_arg(int fd, int arg_size, char *exec)
 	const char		*executable;
 
 	value = convert((unsigned char*)exec, arg_size);
-	executable = ft_itoa(value);
-	ft_printf("arg_size = %d\n", arg_size);
-	ft_printf("value = %d\n", value);
-	ft_printf("exec = %s\n", executable);
+	executable = (const char*)ft_itoa(value);
+	// ft_printf("arg_size = %d\n", arg_size);
+	// ft_printf("value = %d\n", value);
+	// ft_printf("exec = %s\n", executable);
+	// ft_putnbr(fd);
+	// ft_putendl("");
 	if (arg_size == 1)
 	{
-		ft_putstr_fd("test1", fd);
+		ft_putstr_fd("REG ", fd);
 		ft_putchar_fd('r', fd);
 		ft_putstr_fd(executable ,fd);
 	}
 	else if (arg_size == 2)
 	{
-		ft_putstr_fd("test2", fd);
+		ft_putstr_fd(" IND||DIR ", fd);
 		ft_putstr_fd(executable ,fd);
 	}
 	else
 	{
-		ft_putstr_fd("test3", fd);
+		ft_putstr_fd("DIR ", fd);
 		ft_putchar_fd('%', fd);
 		ft_putstr_fd(executable ,fd);
 	}
@@ -131,7 +133,7 @@ static void	write_str(int fd, unsigned int *index, t_file *file)
 		*index += get_tdir_size(op_code) + 1;
 	}
 	else
-		*index += parse_encbyte(i + 2, exec, exec[i + 1], op_code) + 2;
+		*index += parse_encbyte(fd, exec, exec[i + 1], op_code) + 2;
 	ft_putstr_fd("\n", fd);
 }
 

@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/01 11:44:30 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/01 17:18:10 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,9 @@ int	main(int argc, char **argv)
 		return(-1);
 	fd_name = file_check(argv[1]);
 	new_fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640); //O_TRUNC to overwrite existing .s file
+	ft_putnbr(new_fd);
+	ft_putendl("");
+	ft_putendl("");
 	fd = open(argv[1], O_RDONLY);
 	init_file(&file);
 	bytes = read(fd, file->header, sizeof(header_t));
@@ -122,5 +125,6 @@ int	main(int argc, char **argv)
 	error_check(bytes, exec_code_size);
 	write_s_file(new_fd, file);
 	close(fd);
+	close(new_fd);
 	return(0);
 }
