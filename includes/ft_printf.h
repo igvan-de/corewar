@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_printf.h                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jdunnink <marvin@codam.nl>                   +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/06/14 09:30:42 by jdunnink       #+#    #+#                */
-/*   Updated: 2020/03/16 21:19:27 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,4 @@
 
 int				ft_printf(const char *format, ...);
 
-# endif
+#endif

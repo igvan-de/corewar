@@ -42,7 +42,7 @@ typedef struct			s_datamap
 
 typedef struct			s_player
 {
-	header_t			*header;
+	t_header			*header;
 	char				*exec_code;
 	int					nbr;
 }						t_player;
@@ -76,7 +76,7 @@ typedef struct			s_env
 	int					cycles_to_die;
 	unsigned	char	flag_byte;
 	int					player_last_alive;
-	id_t				player_nbr;
+	int					player_nbr;
 	unsigned			total_players;
 	unsigned			total_cursors;
 	unsigned			total_cycles;
@@ -176,7 +176,7 @@ void					dump_champ_code(t_player *player, t_env *env);
 void					dump_cursor_stack(t_cursor *cursor_stack);
 void					dump_env_state(t_env *env);
 void					dump_exec_code(char *exc, unsigned int size, t_env *e);
-void					dump_header(header_t header);
+void					dump_header(t_header header);
 void					dump_mem(t_env *env);
 void					dump_op(t_cursor *cursor, t_env *env);
 void					dump_op_enc(t_cursor *c, t_env *e, t_byt enc, t_byt op);

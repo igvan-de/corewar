@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_labs.c                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: jdunnink <marvin@codam.nl>                   +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/28 17:46:41 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/18 14:25:52 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
