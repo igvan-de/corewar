@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 12:35:18 by igor          #+#    #+#                 */
-/*   Updated: 2020/04/30 12:37:54 by igor          ########   odam.nl         */
+/*   Updated: 2020/04/30 15:36:12 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 **	loads the operation reference table into its op_tab variable
 */
 
-static	void	transfer_opdata(t_op get_op[17], t_file *file)
+static	void	transfer_opdata_file(t_op get_op[17], t_file *file)
 {
 	int	i;
 
@@ -52,6 +52,5 @@ void			load_optab_file(t_file *file)
 		{"lldi", 3, {ALL, T_DIR | T_REG, T_REG}, 14, 50, "", 1, 1},
 		{"lfork", 1, {T_DIR}, 15, 1000, "", 0, 1},
 		{"aff", 1, {T_REG}, 16, 2, "", 1, 0}};
-
-	transfer_opdata(get_op, file);
+	transfer_opdata_file(get_op, file);
 }

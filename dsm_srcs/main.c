@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/04/30 12:37:44 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/01 11:44:30 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*file_check(char *argv)
 		exit(-1);
 	}
 	fd_name = ft_strjoin(name[0], ".s-dsm");
-	// free_split(name); //|| has error because need to include it from asm.h
+	free_split(name);
 	return(fd_name);
 }
 
@@ -63,8 +63,8 @@ static	void	init_header(header_t **header)
 static void	init_file(t_file **file)
 {
 	*file = (t_file*)ft_memalloc(sizeof(t_file));
-	init_header(&((*file)->header));
 	load_optab_file(*file);
+	init_header(&((*file)->header));
 }
 
 /*
@@ -76,25 +76,17 @@ static void	init_file(t_file **file)
 
 static void	error_check(ssize_t bytes, unsigned int exec_code_size)
 {
-	ft_printf("size = %d\n", exec_code_size);
-	ft_printf("bytes = %d\n", bytes);
 	if (bytes != exec_code_size)
-		exit(-1);
+		exit(-1); //need to make correct error message
 	if (bytes > CHAMP_MAX_SIZE)
-		exit(-1);
-}
-
-unsigned int	rev_endian(unsigned int oct)
-{
-	return (((oct & 0xff) << 24) + ((oct & 0xff00) << 8) +
-		((oct & 0xff0000) >> 8) + ((oct >> 24) & 0xff));
+		exit(-1); //need to make correct error message
 }
 
 static	void	init_exec_code(t_file **file, size_t size)
 {
-	(*file)->args = ft_strnew(size);
-	if (!((*file)->args))
-		exit(-1);
+	(*file)->exec_code = ft_strnew(size);
+	if (!((*file)->exec_code))
+		exit(-1); //need to make correct error message
 }
 
 /*
@@ -115,7 +107,6 @@ int	main(int argc, char **argv)
 	t_file	*file;
 	unsigned int	exec_code_size;
 
-
 	if (argc < 1)
 		return(-1);
 	fd_name = file_check(argv[1]);
@@ -124,11 +115,12 @@ int	main(int argc, char **argv)
 	init_file(&file);
 	bytes = read(fd, file->header, sizeof(header_t));
 	if (bytes != sizeof(header_t))
-		exit(-1);
+		exit(-1); //need to make correct error message
 	exec_code_size = rev_endian(file->header->prog_size);
 	init_exec_code(&file, exec_code_size);
-	bytes = read(fd, file->args, exec_code_size);
+	bytes = read(fd, file->exec_code, exec_code_size);
 	error_check(bytes, exec_code_size);
 	write_s_file(new_fd, file);
+	close(fd);
 	return(0);
 }

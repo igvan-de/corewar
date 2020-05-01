@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:50:39 by igor          #+#    #+#                 */
-/*   Updated: 2020/04/30 12:38:13 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/01 11:43:30 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@
 typedef struct		s_file
 {
 	header_t		*header;
-	char			*args;
+	char			*exec_code;
 	t_op			op_tab[17];
-	struct s_file	*next;
 }					t_file;
-
 
 /*
 **===============================CREATING .S FUNCTIONS==========================

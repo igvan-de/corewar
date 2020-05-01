@@ -6,7 +6,7 @@
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
+/*   Updated: 2020/04/30 14:34:10 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ void			load_optab(t_env *env)
 		{"lldi", 3, {ALL, T_DIR | T_REG, T_REG}, 14, 50, "", 1, 1},
 		{"lfork", 1, {T_DIR}, 15, 1000, "", 0, 1},
 		{"aff", 1, {T_REG}, 16, 2, "", 1, 0}};
-
 	transfer_opdata(get_op, env);
 }
