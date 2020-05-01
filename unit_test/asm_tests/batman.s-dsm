@@ -1,7 +1,7 @@
-.name: Batman
-.comment: This city needs me
+.name: "Batman"
+.comment: "This city needs me"
 
 sti REG r11 IND||DIR 2920 IND||DIR 2920
 live DIR %191365376
-ld DIR %191365376REG r11DIR %0
-zjmp  IND||DIR 2920
+ld DIR %191365376 REG r11 DIR %0
+zjmp IND||DIR 2920
