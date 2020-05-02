@@ -6,19 +6,19 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 15:23:27 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 17:23:14 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dsm.h"
 
 /*
-* @brief file_check first splits the given arguments on '.' character,
-* afterwards it checks if the given file is an .cor file.
-*
-*
-* @param argv = the complete argument which contains the name of file
-* @return char* = the .s filename
+** @brief file_check first splits the given arguments on '.' character,
+** afterwards it checks if the given file is an .cor file.
+**
+**
+** @param argv = the complete argument which contains the name of file
+** @return char* = the .s filename
 */
 
 static char	*file_check(char *argv)
@@ -42,9 +42,9 @@ static char	*file_check(char *argv)
 }
 
 /*
-* @brief mallocs header struct
-*
-* @param header = pointer to header struct
+** @brief mallocs header struct
+**
+** @param header = pointer to header struct
 */
 
 static	void	init_header(header_t **header)
@@ -55,9 +55,9 @@ static	void	init_header(header_t **header)
 }
 
 /*
-* @brief mallocs file struct and pointer to header struct
-*
-* @param file
+** @brief mallocs file struct and pointer to header struct
+**
+** @param file
 */
 
 static void	init_file(t_file **file)
@@ -68,10 +68,10 @@ static void	init_file(t_file **file)
 }
 
 /*
-* @brief checks if bytes has the correct size value
-*
-* @param bytes = bytes readed
-* @param file = struct containing data prog_size
+** @brief checks if bytes has the correct size value
+**
+** @param bytes = bytes readed
+** @param file = struct containing data prog_size
 */
 
 static void	error_check(ssize_t bytes, unsigned int exec_code_size)
@@ -82,6 +82,13 @@ static void	error_check(ssize_t bytes, unsigned int exec_code_size)
 		exit(-1); //need to make correct error message
 }
 
+/*
+** @brief initializes a empty string
+**
+** @param file = struct with needed data
+** @param size = size for mallocing new string
+*/
+
 static	void	init_exec_code(t_file **file, size_t size)
 {
 	(*file)->exec = ft_strnew(size);
@@ -90,12 +97,12 @@ static	void	init_exec_code(t_file **file, size_t size)
 }
 
 /*
-* @brief read given .cor file and transforms all content into a humanreadable
-* assembly file (.s file)
-*
-* @param argc = arguments counter
-* @param argv = arguments
-* @return int = return value if program run succesfully
+** @brief read given .cor file and transforms all content into a humanreadable
+** assembly file (.s file)
+**
+** @param argc = arguments counter
+** @param argv = arguments
+** @return int = return value if program run succesfully
 */
 
 int	main(int argc, char **argv)

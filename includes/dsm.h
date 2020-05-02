@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:50:39 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 14:55:40 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 17:18:31 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ typedef struct		s_file
 */
 
 void	write_s_file(int fd_s, t_file *file);
-void	write_arg_s(int fd_s, unsigned prog_size, t_file *file);
+void	write_args_into_s(int fd_s, unsigned prog_size, t_file *file);
 void	load_optab_file(t_file *file);
 int		create_s_file(char *argv);
 int		convert(int index, char *exec, int arg_size);
+int		get_arg_value(t_file *file, int op_code, int one, int two);
 
 #endif

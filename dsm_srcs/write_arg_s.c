@@ -6,46 +6,11 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 11:27:35 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 15:22:12 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 17:17:10 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dsm.h"
-
-int	get_bit(unsigned char octet, int index)
-{
-	int shift_right;
-
-	if (index < 0 || index > 8)
-		return (-1);
-	shift_right = 7;
-	octet = octet << index;
-	octet = octet >> shift_right;
-	if ((1 & octet) == 1)
-		return (1);
-	return (0);
-}
-
-static	int		get_arg_value(t_file *file, int op_code, int one, int two)
-{
-	if (one == 0 && two == 1)
-	{
-		file->type = REG;
-		return (1);
-	}
-	else if (one == 1 && two == 0)
-	{
-		file->type = DIR;
-		return (get_tdir_size(op_code));
-	}
-	else if (one == 1 && two == 1)
-	{
-		file->type = IND;
-		return (2);
-	}
-	file->type = NONE;
-	return (0);
-}
 
 static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 {
@@ -128,7 +93,7 @@ static void	write_str(int fd_s, unsigned int *index, t_file *file)
 	ft_putstr_fd("\n", fd_s);
 }
 
-void		write_arg_s(int fd_s, unsigned prog_size, t_file *file)
+void		write_args_into_s(int fd_s, unsigned prog_size, t_file *file)
 {
 	unsigned int	i;
 
