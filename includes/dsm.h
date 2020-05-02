@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:50:39 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/01 11:43:30 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 13:12:02 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,20 @@
 # include <stdbool.h>
 # include <fcntl.h>
 
+typedef enum		e_type
+{
+	NONE = 0,
+	REG = 1,
+	IND = 2,
+	DIR = 3
+}					t_type;
+
 typedef struct		s_file
 {
 	header_t		*header;
-	char			*exec_code;
+	char			*exec;
+	int 			arg_size;
+	t_type			type;
 	t_op			op_tab[17];
 }					t_file;
 
@@ -33,9 +43,10 @@ typedef struct		s_file
 **===============================CREATING .S FUNCTIONS==========================
 */
 
-void	write_s_file(int fd, t_file *file);
-void	write_arg_s(int fd, unsigned prog_size, t_file *file);
+void	write_s_file(int fd_s, t_file *file);
+void	write_arg_s(int fd_s, unsigned prog_size, t_file *file);
 void	load_optab_file(t_file *file);
 int		create_s_file(char *argv);
+int		convert(unsigned char *s, int size);
 
 #endif

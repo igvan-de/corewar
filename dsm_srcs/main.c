@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/01 17:18:10 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 12:50:06 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ static void	error_check(ssize_t bytes, unsigned int exec_code_size)
 
 static	void	init_exec_code(t_file **file, size_t size)
 {
-	(*file)->exec_code = ft_strnew(size);
-	if (!((*file)->exec_code))
+	(*file)->exec = ft_strnew(size);
+	if (!((*file)->exec))
 		exit(-1); //need to make correct error message
 }
 
@@ -101,8 +101,8 @@ static	void	init_exec_code(t_file **file, size_t size)
 int	main(int argc, char **argv)
 {
 	char	*fd_name;
-	int		new_fd;
-	int		fd;
+	int		fd_s;
+	int		fd_cor;
 	ssize_t	bytes;
 	t_file	*file;
 	unsigned int	exec_code_size;
@@ -110,21 +110,18 @@ int	main(int argc, char **argv)
 	if (argc < 1)
 		return(-1);
 	fd_name = file_check(argv[1]);
-	new_fd = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640); //O_TRUNC to overwrite existing .s file
-	ft_putnbr(new_fd);
-	ft_putendl("");
-	ft_putendl("");
-	fd = open(argv[1], O_RDONLY);
+	fd_s = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640); //O_TRUNC to overwrite existing .s file
+	fd_cor = open(argv[1], O_RDONLY);
 	init_file(&file);
-	bytes = read(fd, file->header, sizeof(header_t));
+	bytes = read(fd_cor, file->header, sizeof(header_t));
 	if (bytes != sizeof(header_t))
 		exit(-1); //need to make correct error message
 	exec_code_size = rev_endian(file->header->prog_size);
 	init_exec_code(&file, exec_code_size);
-	bytes = read(fd, file->exec_code, exec_code_size);
+	bytes = read(fd_cor, file->exec, exec_code_size);
 	error_check(bytes, exec_code_size);
-	write_s_file(new_fd, file);
-	close(fd);
-	close(new_fd);
+	write_s_file(fd_s, file);
+	close(fd_cor);
+	close(fd_s);
 	return(0);
 }

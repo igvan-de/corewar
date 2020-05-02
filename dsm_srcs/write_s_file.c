@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 13:01:21 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/01 18:11:35 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 12:50:42 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 * @param header = is struct containing all data of header
 */
 
-static void write_name(int fd, header_t *header)
+static void write_name(int fd_s, header_t *header)
 {
-	ft_putstr_fd(".name: ", fd);
-	ft_putchar_fd('\"', fd);
-	ft_putstr_fd(header->prog_name, fd);
-	ft_putchar_fd('\"', fd);
-	ft_putstr_fd("\n", fd);
+	ft_putstr_fd(".name: ", fd_s);
+	ft_putchar_fd('\"', fd_s);
+	ft_putstr_fd(header->prog_name, fd_s);
+	ft_putchar_fd('\"', fd_s);
+	ft_putstr_fd("\n", fd_s);
 }
 
 /*
@@ -35,13 +35,13 @@ static void write_name(int fd, header_t *header)
 * @param header = is struct containing all data of header
 */
 
-static void write_comment(int fd, header_t *header)
+static void write_comment(int fd_s, header_t *header)
 {
-	ft_putstr_fd(".comment: ", fd);
-	ft_putchar_fd('\"', fd);
-	ft_putstr_fd(header->comment, fd);
-	ft_putchar_fd('\"', fd);
-	ft_putstr_fd("\n\n", fd);
+	ft_putstr_fd(".comment: ", fd_s);
+	ft_putchar_fd('\"', fd_s);
+	ft_putstr_fd(header->comment, fd_s);
+	ft_putchar_fd('\"', fd_s);
+	ft_putstr_fd("\n\n", fd_s);
 }
 
 /*
@@ -52,9 +52,9 @@ static void write_comment(int fd, header_t *header)
 * @param file  = struct containing all needed data
 */
 
-void	write_s_file(int fd, t_file *file)
+void	write_s_file(int fd_s, t_file *file)
 {
-	write_name(fd, file->header);
-	write_comment(fd, file->header);
-	write_arg_s(fd, rev_endian(file->header->prog_size), file);
+	write_name(fd_s, file->header);
+	write_comment(fd_s, file->header);
+	write_arg_s(fd_s, rev_endian(file->header->prog_size), file);
 }
