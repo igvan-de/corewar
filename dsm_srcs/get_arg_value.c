@@ -6,11 +6,20 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/02 17:17:46 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 17:18:17 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 20:54:21 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dsm.h"
+
+/*
+**	@brief:	return a single bit from a byte as an integer (0 or 1)
+**
+**	@param octet	:	source byte
+**
+**	get_bit receives a byte and an index and returns the bit
+**	at the index specified (0 or 1).
+*/
 
 static int	get_bit(unsigned char octet, int index)
 {
@@ -25,6 +34,25 @@ static int	get_bit(unsigned char octet, int index)
 		return (1);
 	return (0);
 }
+
+/*
+** @brief Get the arg value object
+**
+** @param file		= struct containing all data
+** @param op_code	= value of op_code
+** @param one		= first bit of bitpair
+** @param two		= second bit of bitpair
+** @return int		= size of bytes
+**
+** by combaring the first bit and the second bit with 0 or 1,
+** we can find if is a T_REG, T_DIR or T_IND
+**
+** 10			11			01			00
+** T_DIR		T_IND		T_REG		empty
+**
+** by knowing the what kind of operation it is we can return the right value
+** also we set the type to the needed type_value (founded in enum t_type struct)
+*/
 
 int			get_arg_value(t_file *file, int op_code, int one, int two)
 {

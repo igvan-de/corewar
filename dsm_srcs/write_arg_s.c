@@ -6,11 +6,30 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 11:27:35 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 17:17:10 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 20:54:35 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "dsm.h"
+
+/*
+** @brief
+**
+** @param fd_s		= file discriptor to write operations(arguments) in
+** @param i			= index of byte
+** @param arg_size	= size of operation(argument)
+** @param file		= struct containing all data
+**
+** by converting the executable we know what is the value on current byte,
+** by running itoa over it we convert it into a string the write is down
+** with ft_putstr_fd into filediscriptor.
+** checking what type it is, provides us the information to know what type
+** of operation(argument) we need to write into filediscriptor and the format:
+**
+** T_REG needs 'r' char before operation(argument)
+** T_IND needs nothing char before operation(argument)
+** T_DIR needs '%' char before operation(argument)
+*/
 
 static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 {
@@ -38,6 +57,21 @@ static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 	}
 }
 
+/*
+** @brief
+**
+** @param fd_s		= file discriptor to write operations(arguments) in
+** @param i			= index on bytes
+** @param file		= struct containing all data
+** @param op_code	= value of op_code
+** @return int		= sizes of arg 1, 2 & 3
+**
+** parse encode byte is jumped two indexes on bytes, because we want to skip
+** the encode. but we need to know the octect for get_bit
+** by looping trough all operations(arguments), we can see what their value is
+** meaning what their size and type is, so we can write them in filediscripter
+*/
+
 static	int		parse_encbyte(int fd_s, int i, t_file *file, int op_code)
 {
 	int				arg_value_1;
@@ -61,6 +95,17 @@ static	int		parse_encbyte(int fd_s, int i, t_file *file, int op_code)
 	return (arg_value_1 + arg_value_2 + arg_value_3);
 }
 
+/*
+** @brief
+**
+** @param fd_s		= file discriptor to write operations(arguments) in
+** @param op_code	= value of op_code
+** @param file		= struct containing all data
+**
+** by  first checking if the op_code has a correct value,
+** we can later write it into the filediscripter
+*/
+
 static void	write_op(int fd_s, int op_code ,t_file *file)
 {
 	t_op			local_op;
@@ -73,6 +118,20 @@ static void	write_op(int fd_s, int op_code ,t_file *file)
 	local_op = file->op_tab[op_code];
 	ft_putstr_fd((const char*)local_op.name, fd_s);
 }
+
+/*
+** @brief
+**
+** @param fd_s		= file discriptor to write operations(arguments) in
+** @param index		= index of byte
+** @param file		= struct containing all data
+**
+** checking the current place of byte index provides what the op_code is,
+** by cheching the value of the op_code we know how many operations(arguments)
+** we could expect, so also how many places fro the current index we need to jump
+** to go to the first argument. Because all op_code values have an encode after
+** the op_code, except for the op_code values 1, 9, 12 & 15
+*/
 
 static void	write_str(int fd_s, unsigned int *index, t_file *file)
 {
@@ -92,6 +151,17 @@ static void	write_str(int fd_s, unsigned int *index, t_file *file)
 		*index += parse_encbyte(fd_s, i + 2, file, op_code) + 2;
 	ft_putstr_fd("\n", fd_s);
 }
+
+/*
+** @brief loops through all bits of executable code
+**
+** @param fd_s		= file discriptor to write operations(arguments) in
+** @param prog_size	= size of executable code
+** @param file		= struct containing all data
+**
+** by looping with an index through the bytes we can write all operations
+** by giving the address we stay at the correct byte index
+*/
 
 void		write_args_into_s(int fd_s, unsigned prog_size, t_file *file)
 {
