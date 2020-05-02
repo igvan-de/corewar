@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 11:27:35 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 13:15:58 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 14:34:31 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,14 @@ static	int		get_arg_value(t_file *file, int op_code, int one, int two)
 	return (0);
 }
 
-static void	write_arg(int fd_s, int arg_size, t_file *file)
+static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 {
 	int				value;
 	const char		*executable;
 
-	value = convert((unsigned char*)file->exec, arg_size);
+	ft_printf("arg_size = %d\n", arg_size);
+	value = convert(i, file->exec, arg_size);
+	ft_printf("value = %d\n", value);
 	executable = (const char*)ft_itoa(value);
 	if (file->type == REG)
 	{
@@ -76,18 +78,20 @@ static void	write_arg(int fd_s, int arg_size, t_file *file)
 	}
 }
 
-static	int		parse_encbyte(int fd_s, t_file *file, unsigned char oct, int op_code)
+static	int		parse_encbyte(int fd_s, int i, t_file *file, int op_code)
 {
-	int	arg_value_1;
-	int arg_value_2;
-	int arg_value_3;
+	int				arg_value_1;
+	int				arg_value_2;
+	int				arg_value_3;
+	unsigned char	oct;
 
+	oct = file->exec[i + 1];
 	arg_value_1 = get_arg_value(file, op_code, get_bit(oct, 0), get_bit(oct, 1));
-	write_arg(fd_s, arg_value_1, file);
+	write_arg(fd_s, i, arg_value_1, file);
 	arg_value_2 = get_arg_value(file, op_code, get_bit(oct, 2), get_bit(oct, 3));
-	write_arg(fd_s, arg_value_2, file);
+	write_arg(fd_s, i, arg_value_2, file);
 	arg_value_3 = get_arg_value(file, op_code, get_bit(oct, 4), get_bit(oct, 5));
-	write_arg(fd_s, arg_value_3, file);
+	write_arg(fd_s, i, arg_value_3, file);
 	return (arg_value_1 + arg_value_2 + arg_value_3);
 }
 
@@ -117,11 +121,11 @@ static void	write_str(int fd_s, unsigned int *index, t_file *file)
 	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
 	{
 		file->type = DIR;
-		write_arg(fd_s, get_tdir_size(op_code), file);
+		write_arg(fd_s, i, get_tdir_size(op_code), file);
 		*index += get_tdir_size(op_code) + 1;
 	}
 	else
-		*index += parse_encbyte(fd_s, file, file->exec[i + 1], op_code) + 2;
+		*index += parse_encbyte(fd_s, i, file, op_code) + 2;
 	ft_putstr_fd("\n", fd_s);
 }
 

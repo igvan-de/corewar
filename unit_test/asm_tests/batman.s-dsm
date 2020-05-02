@@ -2,6 +2,6 @@
 .comment: "This city needs me"
 
 sti REG r11 DIR %2920 DIR %2920
-live DIR %191365376
-ld DIR %191365376 REG r11
-zjmp DIR %2920
+live DIR %16777216
+ld DIR %42991616 REG r2
+zjmp DIR %2559
