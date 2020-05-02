@@ -6,7 +6,7 @@
 #    By: igvan-de <igvan-de@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2019/10/18 17:58:55 by igvan-de      #+#    #+#                  #
-#    Updated: 2020/04/29 17:35:09 by igor          ########   odam.nl          #
+#    Updated: 2020/05/02 15:58:24 by igor          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,7 @@ clean:
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
 fclean: clean
-	@rm -f $(NAME_ASM) $(NAME_COREWAR)
+	@rm -f $(NAME_ASM) $(NAME_COREWAR) $(NAME_DSM)
 	@make -C ./libft fclean
 	@make -C ./ft_printf fclean
 	@make -C ./unit_test/support/tester fclean

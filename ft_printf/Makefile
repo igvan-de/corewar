@@ -5,8 +5,8 @@
 #                                                      +:+                     #
 #    By: jdunnink <marvin@codam.nl>                   +#+                      #
 #                                                    +#+                       #
-#    Created: 2019/03/20 09:33:47 by jdunnink       #+#    #+#                 #
-#    Updated: 2020/03/16 21:22:41 by igvan-de      ########   odam.nl          #
+#    Created: 2019/03/20 09:33:47 by jdunnink      #+#    #+#                  #
+#    Updated: 2020/05/02 16:16:02 by igor          ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,16 +76,16 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	/bin/mkdir -p $(OBJDIR)
-	$(CC) -c $(CFLAGS) $(SRCS) $(HEADER)
-	/bin/mv $(OBJ) $(OBJDIR)/
-	ar rcs $(NAME) $(OBJS)
+	@/bin/mkdir -p $(OBJDIR)
+	@$(CC) -c $(CFLAGS) $(SRCS) $(HEADER)
+	@/bin/mv $(OBJ) $(OBJDIR)/
+	@ar rcs $(NAME) $(OBJS)
 
 clean:
-	/bin/rm -Rf $(OBJDIR)
-	/bin/rm -Rf *~ *#
+	@/bin/rm -Rf $(OBJDIR)
+	@/bin/rm -Rf *~ *#
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all
