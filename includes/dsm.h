@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:50:39 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 14:23:49 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 14:55:40 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef struct		s_file
 {
 	header_t		*header;
 	char			*exec;
-	int 			arg_size;
 	t_type			type;
 	t_op			op_tab[17];
 }					t_file;

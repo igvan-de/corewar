@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 12:50:06 by igor          ########   odam.nl         */
+/*   Updated: 2020/05/02 15:23:27 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*file_check(char *argv)
 		ft_printf("Error, wrong file. Needs to be a .cor file\n");
 		exit(-1);
 	}
-	fd_name = ft_strjoin(name[0], ".s-dsm");
+	fd_name = ft_strjoin(name[0], ".s");
 	free_split(name);
 	return(fd_name);
 }
