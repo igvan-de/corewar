@@ -70,7 +70,7 @@ static void	search_ex_hash(t_func_list *list, char *label, uint64_t hash)
 	{
 		if (hash == ptr->hash_label)
 		{
-			if (check_label_node(list, &(ptr->label), &table, label) == true) //changed boolean value, need to check if code is still working good
+			if (check_label_node(list, &(ptr->label), &table, label) == true)
 			{
 				table->label = ft_strdup(label);
 				table->index = list->total_bytes;

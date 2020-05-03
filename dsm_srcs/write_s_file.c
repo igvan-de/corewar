@@ -19,7 +19,7 @@
 * @param header = is struct containing all data of header
 */
 
-static void write_name(int fd_s, header_t *header)
+static void write_name(int fd_s, t_header *header)
 {
 	ft_putstr_fd(".name ", fd_s);
 	ft_putchar_fd('\"', fd_s);
@@ -35,7 +35,7 @@ static void write_name(int fd_s, header_t *header)
 * @param header = is struct containing all data of header
 */
 
-static void write_comment(int fd_s, header_t *header)
+static void write_comment(int fd_s, t_header *header)
 {
 	ft_putstr_fd(".comment ", fd_s);
 	ft_putchar_fd('\"', fd_s);

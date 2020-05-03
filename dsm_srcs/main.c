@@ -47,9 +47,9 @@ static char	*file_check(char *argv)
 ** @param header = pointer to header struct
 */
 
-static	void	init_header(header_t **header)
+static	void	init_header(t_header **header)
 {
-	(*header) = (header_t *)malloc(sizeof(header_t));
+	(*header) = (t_header *)malloc(sizeof(t_header));
 	if (*header == NULL)
 		exit(-1);
 }
@@ -120,8 +120,8 @@ int	main(int argc, char **argv)
 	fd_s = open(fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640); //O_TRUNC to overwrite existing .s file
 	fd_cor = open(argv[1], O_RDONLY);
 	init_file(&file);
-	bytes = read(fd_cor, file->header, sizeof(header_t));
-	if (bytes != sizeof(header_t))
+	bytes = read(fd_cor, file->header, sizeof(t_header));
+	if (bytes != sizeof(t_header))
 		exit(-1); //need to make correct error message
 	exec_code_size = rev_endian(file->header->prog_size);
 	init_exec_code(&file, exec_code_size);

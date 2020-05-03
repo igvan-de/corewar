@@ -32,7 +32,7 @@ typedef enum		e_type
 
 typedef struct		s_file
 {
-	header_t		*header;
+	t_header		*header;
 	char			*exec;
 	t_type			type;
 	t_op			op_tab[17];
