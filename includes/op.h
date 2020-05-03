@@ -71,6 +71,4 @@ typedef struct		s_op
 	int		label_size;
 }					t_op;
 
-
-
 #endif
