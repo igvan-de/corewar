@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 12:13:27 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/05/03 20:36:57 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void		init_func_list(t_func_list *list)
 	list->hash_table = make_hash_table();
 	list->new_node = 0;
 	list->labels = NULL;
+	list->cn_size = 0;
 	if (list->hash_table == NULL)
 		error_message(list, 1, 1, 0);
 }

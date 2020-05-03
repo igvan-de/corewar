@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/28 01:08:43 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/03 22:00:28 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct				s_func_list
 	int						line_char;
 	int						total_bytes;
 	int						new_node;
+	int						cn_size;
 	t_hash_label			*labels;
 	t_direction				*info;
 }							t_func_list;
@@ -78,6 +79,7 @@ typedef struct				s_func_list
 **===============================CHECK FUNCTIONS================================
 */
 
+void						get_rem_cn(t_func_list *list, int ret);
 void						check_between(t_func_list *list, int err,
 							int err_p, int err_f);
 void						transform_label(t_func_list *list);

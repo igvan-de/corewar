@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/22 19:53:34 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/03 22:02:53 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ static void		read_file(t_func_list *list, int fd)
 			close(fd);
 			error_message(list, 12, 2, 1);
 		}
-		if (check_empty_line(list) == false)
+		ft_printf("cn_size %d\n", list->cn_size);
+		if (list->cn_size != 0)
+			get_rem_cn(list, ret);
+		else if (check_empty_line(list) == false)
 			process_line(list);
 		ft_memdel((void **)&list->line);
 		list->line_number++;

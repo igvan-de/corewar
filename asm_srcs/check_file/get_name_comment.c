@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/28 01:00:36 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/03 22:49:36 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,28 +19,29 @@
 
 static void	found_str(t_func_list *list, char *line, char **target, int len)
 {
-	int start;
+	int		start;
+	char	*tmp;
 
+	tmp = NULL;
 	start = list->line_char;
 	while (line[list->line_char] && line[list->line_char] != '\"')
 		list->line_char++;
-	if (list->line_char == (int)ft_strlen(line))
-		error_message(list, 31, 2, 3);
-	if (line[list->line_char] == '\"')
+	if (list->line_char - start < len)
 	{
-		if (list->line_char - start < len)
-		{
-			*target = ft_strsub(line, start,
-			list->line_char - start);
-			if (*target == NULL)
-			{
-				error_message(list, 32, 3, 3);
-				list->line_char++;
-			}
-		}
-		else
-			error_message(list, 33, 4, 3);
+		*target = ft_strsub(line, start,
+		list->line_char - start);
 		list->line_char++;
+		if (*target == NULL)
+			error_message(list, 32, 3, 3);
+	}
+	else
+		error_message(list, 33, 4, 3);
+	if (line[list->line_char - 1] != '\"')
+	{
+		list->cn_size = len;
+		tmp = ft_strjoin(*target, "\n");
+		free(*target);
+		*target = tmp;
 	}
 }
 
