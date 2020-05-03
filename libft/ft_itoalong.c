@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_itoalong.c                                      :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2019/05/09 17:49:12 by igvan-de       #+#    #+#                */
-/*   Updated: 2019/09/25 16:00:16 by igvan-de      ########   odam.nl         */
+/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

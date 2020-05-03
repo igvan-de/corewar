@@ -38,9 +38,9 @@ static	void	init_exec_code(t_player **player, size_t size)
 **	of the new t_player struct.
 */
 
-static	void	init_header(header_t **header)
+static	void	init_header(t_header **header)
 {
-	(*header) = (header_t *)malloc(sizeof(header_t));
+	(*header) = (t_header *)malloc(sizeof(t_header));
 	if (!*header)
 		error_mem();
 }
@@ -93,7 +93,7 @@ static	void	store_player(t_player **new_player, t_env *env)
 	else
 		ft_lstaddend(&env->players, player_elem);
 	env->total_players++;
-	if (env->player_nbr == env->total_players)
+	if (env->player_nbr == (int)env->total_players)
 		env->player_nbr = env->total_players + 1;
 	else
 		env->player_nbr = env->total_players;
@@ -125,8 +125,8 @@ void			add_player(char *arg, t_env *env)
 	if (fd == -1)
 		error_input(1);
 	init_player(&new_player);
-	bytes = read(fd, new_player->header, sizeof(header_t));
-	if (bytes != sizeof(header_t))
+	bytes = read(fd, new_player->header, sizeof(t_header));
+	if (bytes != sizeof(t_header))
 		error_input(2);
 	if (rev_endian(new_player->header->magic) != COREWAR_EXEC_MAGIC)
 		error_input(3);

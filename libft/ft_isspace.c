@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_isspace.c                                       :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: mark <mark@student.codam.nl>                 +#+                     */
+/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/14 22:44:41 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/14 22:47:57 by mark          ########   odam.nl         */
+/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
+/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 

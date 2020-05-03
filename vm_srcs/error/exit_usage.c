@@ -14,7 +14,7 @@
 
 void	exit_usage(void)
 {
-	ft_putendl("corewar: vm development usage:");
+	ft_putendl("corewar usage:");
 	ft_putendl("\n	./corewar <testfile>.cor");
 	ft_putendl("\n	use '-dump' <nbr_cycle> to view memory");
 	ft_putendl("	use '-v' <level> to specify verbosity level");
@@ -22,6 +22,7 @@ void	exit_usage(void)
 	ft_putendl("			16 --> show performed operations");
 	ft_putendl("			2 --> show cycles");
 	ft_putendl("			verbosity can be combined to enable multiple");
-	ft_putendl("	use '-visual' flag to visualize\n");
+	ft_putendl("	use '-visual' flag to visualize");
+	ft_putendl("	use -a flag to enable operation aff\n");
 	exit(0);
 }

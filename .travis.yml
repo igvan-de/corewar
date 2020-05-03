@@ -11,6 +11,7 @@ branches:
     master
 
 script:
+  - make test_asm
   - make test_corewar
 
 notifications:

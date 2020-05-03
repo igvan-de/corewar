@@ -84,7 +84,7 @@ static int	op_tab_info(int op_code, int section, int part)
 	{"ldi", 3, {ALL, T_DIR | T_REG, T_REG}, 10, 25, " ", 1, 1},
 	{"sti", 3, {T_REG, ALL, T_DIR | T_REG}, 11, 25, " ", 1, 1},
 	{"fork", 1, {T_DIR}, 12, 800, " ", 0, 1},
-	{"lld", 2, {ALL}, 13, 10, " ", 1, 0},
+	{"lld", 2, {T_IND | T_DIR, T_REG}, 13, 10, " ", 1, 0},
 	{"lldi", 3, {ALL, T_DIR | T_REG, T_REG}, 14, 50, " ", 1, 1},
 	{"lfork", 1, {T_DIR}, 15, 1000, " ", 0, 1},
 	{"aff", 1, {T_REG}, 16, 2, " ", 1, 0}};

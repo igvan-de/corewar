@@ -59,8 +59,11 @@ void			write_champ(int fd, t_direction *info)
 	op_data = info;
 	while (op_data != NULL)
 	{
-		write(fd, &op_data->op_code, 1);
-		write_op(fd, op_data);
+		if (0 < op_data->op_code && op_data->op_code < 17)
+		{
+			write(fd, &op_data->op_code, 1);
+			write_op(fd, op_data);
+		}
 		op_data = op_data->next;
 	}
 }
