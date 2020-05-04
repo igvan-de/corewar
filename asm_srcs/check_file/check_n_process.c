@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 05:25:21 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/05/03 22:02:53 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 01:08:44 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <fcntl.h>
 
 /*
-** read the file line for line.
-**	if there is only a label it will not make a new node.
-** it will go to the next line but its still the same node.
-** after it ready it transforms the labels which came in als arguments
-** to the index number
+** @brief checks for the remains after all being extracted from line
+**
+** @param 	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
 */
 
 static bool		check_empty_line(t_func_list *list)
@@ -31,6 +31,20 @@ static bool		check_empty_line(t_func_list *list)
 		return (false);
 	return (true);
 }
+
+/*
+** @brief	reads from the file.
+**
+** @param 	list = the container where we store all our information
+** @param 	fd = file descriptor of the file
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+** @param	list->line_number = is the line number readed from file.
+** @param	list->cn_size = is needed to determine if its a comment or a name
+**
+** its reads line by line from the file. after each read it will process
+** the line.
+*/
 
 static void		read_file(t_func_list *list, int fd)
 {
@@ -47,7 +61,6 @@ static void		read_file(t_func_list *list, int fd)
 			close(fd);
 			error_message(list, 12, 2, 1);
 		}
-		ft_printf("cn_size %d\n", list->cn_size);
 		if (list->cn_size != 0)
 			get_rem_cn(list, ret);
 		else if (check_empty_line(list) == false)
@@ -60,7 +73,10 @@ static void		read_file(t_func_list *list, int fd)
 }
 
 /*
-** check for the fd of the file and checks if its valid
+** @brief open the file and check if its valid
+**
+** @param file_name = the file
+** @param list = the container where we store all our information
 */
 
 static void		transfer_into_struct(char *file_name, t_func_list *list)
@@ -74,7 +90,11 @@ static void		transfer_into_struct(char *file_name, t_func_list *list)
 }
 
 /*
-**	check if it ends on .s extention for assembly file
+** @brief just to pre-check for the  correct file file
+**
+** @param file_name = the file
+**
+** check if it ends on .s extention for assembly file
 */
 
 static bool		check_correct_file(char *file_name)
@@ -86,6 +106,13 @@ static bool		check_correct_file(char *file_name)
 		return (true);
 	return (false);
 }
+
+/*
+** @brief just to pre-check for the  correct file file
+**
+** @param file_name = the file
+** @param list the container where we store all our information
+*/
 
 void			check_n_process(char *file_name, t_func_list *list)
 {

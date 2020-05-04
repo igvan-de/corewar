@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/03 22:00:28 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 02:28:01 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ typedef	void				(*t_print)(t_func_list *list, int code, int kind);
 void						add_to_hash(t_func_list *list, char *label);
 void						insert_operation(t_func_list *list,
 							t_direction *new);
-int							calc_cmp_op(t_func_list *list, int j);
+int							calc_cmp_op(t_func_list *list, int len);
 void						check_sort(t_func_list *list,
-							t_direction *new, int i, int rep);
+							t_direction *new, int rep);
 void						add_instruction_node(t_func_list *list,
 							t_direction **info,
 							t_direction **pointer);

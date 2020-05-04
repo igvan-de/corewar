@@ -6,15 +6,25 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/05/03 22:49:36 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 01:34:10 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
+** @brief	found the beginning of a comment or name
+**
+** @param	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+** @param	list->cn_size = is needed to determine if its a comment or a name
+** @param	line = pointer to list->line
+** @param	target = pointer to name or comment
+** @param	len = max len of name or comment
+**
 ** This function search for the end of the string. so the other " character
-** if it doesnt find it will give an error
+** if it doesnt find it list->cn_size will get the max length of name or comment
 */
 
 static void	found_str(t_func_list *list, char *line, char **target, int len)
@@ -46,6 +56,15 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 }
 
 /*
+** @brief	search for the comment or name
+**
+** @param	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+** @param	line = pointer to list->line
+** @param	target = pointer to name or comment
+** @param	len = max len of name or comment
+**
 ** it will search for the start character of a string
 ** if there is a character that is not a " it will exit it
 */
@@ -66,6 +85,14 @@ static void	search_for_str(t_func_list *list, char *line,
 }
 
 /*
+** @brief	check for name or comment then process rest
+**
+** @param	list = the container where we store all our information
+** @param	list->name = is the name of the champion
+** @param	list->comment = is the comment
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+**
 ** compares it with name or comment.
 ** if that is the same it will adds the length. so it keeps going
 ** else it its not a valid input since we already checked for the '.'
