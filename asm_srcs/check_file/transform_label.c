@@ -6,17 +6,22 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/09 03:15:15 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/24 17:00:24 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 04:58:30 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
+** @brief	search in the hash node for the label name
+**
+** @param	h_label is the list within the hash node with labels name
+** @param	iter = contain a struct list with the operations
+** @param	i = iteration
+**
 ** here we actually do the converation
-** the label is targetting an other label
-** the distance from the current node to the targeted node
-** is the indirect adress
+** its based on the index from the beginning when this label occurs
+** each operation has a size. label point to the beginning of an operation
 */
 
 static void	cmp_str_hash(t_func_list *list, t_labels *h_label,
@@ -34,10 +39,17 @@ static void	cmp_str_hash(t_func_list *list, t_labels *h_label,
 		}
 		l_iter = l_iter->next;
 	}
-	error_message(list, 131, 1, 13);
+	error_message(list, 121, 1, 13);
 }
 
 /*
+** @brief	transform argument labels into hash and search for hash in
+**			list->labels
+**
+** @param	list = the container where we store all our information
+** @param	iter = contain a struct list with the operations
+** @param	i = iteration
+**
 ** here the str is being transformed into hash
 ** it will search for the correspoding existing hash
 ** if there is no corresponding hash then the label isnt valid
@@ -61,6 +73,13 @@ static void	conv_search_hash(t_func_list *list, t_direction **iter, int i)
 }
 
 /*
+** @brief	transform label strings into string based on index
+**
+** @param	list = the container where we store all our information
+** @param	list->info = contain a struct list with the operations
+** @param	iter->arg_str = node of list->info that stores a label given as
+**			a type argument
+**
 ** search for each node that all arg_str are NULL
 ** if it isnt not then it means there is a label that must be converted
 */
