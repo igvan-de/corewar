@@ -52,6 +52,7 @@ void			print_map(t_env *env)
 		i++;
 	}
 	printw("\n");
+	printw("\n");
 	print_vars(env);
 	refresh();
 }

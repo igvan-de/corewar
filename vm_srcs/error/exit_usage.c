@@ -15,7 +15,7 @@
 void	exit_usage(void)
 {
 	ft_putendl("corewar usage:");
-	ft_putendl("\n	./corewar <testfile>.cor");
+	ft_putendl("\n	./corewar <champion>.cor");
 	ft_putendl("\n	use '-dump' <nbr_cycle> to view memory");
 	ft_putendl("	use '-v' <level> to specify verbosity level");
 	ft_putendl("		supported verbosity levels:");
