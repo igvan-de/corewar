@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 02:46:51 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 05:23:51 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,12 +141,12 @@ void			check_sort(t_func_list *list,
 	i = list->line_char;
 	while (list->line[i] && ft_isspace(list->line[i]) == 0 &&
 		list->line[i] != DIRECT_CHAR && list->line[i] != '-' &&
-		list->line[i] != COMMENT_CHAR)
+		list->line[i] != COMMENT_CHAR && list->line[i] != LABEL_CHAR)
 		i++;
-	if (list->line[i - 1] == LABEL_CHAR && rep == 0)
+	if (list->line[i] == LABEL_CHAR && rep == 0)
 	{
-		get_label_name(list, i);
-		list->line_char = i;
+		get_label_name(list, i + 1);
+		list->line_char = i + 1;
 		skip_space(list);
 		if (list->line[list->line_char] == '\0')
 		{
