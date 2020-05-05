@@ -81,9 +81,9 @@ static void		read_file(t_func_list *list, int fd)
 
 static void		transfer_into_struct(char *file_name, t_func_list *list)
 {
-	int fd;
-	int bytes;
-	t_header test;
+	int			fd;
+	int			bytes;
+	t_header	test;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)

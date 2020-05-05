@@ -69,7 +69,7 @@ test_corewar:
 	cd unit_test && ./exec_test_corewar.sh && cd .. && make clean
 
 clean:
-	@rm -f $(OBJ_COREWAR) $(OBJ_ASM)
+	@rm -f $(OBJ_COREWAR) $(OBJ_ASM) $(OBJ_DSM)
 	@make -C ./libft clean
 	@make -C ./ft_printf clean
 	@make -C ./unit_test/support/tester clean
