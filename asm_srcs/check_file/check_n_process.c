@@ -56,7 +56,7 @@ static void		read_file(t_func_list *list, int fd)
 	{
 		list->line_char = 0;
 		ret = get_next_line(fd, &list->line);
-		if (ret == -1 || list->line == NULL)
+		if (ret == -1)
 		{
 			close(fd);
 			error_message(list, 12, 2, 1);
@@ -82,10 +82,20 @@ static void		read_file(t_func_list *list, int fd)
 static void		transfer_into_struct(char *file_name, t_func_list *list)
 {
 	int fd;
+	int bytes;
+	t_header test;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		error_message(list, 11, 1, 1);
+	bytes = read(fd, &test, sizeof(t_header));
+	if (bytes < 1)
+		error_message(list, 11, 1, 1);
+	else
+	{
+		close(fd);
+		fd = open(file_name, O_RDONLY);
+	}
 	read_file(list, fd);
 }
 
