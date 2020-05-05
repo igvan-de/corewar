@@ -56,7 +56,7 @@ static void		read_file(t_func_list *list, int fd)
 	{
 		list->line_char = 0;
 		ret = get_next_line(fd, &list->line);
-		if (ret == -1)
+		if (ret == -1 || list->line == NULL)
 		{
 			close(fd);
 			error_message(list, 12, 2, 1);
