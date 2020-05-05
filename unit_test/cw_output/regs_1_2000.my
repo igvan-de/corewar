@@ -1,0 +1,13 @@
+Introducing contestants...
+* Player 1, weighing 44 bytes, "test same reg nbrs" ("..") !
+ADV 4 (0x0000 -> 0x0004) 03 50 02 02 
+ADV 5 (0x0004 -> 0x0009) 04 54 03 03 03 
+ADV 5 (0x0009 -> 0x000e) 05 54 03 03 03 
+ADV 5 (0x000e -> 0x0013) 06 54 03 03 03 
+ADV 5 (0x0013 -> 0x0018) 07 54 03 03 03 
+ADV 5 (0x0018 -> 0x001d) 08 54 03 03 03 
+ADV 5 (0x001d -> 0x0022) 0a 54 03 03 03 
+ADV 5 (0x0022 -> 0x0027) 0b 54 03 03 03 
+ADV 4 (0x0027 -> 0x002b) 0e 0a 54 03 
+ADV 2 (0x002b -> 0x002d) 03 00 
+Contestant 1, "test same reg nbrs", has won !
