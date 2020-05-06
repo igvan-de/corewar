@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/05/04 01:34:10 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 13:44:33 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,15 +72,20 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 static void	search_for_str(t_func_list *list, char *line,
 		char **target, int len)
 {
+	if (list->line[list->line_char] == '\0')
+		return ;
 	skip_space(list);
 	if (line[list->line_char] && line[list->line_char] != '\"')
 	{
-		if (line[list->line_char + 1] != '\0')
+		if (line[list->line_char] && line[list->line_char + 1] != '\0')
 			list->line_char++;
 		error_message(list, 39, 0, 3);
 	}
-	list->line_char++;
+	if (list->line[list->line_char])
+		list->line_char++;
 	found_str(list, line, target, len);
+	if (list->line[list->line_char] == '\0')
+		return ;
 	check_end_line(list);
 }
 

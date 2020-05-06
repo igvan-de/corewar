@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 09:59:56 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/05/06 10:16:09 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 13:48:59 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@
 
 void			check_end_line(t_func_list *list)
 {
+	if (list->line_char == (int)ft_strlen(list->line))
+		return ;
 	while (list->line[list->line_char] &&
 	ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;

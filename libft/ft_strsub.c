@@ -6,7 +6,7 @@
 /*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/06 09:38:29 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 12:35:09 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	subs = (char*)ft_memalloc(sizeof(char) * (len + 2));
+	subs = (char*)ft_memalloc(sizeof(char) * (len + 1));
 	if (subs == NULL)
 		return (NULL);
 	while (i < len)
