@@ -37,6 +37,15 @@ typedef struct		s_file
 	t_type			type;
 	t_op			op_tab[17];
 }					t_file;
+typedef struct s_mainvars
+{
+	char			*fd_name;
+	int				fd_s;
+	int				fd_cor;
+	ssize_t			bytes;
+	t_file			*file;
+	unsigned int	exec_code_size;
+}				t_mainvars;
 
 /*
 **===============================CREATING .S FUNCTIONS==========================
@@ -48,5 +57,6 @@ void	load_optab_file(t_file *file);
 int		create_s_file(char *argv);
 int		convert(int index, char *exec, int arg_size);
 int		get_arg_value(t_file *file, int op_code, int one, int two);
+char	*file_check(char *argv);
 
 #endif

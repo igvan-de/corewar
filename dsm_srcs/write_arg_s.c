@@ -13,29 +13,6 @@
 #include "dsm.h"
 
 /*
-**	@brief:	return a single bit from a byte as an integer (0 or 1)
-**
-**	@param octet	:	source byte
-**
-**	get_bit receives a byte and an index and returns the bit
-**	at the index specified (0 or 1).
-*/
-
-static int	get_bit(unsigned char octet, int index)
-{
-	int shift_right;
-
-	if (index < 0 || index > 8)
-		return (-1);
-	shift_right = 7;
-	octet = octet << index;
-	octet = octet >> shift_right;
-	if ((1 & octet) == 1)
-		return (1);
-	return (0);
-}
-
-/*
 ** @brief
 **
 ** @param fd_s		= file discriptor to write operations(arguments) in
@@ -54,7 +31,7 @@ static int	get_bit(unsigned char octet, int index)
 ** T_DIR needs '%' char before operation(argument)
 */
 
-static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
+static	void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 {
 	int				value;
 	const char		*executable;
@@ -65,18 +42,18 @@ static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 	{
 		ft_putchar_fd(' ', fd_s);
 		ft_putchar_fd('r', fd_s);
-		ft_putstr_fd(executable ,fd_s);
+		ft_putstr_fd(executable, fd_s);
 	}
 	else if (file->type == IND)
 	{
 		ft_putchar_fd(' ', fd_s);
-		ft_putstr_fd(executable ,fd_s);
+		ft_putstr_fd(executable, fd_s);
 	}
 	else if (file->type == DIR)
 	{
 		ft_putchar_fd(' ', fd_s);
 		ft_putchar_fd('%', fd_s);
-		ft_putstr_fd(executable ,fd_s);
+		ft_putstr_fd(executable, fd_s);
 	}
 }
 
@@ -95,26 +72,26 @@ static void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 ** meaning what their size and type is, so we can write them in filediscripter
 */
 
-static	int		parse_encbyte(int fd_s, int i, t_file *file, int op_code)
+static	int		parse_encbyte(int fd_s, int i, t_file *f, int op_code)
 {
 	int				arg_value_1;
 	int				arg_value_2;
 	int				arg_value_3;
 	unsigned char	oct;
 
-	oct = file->exec[i - 1];
-	arg_value_1 = get_arg_value(file, op_code, get_bit(oct, 0), get_bit(oct, 1));
-	write_arg(fd_s, i, arg_value_1, file);
+	oct = f->exec[i - 1];
+	arg_value_1 = get_arg_value(f, op_code, get_bit(oct, 0), get_bit(oct, 1));
+	write_arg(fd_s, i, arg_value_1, f);
 	i += arg_value_1;
-	arg_value_2 = get_arg_value(file, op_code, get_bit(oct, 2), get_bit(oct, 3));
+	arg_value_2 = get_arg_value(f, op_code, get_bit(oct, 2), get_bit(oct, 3));
 	if (arg_value_2 != 0)
 		ft_putchar_fd(',', fd_s);
-	write_arg(fd_s, i, arg_value_2, file);
+	write_arg(fd_s, i, arg_value_2, f);
 	i += arg_value_2;
-	arg_value_3 = get_arg_value(file, op_code, get_bit(oct, 4), get_bit(oct, 5));
+	arg_value_3 = get_arg_value(f, op_code, get_bit(oct, 4), get_bit(oct, 5));
 	if (arg_value_3 != 0)
 		ft_putchar_fd(',', fd_s);
-	write_arg(fd_s, i, arg_value_3, file);
+	write_arg(fd_s, i, arg_value_3, f);
 	return (arg_value_1 + arg_value_2 + arg_value_3);
 }
 
@@ -129,7 +106,7 @@ static	int		parse_encbyte(int fd_s, int i, t_file *file, int op_code)
 ** we can later write it into the filediscripter
 */
 
-static void	write_op(int fd_s, int op_code ,t_file *file)
+static	void	write_op(int fd_s, int op_code, t_file *file)
 {
 	t_op			local_op;
 
@@ -150,13 +127,13 @@ static void	write_op(int fd_s, int op_code ,t_file *file)
 ** @param file		= struct containing all data
 **
 ** checking the current place of byte index provides what the op_code is,
-** by cheching the value of the op_code we know how many operations(arguments)
-** we could expect, so also how many places fro the current index we need to jump
-** to go to the first argument. Because all op_code values have an encode after
-** the op_code, except for the op_code values 1, 9, 12 & 15
+** by checking the value of the op_code we know how many operations(arguments)
+** we could expect, so also how many places from the current index we need to
+** jump to go to the first argument. Because all op_code values have
+** an encode after the op_code, except for the op_code values 1, 9, 12 & 15
 */
 
-static void	write_str(int fd_s, unsigned int *index, t_file *file)
+static	void	write_str(int fd_s, unsigned int *index, t_file *file)
 {
 	unsigned int	i;
 	int				op_code;
@@ -186,7 +163,7 @@ static void	write_str(int fd_s, unsigned int *index, t_file *file)
 ** by giving the address we stay at the correct byte index
 */
 
-void		write_args_into_s(int fd_s, unsigned prog_size, t_file *file)
+void			write_args_into_s(int fd_s, unsigned prog_size, t_file *file)
 {
 	unsigned int	i;
 
