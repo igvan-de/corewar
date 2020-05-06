@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/04 01:04:33 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:10:58 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ static void	insert_file_node(t_func_list *list)
 void		process_line(t_func_list *list)
 {
 	skip_space(list);
-	if (list->line[list->line_char] == '.')
+	if (list->line[list->line_char] &&
+		list->line[list->line_char] == '.')
 	{
 		list->line_char++;
 		get_name_comment(list);

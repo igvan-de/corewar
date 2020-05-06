@@ -12,3 +12,4 @@ ASM_SRCS += asm_srcs/check_file/add_instruction_node.c 	\
 			asm_srcs/check_file/transform_label.c		\
 			asm_srcs/check_file/main.c					\
 			asm_srcs/check_file/get_rem_cn.c			\
+			asm_srcs/check_file/read_file.c				\

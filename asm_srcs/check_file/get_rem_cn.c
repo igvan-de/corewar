@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/03 20:14:37 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 01:32:13 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:40:01 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ static void	found_quotes(t_func_list *list, int start, char **target)
 	if ((int)ft_strlen(*target) > list->cn_size)
 		error_message(list, 136, 1, 13);
 	list->cn_size = 0;
+	if (list->line[list->line_char] == '\0')
+		return ;
 	list->line_char++;
 	check_end_line(list);
 }

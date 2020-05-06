@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 10:02:48 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/09 04:04:00 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 09:58:51 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,14 @@ void			free_func(t_func_list *list)
 		ft_memdel((void**)&list->name);
 	if (list->comment != NULL)
 		ft_memdel((void**)&list->comment);
+	if (list->line != NULL)
+		ft_memdel((void**)&list->line);
 	if (list->hash_table != NULL)
 		ft_memdel((void**)&list->hash_table);
 	if (list->info != NULL)
 		free_direction(list);
+	list->info = NULL;
 	if (list->labels != NULL)
 		free_hash_labels(list);
+	list->labels = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 05:23:51 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 13:50:11 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ static void		get_label_name(t_func_list *list,
 			error_message(list, 60, 0, 6);
 		list->line_char++;
 	}
-	sub = ft_strsub(list->line, start, len - 1);
+	sub = ft_strsub(list->line, start, list->line_char - start - 1);
 	if (sub == NULL)
 		error_message(list, 61, 1, 6);
 	add_to_hash(list, sub);
