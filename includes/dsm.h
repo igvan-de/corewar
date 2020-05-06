@@ -37,6 +37,7 @@ typedef struct		s_file
 	t_type			type;
 	t_op			op_tab[17];
 }					t_file;
+
 typedef struct s_mainvars
 {
 	char			*fd_name;

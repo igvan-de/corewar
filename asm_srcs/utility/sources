@@ -1,8 +1,9 @@
-ASM_SRCS =	asm_srcs/utility/free_function.c	\
+ASM_SRCS =	asm_srcs/utility/free_func.c		\
 			asm_srcs/utility/free_split.c		\
 			asm_srcs/utility/utility.c			\
 			asm_srcs/utility/print_list.c		\
 			asm_srcs/utility/print_bits.c		\
 			asm_srcs/utility/has_encode.c		\
 			asm_srcs/utility/get_tdir_size.c	\
-			asm_srcs/utility/utility2.c \
+			asm_srcs/utility/utility2.c			\
+			asm_srcs/utility/rev_endian.c		\
