@@ -38,7 +38,7 @@ typedef struct		s_file
 	t_op			op_tab[17];
 }					t_file;
 
-typedef struct s_mainvars
+typedef	struct		s_mainvars
 {
 	char			*fd_name;
 	int				fd_s;
@@ -46,18 +46,18 @@ typedef struct s_mainvars
 	ssize_t			bytes;
 	t_file			*file;
 	unsigned int	exec_code_size;
-}				t_mainvars;
+}					t_mainvars;
 
 /*
 **===============================CREATING .S FUNCTIONS==========================
 */
 
-void	write_s_file(int fd_s, t_file *file);
-void	write_args_into_s(int fd_s, unsigned prog_size, t_file *file);
-void	load_optab_file(t_file *file);
-int		create_s_file(char *argv);
-int		convert(int index, char *exec, int arg_size);
-int		get_arg_value(t_file *file, int op_code, int one, int two);
-char	*file_check(char *argv);
+void				write_s_file(int fd_s, t_file *file);
+void				write_args_into_s(int fd_s, unsigned p_size, t_file *f);
+void				load_optab_file(t_file *file);
+int					create_s_file(char *argv);
+int					convert(int index, char *exec, int arg_size);
+int					get_arg_value(t_file *file, int op_code, int one, int two);
+char				*file_check(char *argv);
 
 #endif
