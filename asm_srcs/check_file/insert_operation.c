@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:11:27 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 13:49:42 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:32:31 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,9 @@ static void	l_insert_operation(t_func_list *list, t_direction *new,
 	skip_space(list);
 	if (comma == 0 && list->line[list->line_char] == ',')
 		error_message(list, 80, 0, 8);
-	if (list->line[list->line_char + 1] != '\0' && comma != 0)
+//	ft_printf("test3: str|%s|char|%d|len|%d\n", list->line, list->line_char, (int)ft_strlen(list->line));
+	if (list->line[list->line_char] != '\0'
+		&& list->line[list->line_char + 1] != '\0' && comma != 0)
 		list->line_char += 1;
 }
 
@@ -166,6 +168,7 @@ void		insert_operation(t_func_list *list, t_direction *new)
 	int	comma;
 
 	i = 0;
+//	ft_printf("test1: str|%s|char|%d|len|%d\n", list->line, list->line_char, (int)ft_strlen(list->line));
 	args = op_tab_info(new->op_code, 0, 0);
 	comma = args - 1;
 	while (i < args)
@@ -175,4 +178,5 @@ void		insert_operation(t_func_list *list, t_direction *new)
 		i++;
 	}
 	check_end_line(list);
+//	ft_printf("test2: str|%s|char|%d|len|%d\n", list->line, list->line_char, (int)ft_strlen(list->line));
 }
