@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/03 20:14:37 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 13:48:51 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:10:36 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,3 +134,4 @@ void		get_rem_cn(t_func_list *list, int ret)
 	else
 		no_quotes(list, target, ret);
 }
+

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/06 09:02:17 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 13:49:16 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:12:53 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 static bool		check_empty_line(t_func_list *list)
 {
+	if (list->line == NULL)
+		return (true);
 	while (list->line != NULL && list->line[list->line_char] &&
 	ft_isspace(list->line[list->line_char]) == 1)
 		list->line_char++;

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/05/06 13:44:33 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:12:02 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,23 @@ static void	found_str(t_func_list *list, char *line, char **target, int len)
 	start = list->line_char;
 	while (line[list->line_char] && line[list->line_char] != '\"')
 		list->line_char++;
-	if (list->line_char - start < len)
+	if (list->line_char - start < ((int)ft_strlen(list->line)))
 	{
-		*target = ft_strsub(line, start,
-		list->line_char - start);
-		list->line_char++;
+		*target = ft_strsub(line, start, list->line_char - start);
 		if (*target == NULL)
 			error_message(list, 32, 3, 3);
+		if (line[list->line_char] == '\0')
+		{
+			list->cn_size = len;
+			tmp = ft_strjoin(*target, "\n");
+			free(*target);
+			*target = tmp;
+			return ;
+		}
+		list->line_char++;
 	}
-	else
+	if (*target && (int)ft_strlen(*target) > len)
 		error_message(list, 33, 4, 3);
-	if (line[list->line_char - 1] != '\"')
-	{
-		list->cn_size = len;
-		tmp = ft_strjoin(*target, "\n");
-		free(*target);
-		*target = tmp;
-	}
 }
 
 /*
@@ -81,9 +81,11 @@ static void	search_for_str(t_func_list *list, char *line,
 			list->line_char++;
 		error_message(list, 39, 0, 3);
 	}
-	if (list->line[list->line_char])
+	if (list->line[list->line_char] == '\"')
+	{
 		list->line_char++;
-	found_str(list, line, target, len);
+		found_str(list, line, target, len);
+	}
 	if (list->line[list->line_char] == '\0')
 		return ;
 	check_end_line(list);
