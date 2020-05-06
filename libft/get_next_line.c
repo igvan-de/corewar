@@ -6,29 +6,22 @@
 /*   By: igvan-de <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/05/06 09:38:23 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int			rearrange(t_list **node, char **line)
+static int			followup(t_list **node, char **line, char *tmp, int i)
 {
-	size_t		i;
-	char		*tmp;
+	int ret;
 
-	i = 0;
-	*line = NULL;
-	if (((char*)(*node)->content)[0] == '\0')
-		return (0);
-	while (((char*)(*node)->content)[i] != '\0' &&
-		((char*)(*node)->content)[i] != '\n')
-		i++;
-	*line = ft_strsub((const char*)(*node)->content, 0, i);
+	ret = 1;
 	if (line == NULL)
 		return (-1);
 	if (((char*)(*node)->content)[i] == '\n')
 	{
+		ret++;
 		tmp = ft_strsub((const char*)(*node)->content,
 		i + 1, ft_strlen((*node)->content) - i);
 		if (tmp == NULL)
@@ -38,7 +31,24 @@ static int			rearrange(t_list **node, char **line)
 		tmp = ft_strnew(0);
 	free((*node)->content);
 	(*node)->content = tmp;
-	return (1);
+	return (ret);
+}
+
+static int			rearrange(t_list **node, char **line)
+{
+	size_t		i;
+	char		*tmp;
+
+	i = 0;
+	tmp = NULL;
+	*line = NULL;
+	if (((char*)(*node)->content)[0] == '\0')
+		return (0);
+	while (((char*)(*node)->content)[i] != '\0' &&
+		((char*)(*node)->content)[i] != '\n')
+		i++;
+	*line = ft_strsub((const char*)(*node)->content, 0, i);
+	return (followup(node, line, tmp, i));
 }
 
 static t_list		*list_check(const int fd, t_list **lst)

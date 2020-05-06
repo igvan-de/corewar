@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/04 04:56:09 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 09:08:53 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
 
 void	error_message(t_func_list *list, int error_code, int kind, int file)
 {
-	const t_print var_list[14] = {
+	const t_print var_list[15] = {
 	e_main, e_check_n_sort, e_procces_line,
 	e_get_name_or_comment, e_check_end_line,
 	e_add_instruction_node, e_check_sort,
 	e_add_to_hash, e_insert_operation, e_process_t_reg,
 	e_process_t_ind, e_process_t_dir, e_transform_arg_label,
-	e_get_rem_cn
+	e_get_rem_cn, e_read_file
 	};
 
 	var_list[file](list, error_code, kind);

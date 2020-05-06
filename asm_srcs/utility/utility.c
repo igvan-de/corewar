@@ -6,13 +6,19 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/29 09:59:56 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/28 00:20:59 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 10:16:09 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
+** @brief check remainder line
+**
+** @param 	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+**
 ** check for the leftover of the line
 ** it can only be stopped if there is a '\0' or a comment char
 ** if that is not true then error
@@ -29,7 +35,11 @@ void			check_end_line(t_func_list *list)
 }
 
 /*
-** this is just atoi but it will remember where it left last time
+** @brief this is just atoi but it will remember where it left last time
+**
+** @param 	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
 */
 
 int				pm_atoi(t_func_list *list)
@@ -59,7 +69,9 @@ int				pm_atoi(t_func_list *list)
 }
 
 /*
-** checks if the labels are valid character based on the subject
+** @brief checks for valid chars in label name
+**
+** @param 	c = a chracter
 */
 
 bool			check_label_char(char c)
@@ -77,6 +89,11 @@ bool			check_label_char(char c)
 }
 
 /*
+** @brief calculate a hash
+**
+** @param 	bytes = block of memory
+** @param	len = the length of the block
+**
 ** calculate the hash based on the Fowler–Noll–Vo hash function
 */
 

@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/04 02:28:01 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 09:04:11 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct				s_func_list
 **===============================CHECK FUNCTIONS================================
 */
 
+void						read_file(t_func_list *list, int fd);
 void						get_rem_cn(t_func_list *list, int ret);
 void						check_between(t_func_list *list, int err,
 							int err_p, int err_f);
