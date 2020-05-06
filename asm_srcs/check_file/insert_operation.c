@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:11:27 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 04:18:13 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:39:29 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,8 @@ static void	l_insert_operation(t_func_list *list, t_direction *new,
 	skip_space(list);
 	if (comma == 0 && list->line[list->line_char] == ',')
 		error_message(list, 80, 0, 8);
-	if (list->line[list->line_char + 1] != '\0' && comma != 0)
+	if (list->line[list->line_char] != '\0'
+		&& list->line[list->line_char + 1] != '\0' && comma != 0)
 		list->line_char += 1;
 }
 

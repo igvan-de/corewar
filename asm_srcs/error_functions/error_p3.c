@@ -6,11 +6,23 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:27:28 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 05:04:18 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 09:10:20 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void	e_read_file(t_func_list *list, int error_code, int kind)
+{
+	static char errors[2][50] = {
+	"fail read in gnl",
+	"no new line end of file"
+	};
+
+	ft_printf("Error code:%d\nfile: e_read_file\ndescription: %s\n",
+	error_code, errors[kind]);
+	free_func(list);
+}
 
 void	e_get_rem_cn(t_func_list *list, int error_code, int kind)
 {

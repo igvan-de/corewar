@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:08:36 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 04:57:17 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 09:08:25 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void		e_process_t_ind(t_func_list *list, int error_code, int kind);
 void		e_process_t_dir(t_func_list *list, int error_code, int kind);
 void		e_transform_arg_label(t_func_list *list, int error_code, int kind);
 void		e_get_rem_cn(t_func_list *list, int error_code, int kind);
+void		e_read_file(t_func_list *list, int error_code, int kind);
 
 #endif

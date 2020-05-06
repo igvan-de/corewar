@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 15:46:14 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/04 01:20:27 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 10:03:31 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,8 @@ int				main(int argc, char **argv)
 	while (argv[i] != NULL)
 		i++;
 	check_n_process(argv[argc - 1], &list);
+	if (list.info == NULL)
+		error_message(&list, 2, 2, 0);
 	create_cor_file(argv[i - 1], &list);
 	free_func(&list);
 	return (0);
