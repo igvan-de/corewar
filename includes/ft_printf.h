@@ -18,5 +18,6 @@
 # include <unistd.h>
 
 int				ft_printf(const char *format, ...);
+int				ft_asprintf(char **dest, const char *format, ...);
 
 #endif
