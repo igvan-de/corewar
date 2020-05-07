@@ -96,6 +96,5 @@ int				main(int argc, char **argv)
 	write_s_file(v.fd_s, v.file);
 	close(v.fd_cor);
 	close(v.fd_s);
-	while (1);
 	return (0);
 }
