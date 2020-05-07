@@ -37,7 +37,7 @@ static	void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 	char			*executable;
 
 	value = convert(i, file->exec, arg_size);
-	executable = ft_itoa(value);
+	ft_asprintf(&executable, "%i", value);
 	if (file->type == REG)
 	{
 		ft_putchar_fd(' ', fd_s);
