@@ -49,7 +49,7 @@ typedef	struct		s_mainvars
 }					t_mainvars;
 
 /*
-**===============================CREATING .S FUNCTIONS==========================
+**===============================DSM==========================
 */
 
 void				write_s_file(int fd_s, t_file *file);
@@ -59,5 +59,6 @@ int					create_s_file(char *argv);
 int					convert(int index, char *exec, int arg_size);
 int					get_arg_value(t_file *file, int op_code, int one, int two);
 char				*file_check(char *argv);
+void				free_vars(t_mainvars *v);
 
 #endif
