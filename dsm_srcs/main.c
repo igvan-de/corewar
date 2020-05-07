@@ -84,10 +84,10 @@ int				main(int argc, char **argv)
 		return (-1);
 	v.fd_name = file_check(argv[1]);
 	v.fd_cor = open(argv[1], O_RDONLY);
+	init_file(&v.file);
 	v.bytes = read(v.fd_cor, v.file->header, sizeof(t_header));
 	if (v.bytes != sizeof(t_header))
 		exit(-1);
-	init_file(&v.file);
 	v.fd_s = open(v.fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	v.exec_code_size = rev_endian(v.file->header->prog_size);
 	init_exec_code(&v.file, v.exec_code_size);
@@ -96,5 +96,6 @@ int				main(int argc, char **argv)
 	write_s_file(v.fd_s, v.file);
 	close(v.fd_cor);
 	close(v.fd_s);
+	while (1);
 	return (0);
 }
