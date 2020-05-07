@@ -34,10 +34,10 @@
 static	void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 {
 	int				value;
-	const char		*executable;
+	char			*executable;
 
 	value = convert(i, file->exec, arg_size);
-	executable = (const char*)ft_itoa(value);
+	executable = ft_itoa(value);
 	if (file->type == REG)
 	{
 		ft_putchar_fd(' ', fd_s);
@@ -55,6 +55,7 @@ static	void	write_arg(int fd_s, int i, int arg_size, t_file *file)
 		ft_putchar_fd('%', fd_s);
 		ft_putstr_fd(executable, fd_s);
 	}
+	ft_memdel((void **)&executable);
 }
 
 /*
