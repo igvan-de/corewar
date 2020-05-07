@@ -76,6 +76,14 @@ static	void	init_exec_code(t_file **file, size_t size)
 ** @return int = return value if program run succesfully
 */
 
+static	void	free_vars(t_mainvars *v)
+{
+	free(v->fd_name);
+	free(v->file->exec);
+	free(v->file->header);
+	free(v->file);
+}
+
 int				main(int argc, char **argv)
 {
 	t_mainvars v;
@@ -96,5 +104,6 @@ int				main(int argc, char **argv)
 	write_s_file(v.fd_s, v.file);
 	close(v.fd_cor);
 	close(v.fd_s);
+	free_vars(&v);
 	return (0);
 }
