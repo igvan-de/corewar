@@ -23,27 +23,29 @@
 **	on the operation code.
 */
 
-unsigned	char	validate_jump(t_byt op_code, int type, t_byt bytes)
+unsigned	char	validate_jump(t_byt code, int type, t_byt bytes, t_byt e)
 {
-	if (type == 1 && op_code == 6)
+	if (type == 1 && code == 6)
 		return (6);
-	if (type == 1 && op_code == 5)
+	if (type == 1 && code == 5)
 		return (6);
-	if (type == 1 && op_code == 4)
+	if (type == 1 && code == 4)
 		return (3);
-	if (type == 1 && op_code == 8)
+	if (type == 1 && code == 8)
 		return (6);
-	if (type == 1 && op_code == 14)
+	if (type == 1 && code == 14)
 		return (4);
-	if (type == 1 && op_code == 11)
+	if (type == 1 && code == 11 && e == 0)
+		return (2);
+	if (type == 1 && code == 1)
 		return (5);
 	if (type == 1)
 		return (2);
-	if (op_code == 11 && type == 2)
+	if (code == 11 && type == 2)
 		return (7);
-	if (op_code == 2 && type == 2 && bytes > 7)
+	if (code == 2 && type == 2 && bytes > 7)
 		return (7);
-	if (op_code == 3 && type == 2)
+	if (code == 3 && type == 2)
 		return (4);
 	return (bytes);
 }
@@ -91,18 +93,20 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	unsigned char	max_bytes;
 	unsigned char	bytes;
 	unsigned		index;
+	unsigned char	encode;
 
 	env->datamap[cursor->position].cursor = 0;
 	max_bytes = 25;
 	bytes = 1;
 	index = modi(cursor->position + 1);
+	encode = env->map[modi(cursor->position + 1)];
 	while ((env->map[modi(index)] < 1 || 16 < env->map[modi(index)]) &&
 			bytes < max_bytes)
 	{
 		index++;
 		bytes++;
 	}
-	bytes = validate_jump(cursor->op_code, type, bytes);
+	bytes = validate_jump(cursor->op_code, type, bytes, encode);
 	index = modi(cursor->position + bytes);
 	walk_one(cursor, env, &bytes, &index);
 	if (type == 1)
