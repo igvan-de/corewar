@@ -1,5 +1,1 @@
-	lines are not equal!
-ADV 5 (0x0087 -> 0x008c) 0b 00 5f 00 5f 
-ADV 2 (0x0087 -> 0x0089) 0b 00 
-
-	1 output differences found --> test failed
+test passed!
