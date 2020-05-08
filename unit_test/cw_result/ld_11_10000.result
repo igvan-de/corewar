@@ -1,69 +1,65 @@
 	lines are not equal!
-ADV 5 (0x0095 -> 0x009a) 02 0b 68 02 00 
-ADV 2 (0x0095 -> 0x0097) 02 0b 
-
-	lines are not equal!
-ADV 5 (0x009a -> 0x009f) 02 02 0b d0 00 
-ADV 2 (0x0098 -> 0x009a) 02 00 
-
-	lines are not equal!
-ADV 2 (0x009f -> 0x00a1) 03 02 
-ADV 2 (0x009a -> 0x009c) 02 02 
-
-	lines are not equal!
-ADV 7 (0x00a1 -> 0x00a8) 0b 68 02 00 37 00 37 
-ADV 5 (0x009c -> 0x00a1) 0b d0 00 03 02 
-
-	lines are not equal!
-ADV 5 (0x00a8 -> 0x00ad) 02 d0 00 04 02 
-ADV 7 (0x00a1 -> 0x00a8) 0b 68 02 00 37 00 37 
-
-	lines are not equal!
-ADV 7 (0x00ad -> 0x00b4) 0b 68 03 02 0b 68 3c 
-ADV 5 (0x00a8 -> 0x00ad) 02 d0 00 04 02 
-
-	lines are not equal!
-ADV 5 (0x00b4 -> 0x00b9) 02 d0 00 05 02 
-ADV 7 (0x00ad -> 0x00b4) 0b 68 03 02 0b 68 3c 
-
-	lines are not equal!
-ADV 7 (0x00b9 -> 0x00c0) 0b 68 02 00 3c 00 3c 
-ADV 5 (0x00b4 -> 0x00b9) 02 d0 00 05 02 
-
-	lines are not equal!
 ADV 3 (0x00c0 -> 0x00c3) 02 d0 00 
-ADV 7 (0x00b9 -> 0x00c0) 0b 68 02 00 3c 00 3c 
-
-	lines are not equal!
-ADV 5 (0x00c3 -> 0x00c8) 02 00 00 00 00 
 ADV 5 (0x00c0 -> 0x00c5) 02 d0 00 02 00 
 
 	lines are not equal!
-ADV 5 (0x00c8 -> 0x00cd) 02 32 00 32 02 
+ADV 2 (0x00c3 -> 0x00c5) 02 00 
 ADV 4 (0x00c8 -> 0x00cc) 02 32 00 32 
 
 	lines are not equal!
-ADV 2 (0x00cf -> 0x00d1) 03 02 
+ADV 2 (0x00c8 -> 0x00ca) 02 32 
 ADV 5 (0x00cc -> 0x00d1) 02 d0 00 03 02 
 
 	lines are not equal!
-ADV 5 (0x0110 -> 0x0115) 02 02 02 00 00 
+ADV 5 (0x00cc -> 0x00d1) 02 d0 00 03 02 
+ADV 7 (0x00d1 -> 0x00d8) 0b 68 02 00 37 00 37 
+
+	lines are not equal!
+ADV 7 (0x00d1 -> 0x00d8) 0b 68 02 00 37 00 37 
+ADV 5 (0x00d8 -> 0x00dd) 02 d0 00 04 02 
+
+	lines are not equal!
+ADV 5 (0x00d8 -> 0x00dd) 02 d0 00 04 02 
+ADV 7 (0x00dd -> 0x00e4) 0b 68 00 02 02 0b 3c 
+
+	lines are not equal!
+ADV 7 (0x00dd -> 0x00e4) 0b 68 00 02 02 0b 3c 
+ADV 5 (0x00e4 -> 0x00e9) 02 d0 00 05 02 
+
+	lines are not equal!
+ADV 5 (0x00e4 -> 0x00e9) 02 d0 00 05 02 
+ADV 7 (0x00e9 -> 0x00f0) 0b 68 02 00 3c 00 3c 
+
+	lines are not equal!
+ADV 7 (0x00e9 -> 0x00f0) 0b 68 02 00 3c 00 3c 
+ADV 7 (0x0101 -> 0x0108) 0b 68 02 00 00 00 00 
+
+	lines are not equal!
+ADV 7 (0x0101 -> 0x0108) 0b 68 02 00 00 00 00 
 ADV 2 (0x0110 -> 0x0112) 02 02 
 
 	lines are not equal!
-ADV 7 (0x0131 -> 0x0138) 0b 68 02 00 00 00 00 
+ADV 2 (0x0110 -> 0x0112) 02 02 
 ADV 2 (0x0112 -> 0x0114) 02 00 
 
 	lines are not equal!
-ADV 7 (0x013f -> 0x0146) 0b 68 02 00 00 00 00 
+ADV 2 (0x0112 -> 0x0114) 02 00 
 ADV 7 (0x0131 -> 0x0138) 0b 68 02 00 00 00 00 
 
 	lines are not equal!
-ADV 7 (0x0161 -> 0x0168) 0b 68 02 00 00 00 00 
+ADV 7 (0x0131 -> 0x0138) 0b 68 02 00 00 00 00 
 ADV 2 (0x013f -> 0x0141) 03 02 
 
 	lines are not equal!
-Contestant 1, "ld_test11", has won !
+ADV 2 (0x013f -> 0x0141) 03 02 
 ADV 7 (0x0141 -> 0x0148) 0b 68 00 00 00 00 00 
 
-	17 output differences found --> test failed
+	lines are not equal!
+ADV 7 (0x0141 -> 0x0148) 0b 68 00 00 00 00 00 
+ADV 7 (0x0161 -> 0x0168) 0b 68 02 00 00 00 00 
+
+	lines are not equal!
+ADV 7 (0x0161 -> 0x0168) 0b 68 02 00 00 00 00 
+Contestant 1, "ld_test11", has won !
+
+	16 output differences found --> test failed
