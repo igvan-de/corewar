@@ -37,7 +37,7 @@ unsigned	char	validate_jump(t_byt code, int type, t_byt bytes, t_byt e)
 		return (4);
 	if (type == 1 && code == 11 && e == 0)
 		return (2);
-	if (type == 1 && code == 1)
+	if (type == 1 && code == 11)
 		return (5);
 	if (type == 1)
 		return (2);
