@@ -1,1 +1,5 @@
-test passed!
+	lines are not equal!
+ADV 5 (0x009a -> 0x009f) 02 00 00 00 34 
+ADV 2 (0x009a -> 0x009c) 02 00 
+
+	1 output differences found --> test failed
