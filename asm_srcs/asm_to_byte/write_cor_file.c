@@ -67,11 +67,14 @@ static	void	write_string(int fd, char *string, int limit)
 	char	ascii_value;
 
 	index = 0;
-	while (string[index] != '\0')
+	if (string)
 	{
-		ascii_value = string[index];
-		write(fd, &ascii_value, 1);
-		index++;
+		while (string[index] != '\0')
+		{
+			ascii_value = string[index];
+			write(fd, &ascii_value, 1);
+			index++;
+		}
 	}
 	write_null(fd, index, limit);
 }
