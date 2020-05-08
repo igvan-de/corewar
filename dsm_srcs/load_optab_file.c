@@ -52,5 +52,6 @@ void			load_optab_file(t_file *file)
 		{"lldi", 3, {ALL, T_DIR | T_REG, T_REG}, 14, 50, "", 1, 1},
 		{"lfork", 1, {T_DIR}, 15, 1000, "", 0, 1},
 		{"aff", 1, {T_REG}, 16, 2, "", 1, 0}};
+
 	transfer_opdata_file(get_op, file);
 }

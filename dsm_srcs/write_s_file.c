@@ -13,13 +13,13 @@
 #include "dsm.h"
 
 /*
-* @brief writes name into filediscriptor in correct format
-*
-* @param fd	= filediscripter to write content into
-* @param header = is struct containing all data of header
+** @brief writes name into filediscriptor in correct format
+**
+** @param fd	= filediscripter to write content into
+** @param header = is struct containing all data of header
 */
 
-static void write_name(int fd_s, t_header *header)
+static	void	write_name(int fd_s, t_header *header)
 {
 	ft_putstr_fd(".name ", fd_s);
 	ft_putchar_fd('\"', fd_s);
@@ -29,13 +29,13 @@ static void write_name(int fd_s, t_header *header)
 }
 
 /*
-* @brief writes comment into filediscriptor in correct format
-*
-* @param fd	= filediscripter to write content into
-* @param header = is struct containing all data of header
+** @brief writes comment into filediscriptor in correct format
+**
+** @param fd	= filediscripter to write content into
+** @param header = is struct containing all data of header
 */
 
-static void write_comment(int fd_s, t_header *header)
+static	void	write_comment(int fd_s, t_header *header)
 {
 	ft_putstr_fd(".comment ", fd_s);
 	ft_putchar_fd('\"', fd_s);
@@ -45,14 +45,14 @@ static void write_comment(int fd_s, t_header *header)
 }
 
 /*
-* @brief is the main function who moves through different functions to write
-* all needed data in filediscripter (.s file)
-*
-* @param fd	= filediscripter to write content into
-* @param file  = struct containing all needed data
+** @brief is the main function who moves through different functions to write
+** all needed data in filediscripter (.s file)
+**
+** @param fd	= filediscripter to write content into
+** @param file  = struct containing all needed data
 */
 
-void	write_s_file(int fd_s, t_file *file)
+void			write_s_file(int fd_s, t_file *file)
 {
 	write_name(fd_s, file->header);
 	write_comment(fd_s, file->header);

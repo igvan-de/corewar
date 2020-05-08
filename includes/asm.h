@@ -119,6 +119,7 @@ void						print_list(t_func_list *list);
 void						print_bits(unsigned char octet);
 bool						has_encode(unsigned char op_code);
 size_t						get_tdir_size(unsigned char op_code);
+int							get_bit(unsigned char octet, int index);
 
 /*
 **===============================ERROR FUNCTIONS================================

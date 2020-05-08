@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cw_tester.h                                        :+:    :+:            */
+/*   rev_endian.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: jdunnink <marvin@codam.nl>                   +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/03/02 10:25:07 by jdunnink      #+#    #+#                 */
-/*   Updated: 2020/03/02 10:26:13 by jdunnink      ########   odam.nl         */
+/*   Created: 2020/02/27 17:26:16 by jdunnink      #+#    #+#                 */
+/*   Updated: 2020/02/27 17:26:17 by jdunnink      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CW_TESTER_H
-# define CW_TESTER_H
-# include "libft.h"
-# include "ft_printf.h"
-# include "get_next_line.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
+#include "asm.h"
 
-typedef	struct	s_tester_vars
+/*
+**	@brief:	reverse the endianness of a four byte number
+**
+**	@param oct	:	target number
+*/
+
+unsigned	int	rev_endian(unsigned int oct)
 {
-	char		*my_line;
-	char		*cmp_line;
-	int			my_ret;
-	int			cmp_ret;
-	int			i;
-	int			faults;
-}				t_tester_vars;
-
-#endif
+	return (((oct & 0xff) << 24) + ((oct & 0xff00) << 8) +
+		((oct & 0xff0000) >> 8) + ((oct >> 24) & 0xff));
+}

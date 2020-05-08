@@ -57,7 +57,7 @@ static short	to_2bytes(unsigned char one, unsigned char two)
 ** convert receives executable in binary form and transforms it into an integer
 */
 
-int	convert(int index, char *exec, int arg_size)
+int				convert(int index, char *exec, int arg_size)
 {
 	if (arg_size == 1)
 		return (exec[index]);

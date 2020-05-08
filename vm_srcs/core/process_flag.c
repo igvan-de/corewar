@@ -143,6 +143,7 @@ static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 **		  custom player nbr.
 **		- if the flag is '-visual' the visualizer is turned on.
 **		- if the flag is '-a', the op_aff operation is enabled.
+**		- if the flag is '-L, corewar will print live operation signals.
 **		- if the flag is '-dump', corewar will exit and
 **		  dump memory after the specified number of cycles.
 **		- if the flag is '-v', extra verbosity is enabled.
@@ -157,6 +158,8 @@ void			process_flag(char **argv, int *i, int arg_nb, t_env *env)
 		env->flag_byte = env->flag_byte | 1;
 	else if (ft_strcmp(argv[*i], "-a") == 0)
 		env->flag_byte = env->flag_byte | (1 << 4);
+	else if (ft_strcmp(argv[*i], "-L") == 0)
+		env->flag_byte = env->flag_byte | (1 << 5);
 	else if (ft_strcmp(argv[*i], "-dump") == 0)
 	{
 		env->flag_byte = env->flag_byte | (1 << 1);

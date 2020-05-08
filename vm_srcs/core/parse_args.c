@@ -21,10 +21,9 @@
 **	no contradicting flags active.
 **
 **	->	if the -dump flag is active, the visualizer gets disabled.
-**
 **	->	if the -v flag is active, the visualizer gets disabled.
-**
 **	->	if the -a flag is active, the visualizer gets disabled.
+**	->  if the -L flag is active, the visualizer gets disabled.
 */
 
 static	void	valid_flags(t_env *env)
@@ -38,6 +37,8 @@ static	void	valid_flags(t_env *env)
 	else if ((env->flag_byte & (1 << 3)) == (1 << 3))
 		env->flag_byte ^= 1;
 	else if ((env->flag_byte & (1 << 4)) == (1 << 4))
+		env->flag_byte ^= 1;
+	else if ((env->flag_byte & (1 << 5)) == (1 << 5))
 		env->flag_byte ^= 1;
 }
 
@@ -66,6 +67,8 @@ static	int		is_flag(char *param)
 	else if (ft_strcmp(param, "-n") == 0)
 		return (1);
 	else if (ft_strcmp(param, "-a") == 0)
+		return (1);
+	else if (ft_strcmp(param, "-L") == 0)
 		return (1);
 	return (0);
 }

@@ -115,16 +115,3 @@ uint64_t		calc_hash(const void *bytes, size_t len)
 	}
 	return (hash);
 }
-
-/*
-** @brief reverse the bytes by four
-**
-** @param oct = octal receiving
-** @return unsigned	int
-*/
-
-unsigned int	rev_endian(unsigned int oct)
-{
-	return (((oct & 0xff) << 24) + ((oct & 0xff00) << 8) +
-		((oct & 0xff0000) >> 8) + ((oct >> 24) & 0xff));
-}

@@ -8,10 +8,8 @@
 	zjmp	%:sti	
 sti:
 	sti r99, %23, %2834
-	zjmp	%:end
 sti:
 	sti r2, %23, %2834
-	zjmp	%:end
 sti:
 	sti r3, %23, %2834
 
