@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:13:55 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 10:04:19 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/09 02:41:41 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
 void	e_procces_line(t_func_list *list, int error_code, int kind)
 {
 	static char errors[1][50] = {
-	"no champion name"
+	"no champion name or no comment"
 	};
 
 	ft_printf("Error code:%d\nfile:process_line\ndescription: %s\n",

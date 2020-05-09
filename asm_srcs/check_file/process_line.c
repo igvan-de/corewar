@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/07 17:54:15 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/06 15:10:58 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/09 02:39:48 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void		process_line(t_func_list *list)
 		list->line_char++;
 		get_name_comment(list);
 	}
-	else if (list->name != NULL)
+	else if (list->name != NULL && list->comment != NULL)
 		insert_file_node(list);
 	else
 		error_message(list, 20, 0, 2);
