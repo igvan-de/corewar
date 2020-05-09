@@ -75,7 +75,7 @@ static	void		walk_one(t_cursor *c, t_env *env, t_byt *bytes, unsigned *i)
 	}
 }
 
-static	void		search_op(t_env *env, int max_bytes, int *bytes, int *i)
+static	void		search_op(t_env *env, t_byt max_bytes, t_byt *bytes, int *i)
 {
 	while ((env->map[modi(*i)] < 1 || 16 < env->map[modi(*i)]) &&
 			*bytes < max_bytes)
@@ -110,7 +110,7 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	bytes = 1;
 	index = modi(cursor->position + 1);
 	encode = env->map[modi(cursor->position + 1)];
-	search_op(env, max_bytes, &bytes, &index);
+	search_op(env, max_bytes, &bytes, (int *)&index);
 	bytes = validate_jump(cursor->op_code, type, bytes, encode);
 	index = modi(cursor->position + bytes);
 	walk_one(cursor, env, &bytes, &index);
