@@ -125,6 +125,14 @@ do
 	fi
 done
 
+REMAINING=asm_output/*.real
+for r in $REMAINING
+do
+	FAILED=${r%.real}
+	echo "${red}$FAILED faaaaaaaaaaaaill${reset}"
+	EXIT_CODE_FAIL=-1
+done
+
 if [ "$EXIT_CODE_SUCCESS" = "$EXIT_CODE_FAIL" ]; then
 	exit 0
 else
