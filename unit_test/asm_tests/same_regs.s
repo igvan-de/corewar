@@ -10,4 +10,3 @@ xor r3, r3, r3
 ldi r3, r3, r3
 sti r3, r3, r3
 lldi r3, r3, r3
- 
