@@ -12,6 +12,20 @@
 
 #include "vm.h"
 
+static	int	get_last_nbr(t_list *players)
+{
+	t_list *iter;
+	t_player *curr;
+
+	iter = players;
+	while (iter)
+	{
+		curr = iter->content;
+		iter = iter->next;
+	}
+	return (curr->nbr);
+}
+
 /*
 **	@brief: determine player location
 **
@@ -118,5 +132,5 @@ void				load_players(t_env *env)
 		load_player(env, i + 1);
 		i++;
 	}
-	env->player_last_alive = env->total_players;
+	env->player_last_alive = get_last_nbr(env->players);
 }
