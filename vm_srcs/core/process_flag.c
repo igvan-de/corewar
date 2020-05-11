@@ -124,7 +124,8 @@ static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 		return (0);
 	if (dup_nbr((int)player_nbr, env->players) == 1)
 		return (1);
-	env->player_nbr = (int)player_nbr;
+	env->custom_nbrs++;
+	env->curr_nbr = player_nbr;
 	return (1);
 }
 

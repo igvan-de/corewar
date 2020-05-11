@@ -81,7 +81,16 @@ static	void	store_player(t_player **new_player, t_env *env)
 {
 	t_list			*player_elem;
 
-	(*new_player)->nbr = env->player_nbr;
+	if (env->custom_nbrs > 0)
+	{
+		env->custom_nbrs--;
+		(*new_player)->nbr = env->curr_nbr;
+	}
+	else
+	{
+		(*new_player)->nbr = env->player_nbr;
+		env->player_nbr++;
+	}
 	player_elem = (t_list *)malloc(sizeof(t_list));
 	if (!player_elem)
 		error_mem();
@@ -93,10 +102,6 @@ static	void	store_player(t_player **new_player, t_env *env)
 	else
 		ft_lstaddend(&env->players, player_elem);
 	env->total_players++;
-	if (env->player_nbr == (int)env->total_players)
-		env->player_nbr = env->total_players + 1;
-	else
-		env->player_nbr = env->total_players;
 }
 
 /*
