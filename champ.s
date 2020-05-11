@@ -2,11 +2,11 @@
 .comment "This is a champion mi dolore de cabeza"
 
 init:
-	ld %4, r3		
+	ld %4, r3				# index offset 	
 	sti r1, %:live, %1				
 	sti r1, %:live2, %1				
 	sti r1, %:live3, %1	
-	ld %0, r2				
+	ld %0, r2				# switch the carry				
 	zjmp %:copy
 copy:
 	ldi %:init, r2, r4

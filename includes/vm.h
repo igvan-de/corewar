@@ -77,6 +77,8 @@ typedef struct			s_env
 	unsigned	char	flag_byte;
 	int					player_last_alive;
 	int					player_nbr;
+	int					curr_nbr;
+	int					custom_nbrs;
 	unsigned			total_players;
 	unsigned			total_cursors;
 	unsigned			total_cycles;
