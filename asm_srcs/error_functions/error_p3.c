@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:27:28 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 09:10:20 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/11 02:21:23 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ void	e_process_t_dir(t_func_list *list, int error_code, int kind)
 
 void	e_process_t_ind(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
-	"invalid input"
+	static char errors[2][50] = {
+	"invalid input",
+	"invalid operation argument"
 	};
 
 	ft_printf("Error code:%d\nfile: process_t_ind\ndescription: %s\n",

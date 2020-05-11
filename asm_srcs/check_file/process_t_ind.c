@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:13 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 04:51:14 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/11 02:17:28 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,22 @@ void		process_t_ind(t_func_list *list, t_direction *new, int arg)
 
 	list->total_bytes += 2;
 	new->byte_size += 2;
-	converted = pm_atoi(list);
+	converted = 0;
 	insert_encode(new, arg, IND_CODE);
 	if (list->line[list->line_char] == LABEL_CHAR)
 	{
 		new->label_in_op = 1;
 		get_label_op(list, new, arg);
 		return ;
+	}
+	else if (!((list->line[list->line_char] >= '0' &&
+		list->line[list->line_char] <= '9') ||
+	list->line[list->line_char] == '-'))
+		error_message(list, 101, 0, 10);
+	else
+	{
+		converted = pm_atoi(list);
+		new->arg_num[arg] = converted;
 	}
 	check_between(list, 100, 0, 10);
 	new->arg_num[arg] = converted;
