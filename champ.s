@@ -7,6 +7,11 @@ init:
 	sti r1, %:live2, %1				
 	sti r1, %:live3, %1	
 	ld %0, r2				# switch the carry				
+	ld %4, r3		
+	sti r1, %:live, %1				
+	sti r1, %:live2, %1				
+	sti r1, %:live3, %1	
+	ld %0, r2				
 	zjmp %:copy
 copy:
 	ldi %:init, r2, r4
