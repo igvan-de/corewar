@@ -113,10 +113,18 @@ static	int		dup_nbr(int nbr, t_list *players)
 
 static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 {
-	long long player_nbr;
+	long long	player_nbr;
+	int			i;
 
 	if (index >= arg_nb)
 		return (0);
+	i = 0;
+	while (argv[index][i] != '\0')
+	{
+		if (ft_isdigit(argv[index][i]) == 0)
+			return (0);
+		i++;
+	}
 	player_nbr = ft_atoilong(argv[index]);
 	if (player_nbr < -2147483648 || 2147483648 < player_nbr)
 		return (0);
@@ -124,7 +132,7 @@ static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 		return (0);
 	if (dup_nbr((int)player_nbr, env->players) == 1)
 		return (1);
-	env->custom_nbrs++;
+	env->custom_nbrs = 1;
 	env->curr_nbr = player_nbr;
 	return (1);
 }
