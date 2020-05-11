@@ -113,8 +113,8 @@ static	int		dup_nbr(int nbr, t_list *players)
 
 static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 {
-	long long player_nbr;
-	int i;
+	long long	player_nbr;
+	int			i;
 
 	if (index >= arg_nb)
 		return (0);

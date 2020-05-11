@@ -12,10 +12,10 @@
 
 #include "vm.h"
 
-static	int	get_last_nbr(t_list *players)
+static	int			get_last_nbr(t_list *players)
 {
-	t_list *iter;
-	t_player *curr;
+	t_list		*iter;
+	t_player	*curr;
 
 	iter = players;
 	while (iter)
