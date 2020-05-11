@@ -76,16 +76,16 @@ CFLAGS = -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	/bin/mkdir -p $(OBJDIR)
-	$(CC) -c $(CFLAGS) $(SRCS) $(HEADER)
-	/bin/mv $(OBJ) $(OBJDIR)/
-	ar rcs $(NAME) $(OBJS)
+	@/bin/mkdir -p $(OBJDIR)
+	@$(CC) -c $(CFLAGS) $(SRCS) $(HEADER)
+	@/bin/mv $(OBJ) $(OBJDIR)/
+	@ar rcs $(NAME) $(OBJS)
 
 clean:
-	/bin/rm -Rf $(OBJDIR)
-	/bin/rm -Rf *~ *#
+	@/bin/rm -Rf $(OBJDIR)
+	@/bin/rm -Rf *~ *#
 
 fclean: clean
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re: fclean all

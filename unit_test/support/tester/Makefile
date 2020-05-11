@@ -24,7 +24,7 @@ OBJS = $(addprefix $(OBJDIR)/, $(OBJ))
 HEADER = -I ../../../includes/
 cc = gcc
 CFLAGS = -Wall -Wextra -Werror
-LIB = ../../../libft/libft.a
+LIB = ../../../libft/libft.a ../../../ft_printf/libftprintf.a
 
 .PHONY: all clean fclean re
 .SUFFIXES: .c .o

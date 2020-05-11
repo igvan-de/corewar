@@ -6,11 +6,19 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/28 00:57:56 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 13:50:11 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** @brief	checks if there en encode byte.
+**
+** @param 	op_code = number of the operation
+** @return 	int = the op-code and encode byte in byte size
+**			if there no encode byte in return size of op_code
+*/
 
 static int		if_encode(int op_code)
 {
@@ -21,9 +29,20 @@ static int		if_encode(int op_code)
 }
 
 /*
+** @brief	checks if the operation is valid
+**
+** @param	list = the container where we store all our information
+** @param	list->line_char = keep track the index accesed in line.
+** @param	list->total_bytes = keeps track of the amount of bytes
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	new->opcode = assign operation code
+** @param	i = length of possible operation
+**
 ** check if its an valid op_code.
 ** Also it checks if there is an encode byte
-** it will add to the total bytes but to the node byte amount
+** it will add to the total bytes and to the node byte amount
 */
 
 static void		check_operation(t_func_list *list,
@@ -54,6 +73,13 @@ static void		check_operation(t_func_list *list,
 }
 
 /*
+** @brief	checks if there is a label name and process it
+**
+** @param	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+** @param	len = the label length
+**
 ** checks the label with correct chars then it makes a sub string.
 ** after the substring has been made it will convert to a hash
 ** it will be added into a new list that remembers the hash.
@@ -78,7 +104,7 @@ static void		get_label_name(t_func_list *list,
 			error_message(list, 60, 0, 6);
 		list->line_char++;
 	}
-	sub = ft_strsub(list->line, start, len - 1);
+	sub = ft_strsub(list->line, start, list->line_char - start - 1);
 	if (sub == NULL)
 		error_message(list, 61, 1, 6);
 	add_to_hash(list, sub);
@@ -87,6 +113,16 @@ static void		get_label_name(t_func_list *list,
 }
 
 /*
+** @brief	check for name or comment then process rest
+**
+** @param	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	rep = repeat so its a safety. to prvent from infinite loop.
+**
 ** this is quite a heavy read. so it first check for a label name
 ** if this has been found it will process then it will recurse so it
 ** will check again. because its already been found it will skip this
@@ -96,18 +132,21 @@ static void		get_label_name(t_func_list *list,
 */
 
 void			check_sort(t_func_list *list,
-		t_direction *new, int i, int rep)
+		t_direction *new, int rep)
 {
+	int i;
+
+	i = 0;
 	skip_space(list);
 	i = list->line_char;
 	while (list->line[i] && ft_isspace(list->line[i]) == 0 &&
 		list->line[i] != DIRECT_CHAR && list->line[i] != '-' &&
-		list->line[i] != COMMENT_CHAR)
+		list->line[i] != COMMENT_CHAR && list->line[i] != LABEL_CHAR)
 		i++;
-	if (list->line[i - 1] == LABEL_CHAR && rep == 0)
+	if (list->line[i] == LABEL_CHAR && rep == 0)
 	{
-		get_label_name(list, i);
-		list->line_char = i;
+		get_label_name(list, i + 1);
+		list->line_char = i + 1;
 		skip_space(list);
 		if (list->line[list->line_char] == '\0')
 		{
@@ -115,7 +154,7 @@ void			check_sort(t_func_list *list,
 			return ;
 		}
 		else
-			return (check_sort(list, new, i + 1, 1));
+			return (check_sort(list, new, 1));
 	}
 	else
 		check_operation(list, new, i);

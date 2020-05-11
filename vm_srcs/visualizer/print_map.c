@@ -36,7 +36,7 @@ static	void	print_byte(t_env *env, int i)
 	}
 	else
 		printw("%#02x ", env->map[i]);
-	if (((i + 1) & ((128 / 2) - 1)) == 0)
+	if ((i + 1) % (128 / 2) == 0)
 		printw("\n");
 }
 
@@ -51,6 +51,7 @@ void			print_map(t_env *env)
 		print_byte(env, i);
 		i++;
 	}
+	printw("\n");
 	printw("\n");
 	print_vars(env);
 	refresh();

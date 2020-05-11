@@ -6,13 +6,22 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:11:27 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/28 01:01:58 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 15:39:29 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
+** @brief	makes the encode byte for operation node
+**
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	i = a number that contains bitwise the possible argument types
+** @param	operation = the type of an operation argument
+** @param	new->encode = the total argument and type stored in a char
+**
 ** this is a function that registry the arguments type and
 ** place them in encode byte of the node
 ** based on the iteration it decide how many bytes it need to shift
@@ -37,6 +46,15 @@ void		insert_encode(t_direction *new, int i, int operation)
 }
 
 /*
+** @brief	checks if the amount of argument of a operation
+**
+** @param	list = the container where we store all our information
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	kind = a number that contains bitwise the possible argument types
+** @param	arg = which argument number it is
+**
 ** it compares the input is the same as the argument type: variable kind
 ** if the input is not the same as the argument type then its an error
 */
@@ -64,9 +82,15 @@ static void	process_kind(t_func_list *list, t_direction *new, int kind, int arg)
 }
 
 /*
-** this is a function then return either the amount of arguments
-** of a operation.
-** or the number of possible argument types based on the iteration number
+** @brief	search for argument amount and arguments type
+**
+** @param	op_code = code of operation
+** @param	section =  is to decide which we need to return
+**			argument amount or argument type
+** @param	part = is for which argument type need to be returned
+**			based on the index;
+**
+** this is a one of the resources we haven been given from school
 */
 
 static int	op_tab_info(int op_code, int section, int part)
@@ -96,6 +120,14 @@ static int	op_tab_info(int op_code, int section, int part)
 }
 
 /*
+** @brief	checks if the amount of argument of a operation
+**
+** @param	list = the container where we store all our information
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	comma = keep track of the amount of ','
+** @param	i = which argument needs to be filled in
 ** kind is a number that contains all possible arguments of that operation
 ** it will keeps track of the comma amount aswell
 */
@@ -112,13 +144,20 @@ static void	l_insert_operation(t_func_list *list, t_direction *new,
 	skip_space(list);
 	if (comma == 0 && list->line[list->line_char] == ',')
 		error_message(list, 80, 0, 8);
-	if (list->line[list->line_char + 1] != '\0' && comma != 0)
+	if (list->line[list->line_char] != '\0'
+		&& list->line[list->line_char + 1] != '\0' && comma != 0)
 		list->line_char += 1;
 }
 
 /*
-** args = the amount of arguments the operation have.
-** comma = the amount of comma's that has to be there
+** @brief	checks if the amount of argument of a operation
+**
+** @param	list = the container where we store all our information
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+**
+** it checks how many arguments are possible for each operation.
 */
 
 void		insert_operation(t_func_list *list, t_direction *new)

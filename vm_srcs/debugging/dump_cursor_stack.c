@@ -12,6 +12,21 @@
 
 #include "vm.h"
 
+static	void	dump_registry(int *registries)
+{
+	int i;
+
+	ft_putstr("registries: ");
+	i = 0;
+	while (i < REG_NUMBER)
+	{
+		ft_putnbr(registries[i]);
+		ft_putchar(' ');
+		i++;
+	}
+	ft_putchar('\n');
+}
+
 /*
 **	@brief:	print the contents of a cursor to stdout
 **
@@ -33,6 +48,7 @@ static	void	dump_cursor(t_cursor *cursor)
 	ft_printf("		op_code: %hhu\n", cursor->op_code);
 	ft_printf("		position index: %u\n", cursor->position);
 	ft_printf("		wait_cycles: %u\n", cursor->wait_cycles);
+	dump_registry(cursor->registries);
 }
 
 /*

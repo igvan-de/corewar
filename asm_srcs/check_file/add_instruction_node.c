@@ -6,11 +6,18 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 11:09:42 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/04/15 03:03:25 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 02:18:07 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** @brief	adds new node to the end of operation list
+**
+** @param	list = the container where we store all our information
+** @param	new = pointer to the last new node of the operation list
+*/
 
 static void	add_back_end(t_direction **info, t_direction *new)
 {
@@ -23,24 +30,33 @@ static void	add_back_end(t_direction **info, t_direction *new)
 }
 
 /*
+** @brief	init array needed to store operation arguments
+**
+** @param	list = the container where we store all our information
+** @param	new = pointer to the last new node of the operation list
+**
 ** init the arrays needed to store the arguments.
 ** it will keep making an array of 3 for strings and number
 ** even if there is only 1 argument. the reason is,
 ** dont we dont have to reallocate to make the size bigger
 */
 
-static void	init_args(t_func_list *list, t_direction **iter)
+static void	init_args(t_func_list *list, t_direction **new)
 {
-	(*iter)->arg_str = ft_memalloc(sizeof(char *) * 3);
-	if ((*iter)->arg_str == NULL)
+	(*new)->arg_str = ft_memalloc(sizeof(char *) * 3);
+	if ((*new)->arg_str == NULL)
 		error_message(list, 51, 0, 5);
-	(*iter)->arg_num = ft_memalloc(sizeof(int) * 3);
-	if ((*iter)->arg_num == NULL)
+	(*new)->arg_num = ft_memalloc(sizeof(int) * 3);
+	if ((*new)->arg_num == NULL)
 		error_message(list, 52, 0, 5);
 }
 
 /*
-** Here it will Make the new node and put it at the end of the list
+** @brief	makes a new list for operation if does not exist
+**
+** @param	list = the container where we store all our information
+** @param	info = pointer to the list struct for operation list
+** @param	pointer = pointer to the last node of the operation list
 */
 
 void		add_instruction_node(t_func_list *list, t_direction **info,

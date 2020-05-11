@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:15 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/24 17:53:18 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 04:49:15 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@
 ** it will will be processed afterwards into a number
 */
 
+/*
+** @brief	get t_dir size base on operation number
+**
+** @param	op_code = operation number
+*/
+
 static int	get_dir_size(int op_code)
 {
 	const int dir_size[16] = {4, 4, 4, 4, 4, 4, 4, 4,
@@ -33,6 +39,17 @@ static int	get_dir_size(int op_code)
 
 	return (dir_size[op_code - 1]);
 }
+
+/*
+** @brief	store arguments label in array
+**
+** @param	list = the container where we store all our information
+** @param	list->line_char = keep track the index accesed in line.
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	new->arg_str = an array of string to store operation labels
+*/
 
 static void	get_label_op(t_func_list *list, t_direction *new, int arg)
 {
@@ -49,6 +66,25 @@ static void	get_label_op(t_func_list *list, t_direction *new, int arg)
 		list->line_char + 1, i - list->line_char);
 	list->line_char = i + 1;
 }
+
+/*
+** @brief	process t_dir type argument
+**
+** @param	list = the container where we store all our information
+** @param	list->line_char = keep track the index accesed in line.
+** @param	list->total_bytes = keeps track of the amount of bytes
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	new->label_in_op = check if there is a label name argument
+** @param	new->byte_size = size of the operation
+** @param	new->arg_num = an array of ints to store operation arguments
+** @param	arg = which argument of the operation it is
+**
+** adjust the byte size of the operation node and the total bytes
+** it also insert the encode byte
+** it checks if there is a label or a number and store them in there array
+*/
 
 void		process_t_dir(t_func_list *list, t_direction *new, int arg)
 {

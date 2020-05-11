@@ -31,7 +31,7 @@ static	int	check_reg(t_env *env, t_cursor *c, int index)
 	unsigned reg;
 
 	reg = env->map[modi(c->position + index)];
-	if (reg < 1 || 16 < reg)
+	if (reg < 1 || REG_NUMBER < reg)
 		return (0);
 	return (1);
 }

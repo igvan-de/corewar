@@ -6,11 +6,35 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:27:28 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/24 18:00:25 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/11 02:31:17 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void	e_read_file(t_func_list *list, int error_code, int kind)
+{
+	static char errors[2][50] = {
+	"fail read in gnl",
+	"no new line end of file"
+	};
+
+	ft_printf("Error code:%d\nfile: e_read_file\ndescription: %s\n",
+	error_code, errors[kind]);
+	free_func(list);
+}
+
+void	e_get_rem_cn(t_func_list *list, int error_code, int kind)
+{
+	static char errors[2][50] = {
+	"malloc failed",
+	"name or label no closing \" found"
+	};
+
+	ft_printf("Error code:%d\nfile: get_rem_cn\ndescription: %s\n",
+	error_code, errors[kind]);
+	free_func(list);
+}
 
 void	e_transform_arg_label(t_func_list *list, int error_code, int kind)
 {

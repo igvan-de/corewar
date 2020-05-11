@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   ft_printf.h                                        :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: igvan-de <marvin@codam.nl>                   +#+                     */
+/*   By: zaz <marvin@42.fr>                           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/04/30 17:43:55 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/30 17:44:36 by igvan-de      ########   odam.nl         */
+/*   Created: 2013/10/04 11:33:27 by zaz           #+#    #+#                 */
+/*   Updated: 2020/04/15 11:00:52 by igvan-de      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@
 # include <unistd.h>
 
 int				ft_printf(const char *format, ...);
+int				ft_asprintf(char **dest, const char *format, ...);
 
 #endif

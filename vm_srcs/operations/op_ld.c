@@ -14,10 +14,17 @@
 
 static	void	exec_ld(t_cursor *cursor, t_env *env, unsigned char encode)
 {
-	int arg_1;
-	int arg_2;
+	int	arg_1;
+	int	arg_2;
+	int	addr;
 
-	arg_1 = get_arg(cursor, env, encode, 1);
+	if (get_type(encode, 1) == IND_CODE)
+	{
+		addr = get_tind(env, cursor->position + 2) % IDX_MOD;
+		arg_1 = get_tdir(env, cursor->position + addr);
+	}
+	else
+		arg_1 = get_arg(cursor, env, encode, 1);
 	arg_2 = get_reg_num(cursor, env, encode, 2);
 	cursor->registries[arg_2 - 1] = arg_1;
 	set_carry(cursor, arg_1);

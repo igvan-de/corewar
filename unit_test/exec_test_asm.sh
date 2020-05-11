@@ -125,6 +125,17 @@ do
 	fi
 done
 
+DIR=asm_output
+if [ "$(ls -A $DIR)" ]; then
+	REMAINING=asm_output/*.real
+	for r in $REMAINING
+	do
+		FAILED=${r%.real}
+		echo "${red}$FAILED faaaaaaaaaaaaill${reset}"
+		EXIT_CODE_FAIL=-1
+	done
+fi
+
 if [ "$EXIT_CODE_SUCCESS" = "$EXIT_CODE_FAIL" ]; then
 	exit 0
 else

@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:13:55 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/15 03:40:04 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/09 02:41:41 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
 void	e_procces_line(t_func_list *list, int error_code, int kind)
 {
 	static char errors[1][50] = {
-	"no champion name"
+	"no champion name or no comment"
 	};
 
 	ft_printf("Error code:%d\nfile:process_line\ndescription: %s\n",
@@ -65,7 +65,7 @@ void	e_check_n_sort(t_func_list *list, int error_code, int kind)
 	static char errors[3][50] = {
 	"not a .s file",
 	"fd failed",
-	"gnl failed"
+	"empty file"
 	};
 
 	ft_printf("Error code:%d\nfile:check_n_sort\ndescription: %s\n",
@@ -75,9 +75,10 @@ void	e_check_n_sort(t_func_list *list, int error_code, int kind)
 
 void	e_main(t_func_list *list, int error_code, int kind)
 {
-	static char errors[2][50] = {
+	static char errors[3][50] = {
 	"no file given",
-	"hash table has failed"
+	"hash table has failed",
+	"no operations given"
 	};
 
 	ft_printf("Error code:%d\nfile:main\ndescription: %s\n",

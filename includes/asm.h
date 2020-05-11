@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:59:43 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/28 01:08:43 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/06 09:04:11 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # include "op.h"
 # include <stdbool.h>
 # include <fcntl.h>
-# define TRUE 0
-# define FALSE -1
 # define S_LINE
 # define ALL 7
 
@@ -70,6 +68,7 @@ typedef struct				s_func_list
 	int						line_char;
 	int						total_bytes;
 	int						new_node;
+	int						cn_size;
 	t_hash_label			*labels;
 	t_direction				*info;
 }							t_func_list;
@@ -78,6 +77,8 @@ typedef struct				s_func_list
 **===============================CHECK FUNCTIONS================================
 */
 
+void						read_file(t_func_list *list, int fd);
+void						get_rem_cn(t_func_list *list, int ret);
 void						check_between(t_func_list *list, int err,
 							int err_p, int err_f);
 void						transform_label(t_func_list *list);
@@ -93,9 +94,9 @@ typedef	void				(*t_print)(t_func_list *list, int code, int kind);
 void						add_to_hash(t_func_list *list, char *label);
 void						insert_operation(t_func_list *list,
 							t_direction *new);
-int							calc_cmp_op(t_func_list *list, int j);
+int							calc_cmp_op(t_func_list *list, int len);
 void						check_sort(t_func_list *list,
-							t_direction *new, int i, int rep);
+							t_direction *new, int rep);
 void						add_instruction_node(t_func_list *list,
 							t_direction **info,
 							t_direction **pointer);
@@ -116,8 +117,9 @@ int							till_power(char letter, int power);
 unsigned int				rev_endian(unsigned int oct);
 void						print_list(t_func_list *list);
 void						print_bits(unsigned char octet);
-int							has_encode(unsigned char op_code);
+bool						has_encode(unsigned char op_code);
 size_t						get_tdir_size(unsigned char op_code);
+int							get_bit(unsigned char octet, int index);
 
 /*
 **===============================ERROR FUNCTIONS================================

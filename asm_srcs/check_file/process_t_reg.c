@@ -6,15 +6,27 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:08 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/24 17:52:07 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/04 04:52:16 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 /*
-** process T_REG. it adds the bytes to the total and node.
-** get the number and insert the encode byte.
+** @brief	process t_reg type argument
+**
+** @param	list = the container where we store all our information
+** @param	list->line_char = keep track the index accesed in line.
+** @param	list->total_bytes = keeps track of the amount of bytes
+** @param	new = memory adress from a new or existing list.
+**			it always has the last node in the list
+**			this list contains all the information for a operation
+** @param	new->byte_size = size of the operation
+** @param	new->arg_num = an array of ints to store operation arguments
+** @param	arg = which argument of the operation it is
+**
+** adjust the byte size of the operation node and the total bytes
+** it also insert the encode byte
 */
 
 void		process_t_reg(t_func_list *list, t_direction *new, int arg)
@@ -28,7 +40,7 @@ void		process_t_reg(t_func_list *list, t_direction *new, int arg)
 		list->line[list->line_char] <= '9'))
 		error_message(list, 99, 0, 9);
 	converted = pm_atoi(list);
-	if (converted <= 0 || converted > 100)
+	if (converted <= 0 || converted > REG_NUMBER)
 		error_message(list, 90, 1, 9);
 	check_between(list, 98, 0, 9);
 	insert_encode(new, arg, REG_CODE);

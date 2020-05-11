@@ -1,0 +1,12 @@
+DSM_SRCS =	dsm_srcs/main.c					\
+			dsm_srcs/write_s_file.c			\
+			dsm_srcs/write_arg_s.c			\
+			dsm_srcs/load_optab_file.c		\
+			dsm_srcs/convert.c				\
+			dsm_srcs/get_arg_value.c		\
+			dsm_srcs/file_check.c			\
+			dsm_srcs/free_vars.c			\
+			asm_srcs/utility/free_split.c	\
+			asm_srcs/utility/rev_endian.c	\
+			asm_srcs/utility/get_bit.c		\
+			asm_srcs/utility/get_tdir_size.c\
