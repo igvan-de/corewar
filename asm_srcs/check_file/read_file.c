@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/06 09:02:17 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 15:12:53 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/22 01:52:16 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static bool		check_empty_line(t_func_list *list)
 
 static void		pre_process(t_func_list *list, int ret, int old_ret)
 {
+	if (list->cn_size != 0 && ret == 0)
+		error_message(list, 142, 2, 14);
 	if (list->cn_size != 0)
 		get_rem_cn(list, ret);
 	else if (old_ret == 1 && ret == 0)
