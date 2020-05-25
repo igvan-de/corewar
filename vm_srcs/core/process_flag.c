@@ -121,7 +121,7 @@ static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 	i = 0;
 	while (argv[index][i] != '\0')
 	{
-		if (ft_isdigit(argv[index][i]) == 0)
+		if (ft_isdigit(argv[index][i]) == 0 && argv[index][i] != '-')
 			return (0);
 		i++;
 	}
