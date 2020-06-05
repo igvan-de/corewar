@@ -64,7 +64,7 @@ do
 	TEST_NAME=$(echo $t | cut -c 10-50)
 	TEST_NAME=${TEST_NAME%.cor}
 	DUMP=${TEST_NAME##*_}
-	./../corewar -v 16 -dump $DUMP $t > cw_output/test_my
+	./../corewar -v 16 -d $DUMP $t > cw_output/test_my
 	./support/real_core -v 16 -d $DUMP $t > cw_output/test_real
 	./support/tester/cw_tester cw_output/test_my cw_output/test_real > cw_result/$TEST_NAME.result
 	mv cw_output/test_real cw_output/$TEST_NAME.real

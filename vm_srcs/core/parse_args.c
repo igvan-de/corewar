@@ -28,6 +28,9 @@
 
 static	void	valid_flags(t_env *env)
 {
+	if ((env->flag_byte & (1 << 1)) == (1 << 1) &&
+		(env->flag_byte & (1 << 6)) == (1 << 6))
+		error_init(3);
 	if ((env->flag_byte & 1) == 0)
 		return ;
 	if ((env->flag_byte & (1 << 1)) == (1 << 1))
@@ -39,6 +42,8 @@ static	void	valid_flags(t_env *env)
 	else if ((env->flag_byte & (1 << 4)) == (1 << 4))
 		env->flag_byte ^= 1;
 	else if ((env->flag_byte & (1 << 5)) == (1 << 5))
+		env->flag_byte ^= 1;
+	else if ((env->flag_byte & (1 << 6)) == (1 << 6))
 		env->flag_byte ^= 1;
 }
 
@@ -59,6 +64,8 @@ static	int		is_flag(char *param)
 	else if (ft_strcmp(param, "-visual") == 0)
 		return (1);
 	else if (ft_strcmp(param, "-dump") == 0)
+		return (1);
+	else if (ft_strcmp(param, "-d") == 0)
 		return (1);
 	else if (ft_strcmp(param, "-v") == 0)
 		return (1);
