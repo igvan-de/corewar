@@ -161,6 +161,10 @@ static	int		get_player_nbr(char **argv, int index, int arg_nb, t_env *env)
 
 void			process_flag(char **argv, int *i, int arg_nb, t_env *env)
 {
+	if (ft_strcmp(argv[*i], "-dump") == 0)
+		env->flag_byte = env->flag_byte | (1 << 1);
+	if (ft_strcmp(argv[*i], "-d") == 0)
+		env->flag_byte = env->flag_byte | (1 << 6);
 	if (ft_strcmp(argv[*i], "-n") == 0)
 		*i += get_player_nbr(argv, (*i) + 1, arg_nb, env);
 	else if (ft_strcmp(argv[*i], "-visual") == 0)
@@ -169,9 +173,9 @@ void			process_flag(char **argv, int *i, int arg_nb, t_env *env)
 		env->flag_byte = env->flag_byte | (1 << 4);
 	else if (ft_strcmp(argv[*i], "-L") == 0)
 		env->flag_byte = env->flag_byte | (1 << 5);
-	else if (ft_strcmp(argv[*i], "-dump") == 0)
+	else if (ft_strcmp(argv[*i], "-dump") == 0 ||
+		ft_strcmp(argv[*i], "-d") == 0)
 	{
-		env->flag_byte = env->flag_byte | (1 << 1);
 		get_dump_cycle(*i, arg_nb, argv, env);
 		(*i)++;
 	}

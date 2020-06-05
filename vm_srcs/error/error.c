@@ -15,7 +15,7 @@
 void	error_mem(void)
 {
 	ft_putendl("	memory_error: could not allocate memory.");
-	exit(0);
+	exit(1);
 }
 
 void	error_input(int err_code)
@@ -33,7 +33,7 @@ void	error_input(int err_code)
 	else if (err_code == 6)
 		ft_putendl("	input_error 6: too many champions.");
 	else if (err_code == 7)
-		ft_putendl("	input_error 7: -dump flag requires <nbr_of_cycles>");
+		ft_putendl("	input_error 7: -dump / -d requires <nbr_of_cycles>");
 	else if (err_code == 8)
 		ft_putendl("	input_error 8: -dump <nbr> is not a valid cycle.");
 	else if (err_code == 9)
@@ -44,7 +44,7 @@ void	error_input(int err_code)
 		ft_putendl("	input_error 11: verbosity level not supported.");
 	else if (err_code == 12)
 		ft_putendl("	input_error 12: champ exec_code size is too large.");
-	exit(0);
+	exit(1);
 }
 
 void	error_init(int err_code)
@@ -53,7 +53,9 @@ void	error_init(int err_code)
 		ft_putendl("	init_error 1: invalid player number encountered.");
 	else if (err_code == 2)
 		ft_putendl("	init_error 2: could not find cursor position.");
-	exit(0);
+	else if (err_code == 3)
+		ft_putendl("	init_error 3: cannot use -dump and -d together.");
+	exit(1);
 }
 
 void	error_exec(int err_code)
@@ -64,5 +66,5 @@ void	error_exec(int err_code)
 		ft_putendl("	exec_error 3: incorrect argument size found\n");
 	else if (err_code == 4)
 		ft_putendl("	exec_error 4: error occurred in get_arg\n");
-	exit(0);
+	exit(1);
 }

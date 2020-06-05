@@ -181,6 +181,7 @@ void					dump_env_state(t_env *env);
 void					dump_exec_code(char *exc, unsigned int size, t_env *e);
 void					dump_header(t_header header);
 void					dump_mem(t_env *env);
+void					dump_mem_alt(t_env *env);
 void					dump_op(t_cursor *cursor, t_env *env);
 void					dump_op_enc(t_cursor *c, t_env *e, t_byt enc, t_byt op);
 void					dump_op_invalid(t_cursor *c, t_env *env, t_byt bytes);
