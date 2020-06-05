@@ -49,7 +49,7 @@ void				dump_mem(t_env *env)
 			ft_printf("%02x ", 0xFF & env->map[i]);
 		else
 			ft_printf("%#02x ", env->map[i]);
-		if ((i + 1) % (128 / 2) == 0)
+		if ((i + 1) % 32 == 0)
 		{
 			addr_trig = 1;
 			ft_putchar('\n');
