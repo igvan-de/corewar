@@ -17,18 +17,19 @@ include asm_srcs/error_functions/sources
 include asm_srcs/asm_to_byte/sources
 include asm_srcs/check_file/sources
 
-
 OBJ_ASM = $(ASM_SRCS:%.c=%.o)
 OBJ_DSM = $(DSM_SRCS:%.c=%.o)
-OBJ_COREWAR = $(COREWAR_SRCS:%.c=%.o)
+OBJ_CW = $(COREWAR_SRCS:%.c=%.o)
+VIS = -lncurses
 INCLUDES = -I ./includes
 LIBFT_H = -I ./libft/includes
+LIBFT_A = libft/libft.a
 PRTF_H = -I ./ft_printf
+PRTF_A = ft_printf/libftprintf.a
 NAME_ASM = asm
 NAME_DSM = dsm
-NAME_COREWAR = corewar
-CFLAGS =  -Wall -Werror -Wextra
-NORM = norminette $(ASM_SRCS) $(COREWAR_SRCS) | grep -e "Error" -e "Warning" -B 1
+NAME_CW = corewar
+CFLG =  -Wall -Werror -Wextra
 
 COLOR_GREEN = $(shell printf "\e[38;5;10m")
 COLOR_RED = $(shell printf "\e[31;5;10m")
@@ -38,28 +39,28 @@ PRINT_PLUS = $(shell printf '$(COLOR_GREEN)[ + ]$(COLOR_DEFAULT)')
 PRINT_CLEAN = $(shell printf '$(COLOR_RED)[ - ]$(COLOR_DEFAULT)')
 PRINT_DONE = $(shell printf '$(COLOR_YELLOW)[ › ]$(COLOR_DEFAULT)')
 
-all: $(NAME_ASM) $(NAME_COREWAR) $(NAME_DSM)
+all: $(NAME_ASM) $(NAME_CW) $(NAME_DSM)
 
 %.o: %.c includes/vm.h includes/op.h includes/asm.h includes/dsm.h
-	@gcc $< -c -o $@ $(CFLAGS) $(INCLUDES) $(LIBFT_H) $(PRTF_H)
+	@gcc $< -c -o $@ $(CFLG) $(INCLUDES) $(LIBFT_H) $(PRTF_H)
 	@echo "$(PRINT_PLUS) $@"
 
-$(NAME_COREWAR): $(OBJ_COREWAR) libft/libft.a ft_printf/libftprintf.a
-	@gcc $(CFLAGS) $(OBJ_COREWAR) -lncurses libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+$(NAME_CW): $(OBJ_CW) $(LIBFT_A) $(PRTF_A)
+	@gcc $(CFLG) $(OBJ_CW) $(VIS) $(LIBFT_A) -o $@ $(PRTF_A) -o $@
 	@echo "$(PRINT_DONE) Compiling corewar completed"
 
-$(NAME_ASM): $(OBJ_ASM) libft/libft.a ft_printf/libftprintf.a
-	@gcc $(CFLAGS) $(OBJ_ASM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+$(NAME_ASM): $(OBJ_ASM) $(LIBFT_A) $(PRTF_A)
+	@gcc $(CFLG) $(OBJ_ASM) $(LIBFT_A) -o $@ $(PRTF_A) -o $@
 	@echo "$(PRINT_DONE) Compiling asm completed"
 
-$(NAME_DSM): $(OBJ_DSM) libft/libft.a ft_printf/libftprintf.a
-	@gcc $(CFLAGS) $(OBJ_DSM) libft/libft.a -o $@ ft_printf/libftprintf.a -o $@
+$(NAME_DSM): $(OBJ_DSM) $(LIBFT_A) $(PRTF_A)
+	@gcc $(CFLG) $(OBJ_DSM) $(LIBFT_A) -o $@ $(PRTF_A) -o $@
 	@echo "$(PRINT_DONE) Compiling dsm completed"
 
-libft/libft.a: FORCE
+libft/libft.a:
 	@make -C libft/
 
-ft_printf/libftprintf.a: FORCE
+ft_printf/libftprintf.a:
 	@make -C ft_printf/
 
 test_asm:
@@ -69,14 +70,14 @@ test_corewar:
 	cd unit_test && ./exec_test_corewar.sh && cd .. && make clean
 
 clean:
-	@rm -f $(OBJ_COREWAR) $(OBJ_ASM) $(OBJ_DSM)
+	@rm -f $(OBJ_CW) $(OBJ_ASM) $(OBJ_DSM)
 	@make -C ./libft clean
 	@make -C ./ft_printf clean
 	@make -C ./unit_test/support/tester clean
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
 fclean: clean
-	@rm -f $(NAME_ASM) $(NAME_COREWAR) $(NAME_DSM)
+	@rm -f $(NAME_ASM) $(NAME_CW) $(NAME_DSM)
 	@make -C ./libft fclean
 	@make -C ./ft_printf fclean
 	@make -C ./unit_test/support/tester fclean
@@ -91,12 +92,3 @@ fclean: clean
 re:
 	@make fclean
 	@make all
-
-norm:
-	@echo "===================NORMINETTE==================="
-	@$(NORM) || echo "no norminette errors"
-	@echo "================================================"
-
-FORCE:
-
-.PHONY: all clean fclean re norm asm test_asm test_corewars
