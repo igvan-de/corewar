@@ -116,4 +116,5 @@ void			parse_args(int arg_nb, char **argv, t_env *env)
 	if (env->total_players == 0)
 		error_input(9);
 	valid_flags(env);
+	nbr_players(env);
 }

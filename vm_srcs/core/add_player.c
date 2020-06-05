@@ -86,11 +86,6 @@ static	void	store_player(t_player **new_player, t_env *env)
 		env->custom_nbrs--;
 		(*new_player)->nbr = env->curr_nbr;
 	}
-	else
-	{
-		(*new_player)->nbr = env->player_nbr;
-		env->player_nbr++;
-	}
 	player_elem = (t_list *)malloc(sizeof(t_list));
 	if (!player_elem)
 		error_mem();

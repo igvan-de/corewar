@@ -104,6 +104,7 @@ void					init_env(t_env **env);
 void					load_optab(t_env *env);
 void					load_players(t_env *env);
 void					parse_args(int arg_nb, char **argv, t_env *env);
+void					nbr_players(t_env *env);
 
 /*
 **	program execution
