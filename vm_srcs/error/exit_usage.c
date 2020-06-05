@@ -16,13 +16,15 @@ void	exit_usage(void)
 {
 	ft_putendl("corewar usage:");
 	ft_putendl("\n	./corewar <champion>.cor");
-	ft_putendl("\n	use '-dump' <nbr_cycle> to view memory");
+	ft_putendl("	use '-dump' <nbr_cycle> to view memory (32 byte width)");
+	ft_putendl("	use '-d' <nbr_cycle> to view memory (64 byte width)");
+	ft_putendl("	use '-visual' flag to visualize");
+	ft_putendl("	use '-a' flag to enable operation aff");
+	ft_putendl("	use '-L' flag to print live signals");
 	ft_putendl("	use '-v' <level> to specify verbosity level");
 	ft_putendl("		supported verbosity levels:");
 	ft_putendl("			16 --> show performed operations");
 	ft_putendl("			2 --> show cycles");
-	ft_putendl("			verbosity can be combined to enable multiple");
-	ft_putendl("	use '-visual' flag to visualize");
-	ft_putendl("	use -a flag to enable operation aff\n");
+	ft_putendl("			verbosity can be combined to enable multiple\n");
 	exit(0);
 }
