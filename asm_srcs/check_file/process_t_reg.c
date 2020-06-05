@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:13:08 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/04 04:52:16 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/05 17:42:13 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		process_t_reg(t_func_list *list, t_direction *new, int arg)
 		list->line[list->line_char] <= '9'))
 		error_message(list, 99, 0, 9);
 	converted = pm_atoi(list);
-	if (converted <= 0 || converted > REG_NUMBER)
+	if (converted < 0 || converted > 99)
 		error_message(list, 90, 1, 9);
 	check_between(list, 98, 0, 9);
 	insert_encode(new, arg, REG_CODE);

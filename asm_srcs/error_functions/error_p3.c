@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:27:28 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/22 02:02:38 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/05 17:36:48 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	e_read_file(t_func_list *list, int error_code, int kind)
 {
-	static char errors[3][50] = {
+	const char errors[3][50] = {
 	"fail read in gnl",
 	"no new line end of file"
 	};
@@ -29,7 +29,7 @@ void	e_read_file(t_func_list *list, int error_code, int kind)
 
 void	e_get_rem_cn(t_func_list *list, int error_code, int kind)
 {
-	static char errors[2][50] = {
+	const char errors[2][50] = {
 	"malloc failed",
 	"name or comment to big"
 	};
@@ -41,7 +41,7 @@ void	e_get_rem_cn(t_func_list *list, int error_code, int kind)
 
 void	e_transform_arg_label(t_func_list *list, int error_code, int kind)
 {
-	static char errors[2][50] = {
+	const char errors[2][50] = {
 	"label hash doesnt exist",
 	"label hash exist. label name not found"
 	};
@@ -53,7 +53,7 @@ void	e_transform_arg_label(t_func_list *list, int error_code, int kind)
 
 void	e_process_t_dir(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
+	const char errors[1][50] = {
 	"invalid input"
 	};
 
@@ -65,7 +65,7 @@ void	e_process_t_dir(t_func_list *list, int error_code, int kind)
 
 void	e_process_t_ind(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
+	const char errors[1][50] = {
 	"invalid input"
 	};
 

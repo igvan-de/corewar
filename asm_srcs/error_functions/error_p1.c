@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:13:55 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/22 02:14:58 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/05 17:36:48 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	e_check_end_line(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
+	const char errors[1][50] = {
 	"incorrect char"
 	};
 
@@ -26,7 +26,7 @@ void	e_check_end_line(t_func_list *list, int error_code, int kind)
 
 void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
 {
-	static char errors[7][50] = {
+	const char errors[7][50] = {
 	"invalid input",
 	"missing \"",
 	"missing second \"",
@@ -51,7 +51,7 @@ void	e_get_name_or_comment(t_func_list *list, int error_code, int kind)
 
 void	e_procces_line(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
+	const char errors[1][50] = {
 	"no champion name or no comment"
 	};
 
@@ -62,7 +62,7 @@ void	e_procces_line(t_func_list *list, int error_code, int kind)
 
 void	e_check_n_sort(t_func_list *list, int error_code, int kind)
 {
-	static char errors[3][50] = {
+	const char errors[3][50] = {
 	"not a .s file",
 	"fd failed",
 	"empty file"
@@ -75,7 +75,7 @@ void	e_check_n_sort(t_func_list *list, int error_code, int kind)
 
 void	e_main(t_func_list *list, int error_code, int kind)
 {
-	static char errors[3][50] = {
+	const char errors[3][50] = {
 	"no file given",
 	"hash table has failed",
 	"no instuction given"

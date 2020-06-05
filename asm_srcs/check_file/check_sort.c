@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/03 01:01:53 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 13:50:11 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/05 17:54:29 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ static void		get_label_name(t_func_list *list,
 	sub = NULL;
 	start = list->line_char;
 	ret = 0;
-	while (list->line_char < len)
+	while (list->line_char < len - 1)
 	{
 		ret = check_label_char(list->line[list->line_char]);
-		if (ret == -1)
+		if (ret == false)
 			error_message(list, 60, 0, 6);
 		list->line_char++;
 	}
-	sub = ft_strsub(list->line, start, list->line_char - start - 1);
+	sub = ft_strsub(list->line, start, list->line_char - start);
 	if (sub == NULL)
 		error_message(list, 61, 1, 6);
 	add_to_hash(list, sub);
