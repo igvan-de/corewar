@@ -62,7 +62,7 @@ typedef	struct			s_cursor
 	unsigned			carry;
 	unsigned			last_live;
 	unsigned			wait_cycles;
-	unsigned			position;
+	int					position;
 	unsigned			jump;
 }						t_cursor;
 

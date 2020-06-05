@@ -25,7 +25,7 @@
 **	It returns the index of that address within the memory map.
 */
 
-static	unsigned	int		get_position(unsigned id, t_env *env)
+static	int		get_position(unsigned id, t_env *env)
 {
 	unsigned i;
 
@@ -39,8 +39,7 @@ static	unsigned	int		get_position(unsigned id, t_env *env)
 		}
 		i++;
 	}
-	error_init(2);
-	return (0);
+	return (-1);
 }
 
 /*
@@ -71,6 +70,13 @@ static	t_cursor			*new_cursor(t_env *env, int player_nbr)
 	new->last_live = 0;
 	new->live_counter = 0;
 	new->position = get_position(new->id, env);
+	if (new->position == -1)
+	{
+		(env->total_cursors)--;
+		free(new->registries);
+		free(new);
+		return (NULL);
+	}
 	new->op_code = 0;
 	new->wait_cycles = 0;
 	return (new);
@@ -100,7 +106,8 @@ void						init_cursors(t_env *env)
 	{
 		curr = iter->content;
 		new = new_cursor(env, curr->nbr);
-		push_cursor(new, &env->cursor_stack);
+		if (new != NULL)
+			push_cursor(new, &env->cursor_stack);
 		new = NULL;
 		iter = iter->next;
 		i++;
