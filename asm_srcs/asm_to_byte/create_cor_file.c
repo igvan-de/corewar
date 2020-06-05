@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 18:27:18 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/04/15 11:00:51 by igvan-de      ########   odam.nl         */
+/*   Updated: 2020/06/05 18:27:44 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,22 @@
 
 static	char	*get_name(char *argv)
 {
-	char	**name;
+	char	*name;
 	char	*fd_name;
 
-	name = ft_strsplit(argv, '.');
-	fd_name = ft_strjoin(name[0], ".cor");
-	free_split(name);
+	name = ft_strsub(argv, 0, ft_strlen(argv) - 2);
+	if (!name)
+	{
+		ft_printf("ft_strsub in get_name failed\n");
+		exit(1);
+	}
+	fd_name = ft_strjoin(name, ".cor");
+	if (!fd_name)
+	{
+		ft_printf("ft_strjoin in get_name failed\n");
+		exit(1);
+	}
+	free(name);
 	return (fd_name);
 }
 
