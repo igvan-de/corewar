@@ -19,8 +19,11 @@ static	void	exec_and(t_cursor *cursor, t_env *env, unsigned char encode)
 	int arg_3;
 
 	arg_1 = get_arg(cursor, env, encode, 1);
+//	ft_printf("	found value: %i\n", arg_1);
 	arg_2 = get_arg(cursor, env, encode, 2);
+//	ft_printf("	found value: %i\n", arg_2);
 	arg_3 = get_reg_num(cursor, env, encode, 3);
+//	ft_printf("executing operation and --> loading value %i into registry %i\n", arg_1 & arg_2, arg_3 - 1);
 	cursor->registries[arg_3 - 1] = arg_1 & arg_2;
 	set_carry(cursor, arg_1 & arg_2);
 }
