@@ -23,58 +23,6 @@
 **	on the operation code.
 */
 
-unsigned	char	validate_jump(t_byt code, int type, t_byt bytes, t_byt e)
-{
-	if (type == 1 && code == 6)
-		return (6);
-	if (type == 1 && code == 5)
-		return (6);
-	if (type == 1 && code == 4)
-		return (3);
-	if (type == 1 && code == 8)
-		return (6);
-	if (type == 1 && code == 14)
-		return (4);
-	if (type == 1 && code == 11 && e == 0)
-		return (2);
-	if (type == 1 && code == 11)
-		return (5);
-	if (type == 1)
-		return (2);
-	if (code == 11 && type == 2)
-		return (7);
-	if (code == 2 && type == 2 && bytes > 7)
-		return (7);
-	if (code == 3 && type == 2)
-		return (4);
-	return (bytes);
-}
-
-static	void		walk_two(t_cursor *c, t_byt *bytes, unsigned *i, t_env *env)
-{
-	if (c->op_code == 10 && env->map[modi((*i) + 1)] == 0 &&
-		env->map[modi(c->position + 1)] != 0)
-	{
-		while (*bytes < 4)
-		{
-			(*i)++;
-			(*bytes)++;
-		}
-	}
-}
-
-static	void		walk_one(t_cursor *c, t_env *env, t_byt *bytes, unsigned *i)
-{
-	if (env->map[modi(*i - 1)] == -1)
-	{
-		while (env->map[modi(*i)] == -1 && c->op_code == 6)
-		{
-			(*i)++;
-			(*bytes)++;
-		}
-	}
-}
-
 static	void		search_op(t_env *env, t_byt max_bytes, t_byt *bytes, int *i)
 {
 	while ((env->map[modi(*i)] < 1 || 16 < env->map[modi(*i)]) &&
@@ -116,12 +64,16 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	bytes = 1;
 	index = modi(cursor->position + 1);
 	encode = env->map[modi(cursor->position + 1)];
-	search_op(env, max_bytes, &bytes, (int *)&index);
-	bytes = validate_jump(cursor->op_code, type, bytes, encode);
-	index = modi(cursor->position + bytes);
-	walk_one(cursor, env, &bytes, &index);
 	if (type == 1)
-		walk_two(cursor, &bytes, &index, env);
+	{
+		search_op(env, max_bytes, &bytes, (int *)&index);
+		index = modi(cursor->position + bytes);
+	}
+	else
+	{
+		bytes = get_total_arg_size(env->map[modi(cursor->position)], encode) + 2;
+		index = modi(cursor->position + bytes);
+	}
 	if ((env->flag_byte & (1 << 2)) == (1 << 2))
 		dump_op_invalid(cursor, env, bytes);
 	cursor->position = modi(index);
