@@ -20,7 +20,7 @@ static	void	exec_aff(t_cursor *cursor, t_env *env, t_byt encode)
 	reg_num = get_reg_num(cursor, env, encode, 1);
 	if ((env->flag_byte & (1 << 4)) == (1 << 4))
 	{
-		ascii = cursor->registries[reg_num - 1];
+		ascii = cursor->registries[reg_num];
 		if (ft_isprint(ascii) == 1)
 			ft_printf("Aff: %c\n", (char)ascii);
 	}

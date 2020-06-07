@@ -21,7 +21,7 @@ void			exec_sub(t_cursor *cursor, t_env *env, unsigned char encode)
 	arg_1 = get_arg(cursor, env, encode, 1);
 	arg_2 = get_arg(cursor, env, encode, 2);
 	arg_3 = get_reg_num(cursor, env, encode, 3);
-	cursor->registries[arg_3 - 1] = arg_1 - arg_2;
+	cursor->registries[arg_3] = arg_1 - arg_2;
 	set_carry(cursor, arg_1 - arg_2);
 }
 

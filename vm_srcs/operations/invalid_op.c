@@ -105,6 +105,12 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	unsigned		index;
 	unsigned char	encode;
 
+	ft_printf("	encountered invalid instruction with op_code %i", cursor->op_code);
+	if (type == 1)
+		ft_printf("operation has invalid encoding byte --> cannot parse arguments\n");
+	else if (type == 2)
+		ft_printf("operation has invalid register numbers --> cannot access registers\n");
+
 	env->datamap[cursor->position].cursor = 0;
 	max_bytes = 25;
 	bytes = 1;
