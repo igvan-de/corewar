@@ -102,7 +102,7 @@ int						get_arg(t_cursor *c, t_env *env, t_byt encode, int num)
 	unsigned char type;
 	unsigned char rel_pos;
 
-//	ft_printf("	get arg is called for argument %i\n", num);
+	ft_printf("	get arg is called for argument %i\n", num);
 
 	type = get_type(encode, 1);
 	rel_pos = 2;

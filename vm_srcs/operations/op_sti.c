@@ -20,10 +20,7 @@ void			exec_sti(t_cursor *cursor, t_env *env, unsigned char encode)
 	int	addr;
 
 	arg_1 = get_arg(cursor, env, encode, 1);
-	if (get_type(encode, 2) != IND_CODE)
-		arg_2 = get_arg(cursor, env, encode, 2);
-	else
-		arg_2 = get_tind(env, cursor->position + 3);
+	arg_2 = get_arg(cursor, env, encode, 2);
 	arg_3 = get_arg(cursor, env, encode, 3);
 	addr = (arg_2 + arg_3) % IDX_MOD;
 	write_bytes(arg_1, env, cursor, addr);
