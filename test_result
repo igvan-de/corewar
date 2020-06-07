@@ -32,7 +32,7 @@
     Running test -c 24,25 "0B 68 01 57 BB D2 51" . . . . . . . [32mOK[0m
     Running test -c 24,25 "0B 74 01 6E 04 01 4C 09"  . . . . . [32mOK[0m
     Running test -c 24,25 "0B 78 01 97 FD FF F8" . . . . . . . [32mOK[0m
-    Running test -c 804,805 "0C 00 08 03 70 10 FF FE 03 70 01" [31mKO[0m
+    Running test -c 804,805 "0C 00 08 03 70 10 FF FE 03 70 01" [32mOK[0m
     Running test -c 824,825 "09 03 70 0C 99 FE 03 70 01" . . . [32mOK[0m
     Running test -c 809,810 "02 90 12 34 56 78 10 0C 00 08 ... [31mKO[0m
     Running test -c 829,830 "02 D0 00 64 01 0C 00 06 09 00 ... [32mOK[0m
@@ -55,7 +55,7 @@
     Running test -c 1015,1016 "0F 0F F4 02 90 03 70 01 00 0... [32mOK[0m
     Running test -c 6,7 "10 40 01 03 70 01"  . . . . . . . . . [32mOK[0m
     -------------------------------------------------------------
-    52 tests passed out of 55 total tests (94%).
+    53 tests passed out of 55 total tests (96%).
 =====================================================================
 
 === [1mTest suite "Carry flag"(B[m =================================
@@ -141,50 +141,50 @@
     Running test -c 14,15 "00 11 21 80 81 F1 B0 A3 AE FF 03 ... [32mOK[0m
     Running test -c 9,10 "02 D0 00 00 00 03 70 01"  . . . . . . [32mOK[0m
     Running test -c 9,10 "02 D0 00 00 11 03 70 01"  . . . . . . [32mOK[0m
-    Running test -c 9,10 "03 70 00 00 00 03 70 01"  . . . . . . [31mKO[0m
+    Running test -c 9,10 "03 70 00 00 00 03 70 01"  . . . . . . [32mOK[0m
     Running test -c 9,10 "03 50 11 01 03 70 01" . . . . . . . . [32mOK[0m
-    Running test -c 14,15 "04 54 00 02 01 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 14,15 "04 54 01 11 01 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 14,15 "04 54 01 01 41 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 14,15 "05 54 00 02 01 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 14,15 "05 54 01 11 01 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 14,15 "05 54 01 01 41 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 10,11 "06 74 00 00 00 01 03 70 01"  . . . . [31mKO[0m
-    Running test -c 10,11 "06 94 00 00 00 00 11 01 03 70 01"  . [31mKO[0m
+    Running test -c 14,15 "04 54 00 02 01 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 14,15 "04 54 01 11 01 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 14,15 "04 54 01 01 41 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 14,15 "05 54 00 02 01 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 14,15 "05 54 01 11 01 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 14,15 "05 54 01 01 41 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 10,11 "06 74 00 00 00 01 03 70 01"  . . . . [32mOK[0m
+    Running test -c 10,11 "06 94 00 00 00 00 11 01 03 70 01"  . [32mOK[0m
     Running test -c 10,11,36 "06 E4 FF FC 00 00 00 00 41 03 ... [32mOK[0m
-    Running test -c 10,11 "07 54 11 0F 01 03 70 01" . . . . . . [31mKO[0m
-    Running test -c 10,11 "07 94 00 00 00 00 41 01 03 70 01"  . [31mKO[0m
-    Running test -c 10,11,36 "07 A4 00 00 00 00 00 00 00 00 ... [31mKO[0m
-    Running test -c 10,11 "08 64 41 12 34 56 78 01 03 70 01"  . [31mKO[0m
-    Running test -c 10,11 "08 D4 00 00 00 01 03 70 01"  . . . . [31mKO[0m
+    Running test -c 10,11 "07 54 11 0F 01 03 70 01" . . . . . . [32mOK[0m
+    Running test -c 10,11 "07 94 00 00 00 00 41 01 03 70 01"  . [32mOK[0m
+    Running test -c 10,11,36 "07 A4 00 00 00 00 00 00 00 00 ... [32mOK[0m
+    Running test -c 10,11 "08 64 41 12 34 56 78 01 03 70 01"  . [32mOK[0m
+    Running test -c 10,11 "08 D4 00 00 00 01 03 70 01"  . . . . [32mOK[0m
     Running test -c 10,11,36 "08 B4 00 00 00 00 FF FC 11 03 ... [32mOK[0m
-    Running test -c 29,30 "0A 64 41 00 00 01 03 70 01"  . . . . [31mKO[0m
-    Running test -c 29,30 "0A D4 00 00 11 01 03 70 01"  . . . . [31mKO[0m
+    Running test -c 29,30 "0A 64 41 00 00 01 03 70 01"  . . . . [32mOK[0m
+    Running test -c 29,30 "0A D4 00 00 11 01 03 70 01"  . . . . [32mOK[0m
     Running test -c 29,30,55 "0A A4 00 00 FF FC 00 03 70 01 ... [32mOK[0m
     Running test -c 29,30 "0B 68 00 00 FF FC 00 03 70 01" . . . [32mOK[0m
-    Running test -c 29,30 "0B 58 01 11 00 00 03 70 01"  . . . . [31mKO[0m
-    Running test -c 29,30 "0B 74 01 00 00 41 03 70 01"  . . . . [31mKO[0m
+    Running test -c 29,30 "0B 58 01 11 00 00 03 70 01"  . . . . [32mOK[0m
+    Running test -c 29,30 "0B 74 01 00 00 41 03 70 01"  . . . . [32mOK[0m
     Running test -c 14,15 "0D D0 00 00 00 03 70 01" . . . . . . [32mOK[0m
     Running test -c 14,15,40 "0D 90 00 00 00 00 11 03 70 01 ... [32mOK[0m
-    Running test -c 54,55 "0E 64 41 00 00 01 03 70 01"  . . . . [31mKO[0m
-    Running test -c 54,55 "0E D4 00 00 11 01 03 70 01"  . . . . [31mKO[0m
-    Running test -c 54,55,80 "0E A4 00 00 FF FC 00 03 70 01 ... [31mKO[0m
+    Running test -c 54,55 "0E 64 41 00 00 01 03 70 01"  . . . . [32mOK[0m
+    Running test -c 54,55 "0E D4 00 00 11 01 03 70 01"  . . . . [32mOK[0m
+    Running test -c 54,55,80 "0E A4 00 00 FF FC 00 03 70 01 ... [32mOK[0m
     Running test -c 6,7 "10 40 00 03 70 01" . . . . . . . . . . [32mOK[0m
     Running test -c 6,7 "10 40 11 03 70 01" . . . . . . . . . . [32mOK[0m
     Running test -c 6,7 "10 00 03 70 01"  . . . . . . . . . . . [32mOK[0m
-    Running test -c 30,31 "06 00 09 0A 0F 03 70 0F" . . . . . . [31mKO[0m
+    Running test -c 30,31 "06 00 09 0A 0F 03 70 0F" . . . . . . [32mOK[0m
     Running test -c 10,11 "06 50 09 0A 03 70 03"  . . . . . . . [31mKO[0m
     Running test -c 10,11 "06 55 09 0A 0F 03 70 0F" . . . . . . [31mKO[0m
     Running test -c 29,30 "0B 6C 01 00 00 00 00 03 70 01" . . . [31mKO[0m
     Running test -c 29,30 "0B 5C 09 0A 00 00 03 70 01"  . . . . [31mKO[0m
     Running test -c 49,50 "0A 78 02 02 02 02 02 09 00 06 03 ... [31mKO[0m
-    Running test -c 6,7 "10 AA 00 00 00 00 03 70 01"  . . . . . [31mKO[0m
-    Running test -c 6,7 "10 E8 00 00 03 70 01"  . . . . . . . . [31mKO[0m
-    Running test -c 54,55 "0E B0 00 00 00 00 03 70 01"  . . . . [31mKO[0m
+    Running test -c 6,7 "10 AA 00 00 00 00 03 70 01"  . . . . . [32mOK[0m
+    Running test -c 6,7 "10 E8 00 00 03 70 01"  . . . . . . . . [32mOK[0m
+    Running test -c 54,55 "0E B0 00 00 00 00 03 70 01"  . . . . [32mOK[0m
     Running test -c 34,35 "05 AA 03 03 03 03 03 03 03 03 03 ... [31mKO[0m
-    Running test -c 14,15 "05 F5 00 00 00 00 00 03 70 01" . . . [31mKO[0m
+    Running test -c 14,15 "05 F5 00 00 00 00 00 03 70 01" . . . [32mOK[0m
     --------------------------------------------------------------
-    16 tests passed out of 48 total tests (33%).
+    42 tests passed out of 48 total tests (87%).
 ======================================================================
 
 === [1mTest suite "Concurrent modification"(B[m =================================
@@ -211,9 +211,8 @@
     1 tests passed out of 4 total tests (25%).
 ================================================================
 
-51 tests failed out of 173 total tests.
+24 tests failed out of 173 total tests.
 [31m[1mFailed tests:(B[m[0m
-    ./test.sh -c 804,805 "0C 00 08 03 70 10 FF FE 03 70 01"
     ./test.sh -c 809,810 "02 90 12 34 56 78 10 0C 00 08 03 70 10 00 00 03 70 10 00 00"
     ./test.sh -c 1009,1010 "02 90 12 34 56 78 10 0F 00 08 03 70 10 00 00 03 70 10 00 00"
     ./test.sh -c 75,144,145 "0E A4 FF FE FF FE 02 09 00 05 03 70 0E 54 03 06 0B 09 00 06 03 70 01"
@@ -229,38 +228,12 @@
     ./test.sh -c 3018,3019,3024 "02 90 00 00 00 01 02 01 FF FF FF FF 0E 54 0F 0F 10 0E 54 0F 0F 10 04 54 03 02 03 06 64 03 00 00 00 08 10 09 FF E4 02 90 00 00 00 0D 03 04 54 03 02 03 06 64 03 00 00 00 40 04 09 FF F3 03 70 01 00 00 03 70 01" "01 FF FF FF FE 01 FF FF FF FE 0E 54 0F 0F 10 0E 64 0F 00 64 10 09 FF F0"
     ./test.sh -c 16844,16845,16850 "02 90 00 00 00 01 02 02 90 00 00 00 33 03 01 FF FF FF FF 0E 54 01 01 10 0E 54 01 01 10 0E 54 01 01 10 04 54 03 02 03 06 64 03 00 00 00 80 10 09 FF DF 02 90 00 00 00 10 03 04 54 03 02 03 06 64 03 00 00 00 40 10 09 FF F3 03 70 01 00 00 03 70 01 00 00 03 70 01" "01 FF FF FF FE 01 FF FF FF FE 0E 54 0F 0F 10 0E 64 0F 00 64 10 09 FF F0"
     ./test.sh "00 00 02 D0 00 40 10 01 FF FF FF FF 09 FF FB" "00 00 00 02 D0 00 40 10 01 FF FF FF FE 09 FF FB" "00 00 00 00 02 D0 00 40 10 01 FF FF FF FD 09 FF FB" "00 00 00 00 00 02 D0 00 40 10 01 FF FF FF FC 09 FF FB"
-    ./test.sh -c 9,10 "03 70 00 00 00 03 70 01"
-    ./test.sh -c 14,15 "04 54 00 02 01 03 70 01"
-    ./test.sh -c 14,15 "04 54 01 11 01 03 70 01"
-    ./test.sh -c 14,15 "04 54 01 01 41 03 70 01"
-    ./test.sh -c 14,15 "05 54 00 02 01 03 70 01"
-    ./test.sh -c 14,15 "05 54 01 11 01 03 70 01"
-    ./test.sh -c 14,15 "05 54 01 01 41 03 70 01"
-    ./test.sh -c 10,11 "06 74 00 00 00 01 03 70 01"
-    ./test.sh -c 10,11 "06 94 00 00 00 00 11 01 03 70 01"
-    ./test.sh -c 10,11 "07 54 11 0F 01 03 70 01"
-    ./test.sh -c 10,11 "07 94 00 00 00 00 41 01 03 70 01"
-    ./test.sh -c 10,11,36 "07 A4 00 00 00 00 00 00 00 00 00 03 70 01 00 00 09 00 06 03 70 01"
-    ./test.sh -c 10,11 "08 64 41 12 34 56 78 01 03 70 01"
-    ./test.sh -c 10,11 "08 D4 00 00 00 01 03 70 01"
-    ./test.sh -c 29,30 "0A 64 41 00 00 01 03 70 01"
-    ./test.sh -c 29,30 "0A D4 00 00 11 01 03 70 01"
-    ./test.sh -c 29,30 "0B 58 01 11 00 00 03 70 01"
-    ./test.sh -c 29,30 "0B 74 01 00 00 41 03 70 01"
-    ./test.sh -c 54,55 "0E 64 41 00 00 01 03 70 01"
-    ./test.sh -c 54,55 "0E D4 00 00 11 01 03 70 01"
-    ./test.sh -c 54,55,80 "0E A4 00 00 FF FC 00 03 70 01 00 00 09 00 06 03 70 01"
-    ./test.sh -c 30,31 "06 00 09 0A 0F 03 70 0F"
     ./test.sh -c 10,11 "06 50 09 0A 03 70 03"
     ./test.sh -c 10,11 "06 55 09 0A 0F 03 70 0F"
     ./test.sh -c 29,30 "0B 6C 01 00 00 00 00 03 70 01"
     ./test.sh -c 29,30 "0B 5C 09 0A 00 00 03 70 01"
     ./test.sh -c 49,50 "0A 78 02 02 02 02 02 09 00 06 03 70 02"
-    ./test.sh -c 6,7 "10 AA 00 00 00 00 03 70 01"
-    ./test.sh -c 6,7 "10 E8 00 00 03 70 01"
-    ./test.sh -c 54,55 "0E B0 00 00 00 00 03 70 01"
     ./test.sh -c 34,35 "05 AA 03 03 03 03 03 03 03 03 03 03 03 03 09 00 06 03 70 03"
-    ./test.sh -c 14,15 "05 F5 00 00 00 00 00 03 70 01"
     ./test.sh -c 25902 champions/helltrain.cor champions/fluttershy.cor
     ./test.sh -c 25902 champions/fluttershy.cor champions/toto.cor champions/leapfrog.cor
     ./test.sh -c 10000 champions/le_pet_de_nonne.cor champions/Car.cor champions/helltrain.cor
