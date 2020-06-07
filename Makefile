@@ -63,30 +63,16 @@ libft/libft.a:
 ft_printf/libftprintf.a:
 	@make -C ft_printf/
 
-test_asm:
-	cd unit_test && ./exec_test_asm.sh && cd .. && make clean
-
-test_corewar:
-	cd unit_test && ./exec_test_corewar.sh && cd .. && make clean
-
 clean:
 	@rm -f $(OBJ_CW) $(OBJ_ASM) $(OBJ_DSM)
 	@make -C ./libft clean
 	@make -C ./ft_printf clean
-	@make -C ./unit_test/support/tester clean
 	@echo "$(PRINT_CLEAN) Cleaning objectives completed"
 
 fclean: clean
 	@rm -f $(NAME_ASM) $(NAME_CW) $(NAME_DSM)
 	@make -C ./libft fclean
 	@make -C ./ft_printf fclean
-	@make -C ./unit_test/support/tester fclean
-	@rm -rf unit_test/cw_output
-	@rm -rf unit_test/asm_output
-	@rm -rf unit_test/cw_result
-	@rm -rf unit_test/asm_result
-	@rm -rf cw_test_champs
-	@rm -rf asm_test_champs
 	@echo "$(PRINT_CLEAN) Cleaning all completed"
 
 re:
