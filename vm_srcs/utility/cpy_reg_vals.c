@@ -27,7 +27,7 @@ void	cpy_reg_vals(t_cursor *dst, t_cursor *src)
 	int i;
 
 	i = 0;
-	while (i < REG_NUMBER)
+	while (i <= REG_NUMBER)
 	{
 		dst->registries[i] = src->registries[i];
 		i++;
