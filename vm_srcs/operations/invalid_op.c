@@ -35,7 +35,17 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	bytes = 1;
 	index = modi(cursor->position + 1);
 	encode = env->map[modi(cursor->position + 1)];
-	if (type == 1 || type == 2)
+	if (cursor->op_code == 16)
+	{
+		while (env->map[modi(index)] < 1 || 16 < env->map[modi(index)])
+		{
+			if (bytes == 4)
+				break;
+			bytes++;
+			index++;
+		}
+	}
+	else if (type == 1 || type == 2)
 	{
 		bytes = get_total_arg_size(env->map[modi(cursor->position)], encode) + 2;
 		index = modi(cursor->position + bytes);
