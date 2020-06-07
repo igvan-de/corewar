@@ -57,24 +57,16 @@ static	int				get_val(t_cursor *c, t_env *e, t_byt type, int rel_pos)
 	if (type == REG_CODE)
 	{
 		reg_num = e->map[addr];
-//		ft_printf("	reading from registry: %i\n", reg_num);
 		return (c->registries[reg_num]);
 	}
 	else if (type == DIR_CODE && get_tdir_size(c->op_code) == 4)
-	{
-//		ft_printf("	reading direct value %i from map of size 4\n", get_tdir(e, addr));
 		return (get_tdir(e, addr));
-	}
 	else if (type == DIR_CODE && get_tdir_size(c->op_code) == 2)
-	{
-//		ft_printf("	reading direct value %i from map of size 2\n", get_tind(e, addr));
 		return (get_tind(e, addr));
-	}
 	else if (type == IND_CODE)
 	{
 		rel_pos = get_tind(e, addr);
 		rel_pos %= IDX_MOD;
-//		ft_printf("	reading indirect value %i from map of size ?? at position %i", get_tdir(e, c->position + rel_pos), rel_pos);
 		return (get_tdir(e, c->position + rel_pos));
 	}
 	error_exec(4);
@@ -101,8 +93,6 @@ int						get_arg(t_cursor *c, t_env *env, t_byt encode, int num)
 {
 	unsigned char type;
 	unsigned char rel_pos;
-
-//	ft_printf("	get arg is called for argument %i\n", num);
 
 	type = get_type(encode, 1);
 	rel_pos = 2;

@@ -18,21 +18,16 @@ static	void	exec_st(t_cursor *cursor, t_env *env, unsigned char encode)
 	int arg_2;
 	int addr;
 
-//	ft_printf("	executing instruction op_st\n");
-
 	arg_1 = get_arg(cursor, env, encode, 1);
-//	ft_printf("	found value: %i\n", arg_1);
 	if (get_type(encode, 2) == REG_CODE)
 	{
 		arg_2 = get_reg_num(cursor, env, encode, 2);
-//		printf("	writing to registry nbr: %i\n", arg_2);
 		cursor->registries[arg_2] = arg_1;
 	}
 	else if (get_type(encode, 2) == IND_CODE)
 	{
 		arg_2 = get_tind(env, cursor->position + 3);
 		addr = arg_2 % IDX_MOD;
-//		printf("	writing to relative map position: %i\n", arg_2);
 		write_bytes(arg_1, env, cursor, addr);
 	}
 }
