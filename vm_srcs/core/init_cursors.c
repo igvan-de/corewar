@@ -64,7 +64,7 @@ static	t_cursor			*new_cursor(t_env *env, int player_nbr)
 	new->prev = NULL;
 	new->next = NULL;
 	new->registries = init_registries();
-	new->registries[0] = -1 * player_nbr;
+	new->registries[1] = -1 * player_nbr;
 	new->carry = 0;
 	new->jump = 0;
 	new->last_live = 0;

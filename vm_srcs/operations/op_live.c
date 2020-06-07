@@ -58,7 +58,7 @@ void			op_live(t_cursor *cursor, t_env *env)
 	int		value;
 
 	value = get_tdir(env, modi(cursor->position + 1));
-	if (value == cursor->registries[0])
+	if (value == cursor->registries[1])
 	{
 		env->player_last_alive = value * -1;
 		if ((env->flag_byte & (1 << 5)) == (1 << 5))
