@@ -39,7 +39,7 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	{
 		while (env->map[modi(index)] < 1 || 16 < env->map[modi(index)])
 		{
-			if (bytes == 4)
+			if (bytes == 6)
 				break;
 			bytes++;
 			index++;
