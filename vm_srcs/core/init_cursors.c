@@ -12,6 +12,18 @@
 
 #include "vm.h"
 
+static	int			verif_position(int position, t_cursor *new, t_env *env)
+{
+	if (position == -1)
+	{
+		(env->total_cursors)--;
+		free(new->registries);
+		free(new);
+		return (0);
+	}
+	return (1);
+}
+
 /*
 **	@brief: get the starting position of the cursor
 **
@@ -25,7 +37,7 @@
 **	It returns the index of that address within the memory map.
 */
 
-static	int		get_position(unsigned id, t_env *env)
+static	int			get_position(unsigned id, t_env *env)
 {
 	unsigned i;
 
@@ -52,7 +64,7 @@ static	int		get_position(unsigned id, t_env *env)
 **	cursor for each active player.
 */
 
-static	t_cursor			*new_cursor(t_env *env, int player_nbr)
+static	t_cursor	*new_cursor(t_env *env, int player_nbr)
 {
 	t_cursor	*new;
 
@@ -70,13 +82,8 @@ static	t_cursor			*new_cursor(t_env *env, int player_nbr)
 	new->last_live = 0;
 	new->live_counter = 0;
 	new->position = get_position(new->id, env);
-	if (new->position == -1)
-	{
-		(env->total_cursors)--;
-		free(new->registries);
-		free(new);
+	if (verif_position(new->position, new, env) == 0)
 		return (NULL);
-	}
 	new->op_code = 0;
 	new->wait_cycles = 0;
 	return (new);
@@ -93,7 +100,7 @@ static	t_cursor			*new_cursor(t_env *env, int player_nbr)
 **	pointing to the first byte of the execution code.
 */
 
-void						init_cursors(t_env *env)
+void				init_cursors(t_env *env)
 {
 	unsigned	i;
 	t_cursor	*new;

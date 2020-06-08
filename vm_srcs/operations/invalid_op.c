@@ -12,6 +12,17 @@
 
 #include "vm.h"
 
+static	void		handle_aff(t_env *env, t_byt *bytes, unsigned *index)
+{
+	while (env->map[modi(*index)] < 1 || 16 < env->map[modi(*index)])
+	{
+		if (*bytes == 6)
+			break ;
+		(*bytes)++;
+		(*index)++;
+	}
+}
+
 /*
 **	@brief:	move cursor past invalid operation code
 **
@@ -36,18 +47,12 @@ void				invalid_op(t_cursor *cursor, t_env *env, int type)
 	index = modi(cursor->position + 1);
 	encode = env->map[modi(cursor->position + 1)];
 	if (cursor->op_code == 16)
-	{
-		while (env->map[modi(index)] < 1 || 16 < env->map[modi(index)])
-		{
-			if (bytes == 6)
-				break;
-			bytes++;
-			index++;
-		}
-	}
+		handle_aff(env, &bytes, &index);
 	else if (type == 1 || type == 2)
 	{
-		bytes = get_total_arg_size(env->map[modi(cursor->position)], encode) + 2;
+		bytes = get_total_arg_size(
+			env->map[modi(cursor->position)],
+			encode) + 2;
 		index = modi(cursor->position + bytes);
 	}
 	if ((env->flag_byte & (1 << 2)) == (1 << 2))

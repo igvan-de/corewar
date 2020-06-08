@@ -123,7 +123,7 @@ static	void	check_flags(t_env *env)
 		print_map(env);
 	if ((env->flag_byte & (1 << 6)) == (1 << 6) &&
 		env->dump_cycle == env->total_cycles)
-		dump_mem_alt(env);	
+		dump_mem_alt(env);
 	if ((env->flag_byte & (1 << 1)) == (1 << 1) &&
 		env->dump_cycle == env->total_cycles)
 		dump_mem(env);

@@ -25,16 +25,17 @@
 **	the parameter directly after the flag.
 */
 
-static	void	get_dump_cycle(int curr, int arg_nb, char **argv, t_env *env)
+static	void	get_dump_cycle(int *curr, int arg_nb, char **argv, t_env *env)
 {
 	long long int nbr_cycle;
 
-	if (curr == arg_nb - 1)
+	if (*curr == arg_nb - 1)
 		error_input(7);
-	nbr_cycle = ft_atoilong(argv[curr + 1]);
+	nbr_cycle = ft_atoilong(argv[(*curr) + 1]);
 	if (nbr_cycle < 1 || 2147483648 < nbr_cycle)
 		error_input(8);
 	env->dump_cycle = (unsigned)nbr_cycle;
+	(*curr)++;
 }
 
 /*
@@ -175,10 +176,7 @@ void			process_flag(char **argv, int *i, int arg_nb, t_env *env)
 		env->flag_byte = env->flag_byte | (1 << 5);
 	else if (ft_strcmp(argv[*i], "-dump") == 0 ||
 		ft_strcmp(argv[*i], "-d") == 0)
-	{
-		get_dump_cycle(*i, arg_nb, argv, env);
-		(*i)++;
-	}
+		get_dump_cycle(i, arg_nb, argv, env);
 	else if (ft_strcmp(argv[*i], "-v") == 0)
 	{
 		env->flag_byte = env->flag_byte | (1 << 2);
