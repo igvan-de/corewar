@@ -16,7 +16,7 @@
 **  check if a player nbr is already assigned
 */
 
-static	int	is_assigned(int player_nbr, t_env *env)
+static	int		is_assigned(int player_nbr, t_env *env)
 {
 	t_list		*iter;
 	t_player	*player;
@@ -60,7 +60,7 @@ static	void	assign_nbr(t_env *env, t_player *player)
 **  assign player nbr for each player
 */
 
-void	nbr_players(t_env *env)
+void			nbr_players(t_env *env)
 {
 	t_list		*iter;
 	t_player	*player;
