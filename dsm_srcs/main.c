@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 17:23:14 by igor          ########   odam.nl         */
+/*   Updated: 2020/06/08 15:27:23 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ static	void	init_header(t_header **header)
 {
 	(*header) = (t_header *)malloc(sizeof(t_header));
 	if (*header == NULL)
-		exit(-1);
+	{
+		ft_printf("No header has been found\n");
+		exit(1);
+	}
 }
 
 /*
@@ -48,9 +51,15 @@ static	void	init_file(t_file **file)
 static	void	error_check(ssize_t bytes, unsigned int exec_code_size)
 {
 	if (bytes != exec_code_size)
-		exit(-1);
+	{
+		ft_printf("Amount of bytes isn't equal to exec_code_size\n");
+		exit(1);
+	}
 	if (bytes > CHAMP_MAX_SIZE)
-		exit(-1);
+	{
+		ft_printf("Amount of bytes isn't bigger then max champ size\n");
+		exit(1);
+	}
 }
 
 /*
@@ -64,7 +73,10 @@ static	void	init_exec_code(t_file **file, size_t size)
 {
 	(*file)->exec = ft_strnew(size);
 	if (!((*file)->exec))
-		exit(-1);
+	{
+		ft_printf("Couldn't initialize new string in init_exec_code\n");
+		exit(1);
+	}
 }
 
 /*
@@ -81,13 +93,13 @@ int				main(int argc, char **argv)
 	t_mainvars v;
 
 	if (argc < 2)
-		return (-1);
+		return (1);
 	v.fd_name = file_check(argv[1]);
 	v.fd_cor = open(argv[1], O_RDONLY);
 	init_file(&v.file);
 	v.bytes = read(v.fd_cor, v.file->header, sizeof(t_header));
 	if (v.bytes != sizeof(t_header))
-		exit(-1);
+		exit(1);
 	v.fd_s = open(v.fd_name, O_CREAT | O_WRONLY | O_TRUNC, 0640);
 	v.exec_code_size = rev_endian(v.file->header->prog_size);
 	init_exec_code(&v.file, v.exec_code_size);
