@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/06/08 16:58:06 by igor          ########   odam.nl         */
+/*   Updated: 2020/06/11 11:34:48 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ char	*file_check(char *argv)
 	}
 	ft_printf(".s file is placed in: %s\n", fd_name);
 	free(name);
+	free(check);
 	return (fd_name);
 }
