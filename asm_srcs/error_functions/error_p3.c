@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:27:28 by mark          #+#    #+#                 */
-/*   Updated: 2020/06/05 17:36:48 by mlokhors      ########   odam.nl         */
+/*   Updated: 2020/06/11 16:04:38 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	e_get_rem_cn(t_func_list *list, int error_code, int kind)
 {
 	const char errors[2][50] = {
 	"malloc failed",
-	"name or comment to big"
+	"name or comment to big or no \""
 	};
 
 	ft_printf("Error code:%d\nfile: get_rem_cn\ndescription: %s\n",
