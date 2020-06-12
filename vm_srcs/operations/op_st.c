@@ -22,7 +22,7 @@ static	void	exec_st(t_cursor *cursor, t_env *env, unsigned char encode)
 	if (get_type(encode, 2) == REG_CODE)
 	{
 		arg_2 = get_reg_num(cursor, env, encode, 2);
-		cursor->registries[arg_2 - 1] = arg_1;
+		cursor->registries[arg_2] = arg_1;
 	}
 	else if (get_type(encode, 2) == IND_CODE)
 	{

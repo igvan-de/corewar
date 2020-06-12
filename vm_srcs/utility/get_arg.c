@@ -57,7 +57,7 @@ static	int				get_val(t_cursor *c, t_env *e, t_byt type, int rel_pos)
 	if (type == REG_CODE)
 	{
 		reg_num = e->map[addr];
-		return (c->registries[reg_num - 1]);
+		return (c->registries[reg_num]);
 	}
 	else if (type == DIR_CODE && get_tdir_size(c->op_code) == 4)
 		return (get_tdir(e, addr));
@@ -66,6 +66,7 @@ static	int				get_val(t_cursor *c, t_env *e, t_byt type, int rel_pos)
 	else if (type == IND_CODE)
 	{
 		rel_pos = get_tind(e, addr);
+		rel_pos %= IDX_MOD;
 		return (get_tdir(e, c->position + rel_pos));
 	}
 	error_exec(4);

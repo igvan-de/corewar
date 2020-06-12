@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-static	void		dump_addr(unsigned int *bytes, int *addr_trig)
+static	void		dump_addr_alt(unsigned int *bytes, int *addr_trig)
 {
 	if (*bytes == 0)
 		ft_printf("0x0000 : ");
@@ -20,6 +20,43 @@ static	void		dump_addr(unsigned int *bytes, int *addr_trig)
 		ft_printf("%#06x : ", *bytes);
 	(*bytes) += 64;
 	(*addr_trig) = 0;
+}
+
+static	void		dump_addr(unsigned int *bytes, int *addr_trig)
+{
+	if (*bytes == 0)
+		ft_printf("0x0000 : ");
+	else
+		ft_printf("%#06x : ", *bytes);
+	(*bytes) += 32;
+	(*addr_trig) = 0;
+}
+
+void				dump_mem_alt(t_env *env)
+{
+	int				i;
+	int				addr_trig;
+	unsigned int	bytes;
+
+	i = 0;
+	addr_trig = 1;
+	bytes = 0;
+	while (i < MEM_SIZE)
+	{
+		if (addr_trig == 1)
+			dump_addr_alt(&bytes, &addr_trig);
+		if (env->datamap[i].player != 0)
+			ft_printf("%02x ", 0xFF & env->map[i]);
+		else
+			ft_printf("%#02x ", env->map[i]);
+		if ((i + 1) % 64 == 0)
+		{
+			addr_trig = 1;
+			ft_putchar('\n');
+		}
+		i++;
+	}
+	exit(0);
 }
 
 /*
@@ -49,7 +86,7 @@ void				dump_mem(t_env *env)
 			ft_printf("%02x ", 0xFF & env->map[i]);
 		else
 			ft_printf("%#02x ", env->map[i]);
-		if ((i + 1) % (128 / 2) == 0)
+		if ((i + 1) % 32 == 0)
 		{
 			addr_trig = 1;
 			ft_putchar('\n');
@@ -76,7 +113,7 @@ void				dump_pos(t_env *env)
 	while (i < MEM_SIZE)
 	{
 		ft_printf("%hhi ", env->datamap[i].player);
-		if ((i + 1) % (128 / 2) == 0)
+		if ((i + 1) % 64 == 0)
 			ft_putchar('\n');
 		i++;
 	}

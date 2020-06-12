@@ -6,7 +6,7 @@
 /*   By: igvan-de <igvan-de@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/02/17 16:58:13 by igvan-de      #+#    #+#                 */
-/*   Updated: 2020/05/06 09:08:53 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/05 17:37:17 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	error_message(t_func_list *list, int error_code, int kind, int file)
 	};
 
 	var_list[file](list, error_code, kind);
-	exit(-1);
+	exit(1);
 }

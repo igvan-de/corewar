@@ -6,11 +6,33 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/06 09:02:17 by mark          #+#    #+#                 */
-/*   Updated: 2020/05/06 15:12:53 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/11 17:02:26 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** @brief checks if the last line is empty or is a commnet
+**
+** @param 	list = the container where we store all our information
+** @param	list->line = it readed line by line from the file and assign to line
+** @param	list->line_char = keep track the index accesed in line.
+**
+** @return	it sets the return to 3 if the last line is empty
+**			this is needed so it can compile with an empty line
+*/
+
+static int		check_empty_ret(t_func_list *list, int ret)
+{
+	if (ret != 1)
+		return (ret);
+	skip_space(list);
+	if ((list->line[list->line_char] == '#' ||
+	list->line[list->line_char] == '\0'))
+		return (ret + 2);
+	return (ret);
+}
 
 /*
 ** @brief checks for the remains after all being extracted from line
@@ -49,6 +71,8 @@ static bool		check_empty_line(t_func_list *list)
 
 static void		pre_process(t_func_list *list, int ret, int old_ret)
 {
+	if (list->cn_size != 0 && ret == 0)
+		error_message(list, 142, 2, 14);
 	if (list->cn_size != 0)
 		get_rem_cn(list, ret);
 	else if (old_ret == 1 && ret == 0)
@@ -90,6 +114,7 @@ void			read_file(t_func_list *list, int fd)
 			close(fd);
 			error_message(list, 140, 0, 14);
 		}
+		ret = check_empty_ret(list, ret);
 		pre_process(list, ret, old_ret);
 		ft_memdel((void **)&list->line);
 		old_ret = ret;

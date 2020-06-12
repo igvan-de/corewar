@@ -6,7 +6,7 @@
 /*   By: mark <mark@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/14 23:21:48 by mark          #+#    #+#                 */
-/*   Updated: 2020/04/24 18:00:10 by mark          ########   odam.nl         */
+/*   Updated: 2020/06/05 17:46:07 by mlokhors      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	e_process_t_reg(t_func_list *list, int error_code, int kind)
 {
-	static char errors[3][50] = {
+	const char errors[3][50] = {
 	"invalid input",
-	"bigger 16 smaller then 0",
+	"T_REG > 99 or T_REG < 0",
 	"invalid input"
 	};
 
@@ -36,7 +36,7 @@ void	e_process_t_reg(t_func_list *list, int error_code, int kind)
 
 void	e_insert_operation(t_func_list *list, int error_code, int kind)
 {
-	static char errors[3][50] = {
+	const char errors[3][50] = {
 	"no seperate char",
 	"invalid argument with operations",
 	"invalid input"
@@ -58,7 +58,7 @@ void	e_insert_operation(t_func_list *list, int error_code, int kind)
 
 void	e_add_to_hash(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
+	const char errors[1][50] = {
 	"malloc failed"
 	};
 
@@ -69,29 +69,21 @@ void	e_add_to_hash(t_func_list *list, int error_code, int kind)
 
 void	e_check_sort(t_func_list *list, int error_code, int kind)
 {
-	static char errors[3][50] = {
+	const char errors[3][50] = {
 	"label contain illegal chars",
 	"ft_strsub failed",
 	"invalid operation"
 	};
 
-	if (error_code < 67)
-	{
-		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",
-		error_code, errors[kind]);
-	}
-	else
-	{
-		ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",
-		error_code, errors[kind]);
-		ft_printf("at line %d\n", list->line_number);
-	}
+	ft_printf("Error code:%d\nfile:check_sort\ndescription: %s\n",
+	error_code, errors[kind]);
+	ft_printf("at line %d\n", list->line_number);
 	free_func(list);
 }
 
 void	e_add_instruction_node(t_func_list *list, int error_code, int kind)
 {
-	static char errors[1][50] = {
+	const char errors[1][50] = {
 	"malloc failed"
 	};
 

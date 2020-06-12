@@ -6,7 +6,7 @@
 /*   By: igor <igor@student.codam.nl>                 +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/04/28 12:31:32 by igor          #+#    #+#                 */
-/*   Updated: 2020/05/02 17:23:14 by igor          ########   odam.nl         */
+/*   Updated: 2020/06/11 11:34:48 by igor          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,25 @@
 
 char	*file_check(char *argv)
 {
-	char	**name;
+	char	*name;
+	char	*check;
 	char	*fd_name;
-	int		i;
 
-	i = 0;
-	name = ft_strsplit(argv, '.');
-	while (name[i] != NULL)
-		i++;
-	if (ft_strequ(name[i - 1], "cor") == 0)
+	name = ft_strsub(argv, 0, ft_strlen(argv) - 4);
+	check = ft_strsub(argv, ft_strlen(name), ft_strlen(argv));
+	if (ft_strequ(check, ".cor") == 0)
 	{
 		ft_printf("Error, wrong file. Needs to be a .cor file\n");
-		exit(-1);
+		exit(1);
 	}
-	fd_name = ft_strjoin(name[0], ".s");
-	free_split(name);
+	fd_name = ft_strjoin(name, ".s");
+	if (!fd_name)
+	{
+		ft_printf("ft_strjoin in file_check failed\n");
+		exit(1);
+	}
+	ft_printf(".s file is placed in: %s\n", fd_name);
+	free(name);
+	free(check);
 	return (fd_name);
 }

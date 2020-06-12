@@ -27,10 +27,10 @@ static	void	exec_lld(t_cursor *cursor, t_env *env, unsigned char encode)
 	else
 	{
 		arg_1 = get_tind(env, cursor->position + 2);
-		arg_1 = get_tdir(env, cursor->position + arg_1);
+		arg_1 = get_tind(env, cursor->position + arg_1);
 	}
 	arg_2 = get_reg_num(cursor, env, encode, 2);
-	cursor->registries[arg_2 - 1] = arg_1;
+	cursor->registries[arg_2] = arg_1;
 	set_carry(cursor, arg_1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlokhors <mlokhors@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/03/06 10:58:40 by mlokhors      #+#    #+#                 */
-/*   Updated: 2020/05/06 15:12:02 by mark          ########   odam.nl         */
+/*   Updated: 2020/05/22 02:12:37 by mark          ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,6 @@ void		get_name_comment(t_func_list *list)
 	else
 	{
 		list->line_char++;
-		error_message(list, 30, 0, 3);
+		error_message(list, 38, 0, 3);
 	}
 }
